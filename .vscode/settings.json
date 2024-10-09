@@ -1,0 +1,350 @@
+// 指定vscode编辑器的行为方式、外观和功能特性，以及扩展插件的配置选项
+
+{
+    // #region CODE: vscode 基础配置
+
+    "editor.linkedEditing": true,
+    "editor.stickyScroll.enabled": true,
+    // 开启Prettier ESLint保存自动格式化（formatOnSave与codeActionsOnSave冲突，会格式化2次，所以不在codeActionsOnSave中写）
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        // 启用stylelint自动保存格式化,explicit:只会在手动保存时生效
+        "source.fixAll.stylelint": "explicit",
+        // 启用markdownlint自动保存格式化
+        "source.fixAll.markdownlint": "explicit"
+    },
+    // 设置全局默认格式化插件，无需手动设置
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    // 设置 prettier格式化 在 eslint格式化 前执行
+    "vs-code-prettier-eslint.prettierLast": false,
+    "[scss]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "[less]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "workbench.tree.indent": 10,
+    "workbench.colorCustomizations": {
+        "editor.lineHighlightBackground": "#1d375bb6"
+    },
+    "files.defaultLanguage": "html",
+    "git.autofetch": true,
+    "search.exclude": {
+        "**/.history": true,
+        "**/cache": true,
+        "*-lock.*": true
+    },
+    "explorer.compactFolders": false,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        ".env": ".env.*",
+        "eslint.config.*": ".eslintignore",
+        ".eslintrc*": ".eslintignore",
+        ".prettierrc*": ".prettierignore",
+        ".stylelintrc*": ".stylelintignore",
+        "tsconfig.json": "tsconfig.*.json",
+        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, pnpm-workspace.yaml, LICENSE"
+    },
+
+    // #endregion
+
+    // #region CODE: eslint 插件配置
+
+    // 启用工作区文件夹的 ESLint,默认:true
+    "eslint.enable": true,
+    // 启用调试模式
+    "eslint.debug": true,
+    // 对整个工作区文件夹进行 lint 检测
+    "eslint.lintTask.enable": true,
+    // 对整个工作区进行 linting 的任务时应用的命令行选项 示例:-c /.eslintrc.json
+    "eslint.lintTask.options": "",
+    // 扩展使用 ESLint 类 API
+    "eslint.useESLintClass": true,
+    // lint 检查时机,默认: onType:输入代码时
+    "eslint.run": "onType",
+    // 是否忽略规则严重程度为 warn 的警告
+    "eslint.quiet": false,
+    // 使用系统中安装的 Node.js 版本来执行检查,默认:node
+    "eslint.runtime": "node",
+    // 传递额外的参数给 Node.js 运行时,示例：--max_old_space_size 增加 Node.js 运行时的最大堆内存大小，处理大型项目或运行耗费大量内存的操作时防止出现内存不足
+    "eslint.execArgv": ["--max_old_space_size=4096"],
+    // 尝试 lingt 检测文件的语言,启用默认值
+    "eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact", "html", "vue"],
+    // 强制 lingt 检测文件的语言,默认:["javascript", "javascriptreact"]
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "json", "jsonc"],
+    // 启用 ESLint 修复功能，只对lint检查的文件
+    "eslint.format.enable": true,
+    // 指定如何计算 ESLint 使用的工作目录,默认:location
+    // location:指示 ESLint 使用工作区文件夹位置或文件位置（如果没有打开工作区文件夹）作为工作目录
+    // auto:ESLint 扩展会根据 package.json、.eslintignore 和 .eslintrc* 文件的位置推断工作目录
+    "eslint.workingDirectories": [{ "mode": "auto" }],
+    // 配置快速修复菜单
+    "eslint.codeAction.disableRuleComment": {
+        // 是否显示禁用 lint 规则的选项
+        "enable": true,
+        // 禁用规则的注释位置,注释加在代码的上方
+        "location": "separateLine"
+    },
+    // 在快速修复菜单中是否显示打开 lint 规则文档网页的选项
+    "eslint.codeAction.showDocumentation": {
+        "enable": true
+    },
+    // 保存时修复所有可能的问题,默认:all
+    "eslint.codeActionsOnSave.mode": "all",
+    // 所有规则严重程度强制设置为错误
+    "eslint.rules.customizations": [{ "rule": "*", "severity": "error" }],
+    // 发现忽略的文件时，不会生成警告,默认:off
+    "eslint.onIgnoredFiles": "off",
+    // 在显示问题时是否将带有下划线的问题的文本范围缩短到第一个相关行,准确定位问题
+    "eslint.problems.shortenToSingleLine": true,
+    // 启用扁平化配置的支持（eslint.config.js），由 ESLint 版本 8.21 或更高版本支持,v9将默认支持扁平化配置
+    "eslint.useFlatConfig": false,
+
+    // #endregion
+
+    // #region CODE: stylelint 插件配置
+
+    // 设置包管理器，以便正常解析stylelint依赖（注意：只在 `stylelint` 依赖全局安装时才会生效） 默认：npm
+    "stylelint.packageManager": "pnpm",
+    // 设置stylelint所包含的文件类型
+    "stylelint.validate": ["css", "sass", "scss", "less", "vue"],
+    // 设置在这些类型的文件中触发了与 Stylelint 相关的问题，它将会显示代码片段，帮助你快速理解问题所在并进行修复
+    "stylelint.snippet": ["css", "sass", "scss", "less", "vue", "postcss"],
+    // 禁用vscode内置 CSS、Less 和 SCSS linter，避免与stylelint冲突
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+
+    // #endregion
+
+    // #region CODE: markdownlint 插件配置
+
+    // 规则
+    "markdownlint.config": {
+        "default": true,
+        "MD007": { "indent": 4 },
+        "no-hard-tabs": true,
+        "no-inline-html": false,
+        "first-line-h1": false,
+        // 允许标题内容重复
+        "MD024": false,
+        // 允许md文件内嵌html
+        "MD033": false,
+        // 允许使用 **Input** 强调语法
+        "MD036": false,
+        // 禁用限制空格数量的规则
+        "MD030": false
+    },
+    // lint 检查时机,默认: onType:输入代码时
+    "markdownlint.run": "onType",
+    // 包含或排除某些文件
+    "markdownlint.lintWorkspaceGlobs": [
+        "**/*.{md,mkd,mdwn,mdown,markdown,markdn,mdtxt,mdtext,workbook}",
+        "!**/node_modules",
+        "!**/bower_components",
+        "!**/.git"
+    ],
+
+    // #endregion
+
+    // #region CODE: Vue - Official 插件配置
+
+    // 在选项包装器中显示内联提示
+    "vue.inlayHints.optionsWrapper": true,
+    // 为 v-bind 的简写语法显示内联提示
+    "vue.inlayHints.vBindShorthand": true,
+    // 在内联处理程序前显示提示
+    "vue.inlayHints.inlineHandlerLeading": true,
+    // 显示缺少的 props 提示
+    "vue.inlayHints.missingProps": true,
+    // 自动插入 .value
+    "vue.autoInsert.dotValue": true,
+    // 在文件移动时自动更新导入路径
+    "vue.updateImportsOnFileMove.enabled": true,
+
+    // #endregion
+
+    // #region CODE: git-commit-plugin 插件配置
+
+    // git提交信息最大允许字符数
+    "GitCommitPlugin.MaxSubjectCharacters": 60,
+
+    // #endregion
+
+    // #region CODE: koroFileHeader 插件配置
+
+    // 头部注释
+    "fileheader.customMade": {
+        // 作者:获取git用户名
+        "Author": "git config user.name",
+        // 文件创建时间
+        "Date": "Do not edit",
+        // 最后修改人
+        "LastEditors": "git config user.name",
+        // 最后修改时间
+        "LastEditTime": "Do not edit",
+        // 文件路径
+        "FilePath": "Do not edit",
+        // 文件描述
+        "Description": ""
+    },
+    "fileheader.configObj": {
+        // 自动添加头部注释开启才能自动添加
+        "autoAdd": false
+    },
+
+    // #endregion
+
+    // #region CODE: Document This 插件配置
+
+    // 是否包含 @date 标签
+    "docthis.includeDateTag": true,
+    // 指定 @date 标签中日期的格式
+    "docthis.dateTagFormat": "dd/mm/yyyy/  HH:MM:ss",
+    // 是否自动包含 @author 标签
+    "docthis.includeAuthorTag": true,
+    // 指定 @author 标签中的作者名称
+    "docthis.authorName": "dyb-dev",
+
+    // #endregion
+
+    // #region CODE: TODO Highlight 插件配置
+
+    "todohighlight.keywords": [
+        {
+            "text": "HOOKS:",
+            "color": "#ffffff",
+            "backgroundColor": "#8605f4",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "STATIC:",
+            "color": "#ffffff",
+            "backgroundColor": "#f98803",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "REF:",
+            "color": "#ffffff",
+            "backgroundColor": "#fb06c4",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "REACTIVE:",
+            "color": "#ffffff",
+            "backgroundColor": "#03b224",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "COMPUTED:",
+            "color": "#ffffff",
+            "backgroundColor": "#c703f8",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "CODE:",
+            "color": "#ffffff",
+            "backgroundColor": "#065cfb",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "WATCH:",
+            "color": "#ffffff",
+            "backgroundColor": "#FF5600",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "LIFECYCLE:",
+            "color": "#ffffff",
+            "backgroundColor": "#0399f8",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "EVENT:",
+            "color": "#ffffff",
+            "backgroundColor": "#4e04f5",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "FUN:",
+            "color": "#ffffff",
+            "backgroundColor": "#07c4d0",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "DEBUG:",
+            "color": "#ffffff",
+            "backgroundColor": "#F00",
+            "borderRadius": "3px"
+        }
+    ],
+
+    // #endregion
+
+    // #region CODE: Code Spell Checker 插件配置
+
+    "cSpell.userWords": [
+        "autofetch",
+        "axios",
+        "Cacheable",
+        "camelcase",
+        "crossorigin",
+        "deepmerge",
+        "docthis",
+        "echarts",
+        "endregion",
+        "fileheader",
+        "frontmatter",
+        "funs",
+        "gltf",
+        "hbuilderx",
+        "iife",
+        "jsdelivr",
+        "jsnext",
+        "Lazyload",
+        "localforage",
+        "micromessenger",
+        "nutui-uniapp",
+        "njsproj",
+        "ntvs",
+        "OIDC",
+        "pinia",
+        "portfinder-sync",
+        "precache",
+        "precaching",
+        "radash",
+        "reportDescriptionlessDisables",
+        "stylelint",
+        "stylelintignore",
+        "stylelintrc",
+        "timeformat",
+        "todohighlight",
+        "tsbuildinfo",
+        "uniapp",
+        "unpackage",
+        "unplugin",
+        "Vant",
+        "vconsole",
+        "VITE",
+        "vitepress",
+        "vueuse",
+        "webp",
+        "Weixin",
+        "zepto",
+        "vant",
+        "miniprogram",
+        "Wechat",
+        "persistedstate",
+        "iconfont",
+        "nutui-iconfont",
+        "dcloudio",
+        "getphonenumber",
+        "chooseavatar"
+    ]
+
+    // #endregion
+}

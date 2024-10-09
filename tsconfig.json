@@ -1,0 +1,22 @@
+/*
+ * @Author: dyb-dev
+ * @Date: 2024-10-05 13:56:46
+ * @LastEditors: dyb-dev
+ * @LastEditTime: 2024-10-05 20:18:25
+ * @FilePath: /uniapp-mp-wx-template/tsconfig.json
+ * @Description: ts配置文件
+ */
+
+{
+    // 主项目本身不包含任何要编译的文件，文件编译由 `references` 引用的子项目控制
+    "files": [],
+    // 引用其他 TypeScript 项目，支持项目间的模块化开发和增量编译
+    "references": [
+        {
+            "path": "./tsconfig.app.json"
+        },
+        {
+            "path": "./tsconfig.node.json"
+        }
+    ]
+}

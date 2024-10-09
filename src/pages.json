@@ -1,0 +1,124 @@
+{
+    "globalStyle": {
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "black",
+        "navigationBarBackgroundColor": "#ffffff",
+        "backgroundColor": "#ffffff",
+        "disableScroll": true
+    },
+    "entryPagePath": "pages/home",
+    "pages": [
+        {
+            "path": "pages/home",
+            "type": "home",
+            "style": {
+                "navigationBarTitleText": "首页"
+            }
+        },
+        {
+            "path": "pages/list",
+            "type": "page",
+            "style": {
+                "navigationBarTitleText": "列表"
+            }
+        },
+        {
+            "path": "pages/login",
+            "type": "page",
+            "style": {
+                "navigationBarTitleText": "登录"
+            }
+        },
+        {
+            "path": "pages/my",
+            "type": "page",
+            "style": {
+                "navigationBarTitleText": "我的"
+            },
+            "needLogin": true
+        },
+        {
+            "path": "pages/test",
+            "type": "page",
+            "style": {
+                "navigationBarTitleText": "测试",
+                "disableScroll": false,
+                "enablePullDownRefresh": true
+            },
+            "needLogin": true
+        }
+    ],
+    "condition": {
+        "current": 0,
+        "list": [
+            {
+                "name": "首页",
+                "path": "pages/home",
+                "query": "test=首页"
+            },
+            {
+                "name": "我的",
+                "path": "pages/my"
+            },
+            {
+                "name": "测试",
+                "path": "pages/test"
+            }
+        ]
+    },
+    "tabBar": {
+        "custom": true,
+        "color": "#7d7e80",
+        "selectedColor": "#29d446",
+        "list": [
+            {
+                "pagePath": "pages/home",
+                "text": "首页",
+                "iconfont": {
+                    "text": "home",
+                    "selectedText": "home"
+                }
+            },
+            {
+                "pagePath": "pages/list",
+                "text": "列表",
+                "iconfont": {
+                    "text": "dongdong",
+                    "selectedText": "dongdong"
+                }
+            },
+            {
+                "pagePath": "pages/my",
+                "text": "我的",
+                "iconfont": {
+                    "text": "my",
+                    "selectedText": "my"
+                }
+            }
+        ]
+    },
+    "subPackages": [
+        {
+            "root": "subPackages/webview",
+            "pages": [
+                {
+                    "path": "pages/webview",
+                    "type": "page",
+                    "style": {}
+                }
+            ]
+        }
+    ],
+    "preloadRule": {
+        "pages/home": {
+            "packages": [
+                "subPackages/webview"
+            ]
+        }
+    },
+    "easycom": {
+        "custom": {
+            "^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "z-paging/components/z-paging$1/z-paging$1.vue"
+        }
+    }
+}

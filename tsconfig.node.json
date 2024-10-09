@@ -1,0 +1,32 @@
+/*
+ * @Author: dyb-dev
+ * @Date: 2024-10-05 13:56:46
+ * @LastEditors: dyb-dev
+ * @LastEditTime: 2024-10-06 13:58:45
+ * @FilePath: /uniapp-mp-wx-template/tsconfig.node.json
+ * @Description: node环境ts配置
+ */
+
+{
+    "extends": "@dyb-dev/ts-config/node",
+    "include": [
+        "manifest.config.ts",
+        "pages.config.ts",
+        "vite.config.ts",
+        "vite/**/*.ts",
+        "vite/**/*.d.ts",
+        "types/**/*.ts",
+        "types/**/*.d.ts"
+    ],
+    "exclude": ["node_modules", "**/node_modules", ".history"],
+    "compilerOptions": {
+        // 指定要包含的类型定义文件
+        "types": ["vite/client", "@dyb-dev/ts-config/types"],
+        // 指定用于存储 TypeScript 编译器在增量编译模式下生成的编译信息的文件路径，以便下次编译时可以使用
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+        // 指定生成的模块代码
+        "module": "ESNext",
+        // 指定模块解析策略，支持现代打包工具
+        "moduleResolution": "Bundler"
+    }
+}

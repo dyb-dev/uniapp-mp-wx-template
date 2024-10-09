@@ -1,0 +1,19 @@
+# 编辑目录和文件
+.idea
+.DS_Store
+coverage
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.local
+
+# Logs
+logs
+*.log*
+
+# 忽略项目文件
+.history
+dist
+node_modules

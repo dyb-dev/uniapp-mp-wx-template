@@ -1,0 +1,33 @@
+/*
+ * @Author: dyb-dev
+ * @Date: 2024-10-05 13:56:46
+ * @LastEditors: dyb-dev
+ * @LastEditTime: 2024-10-05 20:18:01
+ * @FilePath: /uniapp-mp-wx-template/tsconfig.app.json
+ * @Description: app环境ts配置
+ */
+
+{
+    "extends": "@dyb-dev/ts-config/vue",
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.ts", "types/**/*.d.ts"],
+    "exclude": ["node_modules", "**/node_modules", ".history"],
+    "compilerOptions": {
+        // 指定要包含的库
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        // 指定要包含的类型定义文件
+        "types": ["@dyb-dev/ts-config/types", "@uni-helper/uni-app-types", "miniprogram-api-typings", "z-paging/global.d.ts"],
+        // 指定用于存储 TypeScript 编译器在增量编译模式下生成的编译信息的文件路径，以便下次编译时可以使用
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+        // 设置基础路径，解决模块导入路径问题
+        "baseUrl": "./",
+        // 配置路径映射，简化模块导入路径
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    // Volar（Vue 3 的 TypeScript 支持插件）相关的配置项
+    "vueCompilerOptions": {
+        // 扩展模板组件的类型检查 例如: view、text组件
+        "plugins": ["@uni-helper/uni-app-types/volar-plugin"]
+    }
+}

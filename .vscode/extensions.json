@@ -1,0 +1,80 @@
+// VS Code 会检查当前项目的根目录下是否存在 extensions.json 文件，并根据其中的推荐插件列表向你展示相应的推荐安装提示
+
+{
+    "recommendations": [
+        // Chinese 插件
+        "ms-ceintl.vscode-language-pack-zh-hans",
+        // Code Spell Checker 插件
+        "streetsidesoftware.code-spell-checker",
+        // Color Info 插件
+        "bierner.color-info",
+        // comment tip 插件
+        "yuechaoxu.vscode-comment-tip",
+        // CSS Navigation 插件
+        "pucelle.vscode-css-navigation",
+        // CSS Peek 插件
+        "pranaygp.vscode-css-peek",
+        // dir tree generator 插件
+        "openmynet.dir-tree-generator",
+        // Document This 插件
+        "oouo-diogo-perdigao.docthis",
+        // EditorConfig for VS Code 插件
+        "editorconfig.editorconfig",
+        // Error Lens 插件
+        "usernamehw.errorlens",
+        // ESLint 插件
+        "dbaeumer.vscode-eslint",
+        // ESLint Chinese Rules 插件
+        "maggie.eslint-rules-zh-plugin",
+        // git-commit-plugin 插件
+        "redjue.git-commit-plugin",
+        // GitHub Copilot 插件
+        "github.copilot",
+        // GitHub Copilot Chat 插件
+        "github.copilot-chat",
+        // GitLens 插件
+        "eamodio.gitlens",
+        // Image Preview 插件
+        "kisstkondoros.vscode-gutter-preview",
+        // Import Cost 插件
+        "wix.vscode-import-cost",
+        // IntelliSense for CSS class names in HTML 插件
+        "zignd.html-css-class-completion",
+        // JavaScript (ES6) code snippets 插件
+        "xabikos.javascriptsnippets",
+        // koroFileHeader 插件
+        "obkoro1.korofileheader",
+        // Live Server 插件
+        "ritwickdey.liveserver",
+        // Live Share 插件
+        "ms-vsliveshare.vsliveshare",
+        // Local History 插件
+        "xyz.local-history",
+        // markdownlint 插件
+        "davidanson.vscode-markdownlint",
+        // Prettier ESLint 插件
+        "rvest.vs-code-prettier-eslint",
+        // SCSS IntelliSense 插件
+        "mrmlnc.vscode-scss",
+        // Stylelint 插件
+        "stylelint.vscode-stylelint",
+        // Template String Converter 插件
+        "meganrogge.template-string-converter",
+        // Todo Highlight 插件
+        "wayou.vscode-todo-highlight",
+        // Todo Tree 插件
+        "gruntfuggly.todo-tree",
+        // uni-app-schemas 插件
+        "uni-helper.uni-app-schemas-vscode",
+        // uni-app-snippets 插件
+        "uni-helper.uni-app-snippets-vscode",
+        // uni-create-view 插件
+        "uni-helper.uni-highlight-vscode",
+        // uni-ui-snippets 插件
+        "xiaoxintongxue.var-conv",
+        // Vue - Official 插件
+        "vue.volar",
+        // Vue VSCode Snippets 插件
+        "sdras.vue-vscode-snippets"
+    ]
+}

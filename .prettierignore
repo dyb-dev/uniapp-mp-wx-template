@@ -1,0 +1,29 @@
+# 编辑目录和文件
+.idea
+.DS_Store
+coverage
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.local
+
+# Logs
+logs
+*.log*
+
+# 忽略项目文件
+dist
+node_modules
+src/static/
+src/manifest.json
+src/pages.json
+.*
+*-lock.*
+
+# 不忽略的项目文件
+!.vscode
+!.prettierrc*
+!.stylelintrc*
+!.eslintrc*
