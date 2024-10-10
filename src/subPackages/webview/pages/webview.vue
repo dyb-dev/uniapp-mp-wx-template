@@ -11,7 +11,7 @@
 import { onLoad, onShareAppMessage } from "@dcloudio/uni-app"
 import { ref } from "vue"
 
-import { getCurrentPagePath, replaceUrlParamByObj, WEB_URL_KEY } from "@/utils"
+import { getCurrentPagePath, mergeUrlParams, WEB_URL_KEY } from "@/utils"
 
 import type { WebViewOnMessageEvent } from "@uni-helper/uni-app-types"
 
@@ -112,19 +112,19 @@ onShareAppMessage((options: Page.ShareAppMessageOption): Page.CustomShareContent
     if (sharePath === currentPagePath) {
 
         // 设置 h5网址url 参数
-        const _shareWebUrl = replaceUrlParamByObj(shareWebUrlQuery, shareWebUrl, {
+        const _shareWebUrl = mergeUrlParams(shareWebUrlQuery, shareWebUrl, {
             encode: shareWebUrlEnCode
         })
 
         // 设置分享页面路径参数
-        sharePath = replaceUrlParamByObj({ ...sharePathQuery, [WEB_URL_KEY]: _shareWebUrl }, sharePath, {
+        sharePath = mergeUrlParams({ ...sharePathQuery, [WEB_URL_KEY]: _shareWebUrl }, sharePath, {
             encode: sharePathEnCode
         })
 
     }
     else {
 
-        sharePath = replaceUrlParamByObj(sharePathQuery, sharePath, {
+        sharePath = mergeUrlParams(sharePathQuery, sharePath, {
             encode: sharePathEnCode
         })
 

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-06 23:08:44
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 22:15:33
+ * @LastEditTime: 2024-10-10 12:17:07
  * @FilePath: /uniapp-mp-wx-template/src/utils/device/index.ts
  * @Description: 设备相关工具函数
  */
@@ -49,7 +49,7 @@ const getSystemInfo = (isForceRefresh = false) => {
  * @date 06/10/2024/  23:15:36
  * @returns {*}  {boolean} 是否为开发者工具
  */
-const isDevTools = (): boolean => getSystemInfo()?.platform === "devtools"
+const isDevTool = (): boolean => getSystemInfo()?.platform === "devtools"
 
 /**
  * FUN: 是否启用调试
@@ -58,6 +58,6 @@ const isDevTools = (): boolean => getSystemInfo()?.platform === "devtools"
  * @date 09/10/2024/  22:02:43
  * @returns {*}  {boolean} 是否启用调试
  */
-const isEnableDebug = (): boolean => isDevTools() ? true : getSystemInfo()?.enableDebug ?? false
+const isEnableDebug = (): boolean => isDevTool() ? true : getSystemInfo()?.enableDebug ?? false
 
-export { getSystemInfo, isDevTools, isEnableDebug }
+export { getSystemInfo, isDevTool, isEnableDebug }

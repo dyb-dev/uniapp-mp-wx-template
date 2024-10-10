@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:14:00
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-07 17:46:12
+ * @LastEditTime: 2024-10-10 12:08:58
  * @FilePath: /uniapp-mp-wx-template/src/utils/url/index.ts
  * @Description: url相关工具函数
  */
@@ -10,51 +10,27 @@
 import queryString from "query-string"
 
 /**
- * FUN: 根据开关移除 url 的斜杠
+ * FUN: 获取基础 URL（去除查询参数）
  *
  * @author dyb-dev
- * @date 23/07/2024/  20:28:05
- * @param {string} url - 需要处理的url
- * @param {object} [options={}] - 配置项
- * @param {boolean} [options.isStart=false] - 是否移除开头的斜杠
- * @param {boolean} [options.isEnd=false] - 是否移除结尾的斜杠
- * @returns {string} - 处理后的url
+ * @date 10/10/2024/  11:36:50
+ * @param {string} url - 完整的 URL 字符串
+ * @returns {*}  {string} - 去除查询参数后的基础 URL
  */
-const removeSlashBySwitch = (url: string, options: { isStart?: boolean; isEnd?: boolean } = {}): string => {
-
-    const { isStart = false, isEnd = false } = options
-
-    let _tempUrl = url
-    if (isStart) {
-
-        _tempUrl = _tempUrl.replace(/^\//, "")
-
-    }
-    if (isEnd) {
-
-        _tempUrl = _tempUrl.replace(/\/$/, "")
-
-    }
-    return _tempUrl
-
-}
+const getBaseUrl = (url: string): string => queryString.parseUrl(url).url
 
 /**
- * FUN: 获取 url 的 query
+ * FUN: 获取 url 的 参数对象
  *
  * @author dyb-dev
  * @date 14/07/2023/  15:16:25
  * @param {string} url 需要解析的 URL
  * @returns {queryString.ParsedQuery<string>} query对象
  */
-const getUrlQuery = (url: string): queryString.ParsedQuery<string> => {
-
-    return queryString.parseUrl(url).query
-
-}
+const getUrlParams = (url: string): queryString.ParsedQuery<string> => queryString.parseUrl(url).query
 
 /**
- * FUN: 根据 key 获取 url 的 query 的 value
+ * FUN: 根据 key 从 URL 中获取单个参数值
  *
  * @author dyb-dev
  * @date 14/07/2023/  15:28:49
@@ -62,27 +38,22 @@ const getUrlQuery = (url: string): queryString.ParsedQuery<string> => {
  * @param {string} [url] 需要解析的 URL
  * @returns {string} query 的 value
  */
-const getUrlParamByKey = (key: string, url: string): string => {
-
-    const _query = getUrlQuery(url)
-    return (_query[key] as string) || ""
-
-}
+const getUrlParamValue = (key: string, url: string): string => (getUrlParams(url)[key] as string) || ""
 
 /**
- * FUN: 根据 key 替换/添加 url 的 query 的 value
+ * FUN: 设置或更新 URL 中的指定参数，并返回更新后的 URL 字符串
  *
  * @author dyb-dev
  * @date 14/07/2023/  16:06:14
- * @param {string} key 需要 替换/添加 query 的 key
- * @param {string} value 需要 替换/添加 query 的 value
+ * @param {string} key 需要 设置或更新 参数 的 key
+ * @param {string} value 需要 设置或更新 参数 的 value
  * @param {string} [url] 需要解析的 URL
  * @param {queryString.StringifyOptions} [options] stringifyUrl 的 options
- * @returns {string} 替换/添加后的 url
+ * @returns {string} 设置或更新后的 url
  */
-const replaceUrlParam = (key: string, value: string, url: string, options?: queryString.StringifyOptions): string => {
+const setUrlParam = (key: string, value: string, url: string, options?: queryString.StringifyOptions): string => {
 
-    const _query = getUrlQuery(url)
+    const _query = getUrlParams(url)
 
     _query[key] = value
 
@@ -91,22 +62,18 @@ const replaceUrlParam = (key: string, value: string, url: string, options?: quer
 }
 
 /**
- * FUN: 根据 obj 替换/添加 url 的 query 的 value
+ * FUN: 合并 URL 的查询参数，并返回更新后的 URL 字符串
  *
  * @author dyb-dev
  * @date 14/07/2023/  16:10:39
- * @param {queryString.ParsedQuery<string>} obj 需要 替换/添加 query 的 key-value 对象
- * @param {string} [url] 需要解析的 URL
+ * @param {queryString.ParsedQuery<string>} obj 需要合并到 URL 中的查询参数对象
+ * @param {string} [url] 完整的 URL 字符串
  * @param {queryString.StringifyOptions} [options] stringifyUrl 的 options
- * @returns {string} 替换/添加后的 url
+ * @returns {string} 更新后的 URL 字符串
  */
-const replaceUrlParamByObj = (
-    obj: queryString.ParsedQuery<string>,
-    url: string,
-    options?: queryString.StringifyOptions
-): string => {
+const mergeUrlParams = (obj: queryString.ParsedQuery<string>, url: string, options?: queryString.StringifyOptions): string => {
 
-    const _query = getUrlQuery(url)
+    const _query = getUrlParams(url)
 
     Object.assign(_query, obj)
 
@@ -122,12 +89,7 @@ const replaceUrlParamByObj = (
  * @param {string} str 需要判断的字符串
  * @returns {boolean} 是否是绝对路径
  */
-const isAbsoluteUrl = (str: string): boolean => {
-
-    const pattern = /(?:(([\w-]+:)\/\/))[^\\/]+/
-    return pattern.test(str)
-
-}
+const isAbsoluteUrl = (str: string): boolean => /(?:(([\w-]+:)\/\/))[^\\/]+/.test(str)
 
 /**
  * FUN: 将相对路径转换为绝对路径
@@ -143,7 +105,10 @@ const isAbsoluteUrl = (str: string): boolean => {
  * @param {string} [options.version] - 版本号
  * @returns {string} - 绝对路径
  */
-const toAbsoluteUrl = (relativeUrl: string, options?: { pathname: string; baseUrl?: string; version?: string }): string => {
+const convertToAbsoluteUrl = (
+    relativeUrl: string,
+    options?: { pathname?: string; baseUrl?: string; version?: string }
+): string => {
 
     if (!relativeUrl || isAbsoluteUrl(relativeUrl)) {
 
@@ -153,59 +118,59 @@ const toAbsoluteUrl = (relativeUrl: string, options?: { pathname: string; baseUr
 
     const { pkg } = __PROJECT_INFO__
 
-    const _baseUrl = options?.baseUrl ?? window.location.origin
-    const _defaultPathName = ""
-    const _pathname = options?.pathname ?? relativeUrl.includes(_defaultPathName) ? "" : _defaultPathName.replace(/\/$/, "")
+    const { pathname = "", baseUrl = "", version = pkg.version } = options || {}
 
-    const { pathname = _pathname, baseUrl = _baseUrl, version = pkg.version } = options || {}
-
-    const sanitizedBaseUrl = removeSlashBySwitch(baseUrl, { isEnd: true })
-    const sanitizedPathname = removeSlashBySwitch(pathname, { isStart: true, isEnd: true })
-    const sanitizedRelativeUrl = removeSlashBySwitch(relativeUrl, { isStart: true })
+    const _sanitizedBaseUrl = trimUrlSlashes(baseUrl, { trimEnd: true })
+    const _sanitizedPathname = trimUrlSlashes(pathname, { trimStart: true, trimEnd: true })
+    const _sanitizedRelativeUrl = trimUrlSlashes(relativeUrl, { trimStart: true })
 
     const _tempList = []
-    sanitizedBaseUrl && _tempList.push(sanitizedBaseUrl)
-    sanitizedPathname && _tempList.push(sanitizedPathname)
-    sanitizedRelativeUrl && _tempList.push(sanitizedRelativeUrl)
+    _sanitizedBaseUrl && _tempList.push(_sanitizedBaseUrl)
+    _sanitizedPathname && _tempList.push(_sanitizedPathname)
+    _sanitizedRelativeUrl && _tempList.push(_sanitizedRelativeUrl)
 
     const _tempUlr = _tempList.join("/")
-    return replaceUrlParam("version", version, _tempUlr, {})
+    return setUrlParam("version", version, _tempUlr, {})
 
 }
 
 /**
- * FUN: 获取指定URL的子目录
+ * FUN: 根据选项移除 URL 的首尾斜杠
  *
  * @author dyb-dev
- * @date 23/07/2024/  20:32:18
- * @param {string} [url] - 需要解析的 URL
- * @returns {*}  {string}
+ * @date 23/07/2024/  20:28:05
+ * @param {string} url - 需要处理的 URL
+ * @param {object} [options={}] - 配置项
+ * @param {boolean} [options.trimStart=false] - 是否移除开头的斜杠
+ * @param {boolean} [options.trimEnd=false] - 是否移除结尾的斜杠
+ * @returns {string} - 处理后的url
  */
-const getSubdirectoryFromUrl = (url: string): string => {
+const trimUrlSlashes = (url: string, options: { trimStart?: boolean; trimEnd?: boolean } = {}): string => {
 
-    if (!isAbsoluteUrl(url)) {
+    const { trimStart = false, trimEnd = false } = options
 
-        return ""
+    let _url = url
+    if (trimStart) {
+
+        _url = _url.replace(/^\//, "")
 
     }
+    if (trimEnd) {
 
-    const urlObj = new URL(url)
-    const { pathname } = urlObj
+        _url = _url.replace(/\/$/, "")
 
-    const sanitizedPathname = pathname.startsWith("/") ? pathname.slice(1) : pathname
-    const subdirectory = sanitizedPathname.slice(0, sanitizedPathname.lastIndexOf("/"))
-
-    return subdirectory
+    }
+    return _url
 
 }
 
 export {
-    removeSlashBySwitch,
-    getUrlQuery,
-    getUrlParamByKey,
-    replaceUrlParam,
-    replaceUrlParamByObj,
+    trimUrlSlashes,
+    getBaseUrl,
+    getUrlParams,
+    getUrlParamValue,
+    setUrlParam,
+    mergeUrlParams,
     isAbsoluteUrl,
-    toAbsoluteUrl,
-    getSubdirectoryFromUrl
+    convertToAbsoluteUrl
 }

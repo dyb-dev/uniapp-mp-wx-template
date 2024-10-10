@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:49:07
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 15:19:11
+ * @LastEditTime: 2024-10-10 11:29:40
  * @FilePath: /uniapp-mp-wx-template/src/utils/pages/index.ts
  * @Description: 页面相关工具函数
  */
@@ -13,6 +13,8 @@ export * from "./navigate"
 import queryString from "query-string"
 
 import pagesJson from "@/pages.json"
+
+import { trimUrlSlashes } from "../url"
 
 import type { PageMetaDatum } from "@uni-helper/vite-plugin-uni-pages"
 
@@ -101,11 +103,7 @@ const SUB_PACKAGE_PAGE_PATH_REGEX = new RegExp(`^(${VITE_SUB_PACKAGE_DIR}(?:\\/[
 const getPageConfig = (pagePath: string): PageMetaDatum | void => {
 
     // 如果路径开头携带斜杠，则去除开头的斜杠
-    if (pagePath.startsWith("/")) {
-
-        pagePath = pagePath.slice(1)
-
-    }
+    pagePath = trimUrlSlashes(pagePath, { trimStart: true })
 
     // 匹配分包页面并提取结果
     const _result = pagePath.match(SUB_PACKAGE_PAGE_PATH_REGEX)

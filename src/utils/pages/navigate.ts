@@ -2,15 +2,13 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:49:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-08 11:25:43
+ * @LastEditTime: 2024-10-10 12:08:01
  * @FilePath: /uniapp-mp-wx-template/src/utils/pages/navigate.ts
  * @Description: 页面跳转相关工具函数
  */
 
-import queryString from "query-string"
-
 import pagesJson from "@/pages.json"
-import { getUrlQuery, replaceUrlParamByObj, getCurrentPagePath } from "@/utils"
+import { getUrlParams, mergeUrlParams, getCurrentPagePath, trimUrlSlashes, getBaseUrl } from "@/utils"
 
 import type { TabBarItem } from "@uni-helper/vite-plugin-uni-pages"
 
@@ -83,12 +81,12 @@ const navigateToMiniProgram = (options: INavigateToMiniProgramOptions) => {
     }
 
     // 将参数拼接到 path 中，如果 enCode 为 true 则对参数值进行 encodeURIComponent 编码
-    const _path = replaceUrlParamByObj(query, path, { encode: enCode })
+    const _path = mergeUrlParams(query, path, { encode: enCode })
 
     uni.navigateToMiniProgram({
         appId,
         path: _path,
-        extraData: getUrlQuery(_path),
+        extraData: getUrlParams(_path),
         envVersion,
         success: (result: UniApp.NavigateToSuccessOptions) => {
 
@@ -235,24 +233,19 @@ const navigateToPage = (options: INavigateToPageOptions) => {
     }
 
     // 将参数拼接到 path 中，如果 enCode 为 true 则对参数值进行 encodeURIComponent 编码
-    const _path = replaceUrlParamByObj(query, path, { encode: enCode })
+    const _path = mergeUrlParams(query, path, { encode: enCode })
 
-    // 目标页面路径
-    let _targetPagePath = queryString.parseUrl(_path).url
-
-    // 如果第一个字符是 / 需要删掉
-    if (_targetPagePath.startsWith("/")) {
-
-        _targetPagePath = _targetPagePath.slice(1)
-
-    }
+    // 目标页面路径 去除开头斜杠
+    const _targetPagePath = trimUrlSlashes(getBaseUrl(_path), {
+        trimStart: true
+    })
 
     try {
 
         if (_targetPagePath === getCurrentPagePath()) {
 
             console.warn("navigateToPage() 目标页面等于当前页面不做跳转")
-            fail?.({ success: false, errorCode: 1 })
+            fail?.({ errMsg: "目标页面等于当前页面不做跳转" })
             return
 
         }
@@ -273,7 +266,7 @@ const navigateToPage = (options: INavigateToPageOptions) => {
         if (_navigateBackDelta) {
 
             uni.navigateBack({ delta: _navigateBackDelta })
-            success?.({ success: true, isBackPage: true })
+            success?.({ errMsg: "页面执行返回操作", isBackPage: true })
             return
 
         }
@@ -285,12 +278,12 @@ const navigateToPage = (options: INavigateToPageOptions) => {
 
     }
 
-    /** STATIC: tabBar页面路径列表 */
+    /** STATIC: tabBar列表 */
     // @ts-ignore
-    const tabBarPagePathList = pagesJson?.tabBar?.list?.map((item: TabBarItem) => item.pagePath) || []
+    const _tabBarList = pagesJson?.tabBar?.list || []
 
     // 如果跳转的页面是 tabBar 页面, 跳转方法只能是 switchTab
-    if (method !== "switchTab" && tabBarPagePathList.includes(_targetPagePath)) {
+    if (method !== "switchTab" && _tabBarList.find((item: TabBarItem) => item.pagePath === _targetPagePath)) {
 
         console.warn("navigateToPage() 目标页面为 tabBar 页面, 跳转方法改为 switchTab")
         method = "switchTab"
@@ -393,7 +386,7 @@ const navigateToWebViewPage = (options: INavigateToWebViewPageOptions) => {
     }
 
     // 将参数拼接到 webUrl 中，如果 webUrlEnCode 为 true 则对参数值进行 encodeURIComponent 编码
-    const _webUrl = replaceUrlParamByObj(webUrlQuery, webUrl, { encode: webUrlEnCode })
+    const _webUrl = mergeUrlParams(webUrlQuery, webUrl, { encode: webUrlEnCode })
 
     navigateToPage({
         ...options,

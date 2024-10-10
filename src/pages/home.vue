@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:38:39
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 22:10:20
+ * @LastEditTime: 2024-10-10 12:22:51
  * @FilePath: /uniapp-mp-wx-template/src/pages/home.vue
  * @Description: 首页
 -->
@@ -13,7 +13,6 @@ import { onLoad } from "@dcloudio/uni-app"
 import { navigateToTarget } from "@/utils"
 
 // import { useUserInfoStore } from "@/stores"
-// import { navigateToPage } from '@/utils'
 
 /** HOOKS: 用户信息商店 */
 // const { userInfoStoreState } = useUserInfoStore()
@@ -24,11 +23,12 @@ onLoad(query => {
     console.log("首页入参:", query)
     // 如果首次进入必须要先登录时可以执行以下逻辑
     // if (!userInfoStoreState.isLogin) {
-    //     navigateToPage({
-    //         url: ('/' +
-    //             __PROJECT_INFO__.env.VITE_LOGIN_PATH) as NavigateToOptions['url'],
-    //         navigateToMethod: 'reLaunch'
+
+    //     navigateToTarget({
+    //         path: ("/" + __PROJECT_INFO__.env.VITE_LOGIN_PATH) as NavigateToOptions["url"],
+    //         method: "reLaunch"
     //     })
+
     // }
 
 })
