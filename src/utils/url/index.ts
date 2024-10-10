@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:14:00
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-10 12:08:58
+ * @LastEditTime: 2024-10-10 16:43:00
  * @FilePath: /uniapp-mp-wx-template/src/utils/url/index.ts
  * @Description: url相关工具函数
  */
@@ -20,40 +20,40 @@ import queryString from "query-string"
 const getBaseUrl = (url: string): string => queryString.parseUrl(url).url
 
 /**
- * FUN: 获取 url 的 参数对象
+ * FUN: 获取 url 的 查询参数对象
  *
  * @author dyb-dev
  * @date 14/07/2023/  15:16:25
  * @param {string} url 需要解析的 URL
  * @returns {queryString.ParsedQuery<string>} query对象
  */
-const getUrlParams = (url: string): queryString.ParsedQuery<string> => queryString.parseUrl(url).query
+const getUrlQuery = (url: string): queryString.ParsedQuery<string> => queryString.parseUrl(url).query
 
 /**
- * FUN: 根据 key 从 URL 中获取单个参数值
+ * FUN: 根据 key 从 url 的 查询参数对象 中获取单个参数值
  *
  * @author dyb-dev
  * @date 14/07/2023/  15:28:49
- * @param {string} key query 的 key
  * @param {string} [url] 需要解析的 URL
+ * @param {string} key query 的 key
  * @returns {string} query 的 value
  */
-const getUrlParamValue = (key: string, url: string): string => (getUrlParams(url)[key] as string) || ""
+const getUrlQueryValue = (url: string, key: string): string => (getUrlQuery(url)[key] as string) || ""
 
 /**
- * FUN: 设置或更新 URL 中的指定参数，并返回更新后的 URL 字符串
+ * FUN: 设置或更新 从 url 的 查询参数对象 中的指定参数，并返回更新后的 URL 字符串
  *
  * @author dyb-dev
  * @date 14/07/2023/  16:06:14
+ * @param {string} [url] 需要解析的 URL
  * @param {string} key 需要 设置或更新 参数 的 key
  * @param {string} value 需要 设置或更新 参数 的 value
- * @param {string} [url] 需要解析的 URL
  * @param {queryString.StringifyOptions} [options] stringifyUrl 的 options
  * @returns {string} 设置或更新后的 url
  */
-const setUrlParam = (key: string, value: string, url: string, options?: queryString.StringifyOptions): string => {
+const setUrlQueryValue = (url: string, key: string, value: string, options?: queryString.StringifyOptions): string => {
 
-    const _query = getUrlParams(url)
+    const _query = getUrlQuery(url)
 
     _query[key] = value
 
@@ -66,14 +66,14 @@ const setUrlParam = (key: string, value: string, url: string, options?: queryStr
  *
  * @author dyb-dev
  * @date 14/07/2023/  16:10:39
- * @param {queryString.ParsedQuery<string>} obj 需要合并到 URL 中的查询参数对象
  * @param {string} [url] 完整的 URL 字符串
+ * @param {queryString.ParsedQuery<string>} obj 需要合并到 URL 中的查询参数对象
  * @param {queryString.StringifyOptions} [options] stringifyUrl 的 options
  * @returns {string} 更新后的 URL 字符串
  */
-const mergeUrlParams = (obj: queryString.ParsedQuery<string>, url: string, options?: queryString.StringifyOptions): string => {
+const mergeUrlQuery = (url: string, obj: queryString.ParsedQuery<string>, options?: queryString.StringifyOptions): string => {
 
-    const _query = getUrlParams(url)
+    const _query = getUrlQuery(url)
 
     Object.assign(_query, obj)
 
@@ -129,8 +129,7 @@ const convertToAbsoluteUrl = (
     _sanitizedPathname && _tempList.push(_sanitizedPathname)
     _sanitizedRelativeUrl && _tempList.push(_sanitizedRelativeUrl)
 
-    const _tempUlr = _tempList.join("/")
-    return setUrlParam("version", version, _tempUlr, {})
+    return setUrlQueryValue(_tempList.join("/"), "version", version, {})
 
 }
 
@@ -167,10 +166,10 @@ const trimUrlSlashes = (url: string, options: { trimStart?: boolean; trimEnd?: b
 export {
     trimUrlSlashes,
     getBaseUrl,
-    getUrlParams,
-    getUrlParamValue,
-    setUrlParam,
-    mergeUrlParams,
+    getUrlQuery,
+    getUrlQueryValue,
+    setUrlQueryValue,
+    mergeUrlQuery,
     isAbsoluteUrl,
     convertToAbsoluteUrl
 }

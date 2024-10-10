@@ -2,13 +2,13 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:49:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-10 12:08:01
+ * @LastEditTime: 2024-10-10 16:38:42
  * @FilePath: /uniapp-mp-wx-template/src/utils/pages/navigate.ts
  * @Description: 页面跳转相关工具函数
  */
 
 import pagesJson from "@/pages.json"
-import { getUrlParams, mergeUrlParams, getCurrentPagePath, trimUrlSlashes, getBaseUrl } from "@/utils"
+import { getUrlQuery, mergeUrlQuery, getCurrentPagePath, trimUrlSlashes, getBaseUrl } from "@/utils"
 
 import type { TabBarItem } from "@uni-helper/vite-plugin-uni-pages"
 
@@ -81,12 +81,12 @@ const navigateToMiniProgram = (options: INavigateToMiniProgramOptions) => {
     }
 
     // 将参数拼接到 path 中，如果 enCode 为 true 则对参数值进行 encodeURIComponent 编码
-    const _path = mergeUrlParams(query, path, { encode: enCode })
+    const _path = mergeUrlQuery(path, query, { encode: enCode })
 
     uni.navigateToMiniProgram({
         appId,
         path: _path,
-        extraData: getUrlParams(_path),
+        extraData: getUrlQuery(_path),
         envVersion,
         success: (result: UniApp.NavigateToSuccessOptions) => {
 
@@ -233,7 +233,7 @@ const navigateToPage = (options: INavigateToPageOptions) => {
     }
 
     // 将参数拼接到 path 中，如果 enCode 为 true 则对参数值进行 encodeURIComponent 编码
-    const _path = mergeUrlParams(query, path, { encode: enCode })
+    const _path = mergeUrlQuery(path, query, { encode: enCode })
 
     // 目标页面路径 去除开头斜杠
     const _targetPagePath = trimUrlSlashes(getBaseUrl(_path), {
@@ -386,7 +386,7 @@ const navigateToWebViewPage = (options: INavigateToWebViewPageOptions) => {
     }
 
     // 将参数拼接到 webUrl 中，如果 webUrlEnCode 为 true 则对参数值进行 encodeURIComponent 编码
-    const _webUrl = mergeUrlParams(webUrlQuery, webUrl, { encode: webUrlEnCode })
+    const _webUrl = mergeUrlQuery(webUrl, webUrlQuery, { encode: webUrlEnCode })
 
     navigateToPage({
         ...options,

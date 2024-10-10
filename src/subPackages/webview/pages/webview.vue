@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 14:02:47
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 15:14:32
+ * @LastEditTime: 2024-10-10 16:38:17
  * @FilePath: /uniapp-mp-wx-template/src/subPackages/webview/pages/webview.vue
  * @Description: webview 公用页面
 -->
@@ -11,7 +11,7 @@
 import { onLoad, onShareAppMessage } from "@dcloudio/uni-app"
 import { ref } from "vue"
 
-import { getCurrentPagePath, mergeUrlParams, WEB_URL_KEY } from "@/utils"
+import { getCurrentPagePath, mergeUrlQuery, WEB_URL_KEY } from "@/utils"
 
 import type { WebViewOnMessageEvent } from "@uni-helper/uni-app-types"
 
@@ -112,19 +112,23 @@ onShareAppMessage((options: Page.ShareAppMessageOption): Page.CustomShareContent
     if (sharePath === currentPagePath) {
 
         // 设置 h5网址url 参数
-        const _shareWebUrl = mergeUrlParams(shareWebUrlQuery, shareWebUrl, {
+        const _shareWebUrl = mergeUrlQuery(shareWebUrl, shareWebUrlQuery, {
             encode: shareWebUrlEnCode
         })
 
         // 设置分享页面路径参数
-        sharePath = mergeUrlParams({ ...sharePathQuery, [WEB_URL_KEY]: _shareWebUrl }, sharePath, {
-            encode: sharePathEnCode
-        })
+        sharePath = mergeUrlQuery(
+            sharePath,
+            { ...sharePathQuery, [WEB_URL_KEY]: _shareWebUrl },
+            {
+                encode: sharePathEnCode
+            }
+        )
 
     }
     else {
 
-        sharePath = mergeUrlParams(sharePathQuery, sharePath, {
+        sharePath = mergeUrlQuery(sharePath, sharePathQuery, {
             encode: sharePathEnCode
         })
 
