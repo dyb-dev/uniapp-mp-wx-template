@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-06 14:42:41
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 20:41:41
+ * @LastEditTime: 2024-10-11 17:48:07
  * @FilePath: /uniapp-mp-wx-template/src/stores/useUserInfoStore.ts
  * @Description: 用户状态管理
  */
@@ -137,24 +137,8 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
         }
         catch (error) {
 
-            console.error("login()", error)
-
             uni.hideLoading()
-
-            uni.showModal({
-                title: "提示",
-                content: "登录失败,是否重试？",
-                success: ({ confirm }) => {
-
-                    if (confirm) {
-
-                        // 点击确认之后,重新登录
-                        login()
-
-                    }
-
-                }
-            })
+            console.error("login()", error)
 
         }
 

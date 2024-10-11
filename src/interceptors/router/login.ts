@@ -2,13 +2,13 @@
  * @Author: dyb-dev
  * @Date: 2024-10-02 14:51:37
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 15:20:11
+ * @LastEditTime: 2024-10-11 17:10:45
  * @FilePath: /uniapp-mp-wx-template/src/interceptors/router/login.ts
  * @Description: 登录拦截器模块
  */
 
 import { useUserInfoStoreWithOut } from "@/stores"
-import { getPageConfig, navigateToPage } from "@/utils"
+import { getPageConfig, navigateToLogin } from "@/utils"
 
 import type { TRouterPreInterceptor } from "."
 
@@ -28,14 +28,10 @@ const setupLoginPreInterceptor: TRouterPreInterceptor = ({ path, query }) => {
     // 如果是没有登录且需要登录的页面，跳转到登录页
     if (!userInfoStoreState.isLogin && getPageConfig(path)?.needLogin) {
 
-        navigateToPage({
-            path: `/${__PROJECT_INFO__.env.VITE_LOGIN_PATH}` as NavigateToOptions["url"],
-            method: "navigateTo",
-            findBackDelta: false,
-            query: {
-                redirectPath: path,
-                ...query
-            }
+        navigateToLogin({
+            redirectPath: path as NavigateToOptions["url"],
+            query,
+            findBackDelta: false
         })
         return false
 

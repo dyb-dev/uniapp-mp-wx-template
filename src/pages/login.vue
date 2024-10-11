@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:39:05
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 20:08:17
+ * @LastEditTime: 2024-10-11 18:08:40
  * @FilePath: /uniapp-mp-wx-template/src/pages/login.vue
  * @Description: 登录页
  */
@@ -46,7 +46,7 @@ const verifyCode = ref("")
 const password = ref("")
 
 // EVENT: 点击登录按钮
-const onClickLoginButton = async() => {
+async function onClickLoginButton() {
 
     // 校验表单是否通过
     if (!isDevEnv() && !validateForm()) {
@@ -61,6 +61,11 @@ const onClickLoginButton = async() => {
     // 如果登录失败
     if (!userInfoStoreState.isLogin) {
 
+        uni.showModal({
+            title: "登录失败",
+            content: "请检查手机号、验证码和密码是否正确",
+            showCancel: false
+        })
         return
 
     }

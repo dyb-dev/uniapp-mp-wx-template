@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:57:47
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 15:22:49
+ * @LastEditTime: 2024-10-11 16:16:10
  * @FilePath: /uniapp-mp-wx-template/pages.config.ts
  * @Description: 页面配置文件
  */
@@ -12,7 +12,7 @@ import { defineUniPages } from "@uni-helper/vite-plugin-uni-pages"
 import { VITE_ENV } from "./vite.config"
 
 /** STATIC: 获取.env文件的环境变量 */
-const { VITE_PAGE_DIR, VITE_HOME_PATH, VITE_LOGIN_PATH, VITE_SUB_PACKAGE_DIR } = VITE_ENV
+const { VITE_PAGE_DIR, VITE_LAUNCH_PATH, VITE_HOME_PATH, VITE_LOGIN_PATH, VITE_SUB_PACKAGE_DIR } = VITE_ENV
 
 export default defineUniPages({
     // 全局配置
@@ -32,6 +32,9 @@ export default defineUniPages({
     entryPagePath: VITE_HOME_PATH,
     // 页面配置
     pages: [
+        {
+            path: VITE_LAUNCH_PATH
+        },
         {
             path: VITE_LOGIN_PATH,
             style: {
@@ -75,6 +78,11 @@ export default defineUniPages({
     condition: {
         current: 0,
         list: [
+            {
+                name: "启动页",
+                path: VITE_LAUNCH_PATH,
+                query: `targetPath=${VITE_PAGE_DIR}/test&test=测试启动参数`
+            },
             {
                 name: "首页",
                 path: VITE_HOME_PATH,

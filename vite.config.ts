@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:56:39
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 21:27:34
+ * @LastEditTime: 2024-10-11 16:15:19
  * @FilePath: /uniapp-mp-wx-template/vite.config.ts
  * @Description: vite配置文件
  */
@@ -27,7 +27,14 @@ export const VITE_ENV = loadEnv(process.env.NODE_ENV as string, projectRootDir) 
 /** STATIC: 项目信息 */
 const __PROJECT_INFO__ = generateProjectInfo(VITE_ENV)
 
-const { VITE_PAGE_DIR, VITE_HOME_PATH, VITE_SUB_PACKAGE_DIR, VITE_SUB_PACKAGE_CHILD_DIRS } = VITE_ENV
+const {
+    VITE_PAGE_DIR,
+    VITE_LAUNCH_PATH,
+    VITE_USE_LAUNCH_PAGE,
+    VITE_HOME_PATH,
+    VITE_SUB_PACKAGE_DIR,
+    VITE_SUB_PACKAGE_CHILD_DIRS
+} = VITE_ENV
 
 export default defineConfig(async() => {
 
@@ -40,7 +47,7 @@ export default defineConfig(async() => {
                 // 扫描的页面目录 默认: src/pages
                 dir: `src/${VITE_PAGE_DIR}`,
                 // 首页路径 默认: pages/index
-                homePage: VITE_HOME_PATH,
+                homePage: VITE_USE_LAUNCH_PAGE === "true" ? VITE_LAUNCH_PATH : VITE_HOME_PATH,
                 // subPackages 扫描的目录 默认: src/pages-sub
                 subPackages: VITE_SUB_PACKAGE_CHILD_DIRS.split(",").map(item => `src/${VITE_SUB_PACKAGE_DIR}/${item}`)
             }),

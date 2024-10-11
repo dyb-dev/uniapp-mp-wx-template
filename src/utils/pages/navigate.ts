@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:49:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-10 16:38:42
+ * @LastEditTime: 2024-10-11 17:22:31
  * @FilePath: /uniapp-mp-wx-template/src/utils/pages/navigate.ts
  * @Description: 页面跳转相关工具函数
  */
@@ -253,7 +253,7 @@ const navigateToPage = (options: INavigateToPageOptions) => {
     }
     catch (error) {
 
-        console.error("navigateToPage() 获取当前页面路径失败", error)
+        console.warn("navigateToPage() 获取当前页面路径失败,请检查是否在非页面生命周期内调用")
 
     }
 
@@ -324,7 +324,6 @@ const navigateBack = (delta: number = 1) => {
 
     //获取页面栈的长度
     const _currentPages = getCurrentPages()
-    //判断是否刷新了浏览器，刷新了浏览器，页面栈只有当前一个
     if (!_currentPages || _currentPages.length <= 1) {
 
         return
@@ -335,8 +334,8 @@ const navigateBack = (delta: number = 1) => {
 
 }
 
-/** 导航第三方小程序的选项 */
-interface INavigateToWebViewPageOptions extends TModifyProperties<INavigateToPageOptions, "path"> {
+/** 导航WebView页面的选项 */
+interface INavigateToWebViewOptions extends TModifyProperties<INavigateToPageOptions, "path"> {
     /** h5网址 */
     webUrl: string
     /** h5网址的query */
@@ -358,12 +357,14 @@ const WEB_URL_KEY = "webUrl"
  * @author dyb-dev
  * @date 06/10/2024/  21:35:15
  * @export
- * @param {INavigateToWebViewPageOptions} options 导航到WebView页面的选项
+ * @param {INavigateToWebViewOptions} options 导航到WebView页面的选项
  */
-const navigateToWebViewPage = (options: INavigateToWebViewPageOptions) => {
+const navigateToWebView = (options: INavigateToWebViewOptions) => {
+
+    const { VITE_SUB_PACKAGE_DIR } = __PROJECT_INFO__.env
 
     const {
-        path = `/${__PROJECT_INFO__.env.VITE_SUB_PACKAGE_DIR}/webview/pages/webview` as NavigateToOptions["url"],
+        path = `/${VITE_SUB_PACKAGE_DIR}/webview/pages/webview` as NavigateToOptions["url"],
         query = {},
         webUrl,
         webUrlQuery = {},
@@ -373,14 +374,14 @@ const navigateToWebViewPage = (options: INavigateToWebViewPageOptions) => {
 
     if (!path) {
 
-        console.error("navigateToWebViewPage() 缺失WebView页面路径 path:", path)
+        console.error("navigateToWebView() 缺失WebView页面路径 path:", path)
         return
 
     }
 
     if (!webUrl) {
 
-        console.error("navigateToWebViewPage() 缺失h5网址url webUrl:", webUrl)
+        console.error("navigateToWebView() 缺失h5网址url webUrl:", webUrl)
         return
 
     }
@@ -400,6 +401,39 @@ const navigateToWebViewPage = (options: INavigateToWebViewPageOptions) => {
 
 }
 
+/** 导航登录页的选项 */
+interface INavigateToLoginOptions extends TModifyProperties<INavigateToPageOptions, "path"> {
+    /** 登录成功后重定向页面路径 默认: 当前页 > 首页 */
+    redirectPath?: NavigateToOptions["url"]
+}
+
+/**
+ * FUN: 导航到登录页
+ *
+ * @author dyb-dev
+ * @date 11/10/2024/  16:24:57
+ * @param {INavigateToLoginOptions} [options] 导航到登录页的选项
+ */
+const navigateToLogin = (options?: INavigateToLoginOptions) => {
+
+    const { VITE_LOGIN_PATH, VITE_HOME_PATH } = __PROJECT_INFO__.env
+    const {
+        path = `/${VITE_LOGIN_PATH}` as NavigateToOptions["url"],
+        redirectPath = `/${getCurrentPagePath() || VITE_HOME_PATH}`,
+        query = {}
+    } = options || {}
+
+    navigateToPage({
+        ...options,
+        path,
+        query: {
+            ...query,
+            redirectPath
+        }
+    })
+
+}
+
 /** 导航到目标的类型 */
 enum ENavigateToTargetType {
     /** 跳转第三方小程序 */
@@ -407,7 +441,9 @@ enum ENavigateToTargetType {
     /** 跳转本小程序页面 */
     PAGE,
     /** 跳转WEB_VIEW页面 */
-    WEB_VIEW_PAGE
+    WEB_VIEW,
+    /** 跳转登录页 */
+    LOGIN
 }
 
 /** STATIC: 导航到目标的配置列表 */
@@ -417,7 +453,8 @@ const NAVIGATE_TO_TARGET_CONFIG_LIST = [
         desc: "跳转本小程序页面",
         fn: navigateToPage
     },
-    { type: ENavigateToTargetType.WEB_VIEW_PAGE, desc: "跳转WEB_VIEW页面", fn: navigateToWebViewPage },
+    { type: ENavigateToTargetType.WEB_VIEW, desc: "跳转WEB_VIEW页面", fn: navigateToWebView },
+    { type: ENavigateToTargetType.LOGIN, desc: "跳转登录页", fn: navigateToLogin },
     {
         type: ENavigateToTargetType.MINI_PROGRAM,
         desc: "跳转第三方小程序",
@@ -435,14 +472,15 @@ interface INavigateToTargetBaseOptions {
 
 /** 导航到目标函数类型签名 */
 interface INavigateToTargetFn {
-    (options: INavigateToTargetBaseOptions & INavigateToPageOptions): void
-    (options: INavigateToTargetBaseOptions & INavigateToWebViewPageOptions): void
     (options: INavigateToTargetBaseOptions & INavigateToMiniProgramOptions): void
+    (options: INavigateToTargetBaseOptions & INavigateToWebViewOptions): void
+    (options: INavigateToTargetBaseOptions & INavigateToLoginOptions): void
+    (options: INavigateToTargetBaseOptions & INavigateToPageOptions): void
 }
 
 /** 导航到目标函数的选项 */
 type TNavigateToTargetOptions = INavigateToTargetBaseOptions &
-    (INavigateToPageOptions | INavigateToMiniProgramOptions | INavigateToWebViewPageOptions)
+    (INavigateToMiniProgramOptions | INavigateToWebViewOptions | INavigateToLoginOptions | INavigateToPageOptions)
 
 /**
  * FUN: 导航到目标页面
@@ -461,6 +499,8 @@ const navigateToTarget: INavigateToTargetFn = (options: TNavigateToTargetOptions
     // 如果没有传入type 则根据参数判断
     if (!_type) {
 
+        const { VITE_LOGIN_PATH } = __PROJECT_INFO__.env
+
         // @ts-ignore
         if (lastOptions?.appId) {
 
@@ -470,7 +510,13 @@ const navigateToTarget: INavigateToTargetFn = (options: TNavigateToTargetOptions
         // @ts-ignore
         else if (lastOptions?.webUrl) {
 
-            _type = ENavigateToTargetType.WEB_VIEW_PAGE
+            _type = ENavigateToTargetType.WEB_VIEW
+
+        }
+        // @ts-ignore
+        else if (getBaseUrl(lastOptions.path || "") === `/${VITE_LOGIN_PATH}`) {
+
+            _type = ENavigateToTargetType.LOGIN
 
         }
         else {
@@ -510,7 +556,8 @@ export type {
     INavigateToMiniProgramOptions,
     TNavigateToPageMethod,
     INavigateToPageOptions,
-    INavigateToWebViewPageOptions
+    INavigateToWebViewOptions,
+    INavigateToLoginOptions
 }
 
 export {
@@ -523,5 +570,6 @@ export {
     getNavigateToPageFn,
     navigateToPage,
     WEB_URL_KEY,
-    navigateToWebViewPage
+    navigateToWebView,
+    navigateToLogin
 }

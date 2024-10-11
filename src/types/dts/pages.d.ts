@@ -5,6 +5,7 @@
 
 interface NavigateToOptions {
   url: "/pages/home" |
+       "/pages/launch" |
        "/pages/list" |
        "/pages/login" |
        "/pages/my" |
