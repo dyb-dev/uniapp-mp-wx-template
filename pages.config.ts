@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:57:47
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-11 16:16:10
+ * @LastEditTime: 2024-10-11 20:37:43
  * @FilePath: /uniapp-mp-wx-template/pages.config.ts
  * @Description: 页面配置文件
  */
@@ -28,8 +28,6 @@ export default defineUniPages({
         // 默认禁用页面滑动，解决ios与安卓默认行为不一致的问题
         disableScroll: true
     },
-    // 首页路径
-    entryPagePath: VITE_HOME_PATH,
     // 页面配置
     pages: [
         {
