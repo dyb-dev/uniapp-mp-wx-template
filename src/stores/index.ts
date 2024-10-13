@@ -2,14 +2,14 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:26:18
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-08 11:29:54
+ * @LastEditTime: 2024-10-13 21:24:13
  * @FilePath: /uniapp-mp-wx-template/src/stores/index.ts
  * @Description: store模块
  */
 
-export * from "./useActivityStore"
-export * from "./useTabBarStore"
-export * from "./useUserInfoStore"
+export * from "./activity"
+export * from "./tabBar"
+export * from "./userInfo"
 
 import { createPinia } from "pinia"
 import { createPersistedState } from "pinia-plugin-persistedstate"

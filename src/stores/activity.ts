@@ -2,8 +2,8 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:40:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-05 22:15:20
- * @FilePath: /uniapp-mp-wx-template/src/stores/useActivityStore.ts
+ * @LastEditTime: 2024-10-13 21:24:10
+ * @FilePath: /uniapp-mp-wx-template/src/stores/activity.ts
  * @Description: 活动状态管理
  */
 

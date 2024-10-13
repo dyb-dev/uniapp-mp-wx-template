@@ -2,8 +2,8 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:49:17
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 12:37:09
- * @FilePath: /uniapp-mp-wx-template/src/stores/useTabBarStore.ts
+ * @LastEditTime: 2024-10-13 21:24:32
+ * @FilePath: /uniapp-mp-wx-template/src/stores/tabBar.ts
  * @Description: TabBar状态管理
  */
 
