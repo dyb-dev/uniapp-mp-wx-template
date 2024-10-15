@@ -13,7 +13,7 @@ import { computed, ref, watch } from "vue"
 
 import pagesJson from "@/pages.json"
 import { useTabBarStore } from "@/stores"
-import { getCurrentPageConfig, navigateBack, navigateToPage, isValidImagePath } from "@/utils"
+import { getCurrentPageConfig, navigateBack, navigateToPage, isImagePath } from "@/utils"
 
 /** TYPE: 导航栏左侧默认显示icon的类型 */
 export type TNavBarLeftIconType = "back" | "home" | ""
@@ -212,7 +212,7 @@ watch(
     title,
     newVal => {
 
-        if (isValidImagePath(newVal)) {
+        if (isImagePath(newVal)) {
 
             getImageInfo({
                 src: newVal
@@ -231,7 +231,7 @@ watch(
 /** COMPUTED: 标题大小 */
 const titleSize = computed(() => {
 
-    const _defaultValue = isValidImagePath(title.value) ? titleImageWidth.value : "32rpx"
+    const _defaultValue = isImagePath(title.value) ? titleImageWidth.value : "32rpx"
 
     return props.titleSize || _defaultValue
 
@@ -290,7 +290,7 @@ watch(
     leftIcon,
     newVal => {
 
-        if (isValidImagePath(newVal)) {
+        if (isImagePath(newVal)) {
 
             getImageInfo({
                 src: newVal
@@ -309,7 +309,7 @@ watch(
 /** COMPUTED: 当前显示的左侧icon的大小 */
 const leftIconSize = computed(() => {
     // 默认值
-    const _defaultValue = isValidImagePath(leftIcon.value) ? leftIconImageWidth.value : "35rpx"
+    const _defaultValue = isImagePath(leftIcon.value) ? leftIconImageWidth.value : "35rpx"
 
     // 传入的值
     const _propsValue = leftIconType.value === "back" ? props.backIconSize : props.homeIconSize
@@ -443,7 +443,7 @@ export default {
             <view v-if="props.showLeft" class="nav-bar__left">
                 <template v-if="leftIcon">
                     <image
-                        v-if="isValidImagePath(leftIcon)"
+                        v-if="isImagePath(leftIcon)"
                         :src="leftIcon"
                         style="display: block"
                         :style="{
@@ -475,7 +475,7 @@ export default {
             >
                 <slot name="title">
                     <image
-                        v-if="isValidImagePath(title)"
+                        v-if="isImagePath(title)"
                         :src="title"
                         style="display: block"
                         :style="{

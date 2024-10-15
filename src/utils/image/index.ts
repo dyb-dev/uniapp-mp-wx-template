@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-06 15:04:04
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-10 12:16:16
+ * @LastEditTime: 2024-10-15 23:06:22
  * @FilePath: /uniapp-mp-wx-template/src/utils/image/index.ts
  * @Description: 图片相关工具函数
  */
@@ -11,7 +11,7 @@
 const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "gif", "bmp", "webp", "svg"]
 
 /**
- * FUN: 验证是否为图片路径
+ * FUN: 是否为有效的图片路径
  * - 支持网络在线地址、绝对路径、相对路径或根目录文件，并忽略查询参数
  *
  * @author dyb-dev
@@ -19,7 +19,7 @@ const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "gif", "bmp", "webp", "svg"]
  * @param {string} str 图片路径
  * @returns {*} {boolean} 是否为图片路径
  */
-const isValidImagePath = (str: string): boolean => {
+const isImagePath = (str: string): boolean => {
 
     // 动态生成正则表达式来匹配图片扩展名
     const _pattern = new RegExp(`^(https?:\\/\\/|\\/|[^\\s]*\\/)?[^\\s]+\\.(${IMAGE_EXTENSIONS.join("|")})(\\?.*)?$`, "i")
@@ -39,4 +39,4 @@ const isValidImagePath = (str: string): boolean => {
 
 }
 
-export { isValidImagePath }
+export { isImagePath }

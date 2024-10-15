@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:14:00
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-15 10:39:12
+ * @LastEditTime: 2024-10-15 23:13:49
  * @FilePath: /uniapp-mp-wx-template/src/utils/url/index.ts
  * @Description: url相关工具函数
  */
@@ -82,49 +82,60 @@ const mergeUrlQuery = (url: string, obj: queryString.ParsedQuery<string>, option
 }
 
 /**
- * FUN: 判断是否是绝对路径
+ * FUN: 判断路径是否为绝对路径
+ * - 匹配以 `协议` | `域名` | `端口号` 开头的路径
  *
  * @author dyb-dev
- * @date 17/04/2023/  09:55:55
- * @param {string} str 需要判断的字符串
- * @returns {boolean} 是否是绝对路径
+ * @date 15/10/2024/  22:26:21
+ * @param {string} path - 路径
+ * @returns {*}  {boolean} - 是否为绝对路径
  */
-const isAbsoluteUrl = (str: string): boolean => /(?:(([\w-]+:)\/\/))[^\\/]+/.test(str)
+const isAbsoluteUrl = (path: string): boolean => /^(https?:\/\/|:\/\/|[a-zA-Z0-9.-]+:\d+|:\d+)/.test(path)
+
+/** 相对路径转换为绝对路径的选项 */
+interface IToAbsoluteUrlOptions {
+    /** 相对 URL 路径 */
+    relativePath: string
+    /**
+     * 网址的协议、域名、端口号组成的字符串 默认: `__PROJECT_INFO__.env.VITE_SERVER_URL`
+     */
+    urlOrigin?: string
+    /** 基础路径 默认: '' */
+    basePath?: string
+    /** 版本号 默认: `__PROJECT_INFO__.version` */
+    version?: string
+}
 
 /**
- * FUN: 将相对路径转换为绝对路径
- * - 如果是绝对路径则直接返回
- * - 如果是相对路径则拼接成绝对路径
+ * FUN: 将相对 Url 路径转换为绝对 Url 路径
  *
  * @author dyb-dev
- * @date 23/07/2024/  20:34:51
- * @param {string} relativeUrl - 相对路径
- * @param {object} [options] - 配置项
- * @param {string} options.pathname - 路径名称
- * @param {string} [options.baseUrl] - 基础URL
- * @param {string} [options.version] - 版本号
- * @returns {string} - 绝对路径
+ * @date 15/10/2024/  11:43:52
+ * @param {IToAbsoluteUrlOptions} options - 选项
+ * @returns {*}  {string} - 绝对路径
  */
-const convertToAbsoluteUrl = (
-    relativeUrl: string,
-    options?: { pathname?: string; baseUrl?: string; version?: string }
-): string => {
+const toAbsoluteUrl = (options: IToAbsoluteUrlOptions): string => {
 
-    if (!relativeUrl || isAbsoluteUrl(relativeUrl)) {
+    const {
+        env: { VITE_SERVER_URL }
+    } = __PROJECT_INFO__
 
-        return relativeUrl
+    const { relativePath, urlOrigin = VITE_SERVER_URL, basePath = "", version = __PROJECT_INFO__.version } = options
+
+    if (!relativePath || typeof relativePath !== "string" || isAbsoluteUrl(relativePath)) {
+
+        console.error("toAbsoluteUrl() relativePath:", relativePath)
+        return relativePath
 
     }
 
-    const { pathname = "", baseUrl = "", version = __PROJECT_INFO__.version } = options || {}
-
-    const _sanitizedBaseUrl = trimUrlSlashes(baseUrl, { trimEnd: true })
-    const _sanitizedPathname = trimUrlSlashes(pathname, { trimStart: true, trimEnd: true })
-    const _sanitizedRelativeUrl = trimUrlSlashes(relativeUrl, { trimStart: true })
+    const _sanitizedBaseUrl = trimUrlSlashes(urlOrigin, { trimEnd: true })
+    const _sanitizedBasePath = trimUrlSlashes(basePath, { trimStart: true, trimEnd: true })
+    const _sanitizedRelativeUrl = trimUrlSlashes(relativePath, { trimStart: true })
 
     const _tempList = []
     _sanitizedBaseUrl && _tempList.push(_sanitizedBaseUrl)
-    _sanitizedPathname && _tempList.push(_sanitizedPathname)
+    _sanitizedBasePath && _tempList.push(_sanitizedBasePath)
     _sanitizedRelativeUrl && _tempList.push(_sanitizedRelativeUrl)
 
     return setUrlQueryValue(_tempList.join("/"), "version", version, {})
@@ -169,5 +180,5 @@ export {
     setUrlQueryValue,
     mergeUrlQuery,
     isAbsoluteUrl,
-    convertToAbsoluteUrl
+    toAbsoluteUrl
 }
