@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:14:00
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-15 23:13:49
+ * @LastEditTime: 2024-10-15 23:37:22
  * @FilePath: /uniapp-mp-wx-template/src/utils/url/index.ts
  * @Description: url相关工具函数
  */
@@ -129,14 +129,14 @@ const toAbsoluteUrl = (options: IToAbsoluteUrlOptions): string => {
 
     }
 
-    const _sanitizedBaseUrl = trimUrlSlashes(urlOrigin, { trimEnd: true })
-    const _sanitizedBasePath = trimUrlSlashes(basePath, { trimStart: true, trimEnd: true })
-    const _sanitizedRelativeUrl = trimUrlSlashes(relativePath, { trimStart: true })
+    const _urlOrigin = trimUrlSlashes(urlOrigin, { trimEnd: true })
+    const _basePath = trimUrlSlashes(basePath, { trimStart: true, trimEnd: true })
+    const _relativePath = trimUrlSlashes(relativePath, { trimStart: true })
 
     const _tempList = []
-    _sanitizedBaseUrl && _tempList.push(_sanitizedBaseUrl)
-    _sanitizedBasePath && _tempList.push(_sanitizedBasePath)
-    _sanitizedRelativeUrl && _tempList.push(_sanitizedRelativeUrl)
+    _urlOrigin && _tempList.push(_urlOrigin)
+    _basePath && _tempList.push(_basePath)
+    _relativePath && _tempList.push(_relativePath)
 
     return setUrlQueryValue(_tempList.join("/"), "version", version, {})
 
