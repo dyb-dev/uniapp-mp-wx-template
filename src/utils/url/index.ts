@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:14:00
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-10 16:43:00
+ * @LastEditTime: 2024-10-15 10:39:12
  * @FilePath: /uniapp-mp-wx-template/src/utils/url/index.ts
  * @Description: url相关工具函数
  */
@@ -116,9 +116,7 @@ const convertToAbsoluteUrl = (
 
     }
 
-    const { pkg } = __PROJECT_INFO__
-
-    const { pathname = "", baseUrl = "", version = pkg.version } = options || {}
+    const { pathname = "", baseUrl = "", version = __PROJECT_INFO__.version } = options || {}
 
     const _sanitizedBaseUrl = trimUrlSlashes(baseUrl, { trimEnd: true })
     const _sanitizedPathname = trimUrlSlashes(pathname, { trimStart: true, trimEnd: true })
