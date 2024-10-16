@@ -95,7 +95,7 @@ const onSaveButton = async() => {
 
             <NickName v-model="nickName" />
 
-            <nut-button type="success" @tap="onSaveButton">保存信息</nut-button>
+            <nut-button type="primary" @tap="onSaveButton">保存信息</nut-button>
         </view>
     </Layout>
 </template>

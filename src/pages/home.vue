@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:38:39
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-11 16:41:32
+ * @LastEditTime: 2024-10-16 21:30:50
  * @FilePath: /uniapp-mp-wx-template/src/pages/home.vue
  * @Description: 首页
 -->
@@ -57,8 +57,8 @@ const onJumpWebviewPageButton = () => {
             <nut-animate type="jump" :loop="true"> Hello World！ </nut-animate>
 
             <view class="home__button-box">
-                <nut-button type="success" @tap="onJumpTestPageButton">跳转测试页面</nut-button>
-                <nut-button type="success" @tap="onJumpWebviewPageButton">跳转webview页面</nut-button>
+                <nut-button type="primary" @tap="onJumpTestPageButton">跳转测试页面</nut-button>
+                <nut-button type="primary" @tap="onJumpWebviewPageButton">跳转webview页面</nut-button>
             </view>
         </view>
     </Layout>

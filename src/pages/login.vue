@@ -156,7 +156,7 @@ const validateForm = (): boolean => {
                     :border="false"
                 >
                     <template #right>
-                        <nut-button type="success" size="small">获取验证码</nut-button>
+                        <nut-button type="primary" size="small">获取验证码</nut-button>
                     </template>
                 </nut-input>
 
@@ -172,7 +172,7 @@ const validateForm = (): boolean => {
                 <nut-button
                     class="login__form__button"
                     size="normal"
-                    type="success"
+                    type="primary"
                     block
                     @tap="onClickLoginButton"
                 >登录</nut-button>

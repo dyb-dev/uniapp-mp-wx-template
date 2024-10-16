@@ -6,7 +6,6 @@
         "backgroundColor": "#ffffff",
         "disableScroll": true
     },
-    "entryPagePath": "pages/home",
     "pages": [
         {
             "path": "pages/home",

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 16:27:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 13:29:51
+ * @LastEditTime: 2024-10-16 21:21:45
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/Layout.vue
  * @Description: 页面布局容器
  */
@@ -97,6 +97,12 @@ if (showCustomTabBar) {
 
 }
 
+/** STATIC: 主题变量 */
+const themeVars = {
+    // 组件主题色
+    primaryColor: "#29d446"
+}
+
 /** HOOKS: 获取传入插槽 */
 const slots = useSlots()
 
@@ -132,7 +138,7 @@ export default {
 </script>
 
 <template>
-    <view class="layout">
+    <nut-config-provider class="layout" :theme-vars="themeVars">
         <NavBar
             v-if="showCustomNavBar"
             ref="navBarInstance"
@@ -167,10 +173,10 @@ export default {
             :list="tabBarStoreState.list"
             @click-tab-bar-item="(item, index) => emits('click-tab-bar-item', item, index)"
         />
-    </view>
 
-    <!-- 注意，为实现全局函数式调用，需插入一个toast节点 -->
-    <nut-toast />
+        <!-- 注意，为实现全局函数式调用，需插入一个toast节点 -->
+        <nut-toast />
+    </nut-config-provider>
 </template>
 
 <style lang="scss" scoped>

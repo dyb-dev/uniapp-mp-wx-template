@@ -16,6 +16,7 @@ declare module 'vue' {
     NutAvatar: typeof import('nutui-uniapp/components/avatar/avatar.vue')['default']
     NutBadge: typeof import('nutui-uniapp/components/badge/badge.vue')['default']
     NutButton: typeof import('nutui-uniapp/components/button/button.vue')['default']
+    NutConfigProvider: typeof import('nutui-uniapp/components/configprovider/configprovider.vue')['default']
     NutIcon: typeof import('nutui-uniapp/components/icon/icon.vue')['default']
     NutInput: typeof import('nutui-uniapp/components/input/input.vue')['default']
     NutToast: typeof import('nutui-uniapp/components/toast/toast.vue')['default']

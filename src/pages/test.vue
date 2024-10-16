@@ -77,12 +77,12 @@ const onClickGetIdButton = async() => {
             <view>这是一个测试页面，⬇️下拉页面刷新</view>
 
             <view class="test__box">
-                <nut-button type="success" @tap="onClickGetUserInfoButton">获取userId</nut-button>
+                <nut-button type="primary" @tap="onClickGetUserInfoButton">获取userId</nut-button>
                 <view>userId: {{ userId }}</view>
             </view>
 
             <view class="test__box">
-                <nut-button type="success" @tap="onClickGetIdButton">获取id</nut-button>
+                <nut-button type="primary" @tap="onClickGetIdButton">获取id</nut-button>
                 <view>id: {{ id }}</view>
             </view>
         </view>
