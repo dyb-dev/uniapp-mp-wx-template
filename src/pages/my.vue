@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:39:24
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-11 17:20:44
+ * @LastEditTime: 2024-10-17 16:49:49
  * @FilePath: /uniapp-mp-wx-template/src/pages/my.vue
  * @Description: 我的页面
  */
@@ -69,7 +69,7 @@ const onSaveButton = async() => {
 
     uni.hideLoading()
 
-    if (_result.errno || !_result.data) {
+    if (!_result.success || !_result.data) {
 
         uni.showToast({
             title: "保存失败,请稍后再试",

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:39:05
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-11 18:08:40
+ * @LastEditTime: 2024-10-17 16:36:39
  * @FilePath: /uniapp-mp-wx-template/src/pages/login.vue
  * @Description: 登录页
  */
@@ -61,11 +61,6 @@ async function onClickLoginButton() {
     // 如果登录失败
     if (!userInfoStoreState.isLogin) {
 
-        uni.showModal({
-            title: "登录失败",
-            content: "请检查手机号、验证码和密码是否正确",
-            showCancel: false
-        })
         return
 
     }

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 14:00:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 23:56:15
+ * @LastEditTime: 2024-10-17 16:43:29
  * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/ChooseAvatar.vue
  * @Description: 选择头像组件
 -->
@@ -97,7 +97,7 @@ async function onChooseAvatar(event: ButtonOnChooseavatarEvent) {
 
         uni.hideLoading()
 
-        if (_result.errno || !userInfoStoreState.avatarUrl) {
+        if (!_result.success || !userInfoStoreState.avatarUrl) {
 
             emits("fail", {
                 code: EAuthErrorCode.API_FAILED,

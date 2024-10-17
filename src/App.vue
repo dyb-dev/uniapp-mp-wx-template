@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:10:11
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-11 18:10:09
+ * @LastEditTime: 2024-10-17 16:46:46
  * @FilePath: /uniapp-mp-wx-template/src/App.vue
  * @Description: 程序全局组件
 -->

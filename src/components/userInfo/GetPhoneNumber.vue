@@ -70,7 +70,7 @@ const onGetPhoneNumber = async(event: ButtonOnGetphonenumberEvent) => {
     uni.hideLoading()
 
     // 如果接口请求失败
-    if (_result.errno || !userInfoStoreState.phoneNumber) {
+    if (!_result.success || !userInfoStoreState.phoneNumber) {
 
         emits("fail", {
             code: EAuthErrorCode.API_FAILED,

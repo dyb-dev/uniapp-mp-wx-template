@@ -32,10 +32,10 @@ const onClickGetUserInfoButton = async() => {
     console.log("onClickGetUserInfoButton() _result:", _result)
 
     // 存在错误码或者不存在data数据
-    if (_result.errno || !_result.data) {
+    if (!_result.success || !_result.data) {
 
         uni.showToast({
-            title: _result.errMsg || "获取userId失败",
+            title: _result.message || "获取userId失败",
             icon: "none"
         })
         return
@@ -57,10 +57,10 @@ const onClickGetIdButton = async() => {
     console.log("onClickGetIdButton() _result:", _result)
 
     // 存在错误码或者不存在data数据
-    if (_result.errno || !_result.data) {
+    if (!_result.success || !_result.data) {
 
         uni.showToast({
-            title: _result.errMsg || "获取id失败",
+            title: _result.message || "获取id失败",
             icon: "none"
         })
         return

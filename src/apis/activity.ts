@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-08 21:22:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-08 21:56:17
+ * @LastEditTime: 2024-10-17 16:51:24
  * @FilePath: /uniapp-mp-wx-template/src/apis/activity.ts
  * @Description: 本次活动接口模块
  */
@@ -32,8 +32,20 @@ interface IGetUserInfoApiResultData {
  */
 const getUserInfoApi = async(): Promise<UnResponse<IGetUserInfoApiResultData, UnData>> => {
 
-    const _result = await un.get<IGetUserInfoApiResultData>("/1")
-    return _result
+    try {
+
+        const _result = await un.get<IGetUserInfoApiResultData>("/1")
+        return _result
+
+    }
+    catch (error) {
+
+        return {
+            success: false,
+            message: "请求失败"
+        } as UnResponse<IGetUserInfoApiResultData, UnData>
+
+    }
 
 }
 
@@ -59,8 +71,20 @@ interface IGetIdApiResultData {
  */
 const getIdApi = async(params: IGetIdApiParams): Promise<UnResponse<IGetIdApiResultData, IGetIdApiParams>> => {
 
-    const _result = await un.post<IGetIdApiResultData, IGetIdApiParams>("", params)
-    return _result
+    try {
+
+        const _result = await un.post<IGetIdApiResultData, IGetIdApiParams>("", params)
+        return _result
+
+    }
+    catch (error) {
+
+        return {
+            success: false,
+            message: "请求失败"
+        } as UnResponse<IGetIdApiResultData, IGetIdApiParams>
+
+    }
 
 }
 

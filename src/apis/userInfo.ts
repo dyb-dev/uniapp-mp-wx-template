@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-09 15:23:42
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 21:02:26
+ * @LastEditTime: 2024-10-17 16:55:57
  * @FilePath: /uniapp-mp-wx-template/src/apis/userInfo.ts
  * @Description: 用户信息相关接口
  */
@@ -47,33 +47,40 @@ interface ILoginApiResultData {
  */
 const loginApi = async(params: ILoginApiParams): Promise<UnResponse<ILoginApiResultData, ILoginApiParams>> => {
 
-    let _result: UnResponse<ILoginApiResultData, ILoginApiParams>
+    try {
 
-    // 测试数据
-    if (ENABLE_API_TEST_DATA) {
+        // 测试数据
+        if (ENABLE_API_TEST_DATA) {
 
-        _result = {
-            // errno: 1,
-            // errMsg: "登录失败",
-            data: {
-                userId: "userId",
-                unionId: "unionId",
-                openId: "openId",
-                nickName: "xxx",
-                avatarUrl:
-                    "https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png",
-                phoneNumber: "111111111"
+            return {
+                success: true,
+                message: "登录成功",
+                data: {
+                    userId: "userId",
+                    unionId: "unionId",
+                    openId: "openId",
+                    nickName: "xxx",
+                    avatarUrl:
+                        "https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png",
+                    phoneNumber: "111111111"
+                }
             }
+
         }
 
+        // TODO: 接口地址修改
+        const _result = await un.post<ILoginApiResultData, ILoginApiParams>("", params)
         return _result
 
     }
+    catch (error) {
 
-    // TODO: 接口地址修改
-    _result = await un.post<ILoginApiResultData, ILoginApiParams>("", params)
+        return {
+            success: false,
+            message: "请求失败"
+        } as UnResponse<ILoginApiResultData, ILoginApiParams>
 
-    return _result
+    }
 
 }
 
@@ -101,25 +108,34 @@ const getPhoneNumberApi = async(
     params: IGetPhoneNumberApiParams
 ): Promise<UnResponse<IGetPhoneNumberApiResultData, IGetPhoneNumberApiParams>> => {
 
-    let _result: UnResponse<IGetPhoneNumberApiResultData, IGetPhoneNumberApiParams>
-    // 测试数据
-    if (ENABLE_API_TEST_DATA) {
+    try {
 
-        _result = {
-            // errno: 1,
-            // errMsg: "登录失败",
-            data: {
-                phoneNumber: "111111111"
+        // 测试数据
+        if (ENABLE_API_TEST_DATA) {
+
+            return {
+                success: true,
+                message: "获取手机号成功",
+                data: {
+                    phoneNumber: "111111111"
+                }
             }
+
         }
 
+        // TODO: 接口地址修改
+        const _result = await un.post<IGetPhoneNumberApiResultData, IGetPhoneNumberApiParams>("", params)
         return _result
 
     }
+    catch (error) {
 
-    // TODO: 接口地址修改
-    _result = await un.post<IGetPhoneNumberApiResultData, IGetPhoneNumberApiParams>("", params)
-    return _result
+        return {
+            success: false,
+            message: "请求失败"
+        } as UnResponse<IGetPhoneNumberApiResultData, IGetPhoneNumberApiParams>
+
+    }
 
 }
 
@@ -139,23 +155,32 @@ interface IUploadAvatarApiParams {
  */
 const uploadAvatarApi = async(params: IUploadAvatarApiParams): Promise<UnResponse<UnData, IUploadAvatarApiParams>> => {
 
-    let _result: UnResponse<UnData, IUploadAvatarApiParams>
-    // 测试数据
-    if (ENABLE_API_TEST_DATA) {
+    try {
 
-        _result = {
-            // errno: 1,
-            // errMsg: "登录失败",
-            data: {}
+        // 测试数据
+        if (ENABLE_API_TEST_DATA) {
+
+            return {
+                success: true,
+                message: "上传头像成功",
+                data: {}
+            }
+
         }
 
+        // TODO: 接口地址修改
+        const _result = await un.post<UnData, IUploadAvatarApiParams>("", params)
         return _result
 
     }
+    catch (error) {
 
-    // TODO: 接口地址修改
-    _result = await un.post<UnData, IUploadAvatarApiParams>("", params)
-    return _result
+        return {
+            success: false,
+            message: "请求失败"
+        } as UnResponse<UnData, IUploadAvatarApiParams>
+
+    }
 
 }
 
@@ -177,23 +202,32 @@ interface IUploadUserInfoApiParams {
  */
 const uploadUserInfoApi = async(params: IUploadUserInfoApiParams): Promise<UnResponse<UnData, IUploadUserInfoApiParams>> => {
 
-    let _result: UnResponse<UnData, IUploadUserInfoApiParams>
-    // 测试数据
-    if (ENABLE_API_TEST_DATA) {
+    try {
 
-        _result = {
-            // errno: 1,
-            // errMsg: "登录失败",
-            data: {}
+        // 测试数据
+        if (ENABLE_API_TEST_DATA) {
+
+            return {
+                success: true,
+                message: "上传用户信息成功",
+                data: {}
+            }
+
         }
 
+        // TODO: 接口地址修改
+        const _result = await un.post<UnData, IUploadUserInfoApiParams>("", params)
         return _result
 
     }
+    catch (error) {
 
-    // TODO: 接口地址修改
-    _result = await un.post<UnData, IUploadUserInfoApiParams>("", params)
-    return _result
+        return {
+            success: false,
+            message: "请求失败"
+        } as UnResponse<UnData, IUploadUserInfoApiParams>
+
+    }
 
 }
 

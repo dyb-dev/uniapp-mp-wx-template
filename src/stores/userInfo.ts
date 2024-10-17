@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-06 14:42:41
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-13 21:24:53
+ * @LastEditTime: 2024-10-17 16:42:23
  * @FilePath: /uniapp-mp-wx-template/src/stores/userInfo.ts
  * @Description: 用户信息状态管理
  */
@@ -115,9 +115,9 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
             uni.hideLoading()
 
             // 如果登录失败
-            if (_loginApiResult.errno || !_loginApiResult.data) {
+            if (!_loginApiResult.success || !_loginApiResult.data) {
 
-                throw _loginApiResult.errMsg
+                throw _loginApiResult.message
 
             }
 
@@ -140,6 +140,12 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
             uni.hideLoading()
             console.error("login()", error)
 
+            uni.showModal({
+                title: "提示",
+                content: "登录失败,请稍后重试!",
+                showCancel: false
+            })
+
         }
 
     }
@@ -157,7 +163,7 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
         const _result = await getPhoneNumberApi(params)
 
         // 如果获取成功
-        if (!_result.errno && _result.data?.phoneNumber) {
+        if (_result.success && _result.data?.phoneNumber) {
 
             userInfoStoreState.phoneNumber = _result.data.phoneNumber
 
@@ -180,7 +186,7 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
         const _result = await uploadAvatarApi(params)
 
         // 如果上传头像成功
-        if (!_result.errno) {
+        if (_result.success) {
 
             userInfoStoreState.avatarUrl = params.avatarUrl
 
@@ -203,7 +209,7 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
         const _result = await uploadUserInfoApi(params)
 
         // 如果上传用户信息成功
-        if (!_result.errno) {
+        if (_result.success) {
 
             userInfoStoreState.avatarUrl = params.avatarUrl
             userInfoStoreState.nickName = params.nickName
