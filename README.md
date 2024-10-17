@@ -57,7 +57,7 @@ pnpm install
 pnpm dev
 ```
 
-### 构建文档
+### 构建产物
 
 ```bash
 pnpm build
