@@ -2,13 +2,14 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:57:43
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-10 00:13:26
+ * @LastEditTime: 2024-10-19 23:24:28
  * @FilePath: /uniapp-mp-wx-template/manifest.config.ts
  * @Description: 应用配置文件
  */
 
 import { defineManifestConfig } from "@uni-helper/vite-plugin-uni-manifest"
 
+import pkg from "./package.json"
 import { VITE_ENV } from "./vite.config"
 
 /** STATIC: 获取.env文件的环境变量 */
@@ -16,13 +17,13 @@ const { VITE_MP_WX_APPID } = VITE_ENV
 
 export default defineManifestConfig({
     // 应用标题
-    name: "uniapp-mp-wx-template",
+    name: pkg.name,
     // 应用的唯一标识符
     appid: "",
     // 应用的描述
-    description: "基于`uni-app + vue3 + ts`搭建的微信小程序模板",
+    description: pkg.description,
     // 应用版本名称
-    versionName: "1.0.0",
+    versionName: pkg.version,
     // 应用版本号，主要用于应用的内部版本控制
     versionCode: "100",
     // 是否自动转换 px 单位 默认: true
