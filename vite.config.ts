@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:56:39
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-11 16:15:19
+ * @LastEditTime: 2024-10-22 16:46:16
  * @FilePath: /uniapp-mp-wx-template/vite.config.ts
  * @Description: vite配置文件
  */
