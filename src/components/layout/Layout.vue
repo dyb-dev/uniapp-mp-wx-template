@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 16:27:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-16 21:21:45
+ * @LastEditTime: 2024-10-24 00:29:05
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/Layout.vue
  * @Description: 页面布局容器
  */
@@ -100,7 +100,9 @@ if (showCustomTabBar) {
 /** STATIC: 主题变量 */
 const themeVars = {
     // 组件主题色
-    primaryColor: "#29d446"
+    primaryColor: "#29d446",
+    // 标签组件主题色
+    tagPrimaryBackgroundColor: "#29d446"
 }
 
 /** HOOKS: 获取传入插槽 */
