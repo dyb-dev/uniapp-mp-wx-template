@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:57:47
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-11 20:37:43
+ * @LastEditTime: 2024-10-26 00:41:04
  * @FilePath: /uniapp-mp-wx-template/pages.config.ts
  * @Description: 页面配置文件
  */

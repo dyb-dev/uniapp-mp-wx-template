@@ -2,7 +2,59 @@
  * @Author: dyb-dev
  * @Date: 2024-09-14 17:54:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-09-14 17:54:54
- * @FilePath: /uni-app/src/styles/funs/index.scss
+ * @LastEditTime: 2024-10-24 13:31:24
+ * @FilePath: /uniapp-mp-wx-template/src/styles/funs/index.scss
  * @Description: scss全局函数文件
  */
+
+/** 必须写在顶部 */
+@use "sass:list";
+@use "sass:color";
+
+/**
+    FUN: 创建不同方向的文本阴影函数
+    $color - 阴影颜色
+    $long - 阴影长度 可传 正负 数字控制阴影方向
+    $direction - 阴影方向 "horizontal" | "vertical" | "all"
+    $fade-step - 颜色透明度递减步长
+ */
+@function create-directional-text-shadow-fun($color: #0ebeff, $long: 50, $direction: "all", $fade-step: 0.02) {
+    $current-color: $color;
+    $val: 0 0 $current-color;
+    $shadow-values: (#{$val});
+
+    @for $i from 1 through $long {
+        $current-color: fade-out($current-color, $fade-step);
+
+        @if $direction == "horizontal" {
+            $val: #{$i}px 0 #{$current-color};
+        } @else if $direction == "vertical" {
+            $val: 0 #{$i}px #{$current-color};
+        } @else {
+            $val: #{$i}px #{$i}px #{$current-color};
+        }
+
+        /* stylelint-disable-next-line order/order */
+        $shadow-values: list.append($shadow-values, $val, comma);
+    }
+
+    @return $shadow-values;
+}
+
+/**
+    FUN: 创建具有递增模糊半径的文本阴影函数
+    $color - 阴影颜色
+    $iterations - 迭代次数
+    $increment - 模糊半径递增值
+ */
+@function create-text-shadow-fun($color: #0ebeff, $iterations: 5, $increment: 5px) {
+    $shadow-values: ();
+    $current-radius: "0px";
+
+    @for $i from 1 through $iterations {
+        $current-radius: $increment * $i;
+        $shadow-values: list.append($shadow-values, 0 0 $current-radius $color, comma);
+    }
+
+    @return $shadow-values;
+}

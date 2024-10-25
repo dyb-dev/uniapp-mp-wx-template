@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 16:27:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-24 00:29:05
+ * @LastEditTime: 2024-10-24 11:22:43
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/Layout.vue
  * @Description: 页面布局容器
  */
@@ -198,14 +198,11 @@ export default {
         width: 100%;
 
         &--scroll {
-            overflow: hidden scroll;
+            @include open-scroll-mixin;
         }
 
-        &--hide-scroll-bar::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
-            color: transparent;
+        &--hide-scroll-bar {
+            @include hide-scroll-bar-mixin;
         }
     }
 }

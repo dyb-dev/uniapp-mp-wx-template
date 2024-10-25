@@ -2,7 +2,196 @@
  * @Author: dyb-dev
  * @Date: 2024-09-14 17:54:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-09-19 16:41:33
- * @FilePath: /uni-app/src/styles/mixins/index.scss
+ * @LastEditTime: 2024-10-24 13:31:47
+ * @FilePath: /uniapp-mp-wx-template/src/styles/mixins/index.scss
  * @Description: scss全局混合文件
  */
+
+/** 必须写在顶部 */
+@use "sass:list";
+
+/**
+    开启滚动
+    $direction - 滚动方向 "x" | "y"
+ */
+@mixin open-scroll-mixin($direction: "y") {
+    @if $direction == "x" {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    } @else if $direction == "y" {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/** 隐藏滚动条 */
+@mixin hide-scroll-bar-mixin {
+    &::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+        color: transparent;
+    }
+}
+
+/** 文本支持 \n 换行 */
+@mixin rich-text-mixin() {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/**
+ * 文本溢出省略号效果
+ * 根据行数设置单行或多行文本的溢出显示省略号效果。
+ *
+ * $rows - 行数
+ *   - 当 $rows > 1 时，显示多行文本，并在超过指定行数时截断显示省略号。
+ *   - 当 $rows <= 1 时，显示单行文本，并在超出宽度时显示省略号。
+ */
+@mixin text-ellipsis-mixin($rows: 1) {
+    text-overflow: ellipsis;
+    @if $rows > 1 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: $rows;
+        overflow: hidden;
+    } @else {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+/**
+    高亮闪烁动画文本效果
+    $sub-class-name - 子类名
+    $sub-class-count - 子类数量
+    $font-highlight-color - 高亮颜色
+    $shadow-color - 阴影颜色
+    $animation-duration - 动画持续时间
+    $delay-step - 延迟步长
+ */
+@mixin text-flicker-animation-mixin(
+    $sub-class-name,
+    $sub-class-count,
+    $font-highlight-color: #fff,
+    $shadow-color: #42fff6,
+    $animation-duration: 1s,
+    $delay-step: 0.2s
+) {
+    $shadow-intensity: (5px, 10px, 20px, 50px);
+
+    @for $i from 1 through $sub-class-count {
+        .#{$sub-class-name}-#{$i} {
+            animation-delay: $delay-step * $i;
+        }
+    }
+
+    @keyframes flicker {
+        0% {
+            color: inherit;
+        }
+
+        5%,
+        15%,
+        25%,
+        30%,
+        100% {
+            color: $font-highlight-color;
+            text-shadow:
+                0 0 list.nth($shadow-intensity, 1) $shadow-color,
+                0 0 list.nth($shadow-intensity, 2) $shadow-color,
+                0 0 list.nth($shadow-intensity, 3) $shadow-color,
+                0 0 list.nth($shadow-intensity, 4) $shadow-color;
+        }
+
+        10%,
+        20% {
+            color: inherit;
+            text-shadow: none;
+        }
+    }
+
+    .#{$sub-class-name} {
+        animation: flicker $animation-duration linear forwards;
+    }
+}
+
+/** 文本遮罩 */
+@mixin text-clip-mixin {
+    color: transparent;
+    background-clip: text;
+}
+
+/**
+    渐变背景 + 色相旋转动画的文本效果
+    $animation-duration - 动画持续时间
+ */
+@mixin text-gradient-effect-mixin($animation-duration: 5s) {
+    background-image: linear-gradient(45deg, #009688, yellowgreen, pink, #03a9f4, #9c27b0, #8bc34a);
+    animation: hue-rotate $animation-duration infinite;
+    @include text-clip-mixin;
+
+    @keyframes hue-rotate {
+        100% {
+            filter: hue-rotate(360deg);
+        }
+    }
+}
+
+/**
+    动态线性渐变背景滑动文本效果
+    $highlight-color - 高亮颜色
+    $animation-duration - 动画持续时间
+    $background-color - 背景颜色 （注意: 实际展现效果其实是文字颜色）
+ */
+@mixin text-shine-mixin($highlight-color: white, $animation-duration: 5s, $background-color: transparent) {
+    color: transparent;
+    background-color: $background-color;
+    background-image: linear-gradient(
+        125deg,
+        transparent 0%,
+        transparent 10%,
+        $highlight-color 20%,
+        transparent 30%,
+        transparent 100%
+    );
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+
+    /** 注意: 当background-size设置的百分比大于或者小于100%时，有多余的空间移动了，background-position才会有效 */
+    background-size: 150% 100%;
+    background-clip: text;
+    animation: shine $animation-duration infinite linear;
+
+    @keyframes shine {
+        0% {
+            background-position: 100% 0;
+        }
+
+        100% {
+            background-position: -200% 0;
+        }
+    }
+}
+
+/**
+    创建具有遮罩效果的背景
+    @param {Length} $width - 容器的宽度
+    @param {Length} $height - 容器的高度
+    @param {String} $bg-image1 - 背景图片1的路径
+    @param {String} $bg-image2 - 背景图片2的路径
+ */
+@mixin background-mask-mixin($width, $height, $bg-image1, $bg-image2) {
+    position: relative;
+    width: $width;
+    height: $height;
+    background: url($bg-image1) no-repeat center/cover;
+
+    &::before {
+        position: absolute;
+        inset: 0;
+        background: url($bg-image2) no-repeat center/cover;
+        content: "";
+        mask: linear-gradient(45deg, #000 40%, transparent 60%);
+    }
+}
