@@ -12,7 +12,7 @@ import { useVModels } from "@vueuse/core"
 import { computed } from "vue"
 
 import pagesJson from "@/pages.json"
-import { navigateToPage } from "@/utils"
+import { navigateToPage, isImagePath } from "@/utils"
 
 /** TabBar 列表项 */
 export interface TTabBarItem {
@@ -307,7 +307,19 @@ export default {
                         }"
                         @tap="onClickTabBarItem(item, index)"
                     >
+                        <image
+                            v-if="isImagePath(modelValue === index ? item.selectedIcon : item.icon)"
+                            :src="modelValue === index ? item.selectedIcon : item.icon"
+                            style="display: block"
+                            :style="{
+                                width: iconSize,
+                                height: iconSize
+                            }"
+                            mode="aspectFit"
+                        />
+
                         <nut-icon
+                            v-else
                             :width="iconSize"
                             :height="iconSize"
                             :size="iconSize"
