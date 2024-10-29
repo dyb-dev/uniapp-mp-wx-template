@@ -2,10 +2,15 @@
  * @Author: dyb-dev
  * @Date: 2024-10-01 22:46:34
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-08 20:37:49
+ * @LastEditTime: 2024-10-30 00:22:44
  * @FilePath: /uniapp-mp-wx-template/src/components/index.ts
  * @Description: 组件模块
  */
+
+/** 导出对话框相关工具函数 */
+export * from "./dialog"
+/** 导出组件函数式调用相关工具函数 */
+export * from "./functionCall"
 
 /**
  * FUN: 设置全局组件

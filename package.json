@@ -1,6 +1,6 @@
 {
     "name": "uniapp-mp-wx-template",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "基于`uni-app + vue3 + ts`搭建的微信小程序模板",
     "author": "dyb-dev",
     "license": "MIT",
