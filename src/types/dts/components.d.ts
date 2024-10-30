@@ -7,11 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ChooseAvatar: typeof import('./../../components/userInfo/ChooseAvatar.vue')['default']
-    GetPhoneNumber: typeof import('./../../components/userInfo/GetPhoneNumber.vue')['default']
+    AuthAvatarButton: typeof import('./../../components/userInfo/AuthAvatarButton.vue')['default']
+    AuthPhoneNumberButton: typeof import('./../../components/userInfo/AuthPhoneNumberButton.vue')['default']
     Layout: typeof import('./../../components/layout/Layout.vue')['default']
     NavBar: typeof import('./../../components/layout/NavBar.vue')['default']
-    NickName: typeof import('./../../components/userInfo/NickName.vue')['default']
+    NickNameInput: typeof import('./../../components/userInfo/NickNameInput.vue')['default']
     NutAnimate: typeof import('nutui-uniapp/components/animate/animate.vue')['default']
     NutAvatar: typeof import('nutui-uniapp/components/avatar/avatar.vue')['default']
     NutBadge: typeof import('nutui-uniapp/components/badge/badge.vue')['default']
@@ -19,7 +19,6 @@ declare module 'vue' {
     NutConfigProvider: typeof import('nutui-uniapp/components/configprovider/configprovider.vue')['default']
     NutIcon: typeof import('nutui-uniapp/components/icon/icon.vue')['default']
     NutInput: typeof import('nutui-uniapp/components/input/input.vue')['default']
-    NutPopup: typeof import('nutui-uniapp/components/popup/popup.vue')['default']
     NutToast: typeof import('nutui-uniapp/components/toast/toast.vue')['default']
     Popup: typeof import('./../../components/popup/Popup.vue')['default']
     TabBar: typeof import('./../../components/layout/TabBar.vue')['default']

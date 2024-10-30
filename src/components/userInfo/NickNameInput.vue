@@ -2,8 +2,8 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 14:00:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-08 15:58:26
- * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/NickName.vue
+ * @LastEditTime: 2024-10-30 21:07:26
+ * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/NickNameInput.vue
  * @Description: 昵称输入框组件
 -->
 
@@ -11,7 +11,7 @@
 import { useVModels } from "@vueuse/core"
 import { computed } from "vue"
 
-export interface INickNameProps {
+export interface INickNameInputProps {
 /**
  * @description 当前输入的昵称
  * @default ''
@@ -68,7 +68,7 @@ export interface INickNameProps {
     borderRadius?: number
 }
 
-const props = withDefaults(defineProps<INickNameProps>(), {
+const props = withDefaults(defineProps<INickNameInputProps>(), {
     modelValue: "",
     placeholder: "点击输入昵称",
     width: 400,

@@ -2,9 +2,9 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 14:00:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-17 16:43:29
- * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/ChooseAvatar.vue
- * @Description: 选择头像组件
+ * @LastEditTime: 2024-10-30 21:24:48
+ * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/AuthAvatarButton.vue
+ * @Description: 授权头像按钮组件
 -->
 
 <script setup lang="ts">
@@ -17,7 +17,7 @@ import type { IAuthErrorOptions } from "@/types"
 
 import type { ButtonOnChooseavatarEvent } from "@uni-helper/uni-app-types"
 
-export interface IChooseAvatarProps {
+export interface IAuthAvatarButtonProps {
 /**
  * @description 当前选择的头像地址
  * @default ''
@@ -30,7 +30,7 @@ export interface IChooseAvatarProps {
     uploadToServer?: boolean
 }
 
-const props = withDefaults(defineProps<IChooseAvatarProps>(), {
+const props = withDefaults(defineProps<IAuthAvatarButtonProps>(), {
     modelValue: "",
     uploadToServer: true
 })
@@ -129,11 +129,11 @@ export default {
 </script>
 
 <template>
-    <button class="choose-avatar" open-type="chooseAvatar" @chooseavatar.stop="onChooseAvatar"></button>
+    <button class="auth-avatar-button" open-type="chooseAvatar" @chooseavatar.stop="onChooseAvatar"></button>
 </template>
 
 <style lang="scss" scoped>
-.choose-avatar {
+.auth-avatar-button {
     position: absolute;
     top: 0;
     left: 0;

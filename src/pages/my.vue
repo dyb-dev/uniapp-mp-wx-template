@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:39:24
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-17 16:49:49
+ * @LastEditTime: 2024-10-30 21:25:41
  * @FilePath: /uniapp-mp-wx-template/src/pages/my.vue
  * @Description: 我的页面
  */
@@ -90,10 +90,10 @@ const onSaveButton = async() => {
             <nut-avatar size="large">
                 <image v-if="avatarUrl" :src="avatarUrl" mode="aspectFit" />
                 <nut-icon v-else name="my" size="40rpx" />
-                <ChooseAvatar v-model="avatarUrl" :upload-to-server="false" />
+                <AuthAvatarButton v-model="avatarUrl" :upload-to-server="false" />
             </nut-avatar>
 
-            <NickName v-model="nickName" />
+            <NickNameInput v-model="nickName" />
 
             <nut-button type="primary" @tap="onSaveButton">保存信息</nut-button>
         </view>
