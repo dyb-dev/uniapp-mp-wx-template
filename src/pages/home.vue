@@ -2,15 +2,19 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:38:39
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 00:27:16
+ * @LastEditTime: 2024-10-30 12:31:17
  * @FilePath: /uniapp-mp-wx-template/src/pages/home.vue
  * @Description: 首页
 -->
 
 <script setup lang="ts">
-import { onLoad } from "@dcloudio/uni-app"
+import { onLoad, onShareAppMessage } from "@dcloudio/uni-app"
 
+import { useShare } from "@/hooks"
 import { navigateToTarget } from "@/utils"
+
+// LIFECYCLE: 分享钩子
+onShareAppMessage(() => useShare())
 
 /** LIFECYCLE: 页面数据初始化完成 */
 onLoad(query => {
