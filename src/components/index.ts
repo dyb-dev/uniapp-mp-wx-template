@@ -2,15 +2,15 @@
  * @Author: dyb-dev
  * @Date: 2024-10-01 22:46:34
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 00:22:44
+ * @LastEditTime: 2024-10-30 21:38:46
  * @FilePath: /uniapp-mp-wx-template/src/components/index.ts
  * @Description: 组件模块
  */
 
 /** 导出弹窗相关工具函数 */
 export * from "./popup"
-/** 导出组件函数式调用相关工具函数 */
-export * from "./functionCall"
+/** 导出提供组件选项相关工具函数 */
+export * from "./provideComponentOptions"
 
 /**
  * FUN: 设置全局组件
