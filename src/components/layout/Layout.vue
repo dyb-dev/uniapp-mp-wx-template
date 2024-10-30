@@ -2,13 +2,14 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 16:27:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-24 11:22:43
+ * @LastEditTime: 2024-10-30 15:03:03
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/Layout.vue
  * @Description: 页面布局容器
  */
 -->
 
 <script setup lang="ts">
+import { onShow } from "@dcloudio/uni-app"
 import { computed, useSlots, ref } from "vue"
 
 import NavBar from "@/components/layout/NavBar.vue"
@@ -90,12 +91,16 @@ const { tabBarStoreState, getCurrentTabBarItem, updateCurrentTabBarIndex } = use
 /** STATIC: 是否显示自定义底部导航栏 */
 const showCustomTabBar = isAllowCustomTabBar && getCurrentTabBarItem()
 
-// 显示自定义底部导航栏时，更新当前 TabBar 索引
-if (showCustomTabBar) {
+/** LIFECYCLE: 组件显示 */
+onShow(() => {
+    // 显示自定义底部导航栏时，更新当前 TabBar 索引
+    if (showCustomTabBar) {
 
-    updateCurrentTabBarIndex()
+        updateCurrentTabBarIndex()
 
-}
+    }
+
+})
 
 /** STATIC: 主题变量 */
 const themeVars = {
@@ -131,8 +136,8 @@ defineExpose({
 export default {
     options: {
         // 虚拟化组件节点，使组件外部样式能够直接作用到组件内部的第一层节点
+        // eslint-disable-next-line padded-blocks
         virtualHost: true,
-
         // 允许父组件样式穿透到子组件
         styleIsolation: "shared"
     }
