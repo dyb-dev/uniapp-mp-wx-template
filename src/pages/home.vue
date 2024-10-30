@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:38:39
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 12:31:17
+ * @LastEditTime: 2024-10-30 20:47:59
  * @FilePath: /uniapp-mp-wx-template/src/pages/home.vue
  * @Description: 首页
 -->
@@ -10,6 +10,7 @@
 <script setup lang="ts">
 import { onLoad, onShareAppMessage } from "@dcloudio/uni-app"
 
+import { usePopup } from "@/components"
 import { useShare } from "@/hooks"
 import { navigateToTarget } from "@/utils"
 
@@ -36,13 +37,22 @@ const onJumpTestPageButton = () => {
 
 }
 
+const { showPopup } = usePopup()
+
 // EVENT: 点击跳转Webview页面按钮
-const onJumpWebviewPageButton = () => {
+const onJumpWebviewPageButton = async() => {
 
     // 测试跳转 h5 页面
-    navigateToTarget({
-        webUrl: "https://www.baidu.com"
+    // navigateToTarget({
+    //     webUrl: "https://www.baidu.com"
+    // })
+    const s = await showPopup({
+        customImgPath: "/static/image/uniapp.ico",
+        customImgWidth: "100rpx",
+        customImgHeight: "100rpx"
     })
+
+    console.log(s)
 
 }
 </script>
@@ -66,6 +76,8 @@ const onJumpWebviewPageButton = () => {
             </view>
         </view>
     </Layout>
+
+    <Popup />
 </template>
 
 <style lang="scss" scoped>

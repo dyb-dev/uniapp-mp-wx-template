@@ -2,7 +2,7 @@
   "name": "uniapp-mp-wx-template",
   "appid": "",
   "description": "基于`uni-app + vue3 + ts`搭建的微信小程序模板",
-  "versionName": "0.0.9",
+  "versionName": "0.1.0",
   "versionCode": "100",
   "transformPx": false,
   "app-plus": {

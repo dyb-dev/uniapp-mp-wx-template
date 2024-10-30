@@ -7,8 +7,8 @@
  * @Description: 组件模块
  */
 
-/** 导出对话框相关工具函数 */
-export * from "./dialog"
+/** 导出弹窗相关工具函数 */
+export * from "./popup"
 /** 导出组件函数式调用相关工具函数 */
 export * from "./functionCall"
 

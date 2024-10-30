@@ -2,9 +2,9 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 00:21:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 00:22:09
- * @FilePath: /uniapp-mp-wx-template/src/components/dialog/Dialog.vue
- * @Description: 基础对话框
+ * @LastEditTime: 2024-10-30 20:53:12
+ * @FilePath: /uniapp-mp-wx-template/src/components/popup/Popup.vue
+ * @Description: 基础弹窗组件
 -->
 
 <script setup lang="ts">
@@ -14,16 +14,16 @@ import { computed, inject, ref, watch } from "vue"
 import type { Ref } from "vue"
 
 /** TYPE: 弹窗动作类型 */
-export type TDialogActionType = "custom-button-click" | "close-button-click"
+export type TPopupActionType = "custom-button-click" | "close-button-click"
 
-/** TYPE: 关闭完成回调参数 */
-export type TDialogClosedParam = [TDialogActionType]
+/** TYPE: 卸载组件回调参数 */
+export type TPopupUnmountParam = [TPopupActionType]
 
 /** TYPE: 函数式调用时的唯一标识key */
-export type TDialogCustomKey = `__DIALOG__${string}`
+export type TPopupCustomKey = `__POPUP__${string}`
 
 /** 组件选项 */
-export interface IDialogOptions {
+export interface IPopupOptions {
     /**
      * @description 是否显示
      * @default false
@@ -35,10 +35,10 @@ export interface IDialogOptions {
      */
     customKey?: string
     /**
-     * @description 函数式调用时有效 弹窗关闭完成回调
-     * @param ares 关闭回调参数
+     * @description 函数式调用时有效 卸载组件回调
+     * @param ares 卸载回调参数
      */
-    closed: (...ares: TDialogClosedParam) => void
+    unmount: (...ares: TPopupUnmountParam) => void
     /**
      * @description 自定义图片路径
      */
@@ -97,13 +97,13 @@ export interface IDialogOptions {
      * @description 弹窗关闭回调关闭
      * @param actionType 动作类型
      */
-    beforeClose?: (actionType: TDialogActionType) => boolean | Promise<boolean>
+    beforeClose?: (actionType: TPopupActionType) => boolean | Promise<boolean>
 }
 
 /** TYPE: 弹窗Props(全部可选) */
-type TDialogProps = Partial<IDialogOptions>
+type TPopupProps = Partial<IPopupOptions>
 
-const props = withDefaults(defineProps<TDialogProps>(), {
+const props = withDefaults(defineProps<TPopupProps>(), {
     show: false,
     customKey: "",
     customImgWidth: "0rpx",
@@ -123,14 +123,14 @@ const emits = defineEmits<{
     /** 当前索引 */
     (event: "update:show"): void
     /** 按钮点击 */
-    (event: TDialogActionType): void
+    (event: TPopupActionType): void
 }>()
 
 /** REF: 双向绑定 */
 const { show } = useVModels(props, emits)
 
 /** REF: 选项 */
-const options = ref<TDialogProps>({
+const options = ref<TPopupProps>({
     ...props
 })
 
@@ -142,10 +142,10 @@ watch(show, value => {
 })
 
 /** STATIC: 接收选项的key */
-const KEY: TDialogCustomKey = `__DIALOG__${options.value.customKey || ""}`
+const KEY: TPopupCustomKey = `__POPUP__${options.value.customKey || ""}`
 
 /** REF: 函数式调用时注入的弹窗选项 */
-const injectOptions: Ref<TDialogProps> = inject(KEY, options)
+const injectOptions: Ref<TPopupProps> = inject(KEY, options)
 
 /** WATCH: 监听 函数式调用时注入的弹窗选项 的变化 */
 watch(injectOptions, value => {
@@ -161,7 +161,7 @@ watch(injectOptions, value => {
 let isBeforeClose = false
 
 /** REF: 动作类型 */
-const actionType = ref<TDialogActionType>("close-button-click")
+const actionType = ref<TPopupActionType>("close-button-click")
 
 /**
  * FUN: 关闭弹窗
@@ -169,7 +169,7 @@ const actionType = ref<TDialogActionType>("close-button-click")
  * @param _actionType 动作类型
  * @returns {boolean} 是否关闭成功
  */
-const close = async(_actionType: TDialogActionType): Promise<boolean> => {
+const close = async(_actionType: TPopupActionType): Promise<boolean> => {
 
     if (isBeforeClose) {
 
@@ -200,7 +200,7 @@ const close = async(_actionType: TDialogActionType): Promise<boolean> => {
 
         }
         finally {
-            // 经测试发现在连续点击的情况下，会出现 close 执行多次的情况，放在_closed中也不管用，暂时利用 setTimeout 解决
+            // 经测试发现在连续点击的情况下，会出现 close 执行多次的情况，放在closed中也不管用，暂时利用 setTimeout 解决
             setTimeout(() => {
 
                 isBeforeClose = false
@@ -221,9 +221,9 @@ const close = async(_actionType: TDialogActionType): Promise<boolean> => {
 }
 
 /** EVENT: 关闭完成回调 */
-const _closed = () => {
+const closed = () => {
 
-    options.value.closed?.(actionType.value)
+    options.value.unmount?.(actionType.value)
     emits(actionType.value)
 
 }
@@ -267,26 +267,26 @@ export default {
 
 <template>
     <nut-popup
-        class="dialog"
+        class="popup"
         :custom-style="{ background: 'transparent' }"
         v-model:visible="options.show"
         :close-on-click-overlay="false"
-        @closed="_closed"
+        @closed="closed"
     >
-        <view class="dialog__main">
-            <image class="dialog__main__content" :style="customImgStyles" :src="options.customImgPath" mode="scaleToFill" />
+        <view class="popup__main">
+            <image class="popup__main__content" :style="customImgStyles" :src="options.customImgPath" mode="scaleToFill" />
 
             <view
                 v-if="options.showCustomButton"
                 :style="customButtonStyles"
-                class="dialog__main__custom-button"
+                class="popup__main__custom-button"
                 @click="close('custom-button-click')"
             />
 
             <image
                 v-if="options.showCloseButton"
-                class="dialog__main__close"
-                src="/static/image/Dialog/close.png"
+                class="popup__main__close"
+                src="/static/image/Popup/close.png"
                 mode="scaleToFill"
                 @click="close('close-button-click')"
             />
@@ -295,7 +295,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.dialog {
+.popup {
     &__main {
         &__content {
             display: block;
