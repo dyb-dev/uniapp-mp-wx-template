@@ -2,13 +2,15 @@
  * @Author: dyb-dev
  * @Date: 2024-10-01 22:46:34
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 21:38:46
+ * @LastEditTime: 2024-10-30 23:02:43
  * @FilePath: /uniapp-mp-wx-template/src/components/index.ts
  * @Description: 组件模块
  */
 
-/** 导出弹窗相关工具函数 */
+/** 导出弹窗组件相关工具函数 */
 export * from "./popup"
+/** 导出用户信息组件相关工具函数 */
+export * from "./userInfo"
 /** 导出提供组件选项相关工具函数 */
 export * from "./provideComponentOptions"
 

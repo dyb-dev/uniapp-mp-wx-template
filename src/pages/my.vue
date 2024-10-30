@@ -2,102 +2,38 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:39:24
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 21:25:41
+ * @LastEditTime: 2024-10-31 01:33:58
  * @FilePath: /uniapp-mp-wx-template/src/pages/my.vue
  * @Description: 我的页面
  */
 -->
 
 <script setup lang="ts">
-import { onShow } from "@dcloudio/uni-app"
-import { useToast } from "nutui-uniapp/composables"
-import { ref } from "vue"
-
+import { useAuthAvatarNicknameDialog } from "@/components"
 import { useUserInfoStore } from "@/stores"
 
-const toast = useToast()
-
 /** HOOKS: 用户信息 store */
-const { userInfoStoreState, uploadUserInfo } = useUserInfoStore()
+const { userInfoStoreState } = useUserInfoStore()
 
-/** REF: 头像地址 */
-const avatarUrl = ref("")
-
-/** REF: 昵称 */
-const nickName = ref("")
-
-/** LIFECYCLE: 页面切入前台 */
-onShow(() => {
-
-    avatarUrl.value = userInfoStoreState.avatarUrl
-    nickName.value = userInfoStoreState.nickName
-
-})
-
-// EVENT: 保存按钮
-const onSaveButton = async() => {
-
-    if (!avatarUrl.value) {
-
-        uni.showToast({
-            title: "请上传头像",
-            icon: "none"
-        })
-        return
-
-    }
-
-    if (!nickName.value) {
-
-        uni.showToast({
-            title: "请输入昵称",
-            icon: "none"
-        })
-        return
-
-    }
-
-    uni.showLoading({ title: "正在保存...", mask: true })
-
-    // 保存用户信息
-    const _result = await uploadUserInfo({
-        avatarUrl: avatarUrl.value,
-        nickName: nickName.value
-    })
-
-    console.log("onSaveButton() _result:", _result)
-
-    uni.hideLoading()
-
-    if (!_result.success || !_result.data) {
-
-        uni.showToast({
-            title: "保存失败,请稍后再试",
-            icon: "none"
-        })
-        return
-
-    }
-
-    toast.success("保存成功")
-
-}
+// HOOKS: 授权头像昵称对话框
+const { showAuthAvatarNicknameDialog } = useAuthAvatarNicknameDialog()
 </script>
 
 <template>
     <Layout>
         <view class="my">
             <nut-avatar size="large">
-                <image v-if="avatarUrl" :src="avatarUrl" mode="aspectFit" />
+                <image v-if="userInfoStoreState.avatarUrl" :src="userInfoStoreState.avatarUrl" mode="aspectFit" />
                 <nut-icon v-else name="my" size="40rpx" />
-                <AuthAvatarButton v-model="avatarUrl" :upload-to-server="false" />
             </nut-avatar>
 
-            <NickNameInput v-model="nickName" />
+            <view>{{ userInfoStoreState.nickName }}</view>
 
-            <nut-button type="primary" @tap="onSaveButton">保存信息</nut-button>
+            <nut-button type="primary" @click="showAuthAvatarNicknameDialog">授权头像昵称</nut-button>
         </view>
     </Layout>
+
+    <AuthAvatarNicknameDialog />
 </template>
 
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 14:00:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 21:07:26
+ * @LastEditTime: 2024-10-31 01:45:45
  * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/NickNameInput.vue
  * @Description: 昵称输入框组件
 -->
@@ -23,24 +23,15 @@ export interface INickNameInputProps {
  */
     placeholder?: string
 /**
- * @description 输入框的 placeholder 样式
- */
-    placeholderStyle?: string
-/**
  * @description 输入框的宽度
- * @default 400
+ * @default '100%'
  */
-    width?: number
+    width?: string
 /**
  * @description 输入框的高度
- * @default 60
+ * @default '100%'
  */
-    height?: number
-/**
- * @description 字体大小
- * @default 28
- */
-    fontSize?: number
+    height?: string
 /**
  * @description 字体颜色
  * @default '#323233'
@@ -56,29 +47,16 @@ export interface INickNameInputProps {
  * @default '#ffffff'
  */
     background?: string
-/**
- * @description 边框颜色
- * @default '#ebedf0'
- */
-    borderColor?: string
-/**
- * @description 边框圆角大小
- * @default 32
- */
-    borderRadius?: number
 }
 
 const props = withDefaults(defineProps<INickNameInputProps>(), {
     modelValue: "",
     placeholder: "点击输入昵称",
-    width: 400,
-    height: 60,
-    fontSize: 28,
+    width: "100%",
+    height: "100%",
     color: "#323233",
     textAlign: "center",
-    background: "#ffffff",
-    borderColor: "#ebedf0",
-    borderRadius: 32
+    background: "#ffffff"
 })
 
 const emits = defineEmits<{
@@ -95,14 +73,11 @@ const { modelValue } = useVModels(props, emits)
 
 /** COMPUTED: 样式 */
 const style = computed(() => ({
-    width: `${props.width}rpx`,
-    height: `${props.height}rpx`,
+    width: props.width,
+    height: props.height,
     color: props.color,
-    fontSize: `${props.fontSize}rpx`,
     textAlign: props.textAlign,
-    background: props.background,
-    border: `1px solid ${props.borderColor}`,
-    borderRadius: `${props.borderRadius}rpx`
+    background: props.background
 }))
 
 // EVENT: 监听昵称改变
@@ -136,7 +111,6 @@ export default {
         :style="style"
         :value="modelValue"
         :placeholder="props.placeholder"
-        :placeholder-style="props.placeholderStyle"
         @input="onChangeNickName"
         @blur="onChangeNickName"
         @focus="onChangeNickName"

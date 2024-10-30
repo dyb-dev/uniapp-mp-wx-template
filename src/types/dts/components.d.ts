@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AuthAvatarButton: typeof import('./../../components/userInfo/AuthAvatarButton.vue')['default']
+    AuthAvatarNicknameDialog: typeof import('./../../components/userInfo/AuthAvatarNicknameDialog.vue')['default']
     AuthPhoneNumberButton: typeof import('./../../components/userInfo/AuthPhoneNumberButton.vue')['default']
     Layout: typeof import('./../../components/layout/Layout.vue')['default']
     NavBar: typeof import('./../../components/layout/NavBar.vue')['default']
@@ -19,6 +20,7 @@ declare module 'vue' {
     NutConfigProvider: typeof import('nutui-uniapp/components/configprovider/configprovider.vue')['default']
     NutIcon: typeof import('nutui-uniapp/components/icon/icon.vue')['default']
     NutInput: typeof import('nutui-uniapp/components/input/input.vue')['default']
+    NutPopup: typeof import('nutui-uniapp/components/popup/popup.vue')['default']
     NutToast: typeof import('nutui-uniapp/components/toast/toast.vue')['default']
     Popup: typeof import('./../../components/popup/Popup.vue')['default']
     TabBar: typeof import('./../../components/layout/TabBar.vue')['default']

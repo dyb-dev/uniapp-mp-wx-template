@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 14:00:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 21:24:48
+ * @LastEditTime: 2024-10-31 00:33:24
  * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/AuthAvatarButton.vue
  * @Description: 授权头像按钮组件
 -->
