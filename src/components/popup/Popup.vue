@@ -297,6 +297,8 @@ export default {
 <style lang="scss" scoped>
 .popup {
     &__main {
+        position: relative;
+
         &__content {
             display: block;
             margin: 0 auto 46rpx;
