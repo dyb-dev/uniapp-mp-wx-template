@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:49:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-11 17:22:31
+ * @LastEditTime: 2024-10-31 22:57:50
  * @FilePath: /uniapp-mp-wx-template/src/utils/pages/navigate.ts
  * @Description: 页面跳转相关工具函数
  */
@@ -50,7 +50,7 @@ interface INavigateBaseOptions {
 }
 
 /** 导航第三方小程序的选项 */
-interface INavigateToMiniProgramOptions extends INavigateBaseOptions {
+interface INavigateToMiniProgramOptions extends TModifyProperties<INavigateBaseOptions, "path"> {
     /**
      * 小程序 AppID
      */
@@ -71,7 +71,7 @@ interface INavigateToMiniProgramOptions extends INavigateBaseOptions {
  */
 const navigateToMiniProgram = (options: INavigateToMiniProgramOptions) => {
 
-    const { appId, path = "", query = {}, envVersion = "trial", enCode = false, success, fail, complete } = options
+    const { appId, envVersion = "trial", enCode = false, success, fail, complete } = options
 
     if (!appId) {
 
@@ -80,29 +80,30 @@ const navigateToMiniProgram = (options: INavigateToMiniProgramOptions) => {
 
     }
 
-    // 将参数拼接到 path 中，如果 enCode 为 true 则对参数值进行 encodeURIComponent 编码
-    const _path = mergeUrlQuery(path, query, { encode: enCode })
+    let { path = "", query = {} } = options
+
+    // 如果有 path 则拼接参数
+    if (path) {
+
+        // 将参数拼接到 path 中，如果 enCode 为 true 则对参数值进行 encodeURIComponent 编码
+        path = mergeUrlQuery(path, query, { encode: enCode })
+        // 如果 path 不是以 / 开头 则添加 /
+        path = path.startsWith("/") ? path : `/${path}`
+        // 获取需要传递给目标小程序的参数，目标小程序可在 App.vue 的 onLaunch或onShow 中获取到
+        query = (getUrlQuery(path) || {}) as Record<string, string>
+        // 获取目标页面路径
+        path = getBaseUrl(path) || ""
+
+    }
 
     uni.navigateToMiniProgram({
         appId,
-        path: _path,
-        extraData: getUrlQuery(_path),
+        path: path,
+        extraData: query,
         envVersion,
-        success: (result: UniApp.NavigateToSuccessOptions) => {
-
-            success?.(result)
-
-        },
-        fail: (result: any) => {
-
-            fail?.(result)
-
-        },
-        complete: (result: any) => {
-
-            complete?.(result)
-
-        }
+        success: (result: UniApp.NavigateToSuccessOptions) => success?.(result),
+        fail: (result: any) => fail?.(result),
+        complete: (result: any) => complete?.(result)
     })
 
 }
@@ -195,7 +196,7 @@ const getNavigateToPageFn = (navigateToPageMethod: TNavigateToPageMethod) => {
 /** 导航本小程序页面的方法 */
 type TNavigateToPageMethod = "redirectTo" | "navigateTo" | "reLaunch" | "switchTab"
 
-/** 导航第三方小程序的选项 */
+/** 导航本小程序页面的选项 */
 interface INavigateToPageOptions extends INavigateBaseOptions {
     /**
      * 跳转的路径
@@ -233,7 +234,10 @@ const navigateToPage = (options: INavigateToPageOptions) => {
     }
 
     // 将参数拼接到 path 中，如果 enCode 为 true 则对参数值进行 encodeURIComponent 编码
-    const _path = mergeUrlQuery(path, query, { encode: enCode })
+    let _path = mergeUrlQuery(path, query, { encode: enCode })
+
+    // 如果 path 不是以 / 开头 则添加 /
+    _path = _path.startsWith("/") ? _path : `/${_path}`
 
     // 目标页面路径 去除开头斜杠
     const _targetPagePath = trimUrlSlashes(getBaseUrl(_path), {
@@ -293,22 +297,9 @@ const navigateToPage = (options: INavigateToPageOptions) => {
     // 进行最终的页面跳转
     getNavigateToPageFn(method)({
         url: _path,
-        success(result: any) {
-
-            success?.(result)
-
-        },
-        fail(result: any) {
-
-            console.log("result :>> ", result)
-            fail?.(result)
-
-        },
-        complete: (result: any) => {
-
-            complete?.(result)
-
-        }
+        success: (result: any) => success?.(result),
+        fail: (result: any) => fail?.(result),
+        complete: (result: any) => complete?.(result)
     })
 
 }
@@ -326,6 +317,7 @@ const navigateBack = (delta: number = 1) => {
     const _currentPages = getCurrentPages()
     if (!_currentPages || _currentPages.length <= 1) {
 
+        console.error("navigateBack() 页面栈长度小于等于1,无法返回")
         return
 
     }
@@ -493,13 +485,11 @@ const navigateToTarget: INavigateToTargetFn = (options: TNavigateToTargetOptions
 
     const { type, ...lastOptions } = options
 
-    /** STATIC: 导航目标类型 */
+    /** 导航目标类型 */
     let _type = type
 
     // 如果没有传入type 则根据参数判断
     if (!_type) {
-
-        const { VITE_LOGIN_PATH } = __PROJECT_INFO__.env
 
         // @ts-ignore
         if (lastOptions?.appId) {
@@ -513,32 +503,39 @@ const navigateToTarget: INavigateToTargetFn = (options: TNavigateToTargetOptions
             _type = ENavigateToTargetType.WEB_VIEW
 
         }
-        // @ts-ignore
-        else if (getBaseUrl(lastOptions.path || "") === `/${VITE_LOGIN_PATH}`) {
-
-            _type = ENavigateToTargetType.LOGIN
-
-        }
         else {
 
-            _type = ENavigateToTargetType.PAGE
+            // 如果没有传入path 则无法推断跳转类型
+            if (!lastOptions.path) {
+
+                console.error("navigateToTarget() 自动推断跳转类型失败,缺失path参数")
+                return
+
+            }
+
+            // 获取页面路径并去除开头斜杠
+            const _path = trimUrlSlashes(getBaseUrl(lastOptions.path), {
+                trimStart: true
+            })
+
+            _type = _path === __PROJECT_INFO__.env.VITE_LOGIN_PATH ? ENavigateToTargetType.LOGIN : ENavigateToTargetType.PAGE
 
         }
 
     }
 
     // 导航配置
-    const _navigateToTargetConfig = NAVIGATE_TO_TARGET_CONFIG_LIST.find(item => String(_type) === String(item.type))
+    const _navigateToTargetConfig = NAVIGATE_TO_TARGET_CONFIG_LIST.find(item => Number(item.type) === Number(_type))
 
     if (!_navigateToTargetConfig) {
 
-        console.error(`navigate() 找不到type相关类型的方法 _type:${_type}`)
+        console.error(`navigateToTarget() 找不到type相关类型的跳转配置 _type:${_type}`)
         return
 
     }
     if (!_navigateToTargetConfig.fn) {
 
-        console.error("navigate 无法找到对应的跳转方法 _navigateConfig:", _navigateToTargetConfig)
+        console.error("navigateToTarget 跳转配置没有对应的跳转方法 _navigateToTargetConfig:", _navigateToTargetConfig)
         return
 
     }

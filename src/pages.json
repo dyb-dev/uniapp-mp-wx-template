@@ -58,7 +58,7 @@
             {
                 "name": "启动页",
                 "path": "pages/launch",
-                "query": "targetPath=pages/test&test=测试启动参数"
+                "query": "targetPath=/pages/test&test=测试启动参数"
             },
             {
                 "name": "首页",

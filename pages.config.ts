@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:57:47
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-28 21:41:18
+ * @LastEditTime: 2024-10-31 22:28:27
  * @FilePath: /uniapp-mp-wx-template/pages.config.ts
  * @Description: 页面配置文件
  */
@@ -79,7 +79,7 @@ export default defineUniPages({
             {
                 name: "启动页",
                 path: VITE_LAUNCH_PATH,
-                query: `targetPath=${VITE_PAGE_DIR}/test&test=测试启动参数`
+                query: `targetPath=/${VITE_PAGE_DIR}/test&test=测试启动参数`
             },
             {
                 name: "首页",
