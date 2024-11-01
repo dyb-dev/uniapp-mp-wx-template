@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 21:46:58
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-31 01:47:21
+ * @LastEditTime: 2024-11-02 01:50:07
  * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/AuthAvatarNicknameDialog.vue
  * @Description: 授权头像昵称对话框
 -->
@@ -193,8 +193,8 @@ const closed = () => {
 
 }
 
-// EVENT: 监听授权头像失败
-const onAuthAvatarFail = (options: IAuthErrorOptions) => {
+// EVENT: 监听授权失败
+const onAuthFail = (options: IAuthErrorOptions) => {
 
     uni.showToast({ title: options.message, icon: "error" })
 
@@ -240,7 +240,7 @@ export default {
 
                     <nut-icon v-else name="my2" size="40rpx" custom-color="#908f8f" />
 
-                    <AuthAvatarButton v-model="avatarUrl" :upload-to-server="false" @fail="onAuthAvatarFail" />
+                    <AuthAvatarButton v-model="avatarUrl" :upload-to-server="false" @fail="onAuthFail" />
                 </view>
 
                 <nut-icon name="rect-right" size="30rpx" custom-color="#908f8f" />
@@ -249,7 +249,7 @@ export default {
             <view class="auth-avatar-nickname-dialog__main__row">
                 <view>昵称</view>
 
-                <NickNameInput style="flex: 1" v-model="nickName" text-align="right" />
+                <NickNameInput style="flex: 1" v-model="nickName" text-align="right" @fail="onAuthFail" />
 
                 <nut-icon name="rect-right" size="30rpx" custom-color="#908f8f" />
             </view>
