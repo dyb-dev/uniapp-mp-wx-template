@@ -2,12 +2,14 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:14:00
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-15 23:37:22
+ * @LastEditTime: 2024-11-01 20:43:40
  * @FilePath: /uniapp-mp-wx-template/src/utils/url/index.ts
  * @Description: url相关工具函数
  */
 
 import queryString from "query-string"
+
+import { getCurrentServerUrl } from "@/utils"
 
 /**
  * FUN: 获取基础 URL（去除查询参数）
@@ -97,7 +99,7 @@ interface IToAbsoluteUrlOptions {
     /** 相对 URL 路径 */
     relativePath: string
     /**
-     * 网址的协议、域名、端口号组成的字符串 默认: `__PROJECT_INFO__.env.VITE_SERVER_URL`
+     * 网址的协议、域名、端口号组成的字符串 默认: `getCurrentServerUrl()`
      */
     urlOrigin?: string
     /** 基础路径 默认: '' */
@@ -116,11 +118,7 @@ interface IToAbsoluteUrlOptions {
  */
 const toAbsoluteUrl = (options: IToAbsoluteUrlOptions): string => {
 
-    const {
-        env: { VITE_SERVER_URL }
-    } = __PROJECT_INFO__
-
-    const { relativePath, urlOrigin = VITE_SERVER_URL, basePath = "", version = __PROJECT_INFO__.version } = options
+    const { relativePath, urlOrigin = getCurrentServerUrl(), basePath = "", version = __PROJECT_INFO__.version } = options
 
     if (!relativePath || typeof relativePath !== "string" || isAbsoluteUrl(relativePath)) {
 

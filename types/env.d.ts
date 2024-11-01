@@ -20,8 +20,10 @@ interface ImportMetaEnv {
     readonly VITE_LOGIN_PATH: string
     /** 首页路径 默认:pages/home */
     readonly VITE_HOME_PATH: string
-    /** 服务器网址 默认:http://xxx.com */
-    readonly VITE_SERVER_URL: string
+    /** 开发环境服务器网址（小程序开发版、体验版用到） 默认:http://xxx.com */
+    readonly VITE_DEV_SERVER_URL: string
+    /** 生产环境服务器网址（小程序体验版、线上版用到） 默认:http://xxx.com */
+    readonly VITE_PROD_SERVER_URL: string
     /** 接口请求路径 默认:/test.aspx */
     readonly VITE_API_BASE_URL: string
     /**

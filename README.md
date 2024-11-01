@@ -42,8 +42,9 @@ UniApp-MP-WX-Template 提供了一个用于开发微信小程序的基本模板�
     2. 小程序码路径的格式为：目标页面为 `a` 页面，则路径应为 `/pages/launch?targetPath=pages/a&param1=value1`，其中 `targetPath` 参数将指定跳转目标页面，而其他参数（如 `param1=value1`）会传递给目标页面作为查询参数使用。
 -   `VITE_LOGIN_PATH`: 登录页面的路径，默认值为 `pages/login`，用于指定登录页面的位置。当用户未登录时，自动跳转到该页面进行登录。
 -   `VITE_HOME_PATH`: 首页路径，默认值为 `pages/home`，用于指定应用程序的首页路径。用户登录成功后将跳转到该路径。
--   `VITE_SERVER_URL`: 服务器网址，默认值为 `http://xxxx.com`，用于指定后端 API 的根路径。
--   `VITE_API_BASE_URL`: 接口请求路径，默认值为 `/test.aspx`，用于配置接口的基础路径，与 `VITE_SERVER_URL` 结合使用，形成完整的 API 请求路径。
+-   `VITE_DEV_SERVER_URL`: 开发环境服务器网址（小程序开发版、体验版用到），默认值为 `http://xxxx.com`，用于指定后端 API 的根路径。
+-   `VITE_PROD_SERVER_URL`: 生产环境服务器网址（小程序体验版、线上版用到），默认值为 `http://xxxx.com`，用于指定后端 API 的根路径。
+-   `VITE_API_BASE_URL`: 接口请求路径，默认值为 `/test.aspx`，用于配置接口的基础路径，与 `VITE_DEV_SERVER_URL` 或者 `VITE_PROD_SERVER_URL` 结合使用，形成完整的 API 请求路径。
 
 ### 安装依赖
 

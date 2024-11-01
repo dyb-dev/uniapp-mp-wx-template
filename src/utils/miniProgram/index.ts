@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-09 22:19:06
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 22:26:56
+ * @LastEditTime: 2024-11-01 20:32:40
  * @FilePath: /uniapp-mp-wx-template/src/utils/miniProgram/index.ts
  * @Description: 小程序相关工具函数
  */
@@ -44,13 +44,15 @@ const getAccountInfo = (isForceRefresh: boolean = false): UniApp.AccountInfo => 
 
 /**
  * FUN: 获取小程序环境版本
- * - develop: 开发版 trial: 体验版 release: 正式版
+ * - 开发版: develop
+ * - 体验版: trial
+ * - 正式版: release
  *
  * @author dyb-dev
- * @date 09/10/2024/  22:23:35
- * @returns {*}  {string} 小程序环境版本
+ * @date 01/11/2024/  20:34:23
+ * @returns {*} {string} 小程序环境版本
  */
-const getEnvVersion = (): string => getAccountInfo()?.miniProgram.envVersion
+const getEnvVersion = () => getAccountInfo()?.miniProgram.envVersion
 
 /**
  * FUN: 获取小程序线上版本
