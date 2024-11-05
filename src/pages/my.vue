@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 10:39:24
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-31 01:33:58
+ * @LastEditTime: 2024-11-05 00:30:46
  * @FilePath: /uniapp-mp-wx-template/src/pages/my.vue
  * @Description: 我的页面
  */
@@ -31,9 +31,11 @@ const { showAuthAvatarNicknameDialog } = useAuthAvatarNicknameDialog()
 
             <nut-button type="primary" @click="showAuthAvatarNicknameDialog">授权头像昵称</nut-button>
         </view>
-    </Layout>
 
-    <AuthAvatarNicknameDialog />
+        <template #extra-content>
+            <AuthAvatarNicknameDialog />
+        </template>
+    </Layout>
 </template>
 
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 00:21:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 20:53:12
+ * @LastEditTime: 2024-11-05 16:05:48
  * @FilePath: /uniapp-mp-wx-template/src/components/popup/Popup.vue
  * @Description: 基础弹窗组件
 -->
@@ -11,10 +11,12 @@
 import { useVModels } from "@vueuse/core"
 import { computed, inject, ref, watch } from "vue"
 
+import { deepClone } from "@/utils"
+
 import type { Ref } from "vue"
 
 /** TYPE: 弹窗动作类型 */
-export type TPopupActionType = "custom-button-click" | "close-button-click"
+export type TPopupActionType = "click-custom-button" | "click-close-button"
 
 /** TYPE: 卸载组件回调参数 */
 export type TPopupUnmountParam = [TPopupActionType]
@@ -130,9 +132,7 @@ const emits = defineEmits<{
 const { show } = useVModels(props, emits)
 
 /** REF: 选项 */
-const options = ref<TPopupProps>({
-    ...props
-})
+const options = ref<TPopupProps>(deepClone<TPopupProps>(props))
 
 /** WATCH: 监听 show 的变化 */
 watch(show, value => {
@@ -152,7 +152,7 @@ watch(injectOptions, value => {
 
     options.value = {
         ...options.value,
-        ...value
+        ...deepClone<TPopupProps>(value)
     }
 
 })
@@ -161,7 +161,7 @@ watch(injectOptions, value => {
 let isBeforeClose = false
 
 /** REF: 动作类型 */
-const actionType = ref<TPopupActionType>("close-button-click")
+const actionType = ref<TPopupActionType>("click-close-button")
 
 /**
  * FUN: 关闭弹窗
@@ -280,7 +280,7 @@ export default {
                 v-if="options.showCustomButton"
                 :style="customButtonStyles"
                 class="popup__main__custom-button"
-                @click="close('custom-button-click')"
+                @click="close('click-custom-button')"
             />
 
             <image
@@ -288,7 +288,7 @@ export default {
                 class="popup__main__close"
                 src="/static/image/Popup/close.png"
                 mode="scaleToFill"
-                @click="close('close-button-click')"
+                @click="close('click-close-button')"
             />
         </view>
     </nut-popup>

@@ -22,6 +22,7 @@ declare module 'vue' {
     NutInput: typeof import('nutui-uniapp/components/input/input.vue')['default']
     NutPopup: typeof import('nutui-uniapp/components/popup/popup.vue')['default']
     NutToast: typeof import('nutui-uniapp/components/toast/toast.vue')['default']
+    Picker: typeof import('./../../components/picker/Picker.vue')['default']
     Popup: typeof import('./../../components/popup/Popup.vue')['default']
     TabBar: typeof import('./../../components/layout/TabBar.vue')['default']
   }

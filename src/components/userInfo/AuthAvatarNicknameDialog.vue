@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 21:46:58
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-02 01:50:07
+ * @LastEditTime: 2024-11-05 16:06:26
  * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/AuthAvatarNicknameDialog.vue
  * @Description: 授权头像昵称对话框
 -->
@@ -12,13 +12,14 @@ import { useVModels } from "@vueuse/core"
 import { inject, ref, watch } from "vue"
 
 import { useUserInfoStore } from "@/stores"
+import { deepClone } from "@/utils"
 
 import type { IAuthErrorOptions } from "@/types"
 
 import type { Ref } from "vue"
 
 /** TYPE: 授权头像昵称对话框动作类型 */
-export type TAuthAvatarNicknameDialogActionType = "cancel-button-click" | "confirm-button-click"
+export type TAuthAvatarNicknameDialogActionType = "click-cancel-button" | "click-confirm-button"
 
 /** TYPE: 卸载组件回调参数 */
 export type TAuthAvatarNicknameDialogUnmountParam = [TAuthAvatarNicknameDialogActionType]
@@ -65,9 +66,7 @@ const emits = defineEmits<{
 const { show } = useVModels(props, emits)
 
 /** REF: 选项 */
-const options = ref<TAuthAvatarNicknameDialogProps>({
-    ...props
-})
+const options = ref<TAuthAvatarNicknameDialogProps>(deepClone<TAuthAvatarNicknameDialogProps>(props))
 
 /** WATCH: 监听 show 的变化 */
 watch(show, value => {
@@ -87,7 +86,7 @@ watch(injectOptions, value => {
 
     options.value = {
         ...options.value,
-        ...value
+        ...deepClone<TAuthAvatarNicknameDialogProps>(value)
     }
 
 })
@@ -117,7 +116,7 @@ watch(
 )
 
 /** REF: 动作类型 */
-const actionType = ref<TAuthAvatarNicknameDialogActionType>("cancel-button-click")
+const actionType = ref<TAuthAvatarNicknameDialogActionType>("click-cancel-button")
 
 /**
  * FUN: 关闭弹窗
@@ -127,7 +126,7 @@ const actionType = ref<TAuthAvatarNicknameDialogActionType>("cancel-button-click
  */
 const close = async(_actionType: TAuthAvatarNicknameDialogActionType) => {
     // 点击确认按钮
-    if (_actionType === "confirm-button-click") {
+    if (_actionType === "click-confirm-button") {
 
         if (!avatarUrl.value) {
 
@@ -255,9 +254,9 @@ export default {
             </view>
 
             <view style="display: flex">
-                <button type="default" style="width: 40%" @click="close('cancel-button-click')">取消</button>
+                <button type="default" style="width: 40%" @click="close('click-cancel-button')">取消</button>
 
-                <button type="primary" style="width: 40%" @click="close('confirm-button-click')">确认</button>
+                <button type="primary" style="width: 40%" @click="close('click-confirm-button')">确认</button>
             </view>
         </view>
     </nut-popup>

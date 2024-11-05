@@ -2,11 +2,13 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:37:15
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 22:28:54
+ * @LastEditTime: 2024-11-05 11:46:34
  * @FilePath: /uniapp-mp-wx-template/src/utils/index.ts
  * @Description: 工具函数模块
  */
 
+/** 导出数据处理相关工具函数 */
+export * from "./data"
 /** 导出设备相关工具函数 */
 export * from "./device"
 /** 导出环境相关工具函数 */
