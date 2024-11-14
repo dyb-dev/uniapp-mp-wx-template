@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-01 22:46:34
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-05 16:11:10
+ * @LastEditTime: 2024-11-14 13:17:30
  * @FilePath: /uniapp-mp-wx-template/src/components/index.ts
  * @Description: 组件模块
  */
@@ -59,7 +59,18 @@ const setupComponent = () => {
             // 是否自动显示点击返回顶部按钮
             "auto-show-back-to-top": true,
             // 是否显示滚动条
-            "show-scrollbar": false
+            "show-scrollbar": false,
+            // 返回顶部按钮图片
+            "back-to-top-img": "/static/image/z-paging/back-top.png",
+            // 返回顶部按钮样式
+            "back-to-top-style": {
+                background: "#29d446",
+                width: "25rpx",
+                height: "31rpx",
+                borderRadius: "50%",
+                padding: "27rpx 31rpx",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, .12)"
+            }
         }
     }
 
