@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-20 21:09:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-09 13:32:56
+ * @LastEditTime: 2024-11-14 17:03:47
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/NavBar.vue
  * @Description: 顶部导航栏
 -->
@@ -102,12 +102,12 @@ export interface INavBarProps {
  * @description 是否在导航栏位置生成一个等高的占位元素
  * @default false
  */
-    showPlaceholder?: boolean
+    placeholder?: boolean
 /**
  * @description 是否显示底部边框
  * @default true
  */
-    showBottomBorder?: boolean
+    bottomBorder?: boolean
 /**
  * @description 导航栏 下边框颜色
  * @default #eee
@@ -133,8 +133,8 @@ const props = withDefaults(defineProps<INavBarProps>(), {
     homeIcon: "home",
     showLeft: true,
     fixed: true,
-    showPlaceholder: true,
-    showBottomBorder: true,
+    placeholder: true,
+    bottomBorder: true,
     borderBottomColor: "#eee"
 })
 
@@ -147,10 +147,13 @@ const emits = defineEmits<{
 }>()
 
 /** STATIC: 导航栏高度 */
-const HEIGHT = "44px"
+const HEIGHT = "88rpx"
 
 /** STATIC: 导航栏上边距 */
-const PADDING_TOP = "54px"
+const PADDING_TOP = "108rpx"
+
+/** COMPUTED: nav-bar 高度表达式 */
+const heightExpression = computed(() => props.placeholder ? `calc(${HEIGHT} + ${PADDING_TOP})` : "0rpx")
 
 /** STATIC: 当前页面样式 */
 const CURRENT_PAGE_STYLE = getCurrentPageConfig()?.style
@@ -405,7 +408,8 @@ const onClickTitle = async() => {
 
 /** 将当前显示的左侧icon的类型暴露给父组件 */
 defineExpose({
-    leftIconType
+    leftIconType,
+    heightExpression
 })
 </script>
 
@@ -425,7 +429,7 @@ export default {
     <view
         class="nav-bar-placeholder"
         :style="{
-            height: props.showPlaceholder ? `calc(${HEIGHT} + ${PADDING_TOP})` : 'auto'
+            height: heightExpression
         }"
     >
         <view
@@ -437,7 +441,7 @@ export default {
                 height: HEIGHT,
                 paddingTop: PADDING_TOP,
                 background: background,
-                borderBottom: props.showBottomBorder ? `1px solid ${props.borderBottomColor}` : 'none'
+                borderBottom: props.bottomBorder ? `1px solid ${props.borderBottomColor}` : 'none'
             }"
         >
             <view v-if="props.showLeft" class="nav-bar__left">

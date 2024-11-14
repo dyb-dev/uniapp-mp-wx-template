@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 16:27:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-05 16:37:50
+ * @LastEditTime: 2024-11-14 17:02:10
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/Layout.vue
  * @Description: 页面布局容器
  */
@@ -13,6 +13,7 @@ import { onShow } from "@dcloudio/uni-app"
 import { computed, useSlots, ref } from "vue"
 
 import NavBar from "@/components/layout/NavBar.vue"
+import TabBar from "@/components/layout/TabBar.vue"
 import pagesJson from "@/pages.json"
 import { useTabBarStore } from "@/stores"
 
@@ -123,12 +124,25 @@ const navBarComponentLeftSlotName = slots[navBarLeftSlotName] ? "left" : ""
 /** STATIC: 导航栏组件标题插槽名称 */
 const navBarComponentTitleSlotName = slots[navBarTitleSlotName] ? "title" : ""
 
-/** REF: 导航栏实例 */
+/** REF: NavBar 实例 */
 const navBarInstance = ref<InstanceType<typeof NavBar>>()
+
+/** REF: TabBar 实例 */
+const tabBarInstance = ref<InstanceType<typeof TabBar>>()
+
+/**
+ * FUN: 获取导航栏和底部导航栏的高度表达式
+ *
+ * @returns {string} 高度表达式
+ */
+const getNavTabHeightExpression = () =>
+    `calc(${navBarInstance.value?.heightExpression} + ${tabBarInstance.value?.heightExpression})`
 
 /** 将当前显示的左侧icon的类型暴露给父组件 */
 defineExpose({
-    navBarInstance
+    navBarInstance,
+    tabBarInstance,
+    getNavTabHeightExpression
 })
 </script>
 
@@ -175,6 +189,7 @@ export default {
 
         <TabBar
             v-if="showCustomTabBar"
+            ref="tabBarInstance"
             v-bind:="props.tabBarProps"
             v-model="tabBarStoreState.currentIndex"
             :list="tabBarStoreState.list"
@@ -183,9 +198,6 @@ export default {
 
         <!-- 用于插入额外内容 -->
         <slot name="extra-content"></slot>
-
-        <!-- 注意，为实现全局函数式调用，需插入一个toast节点 -->
-        <nut-toast />
     </nut-config-provider>
 </template>
 

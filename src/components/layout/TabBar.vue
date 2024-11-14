@@ -2,8 +2,8 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 14:00:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-07 20:21:32
- * @FilePath: /uniapp-mp-wx-template/src/components/TabBar.vue
+ * @LastEditTime: 2024-11-14 17:04:33
+ * @FilePath: /uniapp-mp-wx-template/src/components/layout/TabBar.vue
  * @Description: 底部导航栏
 -->
 
@@ -16,45 +16,45 @@ import { navigateToPage, isImagePath } from "@/utils"
 
 /** TabBar 列表项 */
 export interface TTabBarItem {
-    /**
-     * @description 页面路径
-     */
+/**
+ * @description 页面路径
+ */
     pagePath: SwitchTabOptions["url"]
-    /**
-     * @description tab 文本
-     */
+/**
+ * @description tab 文本
+ */
     text: string
-    /**
-     * @description 未选中时的icon，可传图标名字或图片路径
-     */
+/**
+ * @description 未选中时的icon，可传图标名字或图片路径
+ */
     icon: string
-    /**
-     * @description 选中时的icon，可传图标名字或图片路径
-     */
+/**
+ * @description 选中时的icon，可传图标名字或图片路径
+ */
     selectedIcon: string
-    /**
-     * @description 自定义 icon 字体基础类名
-     * @description 如果 `icon` 和 `selectedIcon` 为icon名时，有效
-     * @default 'nut-icon'
-     */
+/**
+ * @description 自定义 icon 字体基础类名
+ * @description 如果 `icon` 和 `selectedIcon` 为icon名时，有效
+ * @default 'nut-icon'
+ */
     classPrefix?: string
-    /**
-     * @description 自定义 icon 类名前缀，用于使用自定义图标
-     * @description 如果 `icon` 和 `selectedIcon` 为icon名时，有效
-     * @default 'nutui-iconfont'
-     */
+/**
+ * @description 自定义 icon 类名前缀，用于使用自定义图标
+ * @description 如果 `icon` 和 `selectedIcon` 为icon名时，有效
+ * @default 'nutui-iconfont'
+ */
     fontClassName?: string
-    /**
-     * @description 是否显示右上角圆点
-     * @description 如果为 `true` 时，则 `dotValue` 会无效
-     * @default false
-     */
+/**
+ * @description 是否显示右上角圆点
+ * @description 如果为 `true` 时，则 `dotValue` 会无效
+ * @default false
+ */
     showDot?: boolean
-    /**
-     * @description tabBar 右上角点的值
-     * @description 如果 > 0 则显示数字，当 `showDot` 为false时有效
-     * @default 0
-     */
+/**
+ * @description tabBar 右上角点的值
+ * @description 如果 > 0 则显示数字，当 `showDot` 为false时有效
+ * @default 0
+ */
     dotValue?: number
 }
 
@@ -178,6 +178,9 @@ const height = computed(() => {
 
 })
 
+/** COMPUTED: tab-bar 高度表达式 */
+const heightExpression = computed(() => props.placeholder ? `calc(${height.value} + env(safe-area-inset-bottom))` : "0rpx")
+
 /** COMPUTED: tab-bar 背景 */
 const background = computed(() => {
     // @ts-ignore
@@ -261,6 +264,11 @@ async function onClickTabBarItem(item: TTabBarItem, index: number) {
     })
 
 }
+
+/** 将当前显示的左侧icon的类型暴露给父组件 */
+defineExpose({
+    heightExpression
+})
 </script>
 
 <script lang="ts">
@@ -270,6 +278,7 @@ export default {
         // eslint-disable-next-line padded-blocks
         virtualHost: true,
         // 允许父组件样式穿透到子组件
+        // eslint-disable-next-line padded-blocks
         styleIsolation: "shared"
     }
 }
@@ -279,7 +288,7 @@ export default {
     <view
         class="tab-bar-placeholder"
         :style="{
-            height: props.placeholder ? `calc(${height} + env(safe-area-inset-bottom))` : 'auto'
+            height: heightExpression
         }"
     >
         <view
