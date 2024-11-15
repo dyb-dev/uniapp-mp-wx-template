@@ -11,6 +11,7 @@ declare module 'vue' {
     AuthAvatarNicknameDialog: typeof import('./../../components/userInfo/AuthAvatarNicknameDialog.vue')['default']
     AuthPhoneNumberButton: typeof import('./../../components/userInfo/AuthPhoneNumberButton.vue')['default']
     Layout: typeof import('./../../components/layout/Layout.vue')['default']
+    List: typeof import('./../../components/List.vue')['default']
     NavBar: typeof import('./../../components/layout/NavBar.vue')['default']
     NickNameInput: typeof import('./../../components/userInfo/NickNameInput.vue')['default']
     NutAnimate: typeof import('nutui-uniapp/components/animate/animate.vue')['default']

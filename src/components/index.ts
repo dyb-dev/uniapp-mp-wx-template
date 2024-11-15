@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-01 22:46:34
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-14 13:17:30
+ * @LastEditTime: 2024-11-16 02:14:19
  * @FilePath: /uniapp-mp-wx-template/src/components/index.ts
  * @Description: 组件模块
  */
@@ -15,6 +15,8 @@ export * from "./popup"
 export * from "./userInfo"
 /** 导出提供组件选项相关工具函数 */
 export * from "./provideComponentOptions"
+/** 导出列表组件 */
+export * from "./List.vue"
 
 /**
  * FUN: 设置全局组件
@@ -61,7 +63,7 @@ const setupComponent = () => {
             // 是否显示滚动条
             "show-scrollbar": false,
             // 返回顶部按钮图片
-            "back-to-top-img": "/static/image/z-paging/back-top.png",
+            "back-to-top-img": "/static/image/List/back-top.png",
             // 返回顶部按钮样式
             "back-to-top-style": {
                 background: "#29d446",

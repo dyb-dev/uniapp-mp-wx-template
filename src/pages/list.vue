@@ -2,51 +2,36 @@
  * @Author: dyb-dev
  * @Date: 2024-10-08 16:28:02
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-08 20:15:11
+ * @LastEditTime: 2024-11-16 02:24:12
  * @FilePath: /uniapp-mp-wx-template/src/pages/list.vue
  * @Description: 列表示例页面
 -->
 <script setup lang="ts">
-import { ref } from "vue"
-
-/** STATIC: 是否数据加载失败 */
-const isLoadFail = false
+import type { IPaginationFetchDataFnParam, TPaginationDataItem, TPaginationFetchDataFnReturn } from "@/hooks"
 
 /** STATIC: 数据总量 */
 const total = 30
 
-/** REF: 数据 */
-const list = ref<string[]>([])
-
-// 定义分页参数接口类型
-interface IPaginationParams {
-    /** 当前页码 */
-    pageNo: number
-    /** 每页的大小 */
-    pageSize: number
-}
-
-/**
- * FUN: 请求数据函数
- *
- * @param {object} root0 - 请求参数对象
- * @param {number} root0.pageNo - 当前的页码
- * @param {number} root0.pageSize - 每页的数据条数
- * @returns {Promise<Array<any> | boolean>} 返回数据列表或加载失败的标志
- */
-const fetchData = async({ pageNo, pageSize }: IPaginationParams): Promise<Array<any> | boolean> => {
+// FUN: 请求数据函数
+const fetchData = async({
+    currentPageSize,
+    currentPage
+}: IPaginationFetchDataFnParam): TPaginationFetchDataFnReturn<TPaginationDataItem> => {
 
     // 模拟请求
     await delay(500)
 
     // 模拟加载失败
-    if (isLoadFail) {
+    if (Math.random() < 0.2) {
 
-        return false
+        return
 
     }
 
-    return generateDataList(pageNo, pageSize)
+    return {
+        currentPageData: generateDataList(currentPage, currentPageSize),
+        totalSize: total
+    }
 
 }
 
@@ -99,15 +84,12 @@ const delay = (ms: number): Promise<void> => {
 
 <template>
     <Layout>
-        <z-paging v-model="list" :fetch="fetchData">
-            <view
-                v-for="(item, index) in list"
-                :key="index"
-                style="width: 100%; height: 100rpx"
-                :style="{ background: index % 2 === 0 ? '#29d446' : '#ffffff' }"
-            >
-                {{ item }}
-            </view>
-        </z-paging>
+        <List :fetch-data-fn="fetchData" :page-size="2">
+            <template #default="{ item, index }">
+                <view style="width: 100%; height: 100rpx" :style="{ background: index % 2 === 0 ? '#29d446' : '#ffffff' }">
+                    {{ item }}
+                </view>
+            </template>
+        </List>
     </Layout>
 </template>

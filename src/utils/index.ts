@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:37:15
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-05 11:46:34
+ * @LastEditTime: 2024-11-16 02:16:04
  * @FilePath: /uniapp-mp-wx-template/src/utils/index.ts
  * @Description: 工具函数模块
  */
@@ -21,3 +21,5 @@ export * from "./miniProgram"
 export * from "./pages"
 /** 导出url相关工具函数 */
 export * from "./url"
+/** 导出工具相关工具函数 */
+export * from "./tool"
