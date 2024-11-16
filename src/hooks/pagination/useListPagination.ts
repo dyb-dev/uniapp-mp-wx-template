@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:11:23
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-16 02:11:46
+ * @LastEditTime: 2024-11-16 14:06:52
  * @FilePath: /uniapp-mp-wx-template/src/hooks/pagination/useListPagination.ts
  * @Description: 列表分页器
  */
@@ -88,12 +88,18 @@ const useListPagination = <T extends TPaginationDataItem>(options: IUseListPagin
 
         try {
 
-            const { initialized, currentLoadStatus, currentPage } = _pagination
+            const { initialized, currentLoadStatus, currentPage, finished } = _pagination
 
             if (!initialized.value) {
 
-                console.warn("next() =>>", `初始化未完成 initialized: ${initialized.value} 将优先执行初始化`)
+                console.warn("next() =>>", `初始化未完成 initialized: ${initialized.value} 取消执行下一页 优先执行初始化`)
                 await initialize()
+                return
+
+            }
+            if (finished.value) {
+
+                console.warn("next() =>>", `已经加载完所有数据，无法继续加载下一页 currentPage: ${currentPage.value}`)
                 return
 
             }
@@ -104,7 +110,7 @@ const useListPagination = <T extends TPaginationDataItem>(options: IUseListPagin
             }
             if (currentLoadStatus.value === "fail") {
 
-                console.error(
+                console.warn(
                     "next() =>>",
                     `当前页码数据加载失败，取消继续加载下一页的数据，重新加载当前页数据  currentPage: ${currentPage.value} currentLoadStatus: ${currentLoadStatus.value}`
                 )

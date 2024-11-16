@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-16 03:03:17
+ * @LastEditTime: 2024-11-16 14:06:05
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -227,26 +227,20 @@ const autoLoad = async() => {
     // 记录 scroll-view 主体高度
     const _scrollViewContentHeight = await getElementHeight(scrollViewContentElement)
 
-    // 如果 scroll-view 主体高度大于 scroll-view 高度，直接返回
-    if (_scrollViewContentHeight > scrollViewHeight) {
-
-        return
-
-    }
-
-    next()
+    // 如果 scroll-view 主体高度小于或等于 scroll-view 高度，执行 next()
+    _scrollViewContentHeight <= scrollViewHeight && next()
 
 }
 
-/** WATCH: 监听数据变化 注: 只有加载数据成功并且有值时才会发生变化 */
-watch(currentTotalSize, () => {
+// LIFECYCLE: 初次挂载完成后
+onLoad(() => {
 
     autoLoad()
 
 })
 
-// LIFECYCLE: 初次挂载完成后
-onLoad(() => {
+/** WATCH: 监听数据变化 注: 只有加载数据成功并且有值时才会发生变化 */
+watch(currentTotalSize, () => {
 
     autoLoad()
 
@@ -347,26 +341,6 @@ const onScroll = debounce((e: ScrollViewOnScrollEvent) => {
 
 }, 100)
 
-// EVENT: 滚动到底部，会触发 scrolltolower 事件
-const onScrolltolower = () => {
-    // 如果所有数据加载完毕
-    if (finished.value) {
-
-        console.warn("onScrolltolower() 所有数据已经加载完毕")
-        return
-
-    }
-    // 如果当前正在加载时
-    if (currentLoadStatus.value === "loading") {
-
-        console.warn("onScrolltolower() 数据正在加载中")
-        return
-
-    }
-    next()
-
-}
-
 // EVENT: 点击底部提示文案
 const onClickBottomText = () => {
     // 如果当前加载状态是失败
@@ -424,7 +398,7 @@ export default {
             :refresher-background="props.refreshBackground"
             :enable-back-to-top="props.clickStatusBarBackTop"
             @scroll="onScroll"
-            @scrolltolower="onScrolltolower"
+            @scrolltolower="next"
             @refresherrefresh="clearRefresh"
         >
             <view :class="scrollViewContentClassName">
