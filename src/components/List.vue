@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-16 14:06:05
+ * @LastEditTime: 2024-11-18 16:41:52
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -416,11 +416,7 @@ export default {
                     <view class="list__scroll-view__content__empty-box__text">{{ props.emptyText }}</view>
                 </view>
 
-                <view v-else class="list__scroll-view__content__main">
-                    <view class="list__scroll-view__content__main__item" v-for="(item, index) in currentTotalData" :key="index">
-                        <slot name="default" :item="item" :index="index"></slot>
-                    </view>
-                </view>
+                <slot v-else name="default" :list="currentTotalData"></slot>
 
                 <view v-if="bottomText" class="list__scroll-view__content__bottom-box" @click="onClickBottomText">
                     <nut-icon v-if="bottomIcon" :name="bottomIcon" custom-color="#808089" size="30rpx" />
@@ -483,12 +479,6 @@ export default {
                     text-align: center;
                     @include text-ellipsis-mixin;
                 }
-            }
-
-            &__main {
-                position: relative;
-                box-sizing: border-box;
-                width: 100%;
             }
 
             &__bottom-box {

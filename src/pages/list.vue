@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-08 16:28:02
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-16 02:24:12
+ * @LastEditTime: 2024-11-18 16:47:19
  * @FilePath: /uniapp-mp-wx-template/src/pages/list.vue
  * @Description: 列表示例页面
 -->
@@ -22,7 +22,7 @@ const fetchData = async({
     await delay(500)
 
     // 模拟加载失败
-    if (Math.random() < 0.2) {
+    if (Math.random() < 0.1) {
 
         return
 
@@ -85,8 +85,13 @@ const delay = (ms: number): Promise<void> => {
 <template>
     <Layout>
         <List :fetch-data-fn="fetchData" :page-size="2">
-            <template #default="{ item, index }">
-                <view style="width: 100%; height: 100rpx" :style="{ background: index % 2 === 0 ? '#29d446' : '#ffffff' }">
+            <template #default="{ list }">
+                <view
+                    v-for="(item, index) in list"
+                    :key="index"
+                    style="width: 100%; height: 100rpx"
+                    :style="{ background: index % 2 === 0 ? '#29d446' : '#ffffff' }"
+                >
                     {{ item }}
                 </view>
             </template>
