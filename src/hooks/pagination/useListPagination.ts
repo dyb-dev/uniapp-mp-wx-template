@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:11:23
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-16 14:06:52
+ * @LastEditTime: 2024-11-19 15:19:20
  * @FilePath: /uniapp-mp-wx-template/src/hooks/pagination/useListPagination.ts
  * @Description: 列表分页器
  */
@@ -19,8 +19,8 @@ interface IUseListPaginationOptions<T extends TPaginationDataItem>
 interface IUseListPaginationReturn<T extends TPaginationDataItem> extends Omit<IUsePaginationReturn<T>, "refresh" | "prev"> {
     /** 清空所有数据并刷新首页 */
     clearRefresh: () => Promise<void>
-    /** 初始化分页器 */
-    initialize: () => Promise<void>
+    /** 清空所有数据并初始化分页器 */
+    clearInitialize: () => Promise<void>
 }
 
 /**
@@ -39,12 +39,12 @@ const useListPagination = <T extends TPaginationDataItem>(options: IUseListPagin
     const { refresh, prev, ..._pagination } = usePagination(options)
 
     /**
-     * 重置分页状态
+     * 清空重置分页数据和状态
      *
      * @author dyb-dev
      * @date 16/11/2024/  00:53:21
      */
-    const _reset = () => {
+    const _clear = () => {
 
         _pagination.currentTotalDataMap.value.clear()
         _pagination.totalSize.value = 0
@@ -53,15 +53,24 @@ const useListPagination = <T extends TPaginationDataItem>(options: IUseListPagin
     }
 
     /**
-     * 初始化分页器
+     * 清空所有数据并初始化分页器
      *
      * @author dyb-dev
      * @date 16/11/2024/  00:53:54
      */
-    const initialize = async() => {
+    const clearInitialize = async() => {
 
-        _reset()
-        await _pagination.load(1)
+        try {
+
+            _clear()
+            await _pagination.load(1)
+
+        }
+        catch (error) {
+
+            throw `clearInitialize() ${error}`
+
+        }
 
     }
 
@@ -73,8 +82,17 @@ const useListPagination = <T extends TPaginationDataItem>(options: IUseListPagin
      */
     const clearRefresh = async() => {
 
-        _reset()
-        await refresh(1)
+        try {
+
+            _clear()
+            await refresh(1)
+
+        }
+        catch (error) {
+
+            throw `clearRefresh() ${error}`
+
+        }
 
     }
 
@@ -92,27 +110,29 @@ const useListPagination = <T extends TPaginationDataItem>(options: IUseListPagin
 
             if (!initialized.value) {
 
-                console.warn("next() =>>", `初始化未完成 initialized: ${initialized.value} 取消执行下一页 优先执行初始化`)
-                await initialize()
+                console.warn("next() 初始化未完成取消执行下一页，开始执行初始化操作")
+                await clearInitialize()
                 return
 
             }
             if (finished.value) {
 
-                console.warn("next() =>>", `已经加载完所有数据，无法继续加载下一页 currentPage: ${currentPage.value}`)
+                console.warn(`next() 已经加载完所有数据，无法执行下一页 currentPage: ${currentPage.value}`)
                 return
 
             }
             if (currentLoadStatus.value === "loading") {
 
-                throw `当前页码数据加载中，取消继续加载下一页的数据 currentPage: ${currentPage.value} currentLoadStatus: ${currentLoadStatus.value}`
+                console.warn(
+                    `next() 当前页码数据正在加载中，取消执行下一页 currentPage: ${currentPage.value} currentLoadStatus: ${currentLoadStatus.value}`
+                )
+                return
 
             }
             if (currentLoadStatus.value === "fail") {
 
                 console.warn(
-                    "next() =>>",
-                    `当前页码数据加载失败，取消继续加载下一页的数据，重新加载当前页数据  currentPage: ${currentPage.value} currentLoadStatus: ${currentLoadStatus.value}`
+                    `next() 当前页码数据加载失败，取消执行下一页，开始重新加载当前页数据  currentPage: ${currentPage.value} currentLoadStatus: ${currentLoadStatus.value}`
                 )
 
                 // 加载失败，重新加载当前页码数据
@@ -125,7 +145,7 @@ const useListPagination = <T extends TPaginationDataItem>(options: IUseListPagin
         }
         catch (error) {
 
-            console.error("next() =>>", error)
+            throw `next() ${error}`
 
         }
 
@@ -133,7 +153,7 @@ const useListPagination = <T extends TPaginationDataItem>(options: IUseListPagin
 
     return {
         ..._pagination,
-        initialize,
+        clearInitialize,
         clearRefresh,
         next
     }

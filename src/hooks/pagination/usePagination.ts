@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:11:23
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-16 02:11:40
+ * @LastEditTime: 2024-11-19 15:18:13
  * @FilePath: /uniapp-mp-wx-template/src/hooks/pagination/usePagination.ts
  * @Description: 分页器
  */
@@ -12,6 +12,7 @@ import { ref, computed } from "vue"
 
 import type { UseOffsetPaginationReturn } from "@vueuse/core"
 import type { ComputedRef, Ref } from "vue"
+
 
 /** 分页数据项 */
 type TPaginationDataItem = string | number | Record<string, any> | any
@@ -177,14 +178,14 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
         page = Number(page)
         if (isNaN(page)) {
 
-            console.error(`_isPageValid() =>> page不是数字 page: ${page}`)
+            console.error(`_isPageValid() page不是数字 page: ${page}`)
             return false
 
         }
 
         if (page < 1 || page > pageCount.value) {
 
-            console.error(`_isPageValid() =>> page超出范围 page: ${page} pageCount: ${pageCount.value}`)
+            console.error(`_isPageValid() page超出范围 page: ${page} pageCount: ${pageCount.value}`)
             return false
 
         }
@@ -204,7 +205,7 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
         // 页码无效时
         if (!_isPageValid(page)) {
 
-            return
+            throw `load() 页码无效 page: ${page}`
 
         }
 
@@ -231,7 +232,7 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
             if (currentPage.value !== _param.currentPage) {
 
                 console.warn(
-                    `load() =>> 当前页码已变更取消数据更新操作 加载前页码: ${_param.currentPage} 加载后页码: ${currentPage.value}`
+                    `load() 当前页码已变更取消数据更新操作 加载前页码: ${_param.currentPage} 加载后页码: ${currentPage.value}`
                 )
                 return
 
@@ -280,8 +281,6 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
         }
         catch (error) {
 
-            console.error(`load() =>> currentPage: ${_param.currentPage} ${error}`)
-
             // 不需要使用之前加载的数据时
             if (!usePreviousDataOnFail) {
 
@@ -290,6 +289,8 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
 
             }
             currentLoadStatus.value = "fail"
+
+            throw `load() currentPage: ${_param.currentPage} ${error}`
 
         }
 
@@ -304,20 +305,29 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
      */
     const refresh = async(page: TPaginationRefreshParam = currentPage.value) => {
 
-        // 页码无效时
-        if (!_isPageValid(page)) {
+        try {
 
-            return
+            // 正在刷新数据时
+            if (refreshing.value) {
+
+                console.warn("refresh() =>> 正在刷新数据 refreshing: ", refreshing.value)
+                return
+
+            }
+            refreshing.value = true
+            await load(page)
 
         }
+        catch (error) {
 
-        // 更新刷新状态
-        refreshing.value = true
+            throw `refresh() ${error}`
 
-        await load(page)
+        }
+        finally {
 
-        // 更新刷新状态
-        refreshing.value = false
+            refreshing.value = false
+
+        }
 
     }
 
@@ -345,7 +355,7 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
         }
         catch (error) {
 
-            throw `_change() =>> ${error}`
+            throw `_change() ${error}`
 
         }
 
@@ -366,7 +376,7 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
         }
         catch (error) {
 
-            console.error("prev() =>>", error)
+            throw `prev() ${error}`
 
         }
 
@@ -387,7 +397,7 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
         }
         catch (error) {
 
-            console.error("next() =>>", error)
+            throw `next() ${error}`
 
         }
 

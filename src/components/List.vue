@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-18 16:41:52
+ * @LastEditTime: 2024-11-19 15:15:34
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -22,7 +22,7 @@ export interface IListProps {
  * @description 是否启用数据为空时元素占位
  * @default true
  */
-    emptyPlaceholder?: boolean
+    empty?: boolean
 /**
  * @description 数据为空时的图片
  * @default '/static/images/List/empty.png'
@@ -39,6 +39,11 @@ export interface IListProps {
  */
     emptyText?: string
 
+/**
+ * @description 是否启用滚动条
+ * @default false
+ */
+    scrollbar?: boolean
 /**
  * @description 是否启用下拉刷新功能
  * @default true
@@ -121,7 +126,7 @@ export interface IListProps {
 // DATA: 定义 props & 给定默认值
 const props = withDefaults(defineProps<IListProps>(), {
     /** 启用数据为空时的占位 */
-    emptyPlaceholder: true,
+    empty: true,
     /** 数据为空时的默认图片 */
     emptyImage: "/static/image/List/empty.png",
     // 数据为空时的图片尺寸
@@ -129,6 +134,8 @@ const props = withDefaults(defineProps<IListProps>(), {
     /** 数据为空时的文本描述 */
     emptyText: "暂无数据",
 
+    /** 是否启用滚动条 */
+    scrollbar: false,
     /** 是否启用下拉刷新功能 */
     refresh: true,
     /** 下拉刷新背景颜色 */
@@ -224,11 +231,15 @@ const autoLoad = async() => {
 
     }
 
-    // 记录 scroll-view 主体高度
-    const _scrollViewContentHeight = await getElementHeight(scrollViewContentElement)
+    // 解决: scroll-view 主体高度还没有渲染出来，因此需要等待下一帧，暂时使用 setTimeout
+    setTimeout(async() => {
+        // 记录 scroll-view 主体高度
+        const _scrollViewContentHeight = await getElementHeight(scrollViewContentElement)
 
-    // 如果 scroll-view 主体高度小于或等于 scroll-view 高度，执行 next()
-    _scrollViewContentHeight <= scrollViewHeight && next()
+        // 如果 scroll-view 主体高度小于或等于 scroll-view 高度，执行 next()
+        _scrollViewContentHeight <= scrollViewHeight && next()
+
+    }, 0)
 
 }
 
@@ -247,7 +258,7 @@ watch(currentTotalSize, () => {
 })
 
 /** COMPUTED: 是否显示空元素占位 */
-const showEmpty = computed(() => props.emptyPlaceholder && finished.value && totalSize.value <= 0)
+const showEmpty = computed(() => props.empty && finished.value && totalSize.value <= 0)
 
 /** COMPUTED: 是否显示空元素占位图片样式 */
 const emptyImageStyle = computed(() => {
@@ -272,6 +283,13 @@ const emptyImageStyle = computed(() => {
 
 /** COMPUTED: 底部提示图标 */
 const bottomIcon = computed(() => {
+    // 如果正在刷新
+    if (refreshing.value) {
+
+        return ""
+
+    }
+
     // 根据当前加载状态返回对应图标
     switch (currentLoadStatus.value) {
 
@@ -341,13 +359,6 @@ const onScroll = debounce((e: ScrollViewOnScrollEvent) => {
 
 }, 100)
 
-// EVENT: 点击底部提示文案
-const onClickBottomText = () => {
-    // 如果当前加载状态是失败
-    currentLoadStatus.value === "fail" && next()
-
-}
-
 /** REF: 滚动量 */
 const scrollTop = ref(1)
 
@@ -362,6 +373,13 @@ const onClickBackTop = () => {
         clearTimeout(_delay)
 
     }, 10)
+
+}
+
+// EVENT: 点击底部提示文案
+const onClickBottomText = () => {
+    // 如果当前加载状态是失败
+    currentLoadStatus.value === "fail" && next()
 
 }
 
@@ -389,14 +407,19 @@ export default {
         <scroll-view
             :class="scrollViewClassName"
             :scroll-y="true"
-            :enable-flex="true"
-            :scroll-top="scrollTop"
-            :refresher-triggered="refreshing"
             :lower-threshold="props.offset"
+            :scroll-top="scrollTop"
             :scroll-with-animation="props.backTopTransition"
+            :enable-back-to-top="props.clickStatusBarBackTop"
+            :enable-passive="true"
             :refresher-enabled="props.refresh"
             :refresher-background="props.refreshBackground"
-            :enable-back-to-top="props.clickStatusBarBackTop"
+            :refresher-triggered="refreshing"
+            :bounces="true"
+            :show-scrollbar="props.scrollbar"
+            :enable-flex="true"
+            :enhanced="true"
+            :using-sticky="true"
             @scroll="onScroll"
             @scrolltolower="next"
             @refresherrefresh="clearRefresh"
@@ -418,7 +441,7 @@ export default {
 
                 <slot v-else name="default" :list="currentTotalData"></slot>
 
-                <view v-if="bottomText" class="list__scroll-view__content__bottom-box" @click="onClickBottomText">
+                <view class="list__scroll-view__content__bottom-box" @click="onClickBottomText">
                     <nut-icon v-if="bottomIcon" :name="bottomIcon" custom-color="#808089" size="30rpx" />
 
                     <view class="list__scroll-view__content__bottom-box__text">{{ bottomText }}</view>
@@ -487,8 +510,7 @@ export default {
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                height: fit-content;
-                padding: 30rpx 0;
+                height: 90rpx;
 
                 &__text {
                     color: #808089;
