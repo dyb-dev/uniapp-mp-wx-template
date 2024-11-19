@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-19 15:15:34
+ * @LastEditTime: 2024-11-19 15:42:22
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -215,6 +215,9 @@ const getElementHeight = (element: UniApp.NodesRef): Promise<number> => {
 
 }
 
+/** STATIC: 底部提示框高度 */
+const bottomBoxHeight = "90rpx"
+
 /** FUN: 自动加载数据 */
 const autoLoad = async() => {
     // 如果不自动加载数据，直接返回
@@ -237,7 +240,7 @@ const autoLoad = async() => {
         const _scrollViewContentHeight = await getElementHeight(scrollViewContentElement)
 
         // 如果 scroll-view 主体高度小于或等于 scroll-view 高度，执行 next()
-        _scrollViewContentHeight <= scrollViewHeight && next()
+        _scrollViewContentHeight - parseInt(bottomBoxHeight) <= scrollViewHeight && next()
 
     }, 0)
 
@@ -441,7 +444,11 @@ export default {
 
                 <slot v-else name="default" :list="currentTotalData"></slot>
 
-                <view class="list__scroll-view__content__bottom-box" @click="onClickBottomText">
+                <view
+                    class="list__scroll-view__content__bottom-box"
+                    :style="{ height: bottomBoxHeight }"
+                    @click="onClickBottomText"
+                >
                     <nut-icon v-if="bottomIcon" :name="bottomIcon" custom-color="#808089" size="30rpx" />
 
                     <view class="list__scroll-view__content__bottom-box__text">{{ bottomText }}</view>
@@ -510,7 +517,6 @@ export default {
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                height: 90rpx;
 
                 &__text {
                     color: #808089;
