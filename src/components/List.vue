@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-19 15:42:22
+ * @LastEditTime: 2024-11-19 19:39:19
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -414,7 +414,6 @@ export default {
             :scroll-top="scrollTop"
             :scroll-with-animation="props.backTopTransition"
             :enable-back-to-top="props.clickStatusBarBackTop"
-            :enable-passive="true"
             :refresher-enabled="props.refresh"
             :refresher-background="props.refreshBackground"
             :refresher-triggered="refreshing"
