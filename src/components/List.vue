@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-20 10:17:44
+ * @LastEditTime: 2024-11-20 21:59:54
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -38,6 +38,11 @@ export interface IListProps {
  * @default '暂无数据'
  */
     emptyText?: string
+/**
+ * @description 数据为空时的文本颜色
+ * @default '#808089'
+ */
+    emptyTextColor?: string
 
 /**
  * @description 是否启用滚动条
@@ -79,6 +84,11 @@ export interface IListProps {
  * @default '没有更多了'
  */
     finishedText?: string
+/**
+ * @description 底部提示文案颜色
+ * @default '#808089'
+ */
+    bottomTextColor?: string
 /**
  * @description 是否点击 苹果(状态栏) 按钮(标题) 返回顶部
  * @default true
@@ -133,6 +143,8 @@ const props = withDefaults(defineProps<IListProps>(), {
     emptyImageSize: () => ["345rpx", "344rpx"],
     /** 数据为空时的文本描述 */
     emptyText: "暂无数据",
+    /** 数据为空时的文本颜色 */
+    emptyTextColor: "#808089",
 
     /** 是否启用滚动条 */
     scrollbar: false,
@@ -150,6 +162,8 @@ const props = withDefaults(defineProps<IListProps>(), {
     errorText: "加载失败，点击重试",
     /** 加载完成的提示文案 */
     finishedText: "没有更多了",
+    /** 底部提示文案颜色 */
+    bottomTextColor: "#808089",
     /** 是否点击 苹果(状态栏) 按钮(标题) 返回顶部 */
     clickStatusBarBackTop: true,
 
@@ -438,7 +452,9 @@ export default {
                         mode="scaleToFill"
                     />
 
-                    <view class="list__scroll-view__content__empty-box__text">{{ props.emptyText }}</view>
+                    <view class="list__scroll-view__content__empty-box__text" :style="{ color: props.emptyTextColor }">{{
+                        props.emptyText
+                    }}</view>
                 </view>
 
                 <slot v-else name="default" :list="currentTotalData"></slot>
@@ -448,9 +464,11 @@ export default {
                     :style="{ height: bottomBoxHeight }"
                     @click="onClickBottomText"
                 >
-                    <nut-icon v-if="bottomIcon" :name="bottomIcon" custom-color="#808089" size="30rpx" />
+                    <nut-icon v-if="bottomIcon" :name="bottomIcon" :custom-color="props.bottomTextColor" size="30rpx" />
 
-                    <view class="list__scroll-view__content__bottom-box__text">{{ bottomText }}</view>
+                    <view class="list__scroll-view__content__bottom-box__text" :style="{ color: props.bottomTextColor }">{{
+                        bottomText
+                    }}</view>
                 </view>
             </view>
         </scroll-view>
@@ -503,7 +521,6 @@ export default {
 
                 &__text {
                     width: 100%;
-                    color: #808089;
                     font-size: 27rpx;
                     text-align: center;
                     @include text-ellipsis-mixin;
@@ -518,7 +535,6 @@ export default {
                 width: 100%;
 
                 &__text {
-                    color: #808089;
                     font-size: 27rpx;
                 }
             }
