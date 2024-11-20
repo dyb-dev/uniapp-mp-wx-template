@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-19 19:39:19
+ * @LastEditTime: 2024-11-20 10:17:44
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -51,7 +51,7 @@ export interface IListProps {
     refresh?: boolean
 /**
  * @description 下拉刷新背景颜色
- * @default '#ffffff'
+ * @default 'transparent'
  */
     refreshBackground?: string
 /**
@@ -107,7 +107,7 @@ export interface IListProps {
     backTopOffset?: number
 /**
  * @description 返回顶部时是否启用过渡动画
- * @default false
+ * @default true
  */
     backTopTransition?: boolean
 /**
@@ -139,7 +139,7 @@ const props = withDefaults(defineProps<IListProps>(), {
     /** 是否启用下拉刷新功能 */
     refresh: true,
     /** 下拉刷新背景颜色 */
-    refreshBackground: "#ffffff",
+    refreshBackground: "transparent",
     /** 是否自动加载数据 */
     autoLoad: true,
     /** 滚动距离触发加载的默认值 */
