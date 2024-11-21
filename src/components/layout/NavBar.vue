@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-20 21:09:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-21 10:51:46
+ * @LastEditTime: 2024-11-21 13:37:16
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/NavBar.vue
  * @Description: 顶部导航栏
 -->
@@ -504,6 +504,7 @@ export default {
     box-sizing: content-box;
     width: 100%;
     overflow: hidden;
+    transition: background 0.3s;
 
     &--fixed {
         position: fixed;

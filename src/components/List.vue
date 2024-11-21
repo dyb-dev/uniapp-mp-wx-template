@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-20 21:59:54
+ * @LastEditTime: 2024-11-21 13:35:31
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -180,6 +180,11 @@ const props = withDefaults(defineProps<IListProps>(), {
     /** 每页数据大小 */
     pageSize: 10
 })
+
+// EVENT: 定义 emits
+const emits = defineEmits<{
+    (event: "scroll", e: ScrollViewOnScrollEvent): void
+}>()
 
 // HOOKS: 使用列表分页器
 const listPagination = useListPagination<TPaginationDataItem>({
@@ -364,8 +369,8 @@ const backTopStyle = computed(() => {
 /** REF: 是否显示 back-top */
 const showBackTop = ref(false)
 
-// EVENT: 滚动事件
-const onScroll = debounce((e: ScrollViewOnScrollEvent) => {
+// EVENT: 滚动事件（防抖处理函数）
+const debouncedScroll = debounce((e: ScrollViewOnScrollEvent) => {
 
     const {
         detail: { scrollTop: _scrollTop }
@@ -375,6 +380,14 @@ const onScroll = debounce((e: ScrollViewOnScrollEvent) => {
     showBackTop.value = _scrollTop >= props.backTopOffset
 
 }, 100)
+
+// EVENT: 监听滚动事件
+const onScroll = (e: ScrollViewOnScrollEvent) => {
+
+    emits("scroll", e)
+    debouncedScroll(e)
+
+}
 
 /** REF: 滚动量 */
 const scrollTop = ref(1)
