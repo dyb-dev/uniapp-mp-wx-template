@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-20 21:09:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-14 17:03:47
+ * @LastEditTime: 2024-11-21 10:51:46
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/NavBar.vue
  * @Description: 顶部导航栏
 -->
@@ -95,17 +95,17 @@ export interface INavBarProps {
     showLeft?: boolean
 /**
  * @description 是否固定在顶部
- * @default false
+ * @default true
  */
     fixed?: boolean
 /**
  * @description 是否在导航栏位置生成一个等高的占位元素
- * @default false
+ * @default true
  */
     placeholder?: boolean
 /**
  * @description 是否显示底部边框
- * @default true
+ * @default false
  */
     bottomBorder?: boolean
 /**
@@ -134,7 +134,7 @@ const props = withDefaults(defineProps<INavBarProps>(), {
     showLeft: true,
     fixed: true,
     placeholder: true,
-    bottomBorder: true,
+    bottomBorder: false,
     borderBottomColor: "#eee"
 })
 
