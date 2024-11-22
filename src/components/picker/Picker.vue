@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-04 19:51:56
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-05 15:38:31
+ * @LastEditTime: 2024-11-22 19:04:17
  * @FilePath: /uniapp-mp-wx-template/src/components/picker/Picker.vue
  * @Description: 自定义选择器组件
 -->
@@ -24,6 +24,8 @@ export type TPickerCustomKey = `__PICKER__${string}`
 export type TPickerFetchDataFnParam = {
 /** 搜索关键词 */
     keyword: string
+/** 原始数据 */
+    originColumns: TPickerData
 }
 
 /** Picker 数据 */
@@ -180,6 +182,9 @@ watch(injectOptions, value => {
 /** REF: 搜索关键字 */
 const searchKeyWords = ref("")
 
+/** REF: 原始选择器数据 */
+let originColumns: TPickerData = []
+
 /** FUN: 加载选择器数据 并且 设置当前选中的值 */
 const loadData = async() => {
     // 如果请求函数存在时，才会加载数据
@@ -189,8 +194,16 @@ const loadData = async() => {
 
             uni.showLoading({ title: "加载中...", mask: true })
 
+            // 记录首次展示的源数据
+            if (!originColumns.length) {
+
+                originColumns = options.value.columns || []
+
+            }
+
             const _result = await options.value.fetchDataFn({
-                keyword: searchKeyWords.value
+                keyword: searchKeyWords.value,
+                originColumns
             })
 
             if (!Array.isArray(_result)) {
