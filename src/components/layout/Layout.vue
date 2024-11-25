@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 16:27:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-14 17:02:10
+ * @LastEditTime: 2024-11-25 14:41:40
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/Layout.vue
  * @Description: 页面布局容器
  */
@@ -136,7 +136,7 @@ const tabBarInstance = ref<InstanceType<typeof TabBar>>()
  * @returns {string} 高度表达式
  */
 const getNavTabHeightExpression = () =>
-    `calc(${navBarInstance.value?.heightExpression} + ${tabBarInstance.value?.heightExpression})`
+    `calc(${navBarInstance.value?.heightExpression || "0rpx"} + ${tabBarInstance.value?.heightExpression || "0rpx"})`
 
 /** 将当前显示的左侧icon的类型暴露给父组件 */
 defineExpose({
