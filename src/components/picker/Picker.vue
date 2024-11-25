@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-04 19:51:56
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-22 19:04:17
+ * @LastEditTime: 2024-11-25 11:31:52
  * @FilePath: /uniapp-mp-wx-template/src/components/picker/Picker.vue
  * @Description: 自定义选择器组件
 -->
@@ -73,7 +73,7 @@ export interface IPickerOptions {
     showSearch?: boolean
     /**
      * @description 顶部栏标题
-     * @default 请选择
+     * @default ''
      */
     title?: string
     /**
@@ -124,12 +124,6 @@ const props = withDefaults(defineProps<TPickerProps>(), {
     columns: () => [],
     /** 是否显示搜索组件 */
     showSearch: false,
-    /** 顶部栏标题 */
-    title: "请选择",
-    /** 确认按钮文字 */
-    confirmButtonText: "确认",
-    /** 取消按钮文字 */
-    cancelButtonText: "取消",
     /** 可见的选项个数 */
     visibleOptionNum: 6,
     /** 选项高度 */
@@ -390,7 +384,6 @@ export default {
                 <nut-searchbar
                     v-if="options.showSearch"
                     v-model="searchKeyWords"
-                    placeholder="请输入搜索关键词"
                     :cursor-spacing="50"
                     confirm-type="search"
                     @blur="onBlur"
