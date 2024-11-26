@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-21 13:35:31
+ * @LastEditTime: 2024-11-26 21:40:39
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -514,6 +514,7 @@ export default {
 
         &__content {
             position: relative;
+            display: flow-root;
             box-sizing: border-box;
             width: 100%;
 
