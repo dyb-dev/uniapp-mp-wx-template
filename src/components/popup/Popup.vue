@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 00:21:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-05 16:05:48
+ * @LastEditTime: 2024-11-26 16:03:00
  * @FilePath: /uniapp-mp-wx-template/src/components/popup/Popup.vue
  * @Description: 基础弹窗组件
 -->
@@ -268,29 +268,32 @@ export default {
 <template>
     <nut-popup
         class="popup"
-        :custom-style="{ background: 'transparent' }"
         v-model:visible="options.show"
+        :custom-style="{ background: 'transparent' }"
+        :overlay-style="{ background: 'rgba(0, 0, 0, 0.3)' }"
         :close-on-click-overlay="false"
         @closed="closed"
     >
-        <view class="popup__main">
-            <image class="popup__main__content" :style="customImgStyles" :src="options.customImgPath" mode="scaleToFill" />
+        <nut-transition :show="options.show" name="zoom">
+            <view class="popup__main">
+                <image class="popup__main__content" :style="customImgStyles" :src="options.customImgPath" mode="scaleToFill" />
 
-            <view
-                v-if="options.showCustomButton"
-                :style="customButtonStyles"
-                class="popup__main__custom-button"
-                @click="close('click-custom-button')"
-            />
+                <view
+                    v-if="options.showCustomButton"
+                    :style="customButtonStyles"
+                    class="popup__main__custom-button"
+                    @click="close('click-custom-button')"
+                />
 
-            <image
-                v-if="options.showCloseButton"
-                class="popup__main__close"
-                src="/static/image/Popup/close.png"
-                mode="scaleToFill"
-                @click="close('click-close-button')"
-            />
-        </view>
+                <image
+                    v-if="options.showCloseButton"
+                    class="popup__main__close"
+                    src="/static/image/Popup/close.png"
+                    mode="scaleToFill"
+                    @click="close('click-close-button')"
+                />
+            </view>
+        </nut-transition>
     </nut-popup>
 </template>
 
