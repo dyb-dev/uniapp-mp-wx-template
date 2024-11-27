@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-26 21:40:39
+ * @LastEditTime: 2024-11-27 20:00:11
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -246,15 +246,15 @@ const autoLoad = async() => {
 
     }
 
-    // scrollView 高度为空时，获取 scrollView 高度
-    if (!scrollViewHeight) {
-
-        scrollViewHeight = await getElementHeight(scrollViewElement)
-
-    }
-
-    // 解决: scroll-view 主体高度还没有渲染出来，因此需要等待下一帧，暂时使用 setTimeout
+    // 解决: scroll-view 高度和内容还没有渲染出来，因此需要等待下一帧，暂时使用 setTimeout
     setTimeout(async() => {
+        // scrollView 高度为空时，获取 scrollView 高度
+        if (!scrollViewHeight) {
+
+            scrollViewHeight = await getElementHeight(scrollViewElement)
+
+        }
+
         // 记录 scroll-view 主体高度
         const _scrollViewContentHeight = await getElementHeight(scrollViewContentElement)
 
@@ -272,10 +272,10 @@ onLoad(() => {
 
 })
 
-/** WATCH: 监听数据变化 注: 只有加载数据成功并且有值时才会发生变化 */
+/** WATCH: 监听数据变化 */
 watch(currentTotalSize, () => {
-
-    autoLoad()
+    // 加载数据成功时值才会变动且当前的数据总量大于 0 时
+    currentTotalSize.value > 0 && autoLoad()
 
 })
 
