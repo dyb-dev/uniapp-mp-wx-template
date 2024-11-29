@@ -10,6 +10,7 @@ declare module 'vue' {
     AuthAvatarButton: typeof import('./../../components/userInfo/AuthAvatarButton.vue')['default']
     AuthAvatarNicknameDialog: typeof import('./../../components/userInfo/AuthAvatarNicknameDialog.vue')['default']
     AuthPhoneNumberButton: typeof import('./../../components/userInfo/AuthPhoneNumberButton.vue')['default']
+    DateTimePicker: typeof import('./../../components/picker/DateTimePicker.vue')['default']
     Dialog: typeof import('./../../components/dialog/Dialog.vue')['default']
     Layout: typeof import('./../../components/layout/Layout.vue')['default']
     List: typeof import('./../../components/List.vue')['default']

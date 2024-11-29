@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-04 19:51:37
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-04 21:14:01
+ * @LastEditTime: 2024-11-29 19:52:35
  * @FilePath: /uniapp-mp-wx-template/src/components/picker/index.ts
  * @Description: 选择器组件模块
  */
@@ -12,9 +12,11 @@ export * from "./type"
 
 import { providerComponentOptions } from "@/components"
 
+import type { IDateTimePickerOptions, TDateTimePickerCustomKey, TShowDateTimePickerResult } from "./DateTimePicker.vue"
 import type { IPickerOptions, TPickerCustomKey } from "./Picker.vue"
 import type { TShowPickerBaseResult } from "./type"
 import type { TFilteredDefaultOptions } from "@/components"
+
 
 /** 显示选择器的选项 */
 type TShowPickerOptions = TFilteredDefaultOptions<IPickerOptions>
@@ -24,7 +26,7 @@ type TShowPickerOptions = TFilteredDefaultOptions<IPickerOptions>
  *
  * @author dyb-dev
  * @date 04/11/2024/  21:12:53
- * @param {string} [customKey=""] - 弹窗唯一标识key 默认: `__Picker__`
+ * @param {string} [customKey=""] - 弹窗唯一标识key 默认: `__PICKER__`
  * @returns {*} {TUsePicker} - 选择器相关函数
  */
 const usePicker = (customKey: string = "") => {
@@ -59,6 +61,49 @@ const usePicker = (customKey: string = "") => {
 
 }
 
-export type { TShowPickerOptions, TShowPickerBaseResult }
+/** 显示日期时间选择器的选项 */
+type TShowDateTimePickerOptions = TFilteredDefaultOptions<IDateTimePickerOptions>
 
-export { usePicker }
+/**
+ * 使用日期时间选择器
+ *
+ * @author dyb-dev
+ * @date 04/11/2024/  21:12:53
+ * @param {string} [customKey=""] - 弹窗唯一标识key 默认: `__DATE_TIME_PICKER__`
+ * @returns {*} {TUseDateTimePicker} - 日期时间选择器相关函数
+ */
+const useDateTimePicker = (customKey: string = "") => {
+
+    const _customKey: TDateTimePickerCustomKey = `__DATE_TIME_PICKER__${customKey}`
+    const _options = providerComponentOptions<TDateTimePickerCustomKey, IDateTimePickerOptions>(_customKey)
+
+    /**
+     * 显示日期时间选择器
+     *
+     * @author dyb-dev
+     * @date 04/11/2024/  21:13:25
+     * @param {TShowDateTimePickerOptions} options - 日期时间选择器选项
+     * @returns {*}  {Promise<TShowDateTimePickerBaseResult>} - 显示日期时间选择器的结果
+     */
+    const showDateTimePicker = (options?: TShowDateTimePickerOptions): Promise<TShowDateTimePickerResult> => {
+
+        return new Promise(resolve => {
+
+            _options.value = {
+                ...options,
+                show: true,
+                unmount: (...args: TShowDateTimePickerResult) => resolve(args)
+            }
+
+        })
+
+    }
+    return {
+        showDateTimePicker
+    }
+
+}
+
+export type { TShowPickerOptions, TShowDateTimePickerOptions }
+
+export { usePicker, useDateTimePicker }

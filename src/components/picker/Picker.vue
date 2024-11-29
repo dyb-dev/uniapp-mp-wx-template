@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-04 19:51:56
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-25 11:31:52
+ * @LastEditTime: 2024-11-29 16:30:56
  * @FilePath: /uniapp-mp-wx-template/src/components/picker/Picker.vue
  * @Description: 自定义选择器组件
 -->
@@ -72,6 +72,11 @@ export interface IPickerOptions {
      */
     showSearch?: boolean
     /**
+     * @description 是否每次显示都重新加载数据，当有2个以上用到该组件时必须要为 true 需要传入 `fetchDataFn` 函数
+     * @default true
+     */
+    showLoadData?: boolean
+    /**
      * @description 顶部栏标题
      * @default ''
      */
@@ -124,6 +129,8 @@ const props = withDefaults(defineProps<TPickerProps>(), {
     columns: () => [],
     /** 是否显示搜索组件 */
     showSearch: false,
+    /** 是否每次显示都重新加载数据 */
+    showLoadData: true,
     /** 可见的选项个数 */
     visibleOptionNum: 6,
     /** 选项高度 */
@@ -338,6 +345,12 @@ const onClosed = () => {
 
     options.value.unmount?.(selectedResult.value)
     emits(selectedResult.value.actionType, selectedResult.value)
+    // 为了实现每次显示都加载数据，因此这里需要清空
+    if (options.value.showLoadData) {
+
+        options.value.columns = []
+
+    }
 
 }
 </script>
