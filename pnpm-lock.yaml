@@ -29,6 +29,9 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
+      mp-html:
+        specifier: ^2.5.0
+        version: 2.5.0
       nutui-uniapp:
         specifier: ^1.8.1
         version: 1.8.1(@uni-helper/uni-app-types@1.0.0-alpha.4(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3)))(vue@3.5.12(typescript@5.6.3))
@@ -41,15 +44,9 @@ importers:
       query-string:
         specifier: ^9.1.1
         version: 9.1.1
-      radash:
-        specifier: ^12.1.0
-        version: 12.1.0
       vue:
         specifier: ^3.5.12
         version: 3.5.12(typescript@5.6.3)
-      z-paging:
-        specifier: ^2.8.0
-        version: 2.8.0
     devDependencies:
       '@dcloudio/types':
         specifier: ^3.4.14
@@ -3752,6 +3749,9 @@ packages:
   module-alias@2.2.3:
     resolution: {integrity: sha512-23g5BFj4zdQL/b6tor7Ji+QY4pEfNH784BMslY9Qb0UnJWRAt+lQGLYmRaM0KDBwIG23ffEBELhZDP2rhi9f/Q==}
 
+  mp-html@2.5.0:
+    resolution: {integrity: sha512-uvBH5tIaDIlj8qaxsvNXU3RKX0jvXOo3J6FAi/notUv/ds6j79UUTE82aDkxxUk0eLUU0CiCqMrR7WWnytk30Q==}
+
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -4299,10 +4299,6 @@ packages:
   quick-lru@1.1.0:
     resolution: {integrity: sha512-tRS7sTgyxMXtLum8L65daJnHUhfDUgboRdcWW2bR9vBfrj2+O5HSMbQOJfJJjIVSPFqbBCF37FpwWXGitDc5tA==}
     engines: {node: '>=4'}
-
-  radash@12.1.0:
-    resolution: {integrity: sha512-b0Zcf09AhqKS83btmUeYBS8tFK7XL2e3RvLmZcm0sTdF1/UUlHSsjXdCcWNxe7yfmAlPve5ym0DmKGtTzP6kVQ==}
-    engines: {node: '>=14.18.0'}
 
   range-parser@1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
@@ -5271,10 +5267,6 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
-  z-paging@2.8.0:
-    resolution: {integrity: sha512-RogzPiqg621c6E/0S1fMXCwwEOcunH6h1yO9WWF6OB68v6dq89EedfSQBABa9S7KYlTHvxfaPq3M8uUjvEDKGw==}
-    engines: {HBuilderX: ^3.0.7}
 
 snapshots:
 
@@ -9557,6 +9549,8 @@ snapshots:
 
   module-alias@2.2.3: {}
 
+  mp-html@2.5.0: {}
+
   mri@1.2.0: {}
 
   ms@2.0.0: {}
@@ -10071,8 +10065,6 @@ snapshots:
   queue-microtask@1.2.3: {}
 
   quick-lru@1.1.0: {}
-
-  radash@12.1.0: {}
 
   range-parser@1.2.1: {}
 
@@ -11230,5 +11222,3 @@ snapshots:
       camelcase: 4.1.0
 
   yocto-queue@0.1.0: {}
-
-  z-paging@2.8.0: {}

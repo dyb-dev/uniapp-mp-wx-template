@@ -1,6 +1,6 @@
 {
     "name": "uniapp-mp-wx-template",
-    "version": "0.3.7",
+    "version": "0.3.8",
     "description": "基于`uni-app + vue3 + ts`搭建的微信小程序模板",
     "author": "dyb-dev",
     "license": "MIT",
@@ -57,12 +57,11 @@
         "@uni-helper/uni-promises": "^0.2.1",
         "@vueuse/core": "^9.13.0",
         "dayjs": "^1.11.13",
+        "mp-html": "^2.5.0",
         "nutui-uniapp": "^1.8.1",
         "pinia": "^2.2.4",
         "pinia-plugin-persistedstate": "^4.1.1",
         "query-string": "^9.1.1",
-        "radash": "^12.1.0",
-        "vue": "^3.5.12",
-        "z-paging": "^2.8.0"
+        "vue": "^3.5.12"
     }
 }

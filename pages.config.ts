@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:57:47
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-31 22:28:27
+ * @LastEditTime: 2024-11-30 13:12:20
  * @FilePath: /uniapp-mp-wx-template/pages.config.ts
  * @Description: 页面配置文件
  */
@@ -148,14 +148,6 @@ export default defineUniPages({
     preloadRule: {
         [VITE_HOME_PATH]: {
             packages: [`${VITE_SUB_PACKAGE_DIR}/webview`]
-        }
-    },
-
-    // 自动导入配置
-    easycom: {
-        custom: {
-            // 自动导入z-paging组件
-            "^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "z-paging/components/z-paging$1/z-paging$1.vue"
         }
     }
 })

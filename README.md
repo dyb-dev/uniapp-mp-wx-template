@@ -10,7 +10,7 @@ UniApp-MP-WX-Template 提供了一个用于开发微信小程序的基本模板�
 
 -   **UniApp 工具链**: 支持自动生成 `pages.json` 和 `manifest.json` 配置文件，自动化处理页面和项目配置文件。
 -   **TypeScript**: 项目使用 TypeScript 进行开发，集成 `vue-tsc` 插件自动进行 Vue 组件的类型检查，同时支持项目的模块化管理
--   **Vue 3 组件库**: 集成了 `nutui-uniapp` 和 `z-paging` 组件库，支持 Vue 3 组件的按需自动导入，支持 TypeScript 类型提示。
+-   **Vue 3 组件库**: 集成了 `nutui-uniapp` 组件库，支持 Vue 3 组件的按需自动导入，支持 TypeScript 类型提示。
 -   **自定义布局组件**: 内置多个自定义布局组件（如顶部导航栏、底部导航栏），兼容 `pages.json` 配置。
 -   **网络请求**: 提供 Promise 方式调用 UniApp API，处理网络请求和异步操作更加简洁高效。
 -   **页面导航**: 内置多种跳转方法封装，支持跳转小程序内部页面、H5 页面和第三方小程序，提供统一的导航接口。
