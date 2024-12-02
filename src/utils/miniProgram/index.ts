@@ -2,10 +2,12 @@
  * @Author: dyb-dev
  * @Date: 2024-10-09 22:19:06
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-01 20:32:40
+ * @LastEditTime: 2024-12-02 20:20:29
  * @FilePath: /uniapp-mp-wx-template/src/utils/miniProgram/index.ts
  * @Description: 小程序相关工具函数
  */
+
+import pagesJson from "@/pages.json"
 
 /** STATIC: 设备信息 */
 let accountInfo: UniApp.AccountInfo
@@ -64,4 +66,45 @@ const getEnvVersion = () => getAccountInfo()?.miniProgram.envVersion
  */
 const getOnlineVersion = (): string => getAccountInfo()?.miniProgram.version
 
-export { getAccountInfo, getEnvVersion, getOnlineVersion }
+/** LET: 胶囊按钮区域 */
+let capsuleBoundingClientRect: UniApp.GetMenuButtonBoundingClientRectRes | null = null
+
+/**
+ * FUN: 获取胶囊按钮区域
+ *
+ * @author dyb-dev
+ * @date 02/12/2024/  20:21:12
+ * @param {boolean} [isForceRefresh=false] 是否强制刷新
+ * @returns {*}  {(UniApp.GetMenuButtonBoundingClientRectRes | null)} 胶囊按钮区域
+ */
+const getCapsuleBoundingClientRect = (isForceRefresh = false): UniApp.GetMenuButtonBoundingClientRectRes | null => {
+
+    // @ts-ignore 是否开启 自定义导航栏
+    const _isCustomNavigationBar = pagesJson?.globalStyle?.navigationStyle === "custom"
+
+    // 如果没有开启自定义导航栏, 进行警告提示
+    !_isCustomNavigationBar && console.warn("getCapsuleBoundingClientRect() 未开启自定义导航栏, 不需要获取菜单按钮区域")
+
+    // 如果已经获取过系统信息，且不是强制刷新，则直接返回
+    if (capsuleBoundingClientRect && !isForceRefresh) {
+
+        return capsuleBoundingClientRect
+
+    }
+
+    try {
+
+        capsuleBoundingClientRect = uni.getMenuButtonBoundingClientRect()
+
+    }
+    catch (error) {
+
+        console.error("getCapsuleBoundingClientRect()", error)
+
+    }
+
+    return capsuleBoundingClientRect
+
+}
+
+export { getAccountInfo, getEnvVersion, getOnlineVersion, getCapsuleBoundingClientRect }

@@ -216,61 +216,61 @@
 
     "todohighlight.keywords": [
         {
-            "text": "CONST",
+            "text": "CONST:",
             "color": "#ffffff",
             "backgroundColor": "#f98803",
             "borderRadius": "3px"
         },
         {
-            "text": "LET",
+            "text": "LET:",
             "color": "#ffffff",
             "backgroundColor": "#0399f8",
             "borderRadius": "3px"
         },
         {
-            "text": "REF",
+            "text": "REF:",
             "color": "#ffffff",
             "backgroundColor": "#fb06c4",
             "borderRadius": "3px"
         },
         {
-            "text": "REACTIVE",
+            "text": "REACTIVE:",
             "color": "#ffffff",
             "backgroundColor": "#03b224",
             "borderRadius": "3px"
         },
         {
-            "text": "COMPUTED",
+            "text": "COMPUTED:",
             "color": "#ffffff",
             "backgroundColor": "#c703f8",
             "borderRadius": "3px"
         },
         {
-            "text": "WATCH",
+            "text": "WATCH:",
             "color": "#ffffff",
             "backgroundColor": "#FF5600",
             "borderRadius": "3px"
         },
         {
-            "text": "HOOKS",
+            "text": "HOOKS:",
             "color": "#ffffff",
             "backgroundColor": "#8605f4",
             "borderRadius": "3px"
         },
         {
-            "text": "EVENT",
+            "text": "EVENT:",
             "color": "#ffffff",
             "backgroundColor": "#4e04f5",
             "borderRadius": "3px"
         },
         {
-            "text": "FUN",
+            "text": "FUN:",
             "color": "#ffffff",
             "backgroundColor": "#07c4d0",
             "borderRadius": "3px"
         },
         {
-            "text": "CODE",
+            "text": "CODE:",
             "color": "#ffffff",
             "backgroundColor": "#065cfb",
             "borderRadius": "3px"

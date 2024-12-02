@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-20 21:09:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-21 13:37:16
+ * @LastEditTime: 2024-12-02 20:24:58
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/NavBar.vue
  * @Description: 顶部导航栏
 -->
@@ -13,7 +13,7 @@ import { computed, ref, watch } from "vue"
 
 import pagesJson from "@/pages.json"
 import { useTabBarStore } from "@/stores"
-import { getCurrentPageConfig, navigateBack, navigateToPage, isImagePath } from "@/utils"
+import { getCurrentPageConfig, navigateBack, navigateToPage, isImagePath, getCapsuleBoundingClientRect } from "@/utils"
 
 /** TYPE: 导航栏左侧默认显示icon的类型 */
 export type TNavBarLeftIconType = "back" | "home" | ""
@@ -146,19 +146,25 @@ const emits = defineEmits<{
     (event: "click-title"): void
 }>()
 
-/** STATIC: 导航栏高度 */
-const HEIGHT = "88rpx"
+/** CONST: 胶囊按钮的位置信息 */
+const CAPSULE_BOUNDING_CLIENT_RECT = getCapsuleBoundingClientRect()
 
-/** STATIC: 导航栏上边距 */
-const PADDING_TOP = "108rpx"
+/** CONST: 导航栏上下边距, 单位PX */
+const NAVBAR_VERTICAL_PADDING = 5
+
+/** CONST: 导航栏高度 */
+const HEIGHT = `${(CAPSULE_BOUNDING_CLIENT_RECT?.height || 32) + NAVBAR_VERTICAL_PADDING * 2}px`
+
+/** CONST: 导航栏上边距 */
+const PADDING_TOP = `${(CAPSULE_BOUNDING_CLIENT_RECT?.top || 48) - NAVBAR_VERTICAL_PADDING}px`
 
 /** COMPUTED: nav-bar 高度表达式 */
 const heightExpression = computed(() => props.placeholder ? `calc(${HEIGHT} + ${PADDING_TOP})` : "0rpx")
 
-/** STATIC: 当前页面样式 */
+/** CONST: 当前页面样式 */
 const CURRENT_PAGE_STYLE = getCurrentPageConfig()?.style
 
-/** STATIC: 是否启用页面下拉刷新 */
+/** CONST: 是否启用页面下拉刷新 */
 const ENABLE_PULL_DOWN_REFRESH =
 // @ts-ignore
     CURRENT_PAGE_STYLE?.enablePullDownRefresh ||
@@ -335,7 +341,7 @@ const leftIconClassPrefix = computed(() => {
 
 })
 
-/** STATIC: 点击事件是否执行中 */
+/** CONST: 点击事件是否执行中 */
 let isProcessingClick = false
 
 /** EVENT: 点击左侧icon */
