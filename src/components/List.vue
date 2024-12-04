@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-30 12:33:35
+ * @LastEditTime: 2024-12-04 19:31:48
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -101,6 +101,11 @@ export interface IListProps {
  */
     backTop?: boolean
 /**
+ * @description back-top 按钮背景颜色
+ * @default '#29d446'
+ */
+    backTopBackground?: string
+/**
  * @description 距离页面右侧的距离
  * @default '25rpx'
  */
@@ -169,6 +174,8 @@ const props = withDefaults(defineProps<IListProps>(), {
 
     /** 启用 back-top 按钮 */
     backTop: true,
+    /** back-top 按钮背景颜色 */
+    backTopBackground: "#29d446",
     /** 距离右侧的距离 */
     backTopRight: "25rpx",
     /** 距离底部的距离 */
@@ -361,7 +368,8 @@ const backTopStyle = computed(() => {
 
     return {
         right: props.backTopRight,
-        bottom: props.backTopBottom
+        bottom: props.backTopBottom,
+        background: props.backTopBackground
     }
 
 })
@@ -470,7 +478,7 @@ export default {
                     }}</view>
                 </view>
 
-                <slot v-else name="default" :list="currentTotalData"></slot>
+                <slot v-else name="default" :list="currentTotalData" :total="totalSize"></slot>
 
                 <view
                     class="list__scroll-view__content__bottom-box"
@@ -563,7 +571,6 @@ export default {
         width: 84rpx;
         height: 84rpx;
         overflow: hidden;
-        background: #29d446;
         border-radius: 50%;
         box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.12);
         transform: scale(0) translate3d(0, 0, 0);
