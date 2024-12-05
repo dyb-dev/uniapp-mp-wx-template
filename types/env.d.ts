@@ -1,6 +1,8 @@
 /** vite环境变量 */
 interface ImportMetaEnv {
     // STATIC: 共用
+    /** 组件目录 默认:components */
+    readonly VITE_COMPONENT_DIR: string
     /** 页面目录 默认:pages */
     readonly VITE_PAGE_DIR: string
     /** `src`下 分包目录 默认:subPackages */

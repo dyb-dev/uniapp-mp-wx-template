@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:56:39
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-20 20:21:08
+ * @LastEditTime: 2024-12-05 17:44:23
  * @FilePath: /uniapp-mp-wx-template/vite.config.ts
  * @Description: vite配置文件
  */
@@ -28,6 +28,7 @@ export const VITE_ENV = loadEnv(process.env.NODE_ENV as string, projectRootDir) 
 const __PROJECT_INFO__ = generateProjectInfo(VITE_ENV)
 
 const {
+    VITE_COMPONENT_DIR,
     VITE_PAGE_DIR,
     VITE_LAUNCH_PATH,
     VITE_USE_LAUNCH_PAGE,
@@ -52,7 +53,9 @@ export default defineConfig(async() => {
                 // 首页路径 默认: pages/index
                 homePage: VITE_USE_LAUNCH_PAGE === "true" ? VITE_LAUNCH_PATH : VITE_HOME_PATH,
                 // subPackages 扫描的目录 默认: src/pages-sub
-                subPackages: subPackageChildDirPathList
+                subPackages: subPackageChildDirPathList,
+                // 排除的文件，相对于 dir 和 subPackages
+                exclude: [`**/${VITE_COMPONENT_DIR}/**/*.*`]
             }),
 
             // 使用 `manifest.config.ts` 来编写生成 `manifest.json` 文件，注意: 生成的 `manifest.json` 文件不要更改
@@ -61,9 +64,9 @@ export default defineConfig(async() => {
             // 组件自动导入插件
             UniHelperComponents({
                 // 组件 扫描的目录 默认: src/components
-                dirs: ["src/components", ...subPackageChildDirPathList.map(item => `${item}/components`)],
+                dirs: [`src/${VITE_COMPONENT_DIR}`, ...subPackageChildDirPathList.map(item => `${item}/${VITE_COMPONENT_DIR}`)],
                 // .d.ts文件输出路径
-                dts: resolve(projectRootDir, "./src/types/dts/components.d.ts"),
+                dts: resolve(projectRootDir, `./src/types/dts/${VITE_COMPONENT_DIR}.d.ts`),
                 // 自定义自动导入逻辑
                 resolvers: [NutResolver()]
             }),
