@@ -17,6 +17,9 @@ importers:
       '@dcloudio/uni-mp-weixin':
         specifier: 3.0.0-4020920240930001
         version: 3.0.0-4020920240930001(@nuxt/kit@3.13.2(rollup@4.24.0))(@vueuse/core@9.13.0(vue@3.5.12(typescript@5.6.3)))(postcss@8.4.47)(rollup@4.24.0)(vue@3.5.12(typescript@5.6.3))
+      '@qiun/uni-ucharts':
+        specifier: 2.5.0-20230101
+        version: 2.5.0-20230101
       '@uni-helper/uni-network':
         specifier: ^0.19.3
         version: 0.19.3(@vueuse/core@9.13.0(vue@3.5.12(typescript@5.6.3)))(vue@3.5.12(typescript@5.6.3))
@@ -1460,6 +1463,9 @@ packages:
   '@pkgr/core@0.1.1':
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
+  '@qiun/uni-ucharts@2.5.0-20230101':
+    resolution: {integrity: sha512-qpgzAUgrShgKNn0uMoN54n6/MkFeQQpK2gur0Fzokn8oTIMCVjTfnt8C2UhD20pPlm6MFxwkWF+bsJ3qd4QMvg==}
 
   '@rollup/pluginutils@5.1.2':
     resolution: {integrity: sha512-/FIdS3PyZ39bjZlwqFnWqCOVnW7o963LtKMwQOD0NhQqw22gSr2YY1afu3FxRip4ZCZNsD5jq6Aaz6QV3D/Njw==}
@@ -6994,6 +7000,8 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
+  '@qiun/uni-ucharts@2.5.0-20230101': {}
+
   '@rollup/pluginutils@5.1.2(rollup@4.24.0)':
     dependencies:
       '@types/estree': 1.0.6
@@ -9848,11 +9856,11 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  postcss-html@0.36.0(postcss-syntax@0.36.2)(postcss@7.0.39):
+  postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39):
     dependencies:
       htmlparser2: 3.10.1
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss-html@1.7.0)(postcss@8.4.47)
+      postcss-syntax: 0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-jsx@0.36.4(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-markdown@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-scss@2.1.1)(postcss@7.0.39)
 
   postcss-html@1.7.0:
     dependencies:
@@ -9868,11 +9876,11 @@ snapshots:
       read-cache: 1.0.0
       resolve: 1.22.8
 
-  postcss-jsx@0.36.4(postcss-syntax@0.36.2)(postcss@7.0.39):
+  postcss-jsx@0.36.4(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39):
     dependencies:
       '@babel/core': 7.25.8
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss-html@1.7.0)(postcss@8.4.47)
+      postcss-syntax: 0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-jsx@0.36.4(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-markdown@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-scss@2.1.1)(postcss@7.0.39)
     transitivePeerDependencies:
       - supports-color
 
@@ -9891,10 +9899,10 @@ snapshots:
     optionalDependencies:
       postcss: 8.4.47
 
-  postcss-markdown@0.36.0(postcss-syntax@0.36.2)(postcss@7.0.39):
+  postcss-markdown@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39):
     dependencies:
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss-html@1.7.0)(postcss@8.4.47)
+      postcss-syntax: 0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-jsx@0.36.4(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-markdown@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-scss@2.1.1)(postcss@7.0.39)
       remark: 10.0.1
       unist-util-find-all-after: 1.0.5
 
@@ -9987,11 +9995,15 @@ snapshots:
     dependencies:
       postcss: 8.4.47
 
-  postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47):
+  postcss-syntax@0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-jsx@0.36.4(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-markdown@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-scss@2.1.1)(postcss@7.0.39):
     dependencies:
-      postcss: 8.4.47
+      postcss: 7.0.39
     optionalDependencies:
-      postcss-html: 1.7.0
+      postcss-html: 0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39)
+      postcss-jsx: 0.36.4(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39)
+      postcss-less: 3.1.4
+      postcss-markdown: 0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39)
+      postcss-scss: 2.1.1
 
   postcss-value-parser@3.3.1: {}
 
@@ -10693,10 +10705,10 @@ snapshots:
       normalize-selector: 0.2.0
       pify: 4.0.1
       postcss: 7.0.39
-      postcss-html: 0.36.0(postcss-syntax@0.36.2)(postcss@7.0.39)
-      postcss-jsx: 0.36.4(postcss-syntax@0.36.2)(postcss@7.0.39)
+      postcss-html: 0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39)
+      postcss-jsx: 0.36.4(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39)
       postcss-less: 3.1.4
-      postcss-markdown: 0.36.0(postcss-syntax@0.36.2)(postcss@7.0.39)
+      postcss-markdown: 0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39)
       postcss-media-query-parser: 0.2.3
       postcss-reporter: 6.0.1
       postcss-resolve-nested-selector: 0.1.6
@@ -10704,7 +10716,7 @@ snapshots:
       postcss-sass: 0.3.5
       postcss-scss: 2.1.1
       postcss-selector-parser: 3.1.2
-      postcss-syntax: 0.36.2(postcss-html@1.7.0)(postcss@8.4.47)
+      postcss-syntax: 0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-jsx@0.36.4(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-markdown@0.36.0(postcss-syntax@0.36.2(postcss-html@1.7.0)(postcss@8.4.47))(postcss@7.0.39))(postcss-scss@2.1.1)(postcss@7.0.39)
       postcss-value-parser: 3.3.1
       resolve-from: 4.0.0
       signal-exit: 3.0.7

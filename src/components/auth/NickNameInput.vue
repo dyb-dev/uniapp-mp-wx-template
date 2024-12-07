@@ -1,9 +1,9 @@
 <!--
  * @Author: dyb-dev
- * @Date: 2024-10-05 14:00:48
+ * @Date: 2024-11-02 01:59:59
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-02 01:54:46
- * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/NickNameInput.vue
+ * @LastEditTime: 2024-12-07 20:18:12
+ * @FilePath: /mp-wx-dyb-dev/src/components/auth/NickNameInput.vue
  * @Description: 昵称输入框组件
 -->
 

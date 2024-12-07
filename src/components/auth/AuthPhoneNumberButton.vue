@@ -1,9 +1,9 @@
 <!--
  * @Author: dyb-dev
- * @Date: 2024-10-05 14:00:48
+ * @Date: 2024-10-30 21:28:42
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 21:20:56
- * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/AuthPhoneNumberButton.vue
+ * @LastEditTime: 2024-12-07 20:18:05
+ * @FilePath: /uniapp-mp-wx-template/src/components/auth/AuthPhoneNumberButton.vue
  * @Description: 授权手机号按钮组件
 -->
 

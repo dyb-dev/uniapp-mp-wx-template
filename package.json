@@ -1,6 +1,6 @@
 {
     "name": "uniapp-mp-wx-template",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "基于`uni-app + vue3 + ts`搭建的微信小程序模板",
     "author": "dyb-dev",
     "license": "MIT",
@@ -53,6 +53,7 @@
         "@dcloudio/uni-app": "3.0.0-4020920240930001",
         "@dcloudio/uni-components": "3.0.0-4020920240930001",
         "@dcloudio/uni-mp-weixin": "3.0.0-4020920240930001",
+        "@qiun/uni-ucharts": "2.5.0-20230101",
         "@uni-helper/uni-network": "^0.19.3",
         "@uni-helper/uni-promises": "^0.2.1",
         "@vueuse/core": "^9.13.0",

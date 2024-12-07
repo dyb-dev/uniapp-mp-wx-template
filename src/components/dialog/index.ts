@@ -1,15 +1,21 @@
 /*
  * @Author: dyb-dev
- * @Date: 2024-11-26 15:51:31
+ * @Date: 2024-11-26 15:44:43
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-26 15:51:38
+ * @LastEditTime: 2024-12-07 19:36:39
  * @FilePath: /uniapp-mp-wx-template/src/components/dialog/index.ts
  * @Description: 对话框组件相关工具函数
  */
 
+/** 导出对话框类型 */
+export type * from "./Dialog.vue"
+/** 导出表单对话框类型 */
+export type * from "./FormDialog.vue"
+
 import { providerComponentOptions } from "@/components"
 
 import type { IDialogOptions, TDialogCustomKey, TDialogUnmountParam } from "./Dialog.vue"
+import type { IFormDialogOptions, TFormDialogCustomKey, TFormDialogUnmountParam } from "./FormDialog.vue"
 import type { TFilteredDefaultOptions } from "@/components"
 
 /** 显示对话框的选项 */
@@ -58,6 +64,54 @@ const useDialog = (customKey: string = "") => {
 
 }
 
-export type { TShowDialogOptions, TShowDialogResult }
+/** 显示表单对话框的选项 */
+type TShowFormDialogOptions<T extends Record<string, any>> = TFilteredDefaultOptions<IFormDialogOptions<T>>
 
-export { useDialog }
+/** 显示表单对话框的结果 */
+type TShowFormDialogResult<T extends Record<string, any>> = TFormDialogUnmountParam<T>
+
+/**
+ * 使用表单对话框
+ *
+ * @author dyb-dev
+ * @date 29/10/2024/  22:10:25
+ * @param {TFormDialogCustomKey} [customKey='__FORM_DIALOG__'] - 表单对话框唯一标识key 默认: `__FORM_DIALOG__`
+ * @returns {*} {TUseFormDialog} - 表单对话框相关函数
+ */
+const useFormDialog = (customKey: string = "") => {
+
+    const _customKey: TFormDialogCustomKey = `__FORM_DIALOG__${customKey}`
+    const _options = providerComponentOptions<TFormDialogCustomKey, IFormDialogOptions<Record<string, any>>>(_customKey)
+
+    /**
+     * 显示表单对话框
+     *
+     * @author dyb-dev
+     * @date 29/10/2024/  22:05:36
+     * @param {TShowFormDialogOptions} options - 表单对话框选项
+     * @returns {*}  {Promise<TShowFormDialogResult<T>>} - 显示表单对话框的结果
+     */
+    const showFormDialog = <T extends Record<string, any>>(
+        options: TShowFormDialogOptions<T>
+    ): Promise<TShowFormDialogResult<T>> => {
+
+        return new Promise(resolve => {
+
+            _options.value = {
+                ...options,
+                show: true,
+                unmount: (...args: TShowFormDialogResult<T>) => resolve(args)
+            } as IFormDialogOptions<Record<string, any>>
+
+        })
+
+    }
+    return {
+        showFormDialog
+    }
+
+}
+
+export type { TShowDialogOptions, TShowDialogResult, TShowFormDialogOptions }
+
+export { useDialog, useFormDialog }

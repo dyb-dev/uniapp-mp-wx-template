@@ -17,6 +17,7 @@ logs
 # 项目文件
 dist
 node_modules
+src/components/u-charts
 src/static/
 src/manifest.json
 src/pages.json

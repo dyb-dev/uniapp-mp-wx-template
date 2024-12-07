@@ -1,9 +1,9 @@
 <!--
  * @Author: dyb-dev
- * @Date: 2024-10-30 21:46:58
+ * @Date: 2024-11-05 16:23:36
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-05 16:06:26
- * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/AuthAvatarNicknameDialog.vue
+ * @LastEditTime: 2024-12-07 20:18:00
+ * @FilePath: /uniapp-mp-wx-template/src/components/auth/AuthAvatarNicknameDialog.vue
  * @Description: 授权头像昵称对话框
 -->
 
@@ -70,6 +70,12 @@ const options = ref<TAuthAvatarNicknameDialogProps>(deepClone<TAuthAvatarNicknam
 
 /** WATCH: 监听 show 的变化 */
 watch(show, value => {
+    // 当组件式调用显示时，让最新状态下的 props 覆盖 options
+    if (value) {
+
+        options.value = deepClone<TAuthAvatarNicknameDialogProps>(props)
+
+    }
     // 将 show 的值赋值给 _show
     options.value.show = value
 
@@ -83,6 +89,12 @@ const injectOptions: Ref<TAuthAvatarNicknameDialogProps> = inject(KEY, options)
 
 /** WATCH: 监听 函数式调用时注入的弹窗选项 的变化 */
 watch(injectOptions, value => {
+    // 如果使用的是组件式调用，则中断执行，避免修改options造成死循环
+    if (!value.unmount) {
+
+        return
+
+    }
 
     options.value = {
         ...options.value,

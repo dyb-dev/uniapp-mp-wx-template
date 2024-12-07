@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-04 19:51:56
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-29 16:30:56
+ * @LastEditTime: 2024-11-29 16:30:13
  * @FilePath: /uniapp-mp-wx-template/src/components/picker/Picker.vue
  * @Description: 自定义选择器组件
 -->
@@ -157,6 +157,12 @@ const options = ref<TPickerProps>(deepClone<TPickerProps>(props))
 
 /** WATCH: 监听外部 show 的变化 */
 watch(show, value => {
+    // 当组件式调用显示时，让最新状态下的 props 覆盖 options
+    if (value) {
+
+        options.value = deepClone<TPickerProps>(props)
+
+    }
 
     options.value.show = value
     // 更新 options.value.pickerValue，保证默认显示之前选择的选项
@@ -172,6 +178,12 @@ const injectOptions: Ref<TPickerProps> = inject(KEY, options)
 
 /** WATCH: 监听 函数式调用时注入的弹窗选项 的变化 */
 watch(injectOptions, value => {
+    // 如果使用的是组件式调用，则中断执行，避免修改options造成死循环
+    if (!value.unmount) {
+
+        return
+
+    }
 
     options.value = {
         ...options.value,

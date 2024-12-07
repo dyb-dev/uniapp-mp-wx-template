@@ -1,11 +1,20 @@
 /*
  * @Author: dyb-dev
- * @Date: 2024-10-30 22:46:11
+ * @Date: 2024-10-31 01:55:52
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 22:57:31
- * @FilePath: /uniapp-mp-wx-template/src/components/userInfo/index.ts
+ * @LastEditTime: 2024-12-07 20:18:17
+ * @FilePath: /uniapp-mp-wx-template/src/components/auth/index.ts
  * @Description: 用户信息组件相关工具函数
  */
+
+/** 导出授权头像按钮组件类型 */
+export type * from "./AuthAvatarButton.vue"
+/** 导出授权头像昵称对话框类型 */
+export type * from "./AuthAvatarNicknameDialog.vue"
+/** 导出授权手机号按钮组件类型 */
+export type * from "./AuthPhoneNumberButton.vue"
+/** 导出昵称输入框组件类型 */
+export type * from "./NickNameInput.vue"
 
 import { providerComponentOptions } from "@/components"
 

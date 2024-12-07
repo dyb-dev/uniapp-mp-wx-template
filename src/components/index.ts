@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-01 22:46:34
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-30 13:12:47
+ * @LastEditTime: 2024-12-07 21:25:21
  * @FilePath: /uniapp-mp-wx-template/src/components/index.ts
  * @Description: 组件模块
  */
@@ -14,8 +14,26 @@ export * from "./popup"
 /** 导出对话框组件相关工具函数 */
 export * from "./dialog"
 /** 导出用户信息组件相关工具函数 */
-export * from "./userInfo"
+export * from "./auth"
 /** 导出提供组件选项相关工具函数 */
 export * from "./provideComponentOptions"
+/** 导出标签&值栏组件 */
+export * from "./LabelValueBar.vue"
 /** 导出列表组件 */
 export * from "./List.vue"
+/** 导出表单控件组件 */
+export * from "./FormControl.vue"
+/** 导出头像昵称组件 */
+export * from "./AvatarNickname.vue"
+/** 导出单元格组件 */
+export * from "./Cell.vue"
+/** 导出标签&值栏组件 */
+export * from "./LabelValueBar.vue"
+/** 导出选项卡面板列表组件 */
+export * from "./TabsPaneList.vue"
+/** 导出上传文件组件 */
+export * from "./Uploader.vue"
+/** 导出轮播组件 */
+export * from "./SwiperPro.vue"
+/** 导出底部操作栏组件 */
+export * from "./FooterActionsBar.vue"

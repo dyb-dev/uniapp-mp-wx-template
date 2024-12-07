@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 00:21:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-27 20:04:53
+ * @LastEditTime: 2024-12-07 20:08:51
  * @FilePath: /uniapp-mp-wx-template/src/components/popup/Popup.vue
  * @Description: 基础弹窗组件
 -->
@@ -42,19 +42,19 @@ export interface IPopupOptions {
      */
     unmount: (...ares: TPopupUnmountParam) => void
     /**
-     * @description 自定义图片路径
+     * @description 弹窗背景图片路径
      */
-    customImgPath: string
+    bgImgPath: string
     /**
-     * @description 自定义图片宽度
+     * @description 弹窗背景图片宽度
      * @default 0rpx
      */
-    customImgWidth: string
+    bgImgWidth: string
     /**
-     * @description 自定义图片高度
+     * @description 弹窗背景图片高度
      * @default 0rpx
      */
-    customImgHeight: string
+    bgImgHeight: string
     /**
      * @description 是否显示自定义按钮
      * @default false
@@ -108,8 +108,8 @@ type TPopupProps = Partial<IPopupOptions>
 const props = withDefaults(defineProps<TPopupProps>(), {
     show: false,
     customKey: "",
-    customImgWidth: "0rpx",
-    customImgHeight: "0rpx",
+    bgImgWidth: "0rpx",
+    bgImgHeight: "0rpx",
     showCustomButton: false,
     customButtonWidth: "270rpx",
     customButtonHeight: "80rpx",
@@ -136,6 +136,13 @@ const options = ref<TPopupProps>(deepClone<TPopupProps>(props))
 
 /** WATCH: 监听 show 的变化 */
 watch(show, value => {
+    // 当组件式调用显示时，让最新状态下的 props 覆盖 options
+    if (value) {
+
+        options.value = deepClone<TPopupProps>(props)
+
+    }
+
     // 将 show 的值赋值给 _show
     options.value.show = value
 
@@ -149,6 +156,12 @@ const injectOptions: Ref<TPopupProps> = inject(KEY, options)
 
 /** WATCH: 监听 函数式调用时注入的弹窗选项 的变化 */
 watch(injectOptions, value => {
+    // 如果使用的是组件式调用，则中断执行，避免修改options造成死循环
+    if (!value.unmount) {
+
+        return
+
+    }
 
     options.value = {
         ...options.value,
@@ -232,8 +245,8 @@ const closed = () => {
 const customImgStyles = computed(() => {
 
     return {
-        width: options.value.customImgWidth,
-        height: options.value.customImgHeight
+        width: options.value.bgImgWidth,
+        height: options.value.bgImgHeight
     }
 
 })
@@ -276,7 +289,7 @@ export default {
     >
         <nut-transition :show="options.show" name="zoom">
             <view class="popup__main">
-                <image class="popup__main__content" :style="customImgStyles" :src="options.customImgPath" mode="scaleToFill" />
+                <image class="popup__main__content" :style="customImgStyles" :src="options.bgImgPath" mode="scaleToFill" />
 
                 <view
                     v-if="options.showCustomButton"

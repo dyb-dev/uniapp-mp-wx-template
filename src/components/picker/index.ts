@@ -2,13 +2,17 @@
  * @Author: dyb-dev
  * @Date: 2024-11-04 19:51:37
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-29 19:52:35
+ * @LastEditTime: 2024-12-07 19:38:42
  * @FilePath: /uniapp-mp-wx-template/src/components/picker/index.ts
  * @Description: 选择器组件模块
  */
 
 /** 导出选择器组件公共类型 */
-export * from "./type"
+export type * from "./type"
+/** 导出自定义选择器类型 */
+export type * from "./Picker.vue"
+/** 导出日期时间选择器类型 */
+export type * from "./DateTimePicker.vue"
 
 import { providerComponentOptions } from "@/components"
 
@@ -16,7 +20,6 @@ import type { IDateTimePickerOptions, TDateTimePickerCustomKey, TShowDateTimePic
 import type { IPickerOptions, TPickerCustomKey } from "./Picker.vue"
 import type { TShowPickerBaseResult } from "./type"
 import type { TFilteredDefaultOptions } from "@/components"
-
 
 /** 显示选择器的选项 */
 type TShowPickerOptions = TFilteredDefaultOptions<IPickerOptions>

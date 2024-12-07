@@ -189,6 +189,12 @@ const options = ref<TDateTimePickerProps>(deepClone<TDateTimePickerProps>(props)
 
 /** WATCH: 监听外部 show 的变化 */
 watch(show, value => {
+    // 当组件式调用显示时，让最新状态下的 props 覆盖 options
+    if (value) {
+
+        options.value = deepClone<TDateTimePickerProps>(props)
+
+    }
 
     options.value.show = value
     // 更新 options.value.pickerValue，保证默认显示之前选择的选项
@@ -204,6 +210,12 @@ const injectOptions: Ref<TDateTimePickerProps> = inject(KEY, options)
 
 /** WATCH: 监听 函数式调用时注入的弹窗选项 的变化 */
 watch(injectOptions, value => {
+    // 如果使用的是组件式调用，则中断执行，避免修改options造成死循环
+    if (!value.unmount) {
+
+        return
+
+    }
 
     options.value = {
         ...options.value,
