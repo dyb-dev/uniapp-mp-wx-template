@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-26 15:45:03
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 19:34:14
+ * @LastEditTime: 2024-12-17 18:55:50
  * @FilePath: /uniapp-mp-wx-template/src/components/dialog/Dialog.vue
  * @Description: 对话框基础组件
 -->
@@ -220,7 +220,7 @@ watch(injectOptions, value => {
     }
 
     options.value = {
-        ...options.value,
+        ...props,
         ...deepClone<TDialogProps>(value)
     }
 

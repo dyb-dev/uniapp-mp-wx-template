@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-05 16:23:36
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:18:00
+ * @LastEditTime: 2024-12-17 18:55:34
  * @FilePath: /uniapp-mp-wx-template/src/components/auth/AuthAvatarNicknameDialog.vue
  * @Description: 授权头像昵称对话框
 -->
@@ -97,7 +97,7 @@ watch(injectOptions, value => {
     }
 
     options.value = {
-        ...options.value,
+        ...props,
         ...deepClone<TAuthAvatarNicknameDialogProps>(value)
     }
 

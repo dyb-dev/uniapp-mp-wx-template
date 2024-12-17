@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 00:21:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:08:51
+ * @LastEditTime: 2024-12-17 18:57:13
  * @FilePath: /uniapp-mp-wx-template/src/components/popup/Popup.vue
  * @Description: 基础弹窗组件
 -->
@@ -164,7 +164,7 @@ watch(injectOptions, value => {
     }
 
     options.value = {
-        ...options.value,
+        ...props,
         ...deepClone<TPopupProps>(value)
     }
 
