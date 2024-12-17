@@ -2,8 +2,8 @@
  * @Author: dyb-dev
  * @Date: 2024-11-02 01:59:59
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:18:12
- * @FilePath: /mp-wx-dyb-dev/src/components/auth/NickNameInput.vue
+ * @LastEditTime: 2024-12-17 21:42:31
+ * @FilePath: /uniapp-mp-wx-template/src/components/auth/NickNameInput.vue
  * @Description: 昵称输入框组件
 -->
 
@@ -26,6 +26,11 @@ export interface INickNameInputProps {
  * @default '点击输入昵称'
  */
     placeholder?: string
+/**
+ * 输入框的 placeholder 样式
+ *
+ */
+    placeholderStyle?: string
 /**
  * @description 输入框的宽度
  * @default '100%'
@@ -56,6 +61,7 @@ export interface INickNameInputProps {
 const props = withDefaults(defineProps<INickNameInputProps>(), {
     modelValue: "",
     placeholder: "点击输入昵称",
+    placeholderStyle: "",
     width: "100%",
     height: "100%",
     color: "#323233",
@@ -158,6 +164,7 @@ export default {
         // 虚拟化组件节点，使组件外部样式能够直接作用到组件内部的第一层节点
         // eslint-disable-next-line padded-blocks
         virtualHost: true,
+        // eslint-disable-next-line padded-blocks
         // 允许父组件样式穿透到子组件
         styleIsolation: "shared"
     }
@@ -170,6 +177,7 @@ export default {
         :style="style"
         :value="modelValue"
         :placeholder="props.placeholder"
+        :placeholder-style="props.placeholderStyle"
         :disabled="disabled"
         @touchstart="requirePrivacyAuthorize"
         @input="onChangeNickName"

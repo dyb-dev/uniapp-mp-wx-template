@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-12-07 19:09:10
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 19:09:15
+ * @LastEditTime: 2024-12-17 21:39:47
  * @FilePath: /uniapp-mp-wx-template/src/components/FormControl.vue
  * @Description: 表单控件组件
 -->
@@ -38,13 +38,19 @@ export interface IFormControlProps extends /* @vue-ignore */ Omit<IUploaderProps
  *
  * @default ''
  */
-    label: string
+    label?: string
 /**
  * 表单控件占位符
  *
  * @default ''
  */
     placeholder?: string
+/**
+ * 占位符颜色
+ *
+ * @default '#d8d8d8'
+ */
+    placeholderColor?: string
 /**
  * 是否必填
  *
@@ -70,7 +76,7 @@ export interface IFormControlProps extends /* @vue-ignore */ Omit<IUploaderProps
 /**
  * 是否显示底部边框
  *
- * @default true
+ * @default false
  */
     borderBottom?: boolean
 /**
@@ -123,10 +129,11 @@ const props = withDefaults(defineProps<IFormControlProps>(), {
     type: "text",
     label: "",
     placeholder: "",
+    placeholderColor: "#d8d8d8",
     required: true,
     showRedAsterisk: false,
     readonly: false,
-    borderBottom: true,
+    borderBottom: false,
     rightIcon: "",
     limitShow: false,
     inputBackground: "transparent",
@@ -174,6 +181,13 @@ const formControlInputBoxStyle = computed(() => {
 
 })
 
+/** COMPUTED: placeholder 样式 */
+const placeholderStyle = computed(() => {
+
+    return `color: ${props.placeholderColor};`
+
+})
+
 /** EVENT: 点击控件 */
 const onClickControl = () => {
 
@@ -201,7 +215,7 @@ export default {
 
 <template>
     <view class="form-control" @tap="onClickControl" :style="formControlStyle">
-        <view class="form-control__label" :style="formControlLabelStyle">
+        <view v-if="props.label" class="form-control__label" :style="formControlLabelStyle">
             <text v-if="props.required && props.showRedAsterisk" class="form-control__label__tag">*</text>
 
             {{ props.label }}
@@ -214,6 +228,7 @@ export default {
                     class="form-control__input-box__input"
                     v-model="modelValue"
                     :placeholder="props.placeholder"
+                    :placeholder-style="placeholderStyle"
                     :max-length="props.maxlength"
                     :limit-show="props.limitShow"
                     :readonly="props.readonly"
@@ -228,6 +243,7 @@ export default {
                     v-model="modelValue"
                     :placeholder="props.placeholder"
                     :text-align="props.textAlign"
+                    :placeholder-style="placeholderStyle"
                     background="transparent"
                 />
 
@@ -239,6 +255,7 @@ export default {
                     v-model="modelValue"
                     :type="props.type"
                     :placeholder="props.placeholder"
+                    :placeholder-style="placeholderStyle"
                     :readonly="props.readonly"
                     :max-length="props.maxlength"
                     :border="false"
