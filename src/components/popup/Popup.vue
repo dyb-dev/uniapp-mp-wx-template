@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 00:21:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-17 18:57:13
+ * @LastEditTime: 2024-12-17 19:35:49
  * @FilePath: /uniapp-mp-wx-template/src/components/popup/Popup.vue
  * @Description: 基础弹窗组件
 -->
@@ -234,7 +234,7 @@ const close = async(_actionType: TPopupActionType): Promise<boolean> => {
 }
 
 /** EVENT: 关闭完成回调 */
-const closed = () => {
+const onClosed = () => {
 
     options.value.unmount?.(actionType.value)
     emits(actionType.value)
@@ -285,9 +285,8 @@ export default {
         :custom-style="{ background: 'transparent' }"
         :overlay-style="{ background: 'rgba(0, 0, 0, 0.3)' }"
         :close-on-click-overlay="false"
-        @closed="closed"
     >
-        <nut-transition :show="options.show" name="zoom">
+        <nut-transition :show="options.show" name="zoom" @after-leave="onClosed">
             <view class="popup__main">
                 <image class="popup__main__content" :style="customImgStyles" :src="options.bgImgPath" mode="scaleToFill" />
 

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-26 15:45:03
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-17 18:55:50
+ * @LastEditTime: 2024-12-17 19:35:20
  * @FilePath: /uniapp-mp-wx-template/src/components/dialog/Dialog.vue
  * @Description: 对话框基础组件
 -->
@@ -341,9 +341,8 @@ export default {
         @open="emits('open')"
         @opened="emits('opened')"
         @close="emits('close', actionType)"
-        @closed="onClosed"
     >
-        <nut-transition :custom-style="transitionStyle" :show="options.show" :name="options.transition">
+        <nut-transition :custom-style="transitionStyle" :show="options.show" :name="options.transition" @after-leave="onClosed">
             <view class="dialog__main" :style="{ width: options.width }">
                 <view v-if="options.title" class="dialog__main__title">
                     {{ options.title }}
