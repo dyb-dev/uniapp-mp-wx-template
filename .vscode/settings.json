@@ -337,8 +337,21 @@
         "nutui-iconfont",
         "dcloudio",
         "getphonenumber",
-        "chooseavatar"
-    ]
+        "chooseavatar",
+        "gutterpreview"
+    ],
+
+    // #endregion
+
+    // #region CODE: Image Preview 插件配置
+
+    // 解析引用的资源
+    "gutterpreview.enableReferenceLookup": true,
+    // 引用路径映射
+    "gutterpreview.paths": {
+        "/static": "src/static",
+        "/subPackages": "src/subPackages"
+    }
 
     // #endregion
 }
