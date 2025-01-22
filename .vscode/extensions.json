@@ -38,16 +38,12 @@
         "kisstkondoros.vscode-gutter-preview",
         // Import Cost 插件
         "wix.vscode-import-cost",
-        // IntelliSense for CSS class names in HTML 插件
-        "zignd.html-css-class-completion",
         // JavaScript (ES6) code snippets 插件
         "xabikos.javascriptsnippets",
         // koroFileHeader 插件
         "obkoro1.korofileheader",
         // Live Server 插件
         "ritwickdey.liveserver",
-        // Live Share 插件
-        "ms-vsliveshare.vsliveshare",
         // Local History 插件
         "xyz.local-history",
         // markdownlint 插件
