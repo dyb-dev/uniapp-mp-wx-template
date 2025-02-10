@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-19 16:27:38
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-25 14:41:40
+ * @LastEditTime: 2025-02-10 20:17:46
  * @FilePath: /uniapp-mp-wx-template/src/components/layout/Layout.vue
  * @Description: 页面布局容器
  */
@@ -120,9 +120,9 @@ const navBarLeftSlotName = "nav-bar-left"
 const navBarTitleSlotName = "nav-bar-title"
 
 /** STATIC: 导航栏组件左侧插槽名称 */
-const navBarComponentLeftSlotName = slots[navBarLeftSlotName] ? "left" : ""
+const navBarComponentLeftSlotName = (slots[navBarLeftSlotName] ? "left" : "") as string
 /** STATIC: 导航栏组件标题插槽名称 */
-const navBarComponentTitleSlotName = slots[navBarTitleSlotName] ? "title" : ""
+const navBarComponentTitleSlotName = (slots[navBarTitleSlotName] ? "title" : "") as string
 
 /** REF: NavBar 实例 */
 const navBarInstance = ref<InstanceType<typeof NavBar>>()

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 13:56:46
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-30 13:12:32
+ * @LastEditTime: 2025-02-10 20:16:33
  * @FilePath: /uniapp-mp-wx-template/tsconfig.app.json
  * @Description: app环境ts配置
  */
@@ -22,7 +22,8 @@
         "baseUrl": "./",
         // 配置路径映射，简化模块导入路径
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "nutui-uniapp/components/*.vue": [""]
         }
     },
     // Volar（Vue 3 的 TypeScript 支持插件）相关的配置项
