@@ -17,12 +17,14 @@ import type { IAuthErrorOptions } from "@/types"
 
 export interface INickNameInputProps {
 /**
- * @description 当前输入的昵称
+ * 当前输入的昵称
+ *
  * @default ''
  */
     modelValue?: string
 /**
- * @description 输入框的 placeholder
+ * 输入框的 placeholder
+ *
  * @default '点击输入昵称'
  */
     placeholder?: string
@@ -32,27 +34,32 @@ export interface INickNameInputProps {
  */
     placeholderStyle?: string
 /**
- * @description 输入框的宽度
+ * 输入框的宽度
+ *
  * @default '100%'
  */
     width?: string
 /**
- * @description 输入框的高度
+ * 输入框的高度
+ *
  * @default '100%'
  */
     height?: string
 /**
- * @description 字体颜色
+ * 字体颜色
+ *
  * @default '#323233'
  */
     color?: string
 /**
- * @description 文本对齐方式
+ * 文本对齐方式
+ *
  * @default 'center'
  */
     textAlign?: "left" | "center" | "right"
 /**
- * @description 输入框的背景
+ * 输入框的背景
+ *
  * @default '#ffffff'
  */
     background?: string

@@ -282,7 +282,7 @@ const navigateToPage = (options: INavigateToPageOptions) => {
 
     }
 
-    /** STATIC: tabBar列表 */
+    /** CONST: tabBar列表 */
     // @ts-ignore
     const _tabBarList = pagesJson?.tabBar?.list || []
 
@@ -340,7 +340,7 @@ interface INavigateToWebViewOptions extends TModifyProperties<INavigateToPageOpt
     enCode?: boolean
 }
 
-/** STATIC: h5网址的key */
+/** CONST: h5网址的key */
 const WEB_URL_KEY = "webUrl"
 
 /**
@@ -438,7 +438,7 @@ enum ENavigateToTargetType {
     LOGIN
 }
 
-/** STATIC: 导航到目标的配置列表 */
+/** CONST: 导航到目标的配置列表 */
 const NAVIGATE_TO_TARGET_CONFIG_LIST = [
     {
         type: ENavigateToTargetType.PAGE,

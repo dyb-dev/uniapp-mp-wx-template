@@ -27,76 +27,90 @@ export type TPopupCustomKey = `__POPUP__${string}`
 /** 组件选项 */
 export interface IPopupOptions {
     /**
-     * @description 是否显示
+     * 是否显示
+     *
      * @default false
      */
     show: boolean
     /**
-     * @description 函数式调用时有效 组件唯一标识key
+     * 函数式调用时有效 组件唯一标识key
+     *
      * @default ''
      */
     customKey?: string
     /**
-     * @description 函数式调用时有效 卸载组件回调
+     * 函数式调用时有效 卸载组件回调
+     *
      * @param ares 卸载回调参数
      */
     unmount: (...ares: TPopupUnmountParam) => void
     /**
-     * @description 弹窗背景图片路径
+     * 弹窗背景图片路径
      */
     bgImgPath: string
     /**
-     * @description 弹窗背景图片宽度
+     * 弹窗背景图片宽度
+     *
      * @default 0rpx
      */
     bgImgWidth: string
     /**
-     * @description 弹窗背景图片高度
+     * 弹窗背景图片高度
+     *
      * @default 0rpx
      */
     bgImgHeight: string
     /**
-     * @description 是否显示自定义按钮
+     * 是否显示自定义按钮
+     *
      * @default false
      */
     showCustomButton?: boolean
     /**
-     * @description 自定义按钮宽度
+     * 自定义按钮宽度
+     *
      * @default 270rpx
      */
     customButtonWidth?: string
     /**
-     * @description 自定义按钮高度
+     * 自定义按钮高度
+     *
      * @default 80rpx
      */
     customButtonHeight?: string
     /**
-     * @description 自定义按钮距离顶部距离
+     * 自定义按钮距离顶部距离
+     *
      * @default 0rpx
      */
     customButtonTop?: string
     /**
-     * @description 自定义按钮距离左边距离
+     * 自定义按钮距离左边距离
+     *
      * @default 50%
      */
     customButtonLeft?: string
     /**
-     * @description 自定义按钮以自身宽度为基准的水平方向偏移量
+     * 自定义按钮以自身宽度为基准的水平方向偏移量
+     *
      * @default -50%
      */
     customButtonTranslateXOffset?: string
     /**
-     * @description 自定义按钮以自身高度为基准的垂直方向偏移量
+     * 自定义按钮以自身高度为基准的垂直方向偏移量
+     *
      * @default 0%
      */
     customButtonTranslateYOffset?: string
     /**
-     * @description 是否显示关闭按钮
+     * 是否显示关闭按钮
+     *
      * @default true
      */
     showCloseButton?: boolean
     /**
-     * @description 弹窗关闭回调关闭
+     * 弹窗关闭回调关闭
+     *
      * @param actionType 动作类型
      */
     beforeClose?: (actionType: TPopupActionType) => boolean | Promise<boolean>
@@ -148,7 +162,7 @@ watch(show, value => {
 
 })
 
-/** STATIC: 接收选项的key */
+/** CONST: 接收选项的key */
 const KEY: TPopupCustomKey = `__POPUP__${options.value.customKey || ""}`
 
 /** REF: 函数式调用时注入的弹窗选项 */
@@ -170,7 +184,7 @@ watch(injectOptions, value => {
 
 })
 
-/** STATIC: 是否正在执行 beforeClose */
+/** CONST: 是否正在执行 beforeClose */
 let isBeforeClose = false
 
 /** REF: 动作类型 */

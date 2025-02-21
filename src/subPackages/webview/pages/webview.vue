@@ -18,7 +18,7 @@ import type { WebViewOnMessageEvent } from "@uni-helper/uni-app-types"
 /** REF: webView 的url */
 const webUrl = ref<string>("")
 
-/** STATIC: 当前页面路径 开头带 `/` */
+/** CONST: 当前页面路径 开头带 `/` */
 let currentPagePath: string
 
 /** LIFECYCLE: 页面数据初始化完成 */

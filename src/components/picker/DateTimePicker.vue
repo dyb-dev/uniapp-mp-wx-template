@@ -31,27 +31,31 @@ export type TDateTimePickerCustomKey = `__DATE_TIME_PICKER__${string}`
 
 export interface IDateTimePickerOptions {
     /**
-     * @description 是否显示
+     * 是否显示
+     *
      * @default false
      */
     show: boolean
     /**
-     * @description 函数式调用时有效 组件唯一标识key
+     * 函数式调用时有效 组件唯一标识key
+     *
      * @default ''
      */
     customKey?: string
     /**
-     * @description 函数式调用时有效 卸载组件回调
+     * 函数式调用时有效 卸载组件回调
+     *
      * @param ares 卸载回调参数
      */
     unmount: (...ares: TDateTimePickerUnmountParam) => void
     /**
-     * @description 当前选中项对应的值
+     * 当前选中项对应的值
+     *
      * @default 当前日期时间
      */
     pickerValue?: Date
     /**
-     * @description 日期时间类型
+     * 日期时间类型
      * - year-month - 年月
      * - month-day - 月日
      * - hour-minute - 时分
@@ -59,75 +63,89 @@ export interface IDateTimePickerOptions {
      * - time - 时分秒
      * - datehour - 年月日时
      * - datetime - 年月日时分
+     *
      * @default 'datetime'
      */
     type?: DatePickerType
     /**
-     * @description 分钟步进值
+     * 分钟步进值
+     *
      * @default 1
      */
     minuteStep?: number
     /**
-     * @description 可选的最小时间，精确到日
+     * 可选的最小时间，精确到日
+     *
      * @default 十年前
      */
     minDate?: Date
     /**
-     * @description 可选的最大时间，精确到日
+     * 可选的最大时间，精确到日
+     *
      * @default 十年后
      */
     maxDate?: Date
     /**
-     * @description 顶部栏标题
+     * 顶部栏标题
+     *
      * @default ''
      */
     title?: string
     /**
-     * @description 确认按钮文字，设置为空字符串可以隐藏按钮
+     * 确认按钮文字，设置为空字符串可以隐藏按钮
+     *
      * @default 确认
      */
     confirmButtonText?: string
     /**
-     * @description 取消按钮文字，设置为空字符串可以隐藏按钮
+     * 取消按钮文字，设置为空字符串可以隐藏按钮
+     *
      * @default 取消
      */
     cancelButtonText?: string
     /**
-     * @description 是否显示中文
+     * 是否显示中文
+     *
      * @default true
      */
     showChinese?: boolean
     /**
-     * @description 可见的选项个数
+     * 可见的选项个数
+     *
      * @default 6
      */
     visibleOptionNum?: number
     /**
-     * @description 选项高度，支持 px, vw, vh, rem 单位，默认 px
+     * 选项高度，支持 px, vw, vh, rem 单位，默认 px
+     *
      * @default 44
      */
     optionHeight?: number | string
     /**
-     * @description 快速滑动时惯性滚动的时长，单位 ms
+     * 快速滑动时惯性滚动的时长，单位 ms
+     *
      * @default 1000
      */
     swipeDuration?: number | string
     /**
-     * @description 选项过滤函数
+     * 选项过滤函数
+     *
      * @param type 选项类型
      * @param options 当前可选项
      * @returns {PickerOption[]} 返回过滤后的选项
      */
     filter?: (type: DatePickerColumnType, options: PickerOption[]) => PickerOption[]
     /**
-     * @description 选项格式化函数
+     * 选项格式化函数
+     *
      * @param type 选项类型
      * @param option 当前选项
      * @returns {PickerOption} 返回格式化后的选项
      */
     formatter?: (type: DatePickerColumnType, option: PickerOption) => PickerOption
     /**
-     * @description 关闭前的回调函数，返回 false 可阻止关闭，支持返回 Promise
+     * 关闭前的回调函数，返回 false 可阻止关闭，支持返回 Promise
+     *
      * @param selectedResult 选择结果
      * @returns {boolean | Promise<boolean>} 返回 false 可阻止关闭
      */
@@ -202,7 +220,7 @@ watch(show, value => {
 
 })
 
-/** STATIC: 接收选项的key */
+/** CONST: 接收选项的key */
 const KEY: TDateTimePickerCustomKey = `__DATE_TIME_PICKER__${options.value.customKey || ""}`
 
 /** REF: 函数式调用时注入的弹窗选项 */

@@ -2,12 +2,12 @@
  * @Author: dyb-dev
  * @Date: 2024-10-06 15:04:04
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-15 23:06:22
- * @FilePath: /uniapp-mp-wx-template/src/utils/image/index.ts
- * @Description: 图片相关工具函数
+ * @LastEditTime: 2025-02-21 21:25:40
+ * @FilePath: /uniapp-mp-wx-template/src/utils/media/index.ts
+ * @Description: 媒体相关工具函数
  */
 
-/** STATIC: 常见的图片扩展名 */
+/** CONST: 常见的图片扩展名 */
 const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "gif", "bmp", "webp", "svg"]
 
 /**

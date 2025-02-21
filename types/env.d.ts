@@ -1,6 +1,6 @@
 /** vite环境变量 */
 interface ImportMetaEnv {
-    // STATIC: 共用
+    // CONST: 共用
     /** 组件目录 默认:components */
     readonly VITE_COMPONENT_DIR: string
     /** 页面目录 默认:pages */
@@ -35,7 +35,7 @@ interface ImportMetaEnv {
      */
     readonly VITE_USER_NODE_ENV: "development" | "production"
 
-    // STATIC: wx小程序相关
+    // CONST: wx小程序相关
     /** wx小程序appid */
     readonly VITE_MP_WX_APPID: string
 }

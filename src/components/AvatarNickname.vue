@@ -2,57 +2,64 @@
  * @Author: dyb-dev
  * @Date: 2024-12-07 19:43:32
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:17:42
+ * @LastEditTime: 2025-02-21 20:44:48
  * @FilePath: /uniapp-mp-wx-template/src/components/AvatarNickname.vue
  * @Description: 头像昵称组件
 -->
 
 <script setup lang="ts">
 /**
- * @description 头像和昵称组件的 Props 接口
+ * 头像和昵称组件的 Props 接口
  */
 export interface IAvatarNicknameProps {
 /**
- * @description 头像图片路径
+ * 头像图片路径
  */
     avatar: string
 /**
- * @description 昵称
+ * 昵称
  */
     nickname: string
 /**
- * @description 布局方式
+ * 布局方式
  * - 'horizontal' | 'vertical'
+ *
  * @default 'vertical'
  */
     layout?: "horizontal" | "vertical"
 /**
- * @description 头像和昵称的间隔
+ * 头像和昵称的间隔
+ *
  * @default '16rpx'
  */
     gap?: string
 /**
- * @description 头像图片大小
+ * 头像图片大小
+ *
  * @default '163rpx'
  */
     avatarSize?: string
 /**
- * @description 字体大小
+ * 字体大小
+ *
  * @default '32rpx'
  */
     fontSize?: string
 /**
- * @description 字体颜色
+ * 字体颜色
+ *
  * @default '#000000'
  */
     fontColor?: string
 /**
- * @description 字体加粗
+ * 字体加粗
+ *
  * @default '500'
  */
     fontWeight?: string
 /**
- * @description 文字对齐方式
+ * 文字对齐方式
+ *
  * @default 'center'
  */
     textAlign?: string

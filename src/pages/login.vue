@@ -23,7 +23,7 @@ interface IPageParams {
     [key: string]: any
 }
 
-/** STATIC: 页面入参 */
+/** CONST: 页面入参 */
 let pageParams: IPageParams
 
 /** LIFECYCLE: 页面数据初始化完成 */

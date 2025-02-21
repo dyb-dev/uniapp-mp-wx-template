@@ -17,42 +17,46 @@ import { navigateToPage, isImagePath } from "@/utils"
 /** TabBar 列表项 */
 export interface TTabBarItem {
 /**
- * @description 页面路径
+ * 页面路径
  */
     pagePath: SwitchTabOptions["url"]
 /**
- * @description tab 文本
+ * tab 文本
  */
     text: string
 /**
- * @description 未选中时的icon，可传图标名字或图片路径
+ * 未选中时的icon，可传图标名字或图片路径
  */
     icon: string
 /**
- * @description 选中时的icon，可传图标名字或图片路径
+ * 选中时的icon，可传图标名字或图片路径
  */
     selectedIcon: string
 /**
- * @description 自定义 icon 字体基础类名
- * @description 如果 `icon` 和 `selectedIcon` 为icon名时，有效
+ * 自定义 icon 字体基础类名
+ * 如果 `icon` 和 `selectedIcon` 为icon名时，有效
+ *
  * @default 'nut-icon'
  */
     classPrefix?: string
 /**
- * @description 自定义 icon 类名前缀，用于使用自定义图标
- * @description 如果 `icon` 和 `selectedIcon` 为icon名时，有效
+ * 自定义 icon 类名前缀，用于使用自定义图标
+ * 如果 `icon` 和 `selectedIcon` 为icon名时，有效
+ *
  * @default 'nutui-iconfont'
  */
     fontClassName?: string
 /**
- * @description 是否显示右上角圆点
- * @description 如果为 `true` 时，则 `dotValue` 会无效
+ * 是否显示右上角圆点
+ * 如果为 `true` 时，则 `dotValue` 会无效
+ *
  * @default false
  */
     showDot?: boolean
 /**
- * @description tabBar 右上角点的值
- * @description 如果 > 0 则显示数字，当 `showDot` 为false时有效
+ * tabBar 右上角点的值
+ * 如果 > 0 则显示数字，当 `showDot` 为false时有效
+ *
  * @default 0
  */
     dotValue?: number
@@ -60,90 +64,104 @@ export interface TTabBarItem {
 
 export interface ITabBarProps {
     /**
-     * @description 当前选中的 tab 索引
+     * 当前选中的 tab 索引
+     *
      * @default 0
      */
     modelValue: number
     /**
-     * @description TabBar 高度
-     * @description 如未传入，则会根据 `pages.json` 相关配置来设置
-     * @description 优先级为：`props.height` > `tabBar.height`
+     * TabBar 高度
+     * 如未传入，则会根据 `pages.json` 相关配置来设置
+     * 优先级为：`props.height` > `tabBar.height`
+     *
      * @default 104rpx
      */
     height?: string
     /**
-     * @description TabBar 背景，支持普通颜色或渐变颜色或背景图片
-     * @description 如未传入，则会根据 `pages.json` 相关配置来设置
-     * @description 优先级为：`props.background` > `tabBar.backgroundColor`
+     * TabBar 背景，支持普通颜色或渐变颜色或背景图片
+     * 如未传入，则会根据 `pages.json` 相关配置来设置
+     * 优先级为：`props.background` > `tabBar.backgroundColor`
+     *
      * @default #fff
      */
     background?: string
     /**
-     * @description Tab 上文字和图标的默认颜色
-     * @description 如未传入，则会根据 `pages.json` 相关配置来设置
-     * @description 优先级为：`props.color` > `tabBar.color`
+     * Tab 上文字和图标的默认颜色
+     * 如未传入，则会根据 `pages.json` 相关配置来设置
+     * 优先级为：`props.color` > `tabBar.color`
+     *
      * @default #7d7e80
      */
     color?: string
     /**
-     * @description Tab 上文字和图标的选中时颜色
-     * @description 如未传入，则会根据 `pages.json` 相关配置来设置
-     * @description 优先级为：`props.selectedColor` > `tabBar.selectedColor`
+     * Tab 上文字和图标的选中时颜色
+     * 如未传入，则会根据 `pages.json` 相关配置来设置
+     * 优先级为：`props.selectedColor` > `tabBar.selectedColor`
+     *
      * @default #1989fa
      */
     selectedColor?: string
     /**
-     * @description TabBar 上边框颜色
-     * @description 如未传入，则会根据 `pages.json` 相关配置来设置
-     * @description 优先级为：`props.borderTopColor` > `tabBar.borderStyle`
+     * TabBar 上边框颜色
+     * 如未传入，则会根据 `pages.json` 相关配置来设置
+     * 优先级为：`props.borderTopColor` > `tabBar.borderStyle`
+     *
      * @default #eee
      */
     borderTopColor?: string
     /**
-     * @description 文字大小
-     * @description 如未传入，则会根据 `pages.json` 相关配置来设置
-     * @description 优先级为：`props.fontSize` > `tabBar.fontSize`
+     * 文字大小
+     * 如未传入，则会根据 `pages.json` 相关配置来设置
+     * 优先级为：`props.fontSize` > `tabBar.fontSize`
+     *
      * @default 20rpx
      */
     fontSize?: string
     /**
-     * @description icon 或者 图片 大小，如果传入图片路径，则会设置图片宽高相等
-     * @description 如未传入，则会根据 `pages.json` 相关配置来设置
-     * @description 优先级为：`props.iconSize` > `tabBar.iconWidth`
+     * icon 或者 图片 大小，如果传入图片路径，则会设置图片宽高相等
+     * 如未传入，则会根据 `pages.json` 相关配置来设置
+     * 优先级为：`props.iconSize` > `tabBar.iconWidth`
+     *
      * @default 40rpx
      */
     iconSize?: string
     /**
-     * @description icon 和文字的间距
-     * @description 如未传入，则会根据 `pages.json` 相关配置来设置
-     * @description 优先级为：`props.spacing` > `tabBar.spacing`
+     * icon 和文字的间距
+     * 如未传入，则会根据 `pages.json` 相关配置来设置
+     * 优先级为：`props.spacing` > `tabBar.spacing`
+     *
      * @default 0rpx
      */
     spacing?: string
     /**
-     * @description tabBar 右上角点背景颜色
-     * @description 如未传入，则会根据 `pages.json` 相关配置来设置
-     * @description 优先级为：`props.dotColor` > `tabBar.redDotColor`
+     * tabBar 右上角点背景颜色
+     * 如未传入，则会根据 `pages.json` 相关配置来设置
+     * 优先级为：`props.dotColor` > `tabBar.redDotColor`
+     *
      * @default linear-gradient(135deg, #fa2c19 0%, #fa6419 100%)
      */
     dotColor?: string
     /**
-     * @description tabBar 右上角点的值为数字时，最大值
+     * tabBar 右上角点的值为数字时，最大值
+     *
      * @default 99
      */
     dotMaxValue?: number
     /**
-     * @description 是否在 tabBar 位置生成一个等高的占位元素
+     * 是否在 tabBar 位置生成一个等高的占位元素
+     *
      * @default true
      */
     placeholder?: boolean
     /**
-     * @description 是否固定在底部
+     * 是否固定在底部
+     *
      * @default true
      */
     fixed?: boolean
     /**
-     * @description TabBar 列表项
+     * TabBar 列表项
+     *
      * @default []
      */
     list: TTabBarItem[]
@@ -168,7 +186,7 @@ const emits = defineEmits<{
 /** REF: 双向绑定 */
 const { modelValue } = useVModels(props, emits)
 
-/** STATIC: tabBar 配置 */
+/** CONST: tabBar 配置 */
 const TAB_BAR_CONFIG = pagesJson?.tabBar || null
 
 /** COMPUTED: tab-bar 高度 */

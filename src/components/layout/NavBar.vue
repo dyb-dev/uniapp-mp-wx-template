@@ -20,106 +20,121 @@ export type TNavBarLeftIconType = "back" | "home" | ""
 
 export interface INavBarProps {
 /**
- * @description 导航栏背景，支持普通颜色或渐变颜色或背景图片
- * @description 如未传入，则会根据 `pages.json` 相关配置来设置
- * @description 优先级为：`props.background` > `style.navigationBarBackgroundColor` > `globalStyle.navigationBarBackgroundColor`
+ * 导航栏背景，支持普通颜色或渐变颜色或背景图片
+ * 如未传入，则会根据 `pages.json` 相关配置来设置
+ * 优先级为：`props.background` > `style.navigationBarBackgroundColor` > `globalStyle.navigationBarBackgroundColor`
+ *
  * @default #fff
  */
     background?: string
 /**
- * @description 左侧icon 和 标题的颜色
- * @description 如未传入，则会根据 `pages.json` 相关配置来设置
- * @description 优先级为：`props.color` > `style.navigationBarTextStyle` > `globalStyle.navigationBarTextStyle`
+ * 左侧icon 和 标题的颜色
+ * 如未传入，则会根据 `pages.json` 相关配置来设置
+ * 优先级为：`props.color` > `style.navigationBarTextStyle` > `globalStyle.navigationBarTextStyle`
+ *
  * @default #000
  */
     color?: string
 /**
- * @description 左侧 返回 icon，可传图标名字或图片路径
+ * 左侧 返回 icon，可传图标名字或图片路径
+ *
  * @default rect-left
  */
     backIcon?: string
 /**
- * @description 左侧 返回 icon 的大小
- * @description 传入`icon`时，对应icon的大小，默认: 35rpx
- * @description 传入`图片路径`时，对应图片的宽度大小，图片高度会根据图片比例自适应，默认: 图片原始宽度
+ * 左侧 返回 icon 的大小
+ * 传入`icon`时，对应icon的大小，默认: 35rpx
+ * 传入`图片路径`时，对应图片的宽度大小，图片高度会根据图片比例自适应，默认: 图片原始宽度
  */
     backIconSize?: string
 /**
- * @description 左侧 返回 icon 字体类名
+ * 左侧 返回 icon 字体类名
+ *
  * @default nutui-iconfont
  */
     backIconFontClassName?: string
 /**
- * @description 左侧 返回 icon 前缀
+ * 左侧 返回 icon 前缀
+ *
  * @default nut-icon
  */
     backIconClassPrefix?: string
 /**
- * @description 左侧 首页 icon，可传图标名字或图片路径
+ * 左侧 首页 icon，可传图标名字或图片路径
+ *
  * @default home
  */
     homeIcon?: string
 /**
- * @description 左侧 首页 icon 的大小
- * @description 传入`icon`时，对应icon的大小，默认: 35rpx
- * @description 传入`图片路径`时，对应图片的宽度大小，图片高度会根据图片比例自适应，默认: 图片原始宽度
+ * 左侧 首页 icon 的大小
+ * 传入`icon`时，对应icon的大小，默认: 35rpx
+ * 传入`图片路径`时，对应图片的宽度大小，图片高度会根据图片比例自适应，默认: 图片原始宽度
  */
     homeIconSize?: string
 /**
- * @description 左侧 首页 icon 字体类名
+ * 左侧 首页 icon 字体类名
+ *
  * @default nutui-iconfont
  */
     homeIconFontClassName?: string
 /**
- * @description 左侧 首页 icon 前缀
+ * 左侧 首页 icon 前缀
+ *
  * @default nut-icon
  */
     homeIconClassPrefix?: string
 /**
- * @description 标题，可传文本或图片链接
- * @description 如未传入，则会根据 `pages.json` 相关配置来设置
- * @description 优先级为：`props.title` > `style.navigationBarTitleText` > `globalStyle.navigationBarTitleText`
+ * 标题，可传文本或图片链接
+ * 如未传入，则会根据 `pages.json` 相关配置来设置
+ * 优先级为：`props.title` > `style.navigationBarTitleText` > `globalStyle.navigationBarTitleText`
+ *
  * @default ''
  */
     title?: string
 /**
- * @description 标题的大小
- * @description 传入`文本`时，对应标题的字体大小，默认: 32rpx
- * @description 传入`图片路径`时，对应图片的宽度大小，图片高度会根据图片比例自适应，默认: 图片原始宽度
+ * 标题的大小
+ * 传入`文本`时，对应标题的字体大小，默认: 32rpx
+ * 传入`图片路径`时，对应图片的宽度大小，图片高度会根据图片比例自适应，默认: 图片原始宽度
  */
     titleSize?: string
 /**
- * @description 是否显示左侧内容
+ * 是否显示左侧内容
+ *
  * @default true
  */
     showLeft?: boolean
 /**
- * @description 是否固定在顶部
+ * 是否固定在顶部
+ *
  * @default true
  */
     fixed?: boolean
 /**
- * @description 是否在导航栏位置生成一个等高的占位元素
+ * 是否在导航栏位置生成一个等高的占位元素
+ *
  * @default true
  */
     placeholder?: boolean
 /**
- * @description 是否显示底部边框
+ * 是否显示底部边框
+ *
  * @default false
  */
     bottomBorder?: boolean
 /**
- * @description 导航栏 下边框颜色
+ * 导航栏 下边框颜色
+ *
  * @default #eee
  */
     borderBottomColor?: string
 /**
- * @description 点击左侧 icon 前的回调函数，返回布尔值决定是否继续执行跳转逻辑
+ * 点击左侧 icon 前的回调函数，返回布尔值决定是否继续执行跳转逻辑
+ *
  * @param leftIconType 当前显示的左侧icon的类型: 'back' | 'home' | ''
  */
     beforeLeftIconClick?: (leftIconType: TNavBarLeftIconType) => Promise<boolean> | boolean
 /**
- * @description 点击 标题 前时的回调函数
+ * 点击 标题 前时的回调函数
  */
     beforeTitleClick?: () => void
 }

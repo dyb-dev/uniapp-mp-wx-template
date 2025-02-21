@@ -12,7 +12,7 @@ import { getPageConfig, navigateToLogin } from "@/utils"
 
 import type { TRouterPreInterceptor } from "."
 
-/** STATIC: 用户信息Store */
+/** CONST: 用户信息Store */
 const { userInfoStoreState } = useUserInfoStoreWithOut()
 
 /**

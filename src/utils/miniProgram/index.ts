@@ -9,7 +9,7 @@
 
 import pagesJson from "@/pages.json"
 
-/** STATIC: 设备信息 */
+/** CONST: 设备信息 */
 let accountInfo: UniApp.AccountInfo
 
 /**

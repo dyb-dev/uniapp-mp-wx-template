@@ -88,7 +88,7 @@ const getCurrentPageSearch = () => queryString.stringify(getCurrentPageQuery(), 
 
 const { VITE_SUB_PACKAGE_DIR, VITE_PAGE_DIR } = __PROJECT_INFO__.env
 
-/** STATIC: 分包页面路径正则表达式 */
+/** CONST: 分包页面路径正则表达式 */
 const SUB_PACKAGE_PAGE_PATH_REGEX = new RegExp(`^(${VITE_SUB_PACKAGE_DIR}(?:\\/[^\\/]+)*)\\/((${VITE_PAGE_DIR}\\/.*))`)
 
 /**

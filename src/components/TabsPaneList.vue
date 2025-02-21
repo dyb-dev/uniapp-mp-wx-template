@@ -26,67 +26,80 @@ export interface ITabPane {
 /** 组件属性接口 */
 export interface ITabsPaneListProps {
     /**
-     * @description 当前选项卡索引
+     * 当前选项卡索引
+     *
      * @default 0
      */
     modelValue: number
     /**
-     * @description 选项卡 字体大小
+     * 选项卡 字体大小
+     *
      * @default 'normal'
      */
     tabSize?: "large" | "normal" | "small"
     /**
-     * @description 选项卡 是否显示数量后缀
+     * 选项卡 是否显示数量后缀
+     *
      * @default false
      */
     tabQuantitySuffix?: boolean
     /**
-     * @description 选项卡 默认字体颜色
+     * 选项卡 默认字体颜色
+     *
      * @default '#ababb5'
      */
     tabColor?: string
     /**
-     * @description 选项卡 选中字体颜色
+     * 选项卡 选中字体颜色
+     *
      * @default '#ffffff'
      */
     tabActiveColor?: string
     /**
-     * @description 选项卡 选中时是否显示下划线
+     * 选项卡 选中时是否显示下划线
+     *
      * @default 'false'
      */
     tabActiveLine?: boolean
     /**
-     * @description 选项卡背景色
+     * 选项卡背景色
+     *
      * @default 'transparent'
      */
     tabBackground?: string
     /**
-     * @description 选项卡面板背景色
+     * 选项卡面板背景色
+     *
      * @default '#ffffff'
      */
     tabPaneBackground?: string
     /**
-     * @description 选项卡面板高度
+     * 选项卡面板高度
+     *
      * @default '0rpx'
      */
     tabPaneHeight: string
     /**
-     * @description 选项卡面板是否启用圆角
+     * 选项卡面板是否启用圆角
+     *
      * @default 'true'
      */
     tabPaneRadius?: boolean
     /**
-     * @description 选项卡面板横向内边距
+     * 选项卡面板横向内边距
+     *
      * @default '30rpx'
      */
     tabPaneHorizontalPadding?: string
     /**
-     * @description 选项卡面板列表
+     * 选项卡面板列表
+     *
      * @default []
      */
     tabPaneList: ITabPane[]
     /**
-     * @description 返回顶部按钮背景色
+     * 返回顶部按钮背景色
+     *
      * @default '#323f48'
      */
     backTopBackground?: string

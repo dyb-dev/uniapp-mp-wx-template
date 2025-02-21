@@ -19,12 +19,14 @@ import type { ButtonOnChooseavatarEvent } from "@uni-helper/uni-app-types"
 
 export interface IAuthAvatarButtonProps {
 /**
- * @description 当前选择的头像地址
+ * 当前选择的头像地址
+ *
  * @default ''
  */
     modelValue?: string
 /**
- * @description 是否上传到服务器
+ * 是否上传到服务器
+ *
  * @default true
  */
     uploadToServer?: boolean

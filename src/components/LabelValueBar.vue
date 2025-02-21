@@ -10,56 +10,65 @@
 <script setup lang="ts">
 export interface ILabelValueBarProps {
 /**
- * @description 标签文本
+ * 标签文本
  */
     label: string
 /**
- * @description 值文本
+ * 值文本
  */
     value: string
 /**
- * @description 字体大小
+ * 字体大小
+ *
  * @default "30rpx"
  */
     fontSize?: string
 /**
- * @description 水平间隔
+ * 水平间隔
+ *
  * @default "10rpx"
  */
     horizontalSpacing?: string
 
 /**
- * @description 文本对齐方式
+ * 文本对齐方式
+ *
  * @default "right"
  */
     textAlign?: "left" | "center" | "right"
 /**
- * @description 是否溢出文本省略为...
+ * 是否溢出文本省略为...
+ *
  * @default true
  */
     ellipsis?: boolean
 /**
- * @description label 颜色
+ * label 颜色
+ *
  * @default "#808089"
  */
     labelColor?: string
 /**
- * @description label的文本粗细
+ * label的文本粗细
+ *
  * @default "normal"
  */
     labelFontWeight?: string
 /**
- * @description label 宽度
+ * label 宽度
+ *
  * @default "25%"
  */
     labelWidth?: string
 /**
- * @description value 颜色
+ * value 颜色
+ *
  * @default "#28282b"
  */
     valueColor?: string
 /**
- * @description 值的文本粗细
+ * 值的文本粗细
+ *
  * @default "500"
  */
     valueFontWeight?: string

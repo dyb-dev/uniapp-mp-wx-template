@@ -10,90 +10,107 @@
 <script setup lang="ts">
 export interface ICellProps {
 /**
- * @description 图标路径
+ * 图标路径
+ *
  * @default undefined
  */
     icon?: string
 /**
- * @description 图标类名前缀
+ * 图标类名前缀
+ *
  * @default 'nut-icon'
  */
     iconClassPrefix?: string
 /**
- * @description 图标字体类名
+ * 图标字体类名
+ *
  * @default 'nutui-iconfont'
  */
     iconFontClassName?: string
 /**
- * @description 图标颜色
+ * 图标颜色
+ *
  * @default '#323F48'
  */
     iconColor?: string
 /**
- * @description 图标大小
+ * 图标大小
+ *
  * @default '45rpx'
  */
     iconSize?: string
 
 /**
- * @description 标题文本
+ * 标题文本
+ *
  * @default undefined
  */
     title: string
 /**
- * @description 标题颜色
+ * 标题颜色
+ *
  * @default '#323F48'
  */
     titleColor?: string
 /**
- * @description 标题字体大小
+ * 标题字体大小
+ *
  * @default '24rpx'
  */
     titleSize?: string
 
 /**
- * @description 右侧图标名称
+ * 右侧图标名称
+ *
  * @default 'rect-right'
  */
     rightIcon?: string
 /**
- * @description 右侧图标类名前缀
+ * 右侧图标类名前缀
+ *
  * @default 'nut-icon'
  */
     rightIconClassPrefix?: string
 /**
- * @description 右侧图标字体类名
+ * 右侧图标字体类名
+ *
  * @default 'nutui-iconfont'
  */
     rightIconFontClassName?: string
 /**
- * @description 右侧图标颜色
+ * 右侧图标颜色
+ *
  * @default '#A0A3AF'
  */
     rightIconColor?: string
 /**
- * @description 右侧图标大小
+ * 右侧图标大小
+ *
  * @default '10rpx'
  */
     rightIconSize?: string
 
 /**
- * @description 背景颜色
+ * 背景颜色
+ *
  * @default '#ffffff'
  */
     background?: string
 /**
- * @description 是否使用底部线条
+ * 是否使用底部线条
+ *
  * @default false
  */
     bottomLine?: boolean
 /**
- * @description 底部线条颜色
+ * 底部线条颜色
+ *
  * @default '#e5e5e5'
  */
     bottomLineColor?: string
 /**
- * @description 圆角大小
+ * 圆角大小
+ *
  * @default '16rpx'
  */
     borderRadius?: string

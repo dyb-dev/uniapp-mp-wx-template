@@ -204,7 +204,7 @@ watch(show, value => {
 
 })
 
-/** STATIC: 接收选项的key */
+/** CONST: 接收选项的key */
 const KEY: TDialogCustomKey = `__DIALOG__${options.value.customKey || ""}`
 
 /** REF: 函数式调用时注入的弹窗选项 */

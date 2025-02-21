@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:10:19
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-04 19:31:48
+ * @LastEditTime: 2025-02-21 20:48:20
  * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
  * @Description: 列表组件
 -->
@@ -19,119 +19,142 @@ import type { ScrollViewOnScrollEvent } from "@uni-helper/uni-app-types"
 
 export interface IListProps {
 /**
- * @description 是否启用数据为空时元素占位
+ * 是否启用数据为空时元素占位
+ *
  * @default true
  */
     empty?: boolean
 /**
- * @description 数据为空时的图片
+ * 数据为空时的图片
+ *
  * @default '/static/images/List/empty.png'
  */
     emptyImage?: string
 /**
- * @description 数据为空时的图片尺寸, 为数组时顺序为： [宽, 高]
+ * 数据为空时的图片尺寸, 为数组时顺序为： [宽, 高]
+ *
  * @default ['345rpx', '344rpx']
  */
     emptyImageSize?: string | [string, string]
 /**
- * @description 数据为空时的文本描述
+ * 数据为空时的文本描述
+ *
  * @default '暂无数据'
  */
     emptyText?: string
 /**
- * @description 数据为空时的文本颜色
+ * 数据为空时的文本颜色
+ *
  * @default '#808089'
  */
     emptyTextColor?: string
 
 /**
- * @description 是否启用滚动条
+ * 是否启用滚动条
+ *
  * @default false
  */
     scrollbar?: boolean
 /**
- * @description 是否启用下拉刷新功能
+ * 是否启用下拉刷新功能
+ *
  * @default true
  */
     refresh?: boolean
 /**
- * @description 下拉刷新背景颜色
+ * 下拉刷新背景颜色
+ *
  * @default 'transparent'
  */
     refreshBackground?: string
 /**
- * @description 是否自动加载数据
+ * 是否自动加载数据
+ *
  * @default true
  */
     autoLoad?: boolean
 /**
- * @description 滚动条与底部距离小于 offset 时触发 fetchDataFn 函数
+ * 滚动条与底部距离小于 offset 时触发 fetchDataFn 函数
+ *
  * @default 300
  */
     offset?: string | number
 /**
- * @description 加载过程中的提示文案
+ * 加载过程中的提示文案
+ *
  * @default '加载中...'
  */
     loadingText?: string
 /**
- * @description 加载失败后的提示文案
+ * 加载失败后的提示文案
+ *
  * @default '加载失败，点击重试'
  */
     errorText?: string
 /**
- * @description 加载完成后的提示文案
+ * 加载完成后的提示文案
+ *
  * @default '没有更多了'
  */
     finishedText?: string
 /**
- * @description 底部提示文案颜色
+ * 底部提示文案颜色
+ *
  * @default '#808089'
  */
     bottomTextColor?: string
 /**
- * @description 是否点击 苹果(状态栏) 按钮(标题) 返回顶部
+ * 是否点击 苹果(状态栏) 按钮(标题) 返回顶部
+ *
  * @default true
  */
     clickStatusBarBackTop?: boolean
 
 /**
- * @description 是否启用 back-top 按钮
+ * 是否启用 back-top 按钮
+ *
  * @default true
  */
     backTop?: boolean
 /**
- * @description back-top 按钮背景颜色
+ * back-top 按钮背景颜色
+ *
  * @default '#29d446'
  */
     backTopBackground?: string
 /**
- * @description 距离页面右侧的距离
+ * 距离页面右侧的距离
+ *
  * @default '25rpx'
  */
     backTopRight?: string
 /**
- * @description 距离页面底部的距离
+ * 距离页面底部的距离
+ *
  * @default '100rpx'
  */
     backTopBottom?: string
 /**
- * @description 滚动高度达到此参数值时才显示组件
+ * 滚动高度达到此参数值时才显示组件
+ *
  * @default 200
  */
     backTopOffset?: number
 /**
- * @description 返回顶部时是否启用过渡动画
+ * 返回顶部时是否启用过渡动画
+ *
  * @default true
  */
     backTopTransition?: boolean
 /**
- * @description 每页数据大小
+ * 每页数据大小
+ *
  * @default 10
  */
     pageSize?: number
 /**
- * @description 请求数据的方法
+ * 请求数据的方法
+ *
  * @param param 请求参数
  * @returns 数据返回值
  */
@@ -203,25 +226,25 @@ const listPagination = useListPagination<TPaginationDataItem>({
 const { currentLoadStatus, currentTotalData, currentTotalSize, totalSize, finished, refreshing, next, clearRefresh } =
     listPagination
 
-/** STATIC: 当前实例 */
+/** CONST: 当前实例 */
 const instance = getCurrentInstance()
 
-/** STATIC: selectorQuery 对象 */
+/** CONST: selectorQuery 对象 */
 const selectorQuery = uni.createSelectorQuery().in(instance?.proxy)
 
-/** STATIC: scroll-view 类名 */
+/** CONST: scroll-view 类名 */
 const scrollViewClassName = "list__scroll-view"
 
-/** STATIC: scroll-view 内容 类名 */
+/** CONST: scroll-view 内容 类名 */
 const scrollViewContentClassName = "list__scroll-view__content"
 
-/** STATIC: scroll-view 元素 */
+/** CONST: scroll-view 元素 */
 const scrollViewElement = selectorQuery.select(`.${scrollViewClassName}`)
 
-/** STATIC: scroll-view 内容 */
+/** CONST: scroll-view 内容 */
 const scrollViewContentElement = selectorQuery.select(`.${scrollViewContentClassName}`)
 
-/** STATIC: scroll-view 高度 */
+/** CONST: scroll-view 高度 */
 let scrollViewHeight: number
 
 // FUN: 获取元素高度
@@ -241,7 +264,7 @@ const getElementHeight = (element: UniApp.NodesRef): Promise<number> => {
 
 }
 
-/** STATIC: 底部提示框高度 */
+/** CONST: 底部提示框高度 */
 const bottomBoxHeight = "90rpx"
 
 /** FUN: 自动加载数据 */

@@ -9,118 +9,133 @@
 
 <script setup lang="ts">
 /**
- * @description 底部操作栏图标
+ * 底部操作栏图标
  */
 export interface IFooterActionsBarIcon {
 /**
- * @description 图标名称
+ * 图标名称
  */
     icon: string
 /**
- * @description 图标大小
+ * 图标大小
+ *
  * @default '50rpx'
  */
     size?: string
 /**
- * @description 图标颜色
+ * 图标颜色
+ *
  * @default '#575B66'
  */
     color?: string
 /**
- * @description 图标类名前缀
+ * 图标类名前缀
+ *
  * @default 'nut-icon'
  */
     classPrefix?: string
 /**
- * @description 图标字体类名
+ * 图标字体类名
+ *
  * @default 'nutui-iconfont'
  */
     fontClassName?: string
 /**
- * @description 点击事件
+ * 点击事件
  */
     onClick: (item: IFooterActionsBarIcon) => void
 }
 
 /**
- * @description 底部操作栏按钮
+ * 底部操作栏按钮
  */
 export interface IFooterActionsBarButton {
     /**
-     * @description 按钮文本
+     * 按钮文本
      */
     text: string
     /**
-     * @description 按钮文本大小
+     * 按钮文本大小
+     *
      * @default '28rpx'
      */
     textSize?: string
     /**
-     * @description 按钮文本颜色
+     * 按钮文本颜色
+     *
      * @default '#ffffff'
      */
     textColor?: string
     /**
-     * @description 按钮背景颜色
+     * 按钮背景颜色
+     *
      * @default '#A68001'
      */
     background?: string
     /**
-     * @description 按钮圆角
+     * 按钮圆角
+     *
      * @default '64rpx'
      */
     radius?: string
     /**
-     * @description 按钮边框是否显示
+     * 按钮边框是否显示
+     *
      * @default false
      */
     border?: boolean
     /**
-     * @description 按钮边框颜色
+     * 按钮边框颜色
+     *
      * @default '#eee'
      */
     borderColor?: string
     /**
-     * @description 点击事件
+     * 点击事件
      */
     onClick: (item: IFooterActionsBarButton) => void
 }
 
 /**
- * @description 底部操作栏组件属性
+ * 底部操作栏组件属性
  */
 export interface IFooterActionsBarProps {
     /**
-     * @description 高度
+     * 高度
+     *
      * @default '150rpx'
      */
     height?: string
     /**
-     * @description 底部背景颜色
+     * 底部背景颜色
+     *
      * @default '#ffffff'
      */
     background?: string
     /**
-     * @description 是否显示顶部边框
+     * 是否显示顶部边框
+     *
      * @default true
      */
     borderTop?: boolean
     /**
-     * @description 顶部边框颜色
+     * 顶部边框颜色
+     *
      * @default '#eee'
      */
     borderTopColor?: string
     /**
-     * @description 是否在 FooterActionsBar 位置生成一个等高的占位元素
+     * 是否在 FooterActionsBar 位置生成一个等高的占位元素
+     *
      * @default true
      */
     placeholder?: boolean
     /**
-     * @description 图标列表
+     * 图标列表
      */
     iconList?: IFooterActionsBarIcon[]
     /**
-     * @description 按钮列表
+     * 按钮列表
      */
     buttonList?: IFooterActionsBarButton[]
 }

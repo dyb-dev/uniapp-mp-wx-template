@@ -18,7 +18,7 @@ import { getCurrentServerUrl, isDevEnv } from "@/utils"
 
 import { setupApiInterceptor } from "./interceptors"
 
-/** STATIC: 是否启用 `api` 测试数据 如果在开发环境下仍不需要使用测试数据，只需将 `true` 改为 `false` 即可 */
+/** CONST: 是否启用 `api` 测试数据 如果在开发环境下仍不需要使用测试数据，只需将 `true` 改为 `false` 即可 */
 const ENABLE_API_TEST_DATA = isDevEnv() && true
 
 /**

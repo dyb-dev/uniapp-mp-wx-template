@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:14:00
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-01 20:43:40
+ * @LastEditTime: 2025-02-21 15:51:02
  * @FilePath: /uniapp-mp-wx-template/src/utils/url/index.ts
  * @Description: url相关工具函数
  */
@@ -127,16 +127,24 @@ const toAbsoluteUrl = (options: IToAbsoluteUrlOptions): string => {
 
     }
 
-    const _urlOrigin = trimUrlSlashes(urlOrigin, { trimEnd: true })
-    const _basePath = trimUrlSlashes(basePath, { trimStart: true, trimEnd: true })
-    const _relativePath = trimUrlSlashes(relativePath, { trimStart: true })
+    const _urlOrigin = trimUrlSlashes(urlOrigin, { trimStart: false })
+    const _basePath = trimUrlSlashes(basePath)
+    const _relativePath = trimUrlSlashes(relativePath, { trimEnd: false })
 
     const _tempList = []
     _urlOrigin && _tempList.push(_urlOrigin)
     _basePath && _tempList.push(_basePath)
     _relativePath && _tempList.push(_relativePath)
 
-    return setUrlQueryValue(_tempList.join("/"), "version", version, {})
+    const _url = _tempList.join("/")
+
+    if (!version) {
+
+        return _url
+
+    }
+
+    return setUrlQueryValue(_url, "version", version, {})
 
 }
 
@@ -147,13 +155,13 @@ const toAbsoluteUrl = (options: IToAbsoluteUrlOptions): string => {
  * @date 23/07/2024/  20:28:05
  * @param {string} url - 需要处理的 URL
  * @param {object} [options={}] - 配置项
- * @param {boolean} [options.trimStart=false] - 是否移除开头的斜杠
- * @param {boolean} [options.trimEnd=false] - 是否移除结尾的斜杠
+ * @param {boolean} [options.trimStart=true] - 是否移除开头的斜杠
+ * @param {boolean} [options.trimEnd=true] - 是否移除结尾的斜杠
  * @returns {string} - 处理后的url
  */
 const trimUrlSlashes = (url: string, options: { trimStart?: boolean; trimEnd?: boolean } = {}): string => {
 
-    const { trimStart = false, trimEnd = false } = options
+    const { trimStart = true, trimEnd = true } = options
 
     let _url = url
     if (trimStart) {

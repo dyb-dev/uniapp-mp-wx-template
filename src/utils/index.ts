@@ -2,24 +2,30 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:37:15
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-16 02:16:04
+ * @LastEditTime: 2025-02-21 21:25:53
  * @FilePath: /uniapp-mp-wx-template/src/utils/index.ts
  * @Description: 工具函数模块
  */
 
 /** 导出数据处理相关工具函数 */
 export * from "./data"
-/** 导出设备相关工具函数 */
-export * from "./device"
+/** 导出日期时间相关工具函数 */
+export * from "./dateTime"
 /** 导出环境相关工具函数 */
 export * from "./env"
-/** 导出图片相关工具函数 */
-export * from "./image"
+/** 导出表单相关工具函数 */
+export * from "./form"
+/** 导出媒体相关工具函数 */
+export * from "./media"
+/** 导出位置相关工具函数 */
+export * from "./location"
 /** 导出小程序相关工具函数 */
 export * from "./miniProgram"
 /** 导出页面相关工具函数 */
 export * from "./pages"
-/** 导出url相关工具函数 */
-export * from "./url"
 /** 导出工具相关工具函数 */
 export * from "./tool"
+/** 导出url相关工具函数 */
+export * from "./url"
+/** 导出用户信息相关工具函数 */
+export * from "./userInfo"

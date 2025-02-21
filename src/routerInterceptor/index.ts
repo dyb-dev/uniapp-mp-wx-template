@@ -1,9 +1,9 @@
 /*
  * @Author: dyb-dev
- * @Date: 2024-10-02 15:09:54
+ * @Date: 2024-10-05 14:01:47
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-08 12:23:31
- * @FilePath: /uniapp-mp-wx-template/src/interceptors/router/index.ts
+ * @LastEditTime: 2025-02-21 21:41:43
+ * @FilePath: /uniapp-mp-wx-template/src/routerInterceptor/index.ts
  * @Description: 路由拦截器模块
  */
 

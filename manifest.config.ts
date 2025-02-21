@@ -12,7 +12,7 @@ import { defineManifestConfig } from "@uni-helper/vite-plugin-uni-manifest"
 import pkg from "./package.json"
 import { VITE_ENV } from "./vite.config"
 
-/** STATIC: 获取.env文件的环境变量 */
+/** CONST: 获取.env文件的环境变量 */
 const { VITE_MP_WX_APPID } = VITE_ENV
 
 export default defineManifestConfig({

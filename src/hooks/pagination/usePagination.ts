@@ -13,7 +13,6 @@ import { ref, computed } from "vue"
 import type { UseOffsetPaginationReturn } from "@vueuse/core"
 import type { ComputedRef, Ref } from "vue"
 
-
 /** 分页数据项 */
 type TPaginationDataItem = string | number | Record<string, any> | any
 
@@ -48,17 +47,20 @@ type TPaginationFetchDataFnReturn<T extends TPaginationDataItem> = Promise<IPagi
 /** 分页配置 */
 interface IUsePaginationOptions<T extends TPaginationDataItem> {
     /**
-     * @description 页码
+     * 页码
+     *
      * @default 1
      */
     page?: number
     /**
-     * @description 每页显示的项目数
+     * 每页显示的项目数
+     *
      * @default 10
      */
     pageSize?: number
     /**
-     * @description 是否在加载失败时使用之前加载的数据
+     * 是否在加载失败时使用之前加载的数据
+     *
      * @default false
      */
     usePreviousDataOnFail?: boolean

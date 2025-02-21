@@ -2,14 +2,16 @@
  * @Author: dyb-dev
  * @Date: 2024-10-08 16:28:02
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-18 16:47:19
+ * @LastEditTime: 2025-02-21 21:17:39
  * @FilePath: /uniapp-mp-wx-template/src/pages/list.vue
  * @Description: 列表示例页面
 -->
 <script setup lang="ts">
+import { delay } from "@/utils"
+
 import type { IPaginationFetchDataFnParam, TPaginationDataItem, TPaginationFetchDataFnReturn } from "@/hooks"
 
-/** STATIC: 数据总量 */
+/** CONST: 数据总量 */
 const total = 30
 
 // FUN: 请求数据函数
@@ -58,26 +60,6 @@ const generateDataList = (pageNo: number, pageSize: number): string[] => {
     }
 
     return _list
-
-}
-
-/**
- * FUN: 延时指定的毫秒数
- *
- * @param {number} ms - 延迟的时间（毫秒）
- * @returns {Promise<void>} 返回一个 Promise，当延迟时间结束时 `resolve`
- */
-const delay = (ms: number): Promise<void> => {
-
-    return new Promise(resolve => {
-
-        setTimeout(() => {
-
-            resolve()
-
-        }, ms)
-
-    })
 
 }
 </script>

@@ -22,32 +22,36 @@ import type { ITabBarProps, TTabBarItem } from "@/components/layout/TabBar.vue"
 
 export interface ILayoutProps {
 /**
- * @description 是否显示自定义导航栏
- * @description 设置为 `true` 时，还需要 `pages.json` 设置 globalStyle.navigationStyle 为 custom
+ * 是否显示自定义导航栏
+ * 设置为 `true` 时，还需要 `pages.json` 设置 globalStyle.navigationStyle 为 custom
+ *
  * @default true
  */
     showCustomNavBar?: boolean
 /**
- * @description 是否启用页面滑动
+ * 是否启用页面滑动
+ *
  * @default true
  */
     scroll?: boolean
 /**
- * @description 是否隐藏滚动条
+ * 是否隐藏滚动条
+ *
  * @default true
  */
     hideScrollBar?: boolean
 /**
- * @description 页面主内容背景，不包含 `顶部导航栏` 和 `底部导航栏`，支持普通颜色或渐变颜色或背景图片
+ * 页面主内容背景，不包含 `顶部导航栏` 和 `底部导航栏`，支持普通颜色或渐变颜色或背景图片
+ *
  * @default #F7F8F9
  */
     background?: string
 /**
- * @description 顶部导航栏配置，默认值请参考 `NavBar` 组件
+ * 顶部导航栏配置，默认值请参考 `NavBar` 组件
  */
     navBarProps?: INavBarProps
 /**
- * @description 底部导航栏配置，默认值请参考 `TabBar` 组件
+ * 底部导航栏配置，默认值请参考 `TabBar` 组件
  */
     tabBarProps?: Omit<ITabBarProps, "modelValue" | "list">
 }
@@ -69,7 +73,7 @@ const emits = defineEmits<{
     (event: "click-tab-bar-item", item: TTabBarItem, index: number): void
 }>()
 
-/** STATIC: 是否允许显示自定义顶部导航栏 */
+/** CONST: 是否允许显示自定义顶部导航栏 */
 const isAllowCustomNavBar =
 // @ts-ignore
     pagesJson.globalStyle?.navigationStyle === "custom"
@@ -80,7 +84,7 @@ const isAllowCustomNavBar =
 /** COMPUTED: 是否显示自定义顶部导航栏 */
 const showCustomNavBar = computed(() => isAllowCustomNavBar && props.showCustomNavBar)
 
-/** STATIC: 是否允许自定义底部导航栏 */
+/** CONST: 是否允许自定义底部导航栏 */
 // @ts-ignore
 const isAllowCustomTabBar = pagesJson?.tabBar?.custom
 
@@ -89,7 +93,7 @@ const isAllowCustomTabBar = pagesJson?.tabBar?.custom
 /** HOOKS: tabBar商店状态 */
 const { tabBarStoreState, getCurrentTabBarItem, updateCurrentTabBarIndex } = useTabBarStore()
 
-/** STATIC: 是否显示自定义底部导航栏 */
+/** CONST: 是否显示自定义底部导航栏 */
 const showCustomTabBar = isAllowCustomTabBar && getCurrentTabBarItem()
 
 /** LIFECYCLE: 组件显示 */
@@ -103,7 +107,7 @@ onShow(() => {
 
 })
 
-/** STATIC: 主题变量 */
+/** CONST: 主题变量 */
 const themeVars = {
     // 组件主题色
     primaryColor: "#29d446",
@@ -114,14 +118,14 @@ const themeVars = {
 /** HOOKS: 获取传入插槽 */
 const slots = useSlots()
 
-/** STATIC: 导航栏左侧插槽名称 */
+/** CONST: 导航栏左侧插槽名称 */
 const navBarLeftSlotName = "nav-bar-left"
-/** STATIC: 导航栏标题插槽名称 */
+/** CONST: 导航栏标题插槽名称 */
 const navBarTitleSlotName = "nav-bar-title"
 
-/** STATIC: 导航栏组件左侧插槽名称 */
+/** CONST: 导航栏组件左侧插槽名称 */
 const navBarComponentLeftSlotName = (slots[navBarLeftSlotName] ? "left" : "") as string
-/** STATIC: 导航栏组件标题插槽名称 */
+/** CONST: 导航栏组件标题插槽名称 */
 const navBarComponentTitleSlotName = (slots[navBarTitleSlotName] ? "title" : "") as string
 
 /** REF: NavBar 实例 */

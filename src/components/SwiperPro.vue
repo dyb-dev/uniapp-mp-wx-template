@@ -20,77 +20,92 @@ export interface ISwiperProItem {
 /** 组件属性接口 */
 export interface ISwiperProProps {
 /**
- * @description 当前轮播索引
+ * 当前轮播索引
+ *
  * @default 0
  */
     modelValue?: number
 /**
- * @description 轮播图列表
+ * 轮播图列表
+ *
  * @default []
  */
     list: ISwiperProItem[]
 /**
- * @description 轮播图宽度
+ * 轮播图宽度
+ *
  * @default '100%'
  */
     width?: string
 /**
- * @description 轮播图高度
+ * 轮播图高度
+ *
  * @default '0rpx'
  */
     height: string
 /**
- * @description 自动播放间隔 (ms) 为 0 时停止自动播放
+ * 自动播放间隔 (ms) 为 0 时停止自动播放
+ *
  * @default 2000
  */
     autoPlay?: number | string
 /**
- * @description 是否显示切换按钮
+ * 是否显示切换按钮
+ *
  * @default false
  */
     showToggleButton?: boolean
 /**
- * @description 切换按钮颜色
+ * 切换按钮颜色
+ *
  * @default '#ffffff'
  */
     toggleButtonColor?: string
 /**
- * @description 切换按钮icon颜色
+ * 切换按钮icon颜色
+ *
  * @default '#A68001'
  */
     toggleButtonIconColor?: string
 /**
- * @description 是否显示指示器
+ * 是否显示指示器
+ *
  * @default true
  */
     showIndicator?: boolean
 /**
- * @description 指示器间隔
+ * 指示器间隔
+ *
  * @default '16rpx'
  */
     indicatorGap?: string
 /**
- * @description 指示器项默认背景颜色
+ * 指示器项默认背景颜色
+ *
  * @default '#d8d8d8'
  */
     indicatorDefaultColor?: string
 /**
- * @description 指示器项选中背景颜色
+ * 指示器项选中背景颜色
+ *
  * @default '#323f48'
  */
     indicatorActiveColor?: string
 /**
- * @description 指示器项默认大小
+ * 指示器项默认大小
+ *
  * @default '12rpx'
  */
     indicatorSize?: string
 /**
- * @description 指示器项选中宽度
+ * 指示器项选中宽度
+ *
  * @default '45rpx'
  */
     indicatorActiveWidth?: string
 /**
- * @description 指示器位置
+ * 指示器位置
+ *
  * @default 'outside'
  */
     indicatorPosition?: "inside" | "outside"

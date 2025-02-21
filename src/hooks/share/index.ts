@@ -26,7 +26,7 @@ interface IShareConfig extends Page.CustomShareContent {
     source?: string
 }
 
-/** STATIC: 默认分享配置 */
+/** CONST: 默认分享配置 */
 const DEFAULT_SHARE_CONFIG: IShareConfig = {
     title: "祝您前程似锦，未来可期！",
     imageUrl: "/static/image/share.jpg"

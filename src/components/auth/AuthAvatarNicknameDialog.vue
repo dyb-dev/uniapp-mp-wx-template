@@ -30,17 +30,20 @@ export type TAuthAvatarNicknameDialogCustomKey = `__AUTH_AVATAR_NICKNAME_DIALOG_
 /** 组件选项 */
 export interface IAuthAvatarNicknameDialogOptions {
     /**
-     * @description 是否显示
+     * 是否显示
+     *
      * @default false
      */
     show: boolean
     /**
-     * @description 函数式调用时有效 组件唯一标识key
+     * 函数式调用时有效 组件唯一标识key
+     *
      * @default ''
      */
     customKey?: string
     /**
-     * @description 函数式调用时有效 卸载组件回调
+     * 函数式调用时有效 卸载组件回调
+     *
      * @param ares 卸载回调参数
      */
     unmount: (...ares: TAuthAvatarNicknameDialogUnmountParam) => void
@@ -81,7 +84,7 @@ watch(show, value => {
 
 })
 
-/** STATIC: 接收选项的key */
+/** CONST: 接收选项的key */
 const KEY: TAuthAvatarNicknameDialogCustomKey = `__AUTH_AVATAR_NICKNAME_DIALOG__${options.value.customKey || ""}`
 
 /** REF: 函数式调用时注入的弹窗选项 */
