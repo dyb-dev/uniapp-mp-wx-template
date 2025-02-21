@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-02 01:59:59
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:17:52
+ * @LastEditTime: 2025-02-21 23:25:47
  * @FilePath: /uniapp-mp-wx-template/src/components/auth/AuthAvatarButton.vue
  * @Description: 授权头像按钮组件
 -->
@@ -94,8 +94,6 @@ async function onChooseAvatar(event: ButtonOnChooseavatarEvent) {
         const _result = await uploadAvatar({
             avatarUrl
         })
-
-        console.log("onChooseAvatar() _result:", _result)
 
         uni.hideLoading()
 

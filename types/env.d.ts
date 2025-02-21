@@ -26,8 +26,8 @@ interface ImportMetaEnv {
     readonly VITE_DEV_SERVER_URL: string
     /** 生产环境服务器网址（小程序体验版、线上版用到） 默认:http://xxx.com */
     readonly VITE_PROD_SERVER_URL: string
-    /** 接口请求路径 默认:/test.aspx */
-    readonly VITE_API_BASE_URL: string
+    /** 接口请求基础路径 默认:/api */
+    readonly VITE_API_BASE_PATH: string
     /**
      * 用户 node 环境
      * - development: 开发环境

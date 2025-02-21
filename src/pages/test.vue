@@ -28,8 +28,18 @@ const userId = ref(0)
 /** EVENT: 点击获取userId按钮 */
 const onClickGetUserInfoButton = async() => {
 
-    const _result = await getUserInfoApi()
-    console.log("onClickGetUserInfoButton() _result:", _result)
+    const _result = await getUserInfoApi({
+        testResult: {
+            success: true,
+            message: "获取userId成功",
+            data: {
+                body: "1",
+                id: 1,
+                title: "1",
+                userId: 1
+            }
+        }
+    })
 
     // 存在错误码或者不存在data数据
     if (!_result.success || !_result.data) {
@@ -51,10 +61,20 @@ const id = ref(0)
 /** EVENT: 点击获取id按钮 */
 const onClickGetIdButton = async() => {
 
-    const _result = await getIdApi({
-        userId: 123
-    })
-    console.log("onClickGetIdButton() _result:", _result)
+    const _result = await getIdApi(
+        {
+            userId: 123
+        },
+        {
+            testResult: {
+                success: true,
+                message: "获取id成功",
+                data: {
+                    id: 123
+                }
+            }
+        }
+    )
 
     // 存在错误码或者不存在data数据
     if (!_result.success || !_result.data) {

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 21:28:42
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:18:05
+ * @LastEditTime: 2025-02-21 23:25:36
  * @FilePath: /uniapp-mp-wx-template/src/components/auth/AuthPhoneNumberButton.vue
  * @Description: 授权手机号按钮组件
 -->
@@ -64,8 +64,6 @@ const onGetPhoneNumber = async(event: ButtonOnGetphonenumberEvent) => {
     const _result = await getPhoneNumber({
         code: phoneInfo.code
     })
-
-    console.log("onGetPhoneNumber() _result:", _result)
 
     uni.hideLoading()
 

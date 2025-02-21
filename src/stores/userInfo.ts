@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-06 14:42:41
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-17 16:42:23
+ * @LastEditTime: 2025-02-21 23:06:25
  * @FilePath: /uniapp-mp-wx-template/src/stores/userInfo.ts
  * @Description: 用户信息状态管理
  */
@@ -108,9 +108,24 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
 
             }
 
-            const _loginApiResult = await loginApi({ code: _code })
-
-            console.log("login() _loginApiResult:", _loginApiResult)
+            const _loginApiResult = await loginApi(
+                { code: _code },
+                {
+                    testResult: {
+                        success: true,
+                        message: "登录成功",
+                        data: {
+                            userId: "userId",
+                            unionId: "unionId",
+                            openId: "openId",
+                            nickName: "xxx",
+                            avatarUrl:
+                                "https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png",
+                            phoneNumber: "111111111"
+                        }
+                    }
+                }
+            )
 
             uni.hideLoading()
 
@@ -160,7 +175,15 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
      */
     const getPhoneNumber = async(params: IGetPhoneNumberApiParams) => {
 
-        const _result = await getPhoneNumberApi(params)
+        const _result = await getPhoneNumberApi(params, {
+            testResult: {
+                success: true,
+                message: "获取手机号成功",
+                data: {
+                    phoneNumber: "111111111"
+                }
+            }
+        })
 
         // 如果获取成功
         if (_result.success && _result.data?.phoneNumber) {
@@ -183,7 +206,12 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
      */
     const uploadAvatar = async(params: IUploadAvatarApiParams) => {
 
-        const _result = await uploadAvatarApi(params)
+        const _result = await uploadAvatarApi(params, {
+            testResult: {
+                success: true,
+                message: "上传头像成功"
+            }
+        })
 
         // 如果上传头像成功
         if (_result.success) {
@@ -206,7 +234,12 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
      */
     const uploadUserInfo = async(params: IUploadUserInfoApiParams) => {
 
-        const _result = await uploadUserInfoApi(params)
+        const _result = await uploadUserInfoApi(params, {
+            testResult: {
+                success: true,
+                message: "上传用户信息成功"
+            }
+        })
 
         // 如果上传用户信息成功
         if (_result.success) {
