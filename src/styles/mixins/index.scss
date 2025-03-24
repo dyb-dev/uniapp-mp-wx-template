@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-14 17:54:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-24 13:31:47
+ * @LastEditTime: 2025-03-25 01:24:26
  * @FilePath: /uniapp-mp-wx-template/src/styles/mixins/index.scss
  * @Description: scss全局混合文件
  */
@@ -185,12 +185,12 @@
     position: relative;
     width: $width;
     height: $height;
-    background: url($bg-image1) no-repeat center/cover;
+    background: url(#{$bg-image1}) no-repeat center/cover;
 
     &::before {
         position: absolute;
         inset: 0;
-        background: url($bg-image2) no-repeat center/cover;
+        background: url(#{$bg-image2}) no-repeat center/cover;
         content: "";
         mask: linear-gradient(45deg, #000 40%, transparent 60%);
     }
