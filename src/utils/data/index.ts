@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-05 00:55:26
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-05-28 23:48:40
+ * @LastEditTime: 2025-06-02 00:46:39
  * @FilePath: /uniapp-mp-wx-template/src/utils/data/index.ts
  * @Description: 数据处理相关工具函数
  */
@@ -89,12 +89,73 @@ export const deepClone = <T = unknown>(obj: T): T => {
  */
 export const isObject = (obj: unknown): boolean => Object.prototype.toString.call(obj) === "[object Object]"
 
-/** 字段名类型 */
-type TFieldName = string | number | symbol
+/** 字段映射类型工具 */
+type TFieldMap<Target extends Record<PropertyKey, any>, Keys extends keyof Target = keyof Target> = Record<
+    Keys | PropertyKey,
+    Keys | ((key: Keys) => boolean)
+>
 
-/** 字段映射类型 */
-type TFieldMapping<T> = {
-    [newField in TFieldName]: keyof T | ((key: keyof T) => boolean)
+export interface IReplaceFieldNamesOptions<
+    Data extends Record<PropertyKey, any>,
+    FieldMap extends TFieldMap<Data> = TFieldMap<Data>
+> {
+    /**
+     * 目标数据
+     * - 支持 `对象 | 数组`
+     */
+    data: Data | Data[]
+    /**
+     * 字段映射规则
+     * - `[新字段]: 原字段 | 函数`
+     */
+    fieldMap: FieldMap
+    /**
+     * 最小递归深度
+     *
+     * @default 1
+     */
+    minDepth?: number
+    /**
+     * 最大递归深度
+     *
+     * @default Infinity
+     */
+    maxDepth?: number
+    /**
+     * 是否替换后删除原字段
+     *
+     * @default false
+     */
+    removeOriginalField?: boolean
+    /**
+     * 是否新字段在原对象中存在时才替换
+     *
+     * @default false
+     */
+    onlyReplaceIfNewFieldExists?: boolean
+    /**
+     * 是否使用原字段的最新数据进行替换
+     *
+     * 示例：
+     * ```ts
+     * const test = {
+     * a: 1,
+     * b: 2
+     * };
+     *
+     * // 场景 1：字段相互依赖（需使用最新值）
+     * fieldMap: { b: 'a' }  // b 的值来自 a 的当前值
+     * useUpdatedValueForReplacement: true
+     *
+     * // 场景 2：字段相互独立（需使用原始值）
+     * fieldMap: { b: 'a', a: 'b' }  // a 与 b 互换，需使用原始未被修改的值
+     * useUpdatedValueForReplacement: false
+     * removeOriginalField: false
+     * ```
+     *
+     * @default false
+     */
+    useUpdatedValueForReplacement?: boolean
 }
 
 /**
@@ -102,66 +163,122 @@ type TFieldMapping<T> = {
  * - 支持对象、数组，并返回新的引用
  *
  * @author dyb-dev
- * @date 28/05/2025/  23:17:39
- * @template T
- * @param {(T | T[])} data 目标对象、数组
- * @param {TFieldMapping<T>} fieldMapping 字段名映射关系对象 新字段名: 被替换字段名
- * @returns {*}  {(T | T[])} 结果
+ * @date 2025-06-01 23:43:50
+ * @param options - 替换字段名的配置项
+ * @param options.data - 目标数据，支持对象或数组
+ * @param options.fieldMap - 字段映射规则，格式为 `[新字段]: 原字段 | 函数`
+ * @param options.minDepth - 最小递归深度
+ * @param options.maxDepth - 最大递归深度
+ * @param options.removeOriginalField - 是否替换后删除原字段
+ * @param options.onlyReplaceIfNewFieldExists - 是否仅在新字段已存在时才替换
+ * @param options.useUpdatedValueForReplacement - 是否使用已更新字段的值进行替换
+ * @returns {Result} 替换后的新对象或数组（新引用）
  */
-export const replaceFieldNames = <T>(data: T | T[], fieldMapping: TFieldMapping<T>): T | T[] => {
+export const replaceFieldNames = <
+    Data extends Record<PropertyKey, any>,
+    Result extends Record<PropertyKey, any> | Record<PropertyKey, any>[]
+>({
+        data,
+        fieldMap,
+        removeOriginalField = false,
+        useUpdatedValueForReplacement = false,
+        onlyReplaceIfNewFieldExists = false,
+        minDepth = 1,
+        maxDepth = Infinity
+    }: IReplaceFieldNamesOptions<Data>): Result => {
 
-    // 深度克隆传入的数据，避免修改原数据
-    const _clonedData = deepClone(data)
-    // 字段映射key数组
-    const _fieldMappingKeys = Object.keys(fieldMapping)
+    /** 最初传入的数据副本，作为替换时的参考源 */
+    const _originData = deepClone(data)
+    /** 最终输出的数据副本，作为递归替换处理目标 */
+    const _resultData = deepClone(_originData)
 
-    // 递归替换字段名的函数
-    const _replaceFieldNames = (targetData: any): any => {
+    /** 字段映射的所有键集合 */
+    const _fieldMapKeyList = Object.keys(fieldMap)
+    // 获取所有匹配的字段映射键集合
+    const _getMatchedMapKeyList = (key: keyof Data) => {
 
-        // 如果是数组，则递归处理每个元素
-        if (Array.isArray(targetData)) {
+        return _fieldMapKeyList.filter(fieldMapKey => {
 
-            return targetData.map(_item => _replaceFieldNames(_item))
+            const _fieldMapKeyValue = fieldMap[fieldMapKey]
+            return typeof _fieldMapKeyValue === "function" ? _fieldMapKeyValue(key) : _fieldMapKeyValue === key
 
-        }
-
-        // 如果是对象，则递归处理每个属性
-        if (isObject(targetData)) {
-
-            Object.keys(targetData).forEach(key => {
-
-                const _key = key as keyof T
-                const _fieldMappingKey = _fieldMappingKeys.find(_field => {
-
-                    const _mappingValue = fieldMapping[_field]
-                    return typeof _mappingValue === "function" ? _mappingValue(_key) : _mappingValue === _key
-
-                })
-
-                // 新的字段名
-                const _newKey = _fieldMappingKey || key
-
-                // 如果新字段名和原字段名不同，进行替换
-                if (_newKey !== key) {
-
-                    // 新字段赋值
-                    targetData[_newKey] = targetData[key]
-                    // 删除旧字段
-                    delete targetData[key]
-
-                }
-                // 递归处理字段值
-                targetData[_newKey] = _replaceFieldNames(targetData[_newKey])
-
-            })
-
-        }
-
-        return targetData
+        })
 
     }
 
-    return _replaceFieldNames(_clonedData)
+    // 递归处理字段替换函数
+    const _replaceFieldNames = (currentData: any, originData: any, currentDepth: number = 1): any => {
+
+        // 当前递归深度 <= 最大递归深度
+        if (currentDepth <= maxDepth) {
+
+            // 当前数据是数组，递归处理每个数组项
+            if (Array.isArray(currentData)) {
+
+                return currentData.map((item, index) => _replaceFieldNames(item, originData[index], currentDepth + 1))
+
+            }
+
+            // 当前数据是对象，递归处理每个字段
+            if (isObject(currentData)) {
+
+                const _currentDataKeyList = Object.keys(currentData)
+
+                // 先递归处理内部嵌套结构
+                _currentDataKeyList.forEach(key => {
+
+                    currentData[key] = _replaceFieldNames(currentData[key], originData[key], currentDepth + 1)
+
+                })
+
+                // 当前递归深度 >= 最小递归深度
+                if (currentDepth >= minDepth) {
+
+                    // 执行替换逻辑
+                    _currentDataKeyList.forEach(key => {
+
+                        // 获取所有匹配的字段映射键
+                        const _matchedMapKeyList = _getMatchedMapKeyList(key)
+
+                        if (!_matchedMapKeyList.length) {
+
+                            return
+
+                        }
+
+                        // 对每一个匹配到的字段映射进行处理
+                        _matchedMapKeyList.forEach(newKey => {
+
+                            // 是否新字段在原对象中存在时才替换
+                            if (!onlyReplaceIfNewFieldExists || newKey in currentData) {
+
+                                // 是否使用 最新数据 | 原始数据 进行替换
+                                currentData[newKey] = useUpdatedValueForReplacement ? currentData[key] : originData[key]
+
+                            }
+
+                        })
+
+                        // 是否删除原字段
+                        if (removeOriginalField) {
+
+                            delete currentData[key]
+
+                        }
+
+                    })
+
+                }
+
+            }
+
+        }
+
+        return currentData
+
+    }
+
+    return _replaceFieldNames(_resultData, _originData)
 
 }
 
