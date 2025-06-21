@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-09-14 17:54:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-03-25 01:24:26
+ * @LastEditTime: 2025-06-21 14:02:07
  * @FilePath: /uniapp-mp-wx-template/src/styles/mixins/index.scss
  * @Description: scss全局混合文件
  */
@@ -34,8 +34,34 @@
     }
 }
 
+/**
+    鼠标悬停显示滚动条
+    $scrollBarColor - 滚动条颜色
+    $transition-duration - 过渡时间
+    - 注意: 使用此 mixin 时字体颜色需要使用 `text-shadow: 0 0 #fff;` 来实现
+ */
+@mixin hover-show-scrollbar-mixin($scrollBarColor: rgba(0, 0, 0, 0.15), $transition-duration: 0.3s) {
+    color: transparent;
+    transition: color $transition-duration;
+
+    &:hover {
+        color: $scrollBarColor;
+    }
+
+    /* 滚动条整体样式 */
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    /* 滚动条滑块样式 */
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        box-shadow: inset 0 0 0 4px;
+    }
+}
+
 /** 文本支持 \n 换行 */
-@mixin rich-text-mixin() {
+@mixin rich-text-mixin {
     white-space: pre-wrap;
     word-break: break-word;
 }
@@ -176,10 +202,10 @@
 
 /**
     创建具有遮罩效果的背景
-    @param {Length} $width - 容器的宽度
-    @param {Length} $height - 容器的高度
-    @param {String} $bg-image1 - 背景图片1的路径
-    @param {String} $bg-image2 - 背景图片2的路径
+    $width - 容器的宽度
+    $height - 容器的高度
+    $bg-image1 - 背景图片1的路径
+    $bg-image2 - 背景图片2的路径
  */
 @mixin background-mask-mixin($width, $height, $bg-image1, $bg-image2) {
     position: relative;
