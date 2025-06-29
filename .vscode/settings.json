@@ -4,6 +4,7 @@
     // #region CODE: vscode 基础配置
 
     "editor.linkedEditing": true,
+    "editor.minimap.enabled": true,
     "editor.stickyScroll.enabled": true,
     // 开启Prettier ESLint保存自动格式化（formatOnSave与codeActionsOnSave冲突，会格式化2次，所以不在codeActionsOnSave中写）
     "editor.formatOnSave": true,
@@ -27,6 +28,7 @@
         "editor.defaultFormatter": "stylelint.vscode-stylelint"
     },
     "workbench.tree.indent": 10,
+    "workbench.colorTheme": "Default Dark Modern",
     "workbench.colorCustomizations": {
         "editor.lineHighlightBackground": "#1d375bb6"
     },
@@ -49,6 +51,14 @@
         "tsconfig.json": "tsconfig.*.json",
         "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, pnpm-workspace.yaml, LICENSE"
     },
+
+    // #endregion
+
+    // #region CODE: cursor 基础配置
+
+    "workbench.activityBar.orientation": "vertical",
+    "cursor.diffs.useCharacterLevelDiffs": true,
+    "cursor.composer.collapsePaneInputBoxPills": true,
 
     // #endregion
 
@@ -204,7 +214,7 @@
     // 是否包含 @date 标签
     "docthis.includeDateTag": true,
     // 指定 @date 标签中日期的格式
-    "docthis.dateTagFormat": "dd/mm/yyyy/  HH:MM:ss",
+    "docthis.dateTagFormat": "yyyy-mm-dd HH:MM:ss",
     // 是否自动包含 @author 标签
     "docthis.includeAuthorTag": true,
     // 指定 @author 标签中的作者名称

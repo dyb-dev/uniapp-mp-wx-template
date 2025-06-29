@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 12:28:29
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 12:28:45
+ * @LastEditTime: 2025-06-29 17:30:32
  * @FilePath: /uniapp-mp-wx-template/src/hooks/share/index.ts
  * @Description: 分享相关hook
  */
@@ -36,7 +36,7 @@ const DEFAULT_SHARE_CONFIG: IShareConfig = {
 const { userInfoStoreState } = useUserInfoStoreWithOut()
 
 /**
- * FUN: 使用分享
+ * HOOKS: 使用分享
  *
  * @author dyb-dev
  * @date 30/10/2024/  12:29:17

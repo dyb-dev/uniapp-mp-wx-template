@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:11:23
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-19 15:19:20
+ * @LastEditTime: 2025-06-29 17:30:17
  * @FilePath: /uniapp-mp-wx-template/src/hooks/pagination/useListPagination.ts
  * @Description: 列表分页器
  */
@@ -24,7 +24,7 @@ interface IUseListPaginationReturn<T extends TPaginationDataItem> extends Omit<I
 }
 
 /**
- * 列表分页器
+ * HOOKS: 列表分页器
  *
  * @author dyb-dev
  * @date 05/09/2024/  14:19:07

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-05 00:55:26
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-06-02 00:46:39
+ * @LastEditTime: 2025-06-29 16:51:20
  * @FilePath: /uniapp-mp-wx-template/src/utils/data/index.ts
  * @Description: 数据处理相关工具函数
  */
@@ -89,15 +89,11 @@ export const deepClone = <T = unknown>(obj: T): T => {
  */
 export const isObject = (obj: unknown): boolean => Object.prototype.toString.call(obj) === "[object Object]"
 
-/** 字段映射类型工具 */
-type TFieldMap<Target extends Record<PropertyKey, any>, Keys extends keyof Target = keyof Target> = Record<
-    Keys | PropertyKey,
-    Keys | ((key: Keys) => boolean)
->
-
+/** 替换字段名 选项 */
 export interface IReplaceFieldNamesOptions<
     Data extends Record<PropertyKey, any>,
-    FieldMap extends TFieldMap<Data> = TFieldMap<Data>
+    MaxDepth extends number = number,
+    Keys extends TKeys<Data, MaxDepth> = TKeys<Data, MaxDepth>
 > {
     /**
      * 目标数据
@@ -108,7 +104,7 @@ export interface IReplaceFieldNamesOptions<
      * 字段映射规则
      * - `[新字段]: 原字段 | 函数`
      */
-    fieldMap: FieldMap
+    fieldMap: Record<Keys | PropertyKey, Keys | ((key: Keys) => boolean)>
     /**
      * 最小递归深度
      *
@@ -120,7 +116,7 @@ export interface IReplaceFieldNamesOptions<
      *
      * @default Infinity
      */
-    maxDepth?: number
+    maxDepth?: MaxDepth
     /**
      * 是否替换后删除原字段
      *
@@ -163,7 +159,7 @@ export interface IReplaceFieldNamesOptions<
  * - 支持对象、数组，并返回新的引用
  *
  * @author dyb-dev
- * @date 2025-06-01 23:43:50
+ * @date 29/06/2025/  16:40:17
  * @param options - 替换字段名的配置项
  * @param options.data - 目标数据，支持对象或数组
  * @param options.fieldMap - 字段映射规则，格式为 `[新字段]: 原字段 | 函数`
@@ -176,7 +172,9 @@ export interface IReplaceFieldNamesOptions<
  */
 export const replaceFieldNames = <
     Data extends Record<PropertyKey, any>,
-    Result extends Record<PropertyKey, any> | Record<PropertyKey, any>[]
+    Result extends Record<PropertyKey, any> | Record<PropertyKey, any>[],
+    MaxDepth extends number = number,
+    Keys extends TKeys<Data, MaxDepth> = TKeys<Data, MaxDepth>
 >({
         data,
         fieldMap,
@@ -184,8 +182,8 @@ export const replaceFieldNames = <
         useUpdatedValueForReplacement = false,
         onlyReplaceIfNewFieldExists = false,
         minDepth = 1,
-        maxDepth = Infinity
-    }: IReplaceFieldNamesOptions<Data>): Result => {
+        maxDepth = Infinity as MaxDepth
+    }: IReplaceFieldNamesOptions<Data, MaxDepth, Keys>): Result => {
 
     /** 最初传入的数据副本，作为替换时的参考源 */
     const _originData = deepClone(data)
@@ -195,12 +193,18 @@ export const replaceFieldNames = <
     /** 字段映射的所有键集合 */
     const _fieldMapKeyList = Object.keys(fieldMap)
     // 获取所有匹配的字段映射键集合
-    const _getMatchedMapKeyList = (key: keyof Data) => {
+    const _getMatchedMapKeyList = (key: Keys) => {
 
         return _fieldMapKeyList.filter(fieldMapKey => {
 
             const _fieldMapKeyValue = fieldMap[fieldMapKey]
-            return typeof _fieldMapKeyValue === "function" ? _fieldMapKeyValue(key) : _fieldMapKeyValue === key
+            if (typeof _fieldMapKeyValue === "function") {
+
+                const _func = _fieldMapKeyValue as (key: Keys) => boolean
+                return _func(key)
+
+            }
+            return _fieldMapKeyValue === key
 
         })
 
@@ -238,7 +242,7 @@ export const replaceFieldNames = <
                     _currentDataKeyList.forEach(key => {
 
                         // 获取所有匹配的字段映射键
-                        const _matchedMapKeyList = _getMatchedMapKeyList(key)
+                        const _matchedMapKeyList = _getMatchedMapKeyList(key as Keys)
 
                         if (!_matchedMapKeyList.length) {
 
