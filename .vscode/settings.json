@@ -35,6 +35,7 @@
     "files.defaultLanguage": "html",
     "git.autofetch": true,
     "search.exclude": {
+        "**/dist": true,
         "**/.history": true,
         "**/cache": true,
         "*-lock.*": true
@@ -368,7 +369,7 @@
 
     // #region CODE: CSS Peek 插件配置
 
-    "cssPeek.peekToExclude": ["**/node_modules/**", "**/bower_components/**", "**/.history/**"]
+    "cssPeek.peekToExclude": ["**/node_modules/**", "**/bower_components/**", "**/.history/**", "**/dist/**"]
 
     // #endregion
 }
