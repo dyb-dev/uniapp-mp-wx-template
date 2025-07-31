@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:11:23
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-06-29 17:30:24
+ * @LastEditTime: 2025-07-31 23:18:03
  * @FilePath: /uniapp-mp-wx-template/src/hooks/pagination/usePagination.ts
  * @Description: 分页器
  */
@@ -14,13 +14,13 @@ import type { UseOffsetPaginationReturn } from "@vueuse/core"
 import type { ComputedRef, Ref } from "vue"
 
 /** 分页数据项 */
-type TPaginationDataItem = string | number | Record<string, any> | any
+export type TPaginationDataItem = string | number | Record<string, any> | any
 
 /** 分页数据映射 */
-type TPaginationDataMap<T> = Map<number, T[]>
+export type TPaginationDataMap<T> = Map<number, T[]>
 
 /** 分页请求数据函数参数 */
-interface IPaginationFetchDataFnParam {
+export interface IPaginationFetchDataFnParam {
     /** 当前页码 */
     currentPage: number
     /** 当前页码大小 */
@@ -34,7 +34,7 @@ interface IPaginationFetchDataFnParam {
 }
 
 /** 分页请求数据函数返回结果类型 */
-interface IPaginationFetchDataFnResult<T extends TPaginationDataItem> {
+export interface IPaginationFetchDataFnResult<T extends TPaginationDataItem> {
     /** 当前页码的数据 */
     currentPageData: T[]
     /** 数据总大小 */
@@ -42,10 +42,10 @@ interface IPaginationFetchDataFnResult<T extends TPaginationDataItem> {
 }
 
 /** 分页请求数据函数返回类型 */
-type TPaginationFetchDataFnReturn<T extends TPaginationDataItem> = Promise<IPaginationFetchDataFnResult<T> | void>
+export type TPaginationFetchDataFnReturn<T extends TPaginationDataItem> = Promise<IPaginationFetchDataFnResult<T> | void>
 
 /** 分页配置 */
-interface IUsePaginationOptions<T extends TPaginationDataItem> {
+export interface IUsePaginationOptions<T extends TPaginationDataItem> {
     /**
      * 页码
      *
@@ -74,12 +74,12 @@ interface IUsePaginationOptions<T extends TPaginationDataItem> {
 }
 
 /** 分页加载状态 */
-type TPaginationLoadStatus = "loading" | "success" | "fail"
+export type TPaginationLoadStatus = "loading" | "success" | "fail"
 /** 分页刷新参数 */
-type TPaginationRefreshParam = number | `${number}`
+export type TPaginationRefreshParam = number | `${number}`
 
 /** 分页返回结果 */
-interface IUsePaginationReturn<T extends TPaginationDataItem> extends UseOffsetPaginationReturn {
+export interface IUsePaginationReturn<T extends TPaginationDataItem> extends UseOffsetPaginationReturn {
     /** 当前加载状态 */
     currentLoadStatus: Ref<TPaginationLoadStatus>
     /** 是否初始化成功 */
@@ -126,7 +126,7 @@ interface IUsePaginationReturn<T extends TPaginationDataItem> extends UseOffsetP
  * @param {IUsePaginationOptions<T>} options 分页配置
  * @returns {*}  {IUsePaginationReturn<T>} 分页返回结果
  */
-const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOptions<T>): IUsePaginationReturn<T> => {
+export const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOptions<T>): IUsePaginationReturn<T> => {
 
     const { page = 1, pageSize = 10, usePreviousDataOnFail = false, fetchDataFn } = options
 
@@ -429,17 +429,3 @@ const usePagination = <T extends TPaginationDataItem>(options: IUsePaginationOpt
     }
 
 }
-
-export type {
-    TPaginationLoadStatus,
-    TPaginationDataItem,
-    TPaginationDataMap,
-    IPaginationFetchDataFnParam,
-    IPaginationFetchDataFnResult,
-    TPaginationFetchDataFnReturn,
-    TPaginationRefreshParam,
-    IUsePaginationOptions,
-    IUsePaginationReturn
-}
-
-export { usePagination }

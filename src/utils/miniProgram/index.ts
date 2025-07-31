@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-09 22:19:06
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-02 20:20:29
+ * @LastEditTime: 2025-07-31 23:23:06
  * @FilePath: /uniapp-mp-wx-template/src/utils/miniProgram/index.ts
  * @Description: 小程序相关工具函数
  */
@@ -20,7 +20,7 @@ let accountInfo: UniApp.AccountInfo
  * @param {boolean} [isForceRefresh=false] 是否强制刷新
  * @returns {*} 账号信息
  */
-const getAccountInfo = (isForceRefresh: boolean = false): UniApp.AccountInfo => {
+export const getAccountInfo = (isForceRefresh: boolean = false): UniApp.AccountInfo => {
 
     // 如果已经获取过系统信息，且不是强制刷新，则直接返回
     if (accountInfo && !isForceRefresh) {
@@ -54,7 +54,7 @@ const getAccountInfo = (isForceRefresh: boolean = false): UniApp.AccountInfo => 
  * @date 01/11/2024/  20:34:23
  * @returns {*} {string} 小程序环境版本
  */
-const getEnvVersion = () => getAccountInfo()?.miniProgram.envVersion
+export const getEnvVersion = () => getAccountInfo()?.miniProgram.envVersion
 
 /**
  * FUN: 获取小程序线上版本
@@ -64,7 +64,7 @@ const getEnvVersion = () => getAccountInfo()?.miniProgram.envVersion
  * @date 09/10/2024/  22:23:41
  * @returns {*}  {string} 小程序线上版本
  */
-const getOnlineVersion = (): string => getAccountInfo()?.miniProgram.version
+export const getOnlineVersion = (): string => getAccountInfo()?.miniProgram.version
 
 /** LET: 胶囊按钮区域 */
 let capsuleBoundingClientRect: UniApp.GetMenuButtonBoundingClientRectRes | null = null
@@ -77,7 +77,7 @@ let capsuleBoundingClientRect: UniApp.GetMenuButtonBoundingClientRectRes | null 
  * @param {boolean} [isForceRefresh=false] 是否强制刷新
  * @returns {*}  {(UniApp.GetMenuButtonBoundingClientRectRes | null)} 胶囊按钮区域
  */
-const getCapsuleBoundingClientRect = (isForceRefresh = false): UniApp.GetMenuButtonBoundingClientRectRes | null => {
+export const getCapsuleBoundingClientRect = (isForceRefresh = false): UniApp.GetMenuButtonBoundingClientRectRes | null => {
 
     // @ts-ignore 是否开启 自定义导航栏
     const _isCustomNavigationBar = pagesJson?.globalStyle?.navigationStyle === "custom"
@@ -106,5 +106,3 @@ const getCapsuleBoundingClientRect = (isForceRefresh = false): UniApp.GetMenuBut
     return capsuleBoundingClientRect
 
 }
-
-export { getAccountInfo, getEnvVersion, getOnlineVersion, getCapsuleBoundingClientRect }

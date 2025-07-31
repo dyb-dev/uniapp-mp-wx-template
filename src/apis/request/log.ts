@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2025-02-21 21:57:45
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 21:57:50
+ * @LastEditTime: 2025-07-31 23:12:11
  * @FilePath: /uniapp-mp-wx-template/src/apis/request/log.ts
  * @Description: 请求日志模块
  */
@@ -10,7 +10,7 @@
 import { isAbsoluteUrl, isDevEnv, isEnableDebug, trimUrlSlashes } from "@/utils"
 
 /** 请求日志类型枚举 */
-enum ERequestLogType {
+export const enum ERequestLogType {
     /** 测试请求参数 */
     TEST_REQUEST_PARAMS,
     /** 测试请求结果, 测试成功 */
@@ -80,7 +80,7 @@ interface IRequestLogOptions {
  * @date 21/02/2025/  18:32:32
  * @param {IRequestLogOptions} option 请求日志选项
  */
-const requestLog = (option: IRequestLogOptions) => {
+export const requestLog = (option: IRequestLogOptions) => {
 
     // 如果不是开发环境且不启用调试模式，则不输出请求日志
     if (!isDevEnv() && !isEnableDebug()) {
@@ -107,5 +107,3 @@ const requestLog = (option: IRequestLogOptions) => {
     console.log(`\n %c${requestId} ${description} :>>`, style, url, "\n", data)
 
 }
-
-export { ERequestLogType, requestLog }

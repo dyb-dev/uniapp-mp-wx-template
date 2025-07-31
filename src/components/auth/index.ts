@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-31 01:55:52
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:18:17
+ * @LastEditTime: 2025-07-31 23:13:16
  * @FilePath: /uniapp-mp-wx-template/src/components/auth/index.ts
  * @Description: 用户信息组件相关工具函数
  */
@@ -25,7 +25,7 @@ import type {
 } from "./AuthAvatarNicknameDialog.vue"
 
 /** 显示授权头像昵称对话框的结果 */
-type TShowAuthAvatarNicknameDialogResult = TAuthAvatarNicknameDialogUnmountParam
+export type TShowAuthAvatarNicknameDialogResult = TAuthAvatarNicknameDialogUnmountParam
 
 /**
  * 使用授权头像昵称对话框
@@ -35,7 +35,7 @@ type TShowAuthAvatarNicknameDialogResult = TAuthAvatarNicknameDialogUnmountParam
  * @param {TAuthAvatarNicknameDialogCustomKey} [customKey='__AUTH_AVATAR_NICKNAME_DIALOG__'] - 授权头像昵称对话框唯一标识key 默认: `__AUTH_AVATAR_NICKNAME_DIALOG__`
  * @returns {*} {TUseAuthAvatarNicknameDialog} - 授权头像昵称对话框相关函数
  */
-const useAuthAvatarNicknameDialog = (customKey: string = "") => {
+export const useAuthAvatarNicknameDialog = (customKey: string = "") => {
 
     const _customKey: TAuthAvatarNicknameDialogCustomKey = `__AUTH_AVATAR_NICKNAME_DIALOG__${customKey}`
     const _options = providerComponentOptions<TAuthAvatarNicknameDialogCustomKey, IAuthAvatarNicknameDialogOptions>(_customKey)
@@ -64,7 +64,3 @@ const useAuthAvatarNicknameDialog = (customKey: string = "") => {
     }
 
 }
-
-export type { TShowAuthAvatarNicknameDialogResult }
-
-export { useAuthAvatarNicknameDialog }

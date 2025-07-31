@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:49:51
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-31 22:57:50
+ * @LastEditTime: 2025-07-31 23:25:20
  * @FilePath: /uniapp-mp-wx-template/src/utils/pages/navigate.ts
  * @Description: 页面跳转相关工具函数
  */
@@ -13,7 +13,7 @@ import { getUrlQuery, mergeUrlQuery, getCurrentPagePath, trimUrlSlashes, getBase
 import type { TabBarItem } from "@uni-helper/vite-plugin-uni-pages"
 
 /** 导航方法的基础选项 */
-interface INavigateBaseOptions {
+export interface INavigateBaseOptions {
     /**
      * 跳转的路径
      */
@@ -50,7 +50,7 @@ interface INavigateBaseOptions {
 }
 
 /** 导航第三方小程序的选项 */
-interface INavigateToMiniProgramOptions extends TModifyProperties<INavigateBaseOptions, "path"> {
+export interface INavigateToMiniProgramOptions extends TModifyProperties<INavigateBaseOptions, "path"> {
     /**
      * 小程序 AppID
      */
@@ -69,7 +69,7 @@ interface INavigateToMiniProgramOptions extends TModifyProperties<INavigateBaseO
  * @export
  * @param {INavigateToMiniProgramOptions} options 导航第三方小程序的选项
  */
-const navigateToMiniProgram = (options: INavigateToMiniProgramOptions) => {
+export const navigateToMiniProgram = (options: INavigateToMiniProgramOptions) => {
 
     const { appId, envVersion = "trial", enCode = false, success, fail, complete } = options
 
@@ -114,7 +114,7 @@ const navigateToMiniProgram = (options: INavigateToMiniProgramOptions) => {
  * @param {string} [targetPagePath=""] 目标页面路径
  * @returns {number} 返回的层级
  */
-const getPageBackDelta = (targetPagePath = "") => {
+export const getPageBackDelta = (targetPagePath = "") => {
 
     try {
 
@@ -165,7 +165,7 @@ const getPageBackDelta = (targetPagePath = "") => {
  * @param {TNavigateToPageMethod} navigateToPageMethod 导航页面的方法
  * @returns {*} 导航页面的函数
  */
-const getNavigateToPageFn = (navigateToPageMethod: TNavigateToPageMethod) => {
+export const getNavigateToPageFn = (navigateToPageMethod: TNavigateToPageMethod) => {
 
     let _navigateToPageFn = null
 
@@ -194,10 +194,10 @@ const getNavigateToPageFn = (navigateToPageMethod: TNavigateToPageMethod) => {
 }
 
 /** 导航本小程序页面的方法 */
-type TNavigateToPageMethod = "redirectTo" | "navigateTo" | "reLaunch" | "switchTab"
+export type TNavigateToPageMethod = "redirectTo" | "navigateTo" | "reLaunch" | "switchTab"
 
 /** 导航本小程序页面的选项 */
-interface INavigateToPageOptions extends INavigateBaseOptions {
+export interface INavigateToPageOptions extends INavigateBaseOptions {
     /**
      * 跳转的路径
      */
@@ -220,7 +220,7 @@ interface INavigateToPageOptions extends INavigateBaseOptions {
  * @export
  * @param {INavigateToPageOptions} options 导航到页面的选项
  */
-const navigateToPage = (options: INavigateToPageOptions) => {
+export const navigateToPage = (options: INavigateToPageOptions) => {
 
     const { path, query = {}, findBackDelta = true, enCode = false, success, fail, complete } = options
 
@@ -311,7 +311,7 @@ const navigateToPage = (options: INavigateToPageOptions) => {
  * @date 06/10/2024/  20:43:47
  * @param {number} [delta=1] 返回的层级 默认: 1
  */
-const navigateBack = (delta: number = 1) => {
+export const navigateBack = (delta: number = 1) => {
 
     //获取页面栈的长度
     const _currentPages = getCurrentPages()
@@ -327,7 +327,7 @@ const navigateBack = (delta: number = 1) => {
 }
 
 /** 导航WebView页面的选项 */
-interface INavigateToWebViewOptions extends TModifyProperties<INavigateToPageOptions, "path"> {
+export interface INavigateToWebViewOptions extends TModifyProperties<INavigateToPageOptions, "path"> {
     /** h5网址 */
     webUrl: string
     /** h5网址的query */
@@ -341,7 +341,7 @@ interface INavigateToWebViewOptions extends TModifyProperties<INavigateToPageOpt
 }
 
 /** CONST: h5网址的key */
-const WEB_URL_KEY = "webUrl"
+export const WEB_URL_KEY = "webUrl"
 
 /**
  * FUN: 导航到WebView页面
@@ -351,7 +351,7 @@ const WEB_URL_KEY = "webUrl"
  * @export
  * @param {INavigateToWebViewOptions} options 导航到WebView页面的选项
  */
-const navigateToWebView = (options: INavigateToWebViewOptions) => {
+export const navigateToWebView = (options: INavigateToWebViewOptions) => {
 
     const { VITE_SUB_PACKAGE_DIR } = __PROJECT_INFO__.env
 
@@ -394,7 +394,7 @@ const navigateToWebView = (options: INavigateToWebViewOptions) => {
 }
 
 /** 导航登录页的选项 */
-interface INavigateToLoginOptions extends TModifyProperties<INavigateToPageOptions, "path"> {
+export interface INavigateToLoginOptions extends TModifyProperties<INavigateToPageOptions, "path"> {
     /** 登录成功后重定向页面路径 默认: 当前页 > 首页 */
     redirectPath?: NavigateToOptions["url"]
 }
@@ -406,7 +406,7 @@ interface INavigateToLoginOptions extends TModifyProperties<INavigateToPageOptio
  * @date 11/10/2024/  16:24:57
  * @param {INavigateToLoginOptions} [options] 导航到登录页的选项
  */
-const navigateToLogin = (options?: INavigateToLoginOptions) => {
+export const navigateToLogin = (options?: INavigateToLoginOptions) => {
 
     const { VITE_LOGIN_PATH, VITE_HOME_PATH } = __PROJECT_INFO__.env
     const {
@@ -427,7 +427,7 @@ const navigateToLogin = (options?: INavigateToLoginOptions) => {
 }
 
 /** 导航到目标的类型 */
-enum ENavigateToTargetType {
+export const enum ENavigateToTargetType {
     /** 跳转第三方小程序 */
     MINI_PROGRAM = 1,
     /** 跳转本小程序页面 */
@@ -439,7 +439,7 @@ enum ENavigateToTargetType {
 }
 
 /** CONST: 导航到目标的配置列表 */
-const NAVIGATE_TO_TARGET_CONFIG_LIST = [
+export const NAVIGATE_TO_TARGET_CONFIG_LIST = [
     {
         type: ENavigateToTargetType.PAGE,
         desc: "跳转本小程序页面",
@@ -455,7 +455,7 @@ const NAVIGATE_TO_TARGET_CONFIG_LIST = [
 ]
 
 /** 导航到目标函数的基础选项 */
-interface INavigateToTargetBaseOptions {
+export interface INavigateToTargetBaseOptions {
     /**
      * 跳转的类型 如果不传递则会根据参数推断具体类型
      */
@@ -463,7 +463,7 @@ interface INavigateToTargetBaseOptions {
 }
 
 /** 导航到目标函数类型签名 */
-interface INavigateToTargetFn {
+export interface INavigateToTargetFn {
     (options: INavigateToTargetBaseOptions & INavigateToMiniProgramOptions): void
     (options: INavigateToTargetBaseOptions & INavigateToWebViewOptions): void
     (options: INavigateToTargetBaseOptions & INavigateToLoginOptions): void
@@ -471,7 +471,7 @@ interface INavigateToTargetFn {
 }
 
 /** 导航到目标函数的选项 */
-type TNavigateToTargetOptions = INavigateToTargetBaseOptions &
+export type TNavigateToTargetOptions = INavigateToTargetBaseOptions &
     (INavigateToMiniProgramOptions | INavigateToWebViewOptions | INavigateToLoginOptions | INavigateToPageOptions)
 
 /**
@@ -481,7 +481,7 @@ type TNavigateToTargetOptions = INavigateToTargetBaseOptions &
  * @date 06/10/2024/  22:18:30
  * @param {TNavigateToTargetOptions} options 导航的选项
  */
-const navigateToTarget: INavigateToTargetFn = (options: TNavigateToTargetOptions) => {
+export const navigateToTarget: INavigateToTargetFn = (options: TNavigateToTargetOptions) => {
 
     const { type, ...lastOptions } = options
 
@@ -543,30 +543,4 @@ const navigateToTarget: INavigateToTargetFn = (options: TNavigateToTargetOptions
     // @ts-ignore
     _navigateToTargetConfig.fn(lastOptions)
 
-}
-
-export type {
-    INavigateToTargetBaseOptions,
-    INavigateToTargetFn,
-    TNavigateToTargetOptions,
-    INavigateBaseOptions,
-    INavigateToMiniProgramOptions,
-    TNavigateToPageMethod,
-    INavigateToPageOptions,
-    INavigateToWebViewOptions,
-    INavigateToLoginOptions
-}
-
-export {
-    ENavigateToTargetType,
-    NAVIGATE_TO_TARGET_CONFIG_LIST,
-    navigateToTarget,
-    navigateBack,
-    navigateToMiniProgram,
-    getPageBackDelta,
-    getNavigateToPageFn,
-    navigateToPage,
-    WEB_URL_KEY,
-    navigateToWebView,
-    navigateToLogin
 }

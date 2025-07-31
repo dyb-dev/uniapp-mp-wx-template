@@ -2,8 +2,8 @@
  * @Author: dyb-dev
  * @Date: 2024-10-02 14:51:37
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-11 17:10:45
- * @FilePath: /uniapp-mp-wx-template/src/interceptors/router/login.ts
+ * @LastEditTime: 2025-07-31 23:19:08
+ * @FilePath: /uniapp-mp-wx-template/src/routerInterceptor/login.ts
  * @Description: 登录拦截器模块
  */
 
@@ -23,7 +23,7 @@ const { userInfoStoreState } = useUserInfoStoreWithOut()
  * @param {string} url - 路由路径
  * @returns {*} 是否继续执行
  */
-const setupLoginPreInterceptor: TRouterPreInterceptor = ({ path, query }) => {
+export const setupLoginPreInterceptor: TRouterPreInterceptor = ({ path, query }) => {
 
     // 如果是没有登录且需要登录的页面，跳转到登录页
     if (!userInfoStoreState.isLogin && getPageConfig(path)?.needLogin) {
@@ -40,5 +40,3 @@ const setupLoginPreInterceptor: TRouterPreInterceptor = ({ path, query }) => {
     return true
 
 }
-
-export { setupLoginPreInterceptor }

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2025-02-21 21:54:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 21:55:25
+ * @LastEditTime: 2025-07-31 23:10:16
  * @FilePath: /uniapp-mp-wx-template/src/apis/interceptors/response.ts
  * @Description: 响应拦截器模块
  */
@@ -15,7 +15,7 @@ import { un } from "@uni-helper/uni-network"
  * @author dyb-dev
  * @date 21/02/2025/  21:55:38
  */
-const setupResponseInterceptor = () => {
+export const setupResponseInterceptor = () => {
 
     // 设置响应拦截器
     un.interceptors.response.use(
@@ -31,5 +31,3 @@ const setupResponseInterceptor = () => {
     )
 
 }
-
-export { setupResponseInterceptor }

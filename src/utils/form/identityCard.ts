@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2025-02-21 21:13:29
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 21:13:44
+ * @LastEditTime: 2025-07-31 23:22:15
  * @FilePath: /uniapp-mp-wx-template/src/utils/form/identityCard.ts
  * @Description: 身份证相关工具函数
  */
@@ -139,7 +139,7 @@ const _isParityBit = (identityCardNumber: string): boolean => {
  * @param {string} identityCardNumber - 身份证号码
  * @returns {*}  {boolean} 是否为有效的身份证号码
  */
-const isIdentityCard = (identityCardNumber: string): boolean => {
+export const isIdentityCard = (identityCardNumber: string): boolean => {
 
     const _check = /^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}(\d|x|X)$/.test(
         identityCardNumber
@@ -147,5 +147,3 @@ const isIdentityCard = (identityCardNumber: string): boolean => {
     return _check && _isProvinceCode(identityCardNumber) && _isBirthday(identityCardNumber) && _isParityBit(identityCardNumber)
 
 }
-
-export { isIdentityCard }

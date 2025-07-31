@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 00:22:30
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-30 21:38:41
+ * @LastEditTime: 2025-07-31 23:16:39
  * @FilePath: /uniapp-mp-wx-template/src/components/provideComponentOptions.ts
  * @Description: 提供组件选项相关工具函数
  */
@@ -14,7 +14,7 @@ import type { Ref } from "vue"
 /**
  * 默认选项接口
  */
-interface IDefaultOptions {
+export interface IDefaultOptions {
     /** 是否显示 */
     show: boolean
     /** 组件唯一标识key */
@@ -28,7 +28,7 @@ interface IDefaultOptions {
  *
  * @template Target - 目标类型
  */
-type TFilteredDefaultOptions<Target> = Omit<Target, TKeys<IDefaultOptions>>
+export type TFilteredDefaultOptions<Target> = Omit<Target, TKeys<IDefaultOptions>>
 
 /**
  * 提供组件选项
@@ -38,7 +38,7 @@ type TFilteredDefaultOptions<Target> = Omit<Target, TKeys<IDefaultOptions>>
  * @param {Key} customKey - 组件唯一标识key
  * @returns {*}  {Ref<Options>} - 组件选项
  */
-const providerComponentOptions = <Key extends string = string, Options extends Record<string, any> = Record<string, any>>(
+export const providerComponentOptions = <Key extends string = string, Options extends Record<string, any> = Record<string, any>>(
     customKey: Key
 ): Ref<Options> => {
 
@@ -49,7 +49,3 @@ const providerComponentOptions = <Key extends string = string, Options extends R
     return _options
 
 }
-
-export type { IDefaultOptions, TFilteredDefaultOptions }
-
-export { providerComponentOptions }

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:14:00
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 15:51:02
+ * @LastEditTime: 2025-07-31 23:31:41
  * @FilePath: /uniapp-mp-wx-template/src/utils/url/index.ts
  * @Description: url相关工具函数
  */
@@ -19,7 +19,7 @@ import { getCurrentServerUrl } from "@/utils"
  * @param {string} url - 完整的 URL 字符串
  * @returns {*}  {string} - 去除查询参数后的基础 URL
  */
-const getBaseUrl = (url: string): string => queryString.parseUrl(url).url
+export const getBaseUrl = (url: string): string => queryString.parseUrl(url).url
 
 /**
  * FUN: 获取 url 的 查询参数对象
@@ -29,7 +29,7 @@ const getBaseUrl = (url: string): string => queryString.parseUrl(url).url
  * @param {string} url 需要解析的 URL
  * @returns {queryString.ParsedQuery<string>} query对象
  */
-const getUrlQuery = (url: string): queryString.ParsedQuery<string> => queryString.parseUrl(url).query
+export const getUrlQuery = (url: string): queryString.ParsedQuery<string> => queryString.parseUrl(url).query
 
 /**
  * FUN: 根据 key 从 url 的 查询参数对象 中获取单个参数值
@@ -40,7 +40,7 @@ const getUrlQuery = (url: string): queryString.ParsedQuery<string> => queryStrin
  * @param {string} key query 的 key
  * @returns {string} query 的 value
  */
-const getUrlQueryValue = (url: string, key: string): string => (getUrlQuery(url)[key] as string) || ""
+export const getUrlQueryValue = (url: string, key: string): string => (getUrlQuery(url)[key] as string) || ""
 
 /**
  * FUN: 设置或更新 从 url 的 查询参数对象 中的指定参数，并返回更新后的 URL 字符串
@@ -53,7 +53,7 @@ const getUrlQueryValue = (url: string, key: string): string => (getUrlQuery(url)
  * @param {queryString.StringifyOptions} [options] stringifyUrl 的 options
  * @returns {string} 设置或更新后的 url
  */
-const setUrlQueryValue = (url: string, key: string, value: string, options?: queryString.StringifyOptions): string => {
+export const setUrlQueryValue = (url: string, key: string, value: string, options?: queryString.StringifyOptions): string => {
 
     const _query = getUrlQuery(url)
 
@@ -73,7 +73,11 @@ const setUrlQueryValue = (url: string, key: string, value: string, options?: que
  * @param {queryString.StringifyOptions} [options] stringifyUrl 的 options
  * @returns {string} 更新后的 URL 字符串
  */
-const mergeUrlQuery = (url: string, obj: queryString.ParsedQuery<string>, options?: queryString.StringifyOptions): string => {
+export const mergeUrlQuery = (
+    url: string,
+    obj: queryString.ParsedQuery<string>,
+    options?: queryString.StringifyOptions
+): string => {
 
     const _query = getUrlQuery(url)
 
@@ -92,7 +96,7 @@ const mergeUrlQuery = (url: string, obj: queryString.ParsedQuery<string>, option
  * @param {string} path - 路径
  * @returns {*}  {boolean} - 是否为绝对路径
  */
-const isAbsoluteUrl = (path: string): boolean => /^(https?:\/\/|:\/\/|[a-zA-Z0-9.-]+:\d+|:\d+)/.test(path)
+export const isAbsoluteUrl = (path: string): boolean => /^(https?:\/\/|:\/\/|[a-zA-Z0-9.-]+:\d+|:\d+)/.test(path)
 
 /** 相对路径转换为绝对路径的选项 */
 interface IToAbsoluteUrlOptions {
@@ -116,7 +120,7 @@ interface IToAbsoluteUrlOptions {
  * @param {IToAbsoluteUrlOptions} options - 选项
  * @returns {*}  {string} - 绝对路径
  */
-const toAbsoluteUrl = (options: IToAbsoluteUrlOptions): string => {
+export const toAbsoluteUrl = (options: IToAbsoluteUrlOptions): string => {
 
     const { relativePath, urlOrigin = getCurrentServerUrl(), basePath = "", version = __PROJECT_INFO__.version } = options
 
@@ -127,24 +131,25 @@ const toAbsoluteUrl = (options: IToAbsoluteUrlOptions): string => {
 
     }
 
-    const _urlOrigin = trimUrlSlashes(urlOrigin, { trimStart: false })
+    const _urlOrigin = trimUrlSlashes(urlOrigin)
     const _basePath = trimUrlSlashes(basePath)
-    const _relativePath = trimUrlSlashes(relativePath, { trimEnd: false })
+    const _relativePath = trimUrlSlashes(relativePath)
 
-    const _tempList = []
-    _urlOrigin && _tempList.push(_urlOrigin)
-    _basePath && _tempList.push(_basePath)
-    _relativePath && _tempList.push(_relativePath)
+    let _url = [_urlOrigin, _basePath, _relativePath].filter(Boolean).join("/")
 
-    const _url = _tempList.join("/")
+    if (!isAbsoluteUrl(relativePath)) {
 
-    if (!version) {
-
-        return _url
+        _url = `/${_url}`
 
     }
 
-    return setUrlQueryValue(_url, "version", version, {})
+    if (version) {
+
+        _url = setUrlQueryValue(_url, "version", version, {})
+
+    }
+
+    return _url
 
 }
 
@@ -159,7 +164,7 @@ const toAbsoluteUrl = (options: IToAbsoluteUrlOptions): string => {
  * @param {boolean} [options.trimEnd=true] - 是否移除结尾的斜杠
  * @returns {string} - 处理后的url
  */
-const trimUrlSlashes = (url: string, options: { trimStart?: boolean; trimEnd?: boolean } = {}): string => {
+export const trimUrlSlashes = (url: string, options: { trimStart?: boolean; trimEnd?: boolean } = {}): string => {
 
     const { trimStart = true, trimEnd = true } = options
 
@@ -176,15 +181,4 @@ const trimUrlSlashes = (url: string, options: { trimStart?: boolean; trimEnd?: b
     }
     return _url
 
-}
-
-export {
-    trimUrlSlashes,
-    getBaseUrl,
-    getUrlQuery,
-    getUrlQueryValue,
-    setUrlQueryValue,
-    mergeUrlQuery,
-    isAbsoluteUrl,
-    toAbsoluteUrl
 }

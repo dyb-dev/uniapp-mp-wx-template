@@ -2,13 +2,13 @@
  * @Author: dyb-dev
  * @Date: 2024-10-08 12:04:14
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-08 12:04:22
+ * @LastEditTime: 2025-07-31 23:21:14
  * @FilePath: /uniapp-mp-wx-template/src/types/authorize.ts
  * @Description: 授权类型模块
  */
 
 /** 授权错误码 */
-enum EAuthErrorCode {
+export const enum EAuthErrorCode {
     /** 拒绝授权 */
     DENIED = 1,
     /** 未登录 */
@@ -18,13 +18,9 @@ enum EAuthErrorCode {
 }
 
 /** 授权错误回调参数 */
-interface IAuthErrorOptions {
+export interface IAuthErrorOptions {
     /** 授权错误码 */
     code: EAuthErrorCode
     /** 授权错误信息 */
     message: string
 }
-
-export type { IAuthErrorOptions }
-
-export { EAuthErrorCode }

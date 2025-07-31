@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 14:01:47
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 21:41:43
+ * @LastEditTime: 2025-07-31 23:18:59
  * @FilePath: /uniapp-mp-wx-template/src/routerInterceptor/index.ts
  * @Description: 路由拦截器模块
  */
@@ -24,7 +24,7 @@ interface IRouterInvokeParams {
 /**
  * 路由前置拦截器参数
  */
-interface IRouterPreInterceptorParams {
+export interface IRouterPreInterceptorParams {
     /** 目标路径 */
     path: string
     /** 目标路由参数 */
@@ -34,7 +34,7 @@ interface IRouterPreInterceptorParams {
 }
 
 /** 路由前置拦截器函数 */
-type TRouterPreInterceptor = (params: IRouterPreInterceptorParams) => boolean
+export type TRouterPreInterceptor = (params: IRouterPreInterceptorParams) => boolean
 
 /**
  * FUN: 设置路由拦截器
@@ -42,7 +42,7 @@ type TRouterPreInterceptor = (params: IRouterPreInterceptorParams) => boolean
  * @author dyb-dev
  * @date 02/10/2024/  15:03:56
  */
-const setupRouterInterceptor = () => {
+export const setupRouterInterceptor = () => {
 
     const _options: UniNamespace.InterceptorOptions = {
         // 前置拦截器
@@ -78,7 +78,3 @@ const setupRouterInterceptor = () => {
     uni.addInterceptor("navigateBack", _options)
 
 }
-
-export { setupRouterInterceptor }
-
-export type { IRouterPreInterceptorParams, TRouterPreInterceptor }

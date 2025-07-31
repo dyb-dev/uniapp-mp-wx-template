@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-09 22:15:17
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 21:23:01
+ * @LastEditTime: 2025-07-31 23:22:08
  * @FilePath: /uniapp-mp-wx-template/src/utils/env/index.ts
  * @Description: 环境相关工具函数
  */
@@ -20,7 +20,7 @@ let systemInfo: UniApp.GetSystemInfoResult
  * @param {boolean} [isForceRefresh=false] 是否强制刷新
  * @returns {*} {UniApp.GetSystemInfoResult} 系统信息
  */
-const getSystemInfo = (isForceRefresh = false) => {
+export const getSystemInfo = (isForceRefresh = false) => {
 
     // 如果已经获取过系统信息，且不是强制刷新，则直接返回
     if (systemInfo && !isForceRefresh) {
@@ -51,7 +51,7 @@ const getSystemInfo = (isForceRefresh = false) => {
  * @date 06/10/2024/  23:15:36
  * @returns {*}  {boolean} 是否为开发者工具
  */
-const isDevTool = (): boolean => getSystemInfo()?.platform === "devtools"
+export const isDevTool = (): boolean => getSystemInfo()?.platform === "devtools"
 
 /**
  * FUN: 是否启用调试
@@ -60,7 +60,7 @@ const isDevTool = (): boolean => getSystemInfo()?.platform === "devtools"
  * @date 09/10/2024/  22:02:43
  * @returns {*}  {boolean} 是否启用调试
  */
-const isEnableDebug = (): boolean => isDevTool() ? true : getSystemInfo()?.enableDebug ?? false
+export const isEnableDebug = (): boolean => isDevTool() ? true : getSystemInfo()?.enableDebug ?? false
 
 /**
  * FUN: 是否为开发环境
@@ -69,7 +69,7 @@ const isEnableDebug = (): boolean => isDevTool() ? true : getSystemInfo()?.enabl
  * @date 09/10/2024/  17:34:47
  * @returns {*}  {boolean} 是否为开发环境
  */
-const isDevEnv = (): boolean => __PROJECT_INFO__.env.VITE_USER_NODE_ENV === "development"
+export const isDevEnv = (): boolean => __PROJECT_INFO__.env.VITE_USER_NODE_ENV === "development"
 
 /**
  * FUN: 获取当前服务器网址
@@ -80,11 +80,9 @@ const isDevEnv = (): boolean => __PROJECT_INFO__.env.VITE_USER_NODE_ENV === "dev
  * @date 01/11/2024/  20:34:09
  * @returns {*} {string} 当前服务器网址
  */
-const getCurrentServerUrl = (): string => {
+export const getCurrentServerUrl = (): string => {
 
     const { VITE_DEV_SERVER_URL, VITE_PROD_SERVER_URL } = __PROJECT_INFO__.env
     return getEnvVersion() === "release" ? VITE_PROD_SERVER_URL : VITE_DEV_SERVER_URL
 
 }
-
-export { getSystemInfo, isDevTool, isEnableDebug, isDevEnv, getCurrentServerUrl }

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2025-02-21 21:15:36
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 21:15:51
+ * @LastEditTime: 2025-07-31 23:26:29
  * @FilePath: /uniapp-mp-wx-template/src/utils/userInfo/index.ts
  * @Description: 用户信息相关工具函数
  */
@@ -20,7 +20,8 @@ import { ECertificatesType, EGenderType } from "@/types"
  * @param {EGenderType} genderType - 性别类型
  * @returns {*}  {string} - 性别字符串 如果未知性别，返回空字符串
  */
-const getGenderDesc = (genderType: EGenderType): string => GENDER_CONFIG_LIST.find(item => item.type === genderType)?.desc || ""
+export const getGenderDesc = (genderType: EGenderType): string =>
+    GENDER_CONFIG_LIST.find(item => item.type === genderType)?.desc || ""
 
 /**
  * FUN: 获取证件描述
@@ -30,7 +31,7 @@ const getGenderDesc = (genderType: EGenderType): string => GENDER_CONFIG_LIST.fi
  * @param {ECertificatesType} certificateType - 证件类型
  * @returns {*}  {string} - 证件描述字符串，如果未知证件，返回空字符串
  */
-const getCertificateDesc = (certificateType: ECertificatesType): string =>
+export const getCertificateDesc = (certificateType: ECertificatesType): string =>
     CERTIFICATE_CONFIG_LIST.find(item => item.type === certificateType)?.desc || ""
 
 /**
@@ -41,7 +42,7 @@ const getCertificateDesc = (certificateType: ECertificatesType): string =>
  * @param {string} identityCardNumber - 身份证号码
  * @returns {*}  {string} - 返回性别字符串，如果身份证无效，返回空字符串
  */
-const getGenderFromIdentityCard = (identityCardNumber: string): string => {
+export const getGenderFromIdentityCard = (identityCardNumber: string): string => {
 
     // 检查身份证号码是否合法
     if (!isIdentityCard(identityCardNumber)) {
@@ -68,7 +69,7 @@ const getGenderFromIdentityCard = (identityCardNumber: string): string => {
  * @param {string} identityCardNumber - 身份证号码
  * @returns {*}  {string} - 返回生日字符串，格式为 YYYY/MM/DD，如果身份证无效，返回空字符串
  */
-const getBirthdayFromIdentityCard = (identityCardNumber: string): string => {
+export const getBirthdayFromIdentityCard = (identityCardNumber: string): string => {
 
     // 检查身份证号码是否合法
     if (!isIdentityCard(identityCardNumber)) {
@@ -86,5 +87,3 @@ const getBirthdayFromIdentityCard = (identityCardNumber: string): string => {
     return `${_birthYear}/${_birthMonth}/${_birthDay}`
 
 }
-
-export { getGenderDesc, getCertificateDesc, getGenderFromIdentityCard, getBirthdayFromIdentityCard }

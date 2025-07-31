@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 20:49:07
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-10 11:29:40
+ * @LastEditTime: 2025-07-31 23:23:32
  * @FilePath: /uniapp-mp-wx-template/src/utils/pages/index.ts
  * @Description: 页面相关工具函数
  */
@@ -28,7 +28,7 @@ import type { PageMetaDatum } from "@uni-helper/vite-plugin-uni-pages"
  * @export
  * @returns {*} 当前页面实例
  */
-const getCurrentPageInstance = () => {
+export const getCurrentPageInstance = () => {
 
     const _pages = getCurrentPages() as WechatMiniprogram.Page.Instance<
         WechatMiniprogram.IAnyObject,
@@ -48,7 +48,7 @@ const getCurrentPageInstance = () => {
  * @date 05/10/2024/  21:09:23
  * @returns {*} 当前页面路径
  */
-const getCurrentPagePath = () => getCurrentPageInstance().route
+export const getCurrentPagePath = () => getCurrentPageInstance().route
 
 /**
  * FUN: 获取当前页面的完整路径
@@ -60,7 +60,7 @@ const getCurrentPagePath = () => getCurrentPageInstance().route
  * @date 05/10/2024/  21:11:26
  * @returns {*} 当前页面完整路径
  */
-const getCurrentPageFullPath = () => `${getCurrentPagePath()}?${getCurrentPageSearch()}`
+export const getCurrentPageFullPath = () => `${getCurrentPagePath()}?${getCurrentPageSearch()}`
 
 /**
  * FUN: 获取当前页面的 query 参数
@@ -72,7 +72,7 @@ const getCurrentPageFullPath = () => `${getCurrentPagePath()}?${getCurrentPageSe
  * @date 05/10/2024/  21:03:56
  * @returns {*} 当前页面的 query 参数
  */
-const getCurrentPageQuery = () => getCurrentPageInstance()?.options || {}
+export const getCurrentPageQuery = () => getCurrentPageInstance()?.options || {}
 
 /**
  * FUN: 获取当前页面的 search 参数
@@ -84,7 +84,7 @@ const getCurrentPageQuery = () => getCurrentPageInstance()?.options || {}
  * @date 05/10/2024/  21:07:28
  * @returns {*} 当前页面 search 参数
  */
-const getCurrentPageSearch = () => queryString.stringify(getCurrentPageQuery(), { encode: false })
+export const getCurrentPageSearch = () => queryString.stringify(getCurrentPageQuery(), { encode: false })
 
 const { VITE_SUB_PACKAGE_DIR, VITE_PAGE_DIR } = __PROJECT_INFO__.env
 
@@ -100,7 +100,7 @@ const SUB_PACKAGE_PAGE_PATH_REGEX = new RegExp(`^(${VITE_SUB_PACKAGE_DIR}(?:\\/[
  * @param {string} pagePath 页面路径
  * @returns {*} 页面配置
  */
-const getPageConfig = (pagePath: string): PageMetaDatum | void => {
+export const getPageConfig = (pagePath: string): PageMetaDatum | void => {
 
     // 如果路径开头携带斜杠，则去除开头的斜杠
     pagePath = trimUrlSlashes(pagePath, { trimStart: true })
@@ -134,14 +134,4 @@ const getPageConfig = (pagePath: string): PageMetaDatum | void => {
  * @date 06/10/2024/  15:01:07
  * @returns {*} 当前页面配置
  */
-const getCurrentPageConfig = (): PageMetaDatum | void => getPageConfig(getCurrentPagePath())
-
-export {
-    getCurrentPageInstance,
-    getCurrentPagePath,
-    getCurrentPageFullPath,
-    getCurrentPageQuery,
-    getCurrentPageSearch,
-    getPageConfig,
-    getCurrentPageConfig
-}
+export const getCurrentPageConfig = (): PageMetaDatum | void => getPageConfig(getCurrentPagePath())

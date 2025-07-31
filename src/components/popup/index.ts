@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-30 20:56:29
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 19:39:52
+ * @LastEditTime: 2025-07-31 23:15:56
  * @FilePath: /uniapp-mp-wx-template/src/components/popup/index.ts
  * @Description: 弹窗组件相关工具函数
  */
@@ -16,10 +16,10 @@ import type { IPopupOptions, TPopupUnmountParam, TPopupCustomKey } from "./Popup
 import type { TFilteredDefaultOptions } from "@/components"
 
 /** 显示弹窗的选项 */
-type TShowPopupOptions = TFilteredDefaultOptions<IPopupOptions>
+export type TShowPopupOptions = TFilteredDefaultOptions<IPopupOptions>
 
 /** 显示弹窗的结果 */
-type TShowPopupResult = TPopupUnmountParam
+export type TShowPopupResult = TPopupUnmountParam
 
 /**
  * 使用弹窗
@@ -29,7 +29,7 @@ type TShowPopupResult = TPopupUnmountParam
  * @param {TPopupCustomKey} [customKey='__POPUP__'] - 弹窗唯一标识key 默认: `__POPUP__`
  * @returns {*} {TUsePopup} - 弹窗相关函数
  */
-const usePopup = (customKey: string = "") => {
+export const usePopup = (customKey: string = "") => {
 
     const _customKey: TPopupCustomKey = `__POPUP__${customKey}`
     const _options = providerComponentOptions<TPopupCustomKey, IPopupOptions>(_customKey)
@@ -60,7 +60,3 @@ const usePopup = (customKey: string = "") => {
     }
 
 }
-
-export type { TShowPopupOptions, TShowPopupResult }
-
-export { usePopup }

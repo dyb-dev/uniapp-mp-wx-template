@@ -2,13 +2,13 @@
  * @Author: dyb-dev
  * @Date: 2025-02-21 21:14:28
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 21:14:35
+ * @LastEditTime: 2025-07-31 23:22:37
  * @FilePath: /uniapp-mp-wx-template/src/utils/location/index.ts
  * @Description: 位置相关工具函数
  */
 
 /** 位置 */
-interface ILocation {
+export interface ILocation {
     /** 纬度 */
     latitude: number
     /** 经度 */
@@ -24,7 +24,7 @@ interface ILocation {
  * @param {ILocation} endLocation 结束位置
  * @returns {*}  {number} 两个坐标之间的距离 (单位: 米)
  */
-const calculateDistanceBetweenLocations = (startLocation: ILocation, endLocation: ILocation): number => {
+export const calculateDistanceBetweenLocations = (startLocation: ILocation, endLocation: ILocation): number => {
 
     // 解构起始位置的纬度和经度
     const { latitude: startLatitude, longitude: startLongitude } = startLocation
@@ -71,7 +71,3 @@ const calculateDistanceBetweenLocations = (startLocation: ILocation, endLocation
     return parseFloat(_distance.toFixed(0))
 
 }
-
-export type { ILocation }
-
-export { calculateDistanceBetweenLocations }

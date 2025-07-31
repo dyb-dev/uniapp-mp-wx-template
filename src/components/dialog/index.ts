@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-26 15:44:43
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 19:36:39
+ * @LastEditTime: 2025-07-31 23:14:09
  * @FilePath: /uniapp-mp-wx-template/src/components/dialog/index.ts
  * @Description: 对话框组件相关工具函数
  */
@@ -19,10 +19,10 @@ import type { IFormDialogOptions, TFormDialogCustomKey, TFormDialogUnmountParam 
 import type { TFilteredDefaultOptions } from "@/components"
 
 /** 显示对话框的选项 */
-type TShowDialogOptions = TFilteredDefaultOptions<IDialogOptions>
+export type TShowDialogOptions = TFilteredDefaultOptions<IDialogOptions>
 
 /** 显示对话框的结果 */
-type TShowDialogResult = TDialogUnmountParam
+export type TShowDialogResult = TDialogUnmountParam
 
 /**
  * 使用对话框
@@ -32,7 +32,7 @@ type TShowDialogResult = TDialogUnmountParam
  * @param {TDialogCustomKey} [customKey='__DIALOG__'] - 对话框唯一标识key 默认: `__DIALOG__`
  * @returns {*} {TUseDialog} - 对话框相关函数
  */
-const useDialog = (customKey: string = "") => {
+export const useDialog = (customKey: string = "") => {
 
     const _customKey: TDialogCustomKey = `__DIALOG__${customKey}`
     const _options = providerComponentOptions<TDialogCustomKey, IDialogOptions>(_customKey)
@@ -65,10 +65,10 @@ const useDialog = (customKey: string = "") => {
 }
 
 /** 显示表单对话框的选项 */
-type TShowFormDialogOptions<T extends Record<string, any>> = TFilteredDefaultOptions<IFormDialogOptions<T>>
+export type TShowFormDialogOptions<T extends Record<string, any>> = TFilteredDefaultOptions<IFormDialogOptions<T>>
 
 /** 显示表单对话框的结果 */
-type TShowFormDialogResult<T extends Record<string, any>> = TFormDialogUnmountParam<T>
+export type TShowFormDialogResult<T extends Record<string, any>> = TFormDialogUnmountParam<T>
 
 /**
  * 使用表单对话框
@@ -78,7 +78,7 @@ type TShowFormDialogResult<T extends Record<string, any>> = TFormDialogUnmountPa
  * @param {TFormDialogCustomKey} [customKey='__FORM_DIALOG__'] - 表单对话框唯一标识key 默认: `__FORM_DIALOG__`
  * @returns {*} {TUseFormDialog} - 表单对话框相关函数
  */
-const useFormDialog = (customKey: string = "") => {
+export const useFormDialog = (customKey: string = "") => {
 
     const _customKey: TFormDialogCustomKey = `__FORM_DIALOG__${customKey}`
     const _options = providerComponentOptions<TFormDialogCustomKey, IFormDialogOptions<Record<string, any>>>(_customKey)
@@ -111,7 +111,3 @@ const useFormDialog = (customKey: string = "") => {
     }
 
 }
-
-export type { TShowDialogOptions, TShowDialogResult, TShowFormDialogOptions }
-
-export { useDialog, useFormDialog }

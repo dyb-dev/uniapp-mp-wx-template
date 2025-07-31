@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-06 13:52:21
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-06 23:39:46
+ * @LastEditTime: 2025-07-31 23:27:19
  * @FilePath: /uniapp-mp-wx-template/vite/utils.ts
  * @Description: vite配置工具函数
  */
@@ -19,7 +19,7 @@ import pkg from "../package.json"
  * @param {ImportMetaEnv} env - 环境变量
  * @returns {*}  {IProjectInfo}
  */
-const generateProjectInfo = (env: ImportMetaEnv): IProjectInfo => {
+export const generateProjectInfo = (env: ImportMetaEnv): IProjectInfo => {
 
     const { name, version, dependencies } = pkg
     const _dayObj = dayjs()
@@ -36,5 +36,3 @@ const generateProjectInfo = (env: ImportMetaEnv): IProjectInfo => {
     return _projectInfo
 
 }
-
-export { generateProjectInfo }

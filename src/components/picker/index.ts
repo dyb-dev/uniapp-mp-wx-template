@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-04 19:51:37
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 19:38:42
+ * @LastEditTime: 2025-07-31 23:15:18
  * @FilePath: /uniapp-mp-wx-template/src/components/picker/index.ts
  * @Description: 选择器组件模块
  */
@@ -22,7 +22,7 @@ import type { TShowPickerBaseResult } from "./type"
 import type { TFilteredDefaultOptions } from "@/components"
 
 /** 显示选择器的选项 */
-type TShowPickerOptions = TFilteredDefaultOptions<IPickerOptions>
+export type TShowPickerOptions = TFilteredDefaultOptions<IPickerOptions>
 
 /**
  * 使用选择器
@@ -32,7 +32,7 @@ type TShowPickerOptions = TFilteredDefaultOptions<IPickerOptions>
  * @param {string} [customKey=""] - 弹窗唯一标识key 默认: `__PICKER__`
  * @returns {*} {TUsePicker} - 选择器相关函数
  */
-const usePicker = (customKey: string = "") => {
+export const usePicker = (customKey: string = "") => {
 
     const _customKey: TPickerCustomKey = `__PICKER__${customKey}`
     const _options = providerComponentOptions<TPickerCustomKey, IPickerOptions>(_customKey)
@@ -65,7 +65,7 @@ const usePicker = (customKey: string = "") => {
 }
 
 /** 显示日期时间选择器的选项 */
-type TShowDateTimePickerOptions = TFilteredDefaultOptions<IDateTimePickerOptions>
+export type TShowDateTimePickerOptions = TFilteredDefaultOptions<IDateTimePickerOptions>
 
 /**
  * 使用日期时间选择器
@@ -75,7 +75,7 @@ type TShowDateTimePickerOptions = TFilteredDefaultOptions<IDateTimePickerOptions
  * @param {string} [customKey=""] - 弹窗唯一标识key 默认: `__DATE_TIME_PICKER__`
  * @returns {*} {TUseDateTimePicker} - 日期时间选择器相关函数
  */
-const useDateTimePicker = (customKey: string = "") => {
+export const useDateTimePicker = (customKey: string = "") => {
 
     const _customKey: TDateTimePickerCustomKey = `__DATE_TIME_PICKER__${customKey}`
     const _options = providerComponentOptions<TDateTimePickerCustomKey, IDateTimePickerOptions>(_customKey)
@@ -106,7 +106,3 @@ const useDateTimePicker = (customKey: string = "") => {
     }
 
 }
-
-export type { TShowPickerOptions, TShowDateTimePickerOptions }
-
-export { usePicker, useDateTimePicker }

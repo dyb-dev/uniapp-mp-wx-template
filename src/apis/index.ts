@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-08 20:34:09
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 23:29:52
+ * @LastEditTime: 2025-07-31 23:12:24
  * @FilePath: /uniapp-mp-wx-template/src/apis/index.ts
  * @Description: 接口模块
  */
@@ -23,7 +23,7 @@ import { setGlobalTestRequestConfig } from "./request"
  * @author dyb-dev
  * @date 08/10/2024/  20:47:43
  */
-const setupApi = () => {
+export const setupApi = () => {
 
     // 设置请求基础路径
     un.defaults.baseUrl = getCurrentServerUrl() + __PROJECT_INFO__.env.VITE_API_BASE_PATH
@@ -38,5 +38,3 @@ const setupApi = () => {
     })
 
 }
-
-export { setupApi }

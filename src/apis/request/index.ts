@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2025-02-21 21:58:00
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 22:37:49
+ * @LastEditTime: 2025-07-31 23:11:56
  * @FilePath: /uniapp-mp-wx-template/src/apis/request/index.ts
  * @Description: 封装请求模块
  */
@@ -28,7 +28,7 @@ let _globalTestRequestConfig: Omit<ITestRequestConfig, "testResult"> = {
  * @date 21/02/2025/  19:50:27
  * @param {Omit<ITestRequestConfig, "testResult">} config 测试请求配置
  */
-const setGlobalTestRequestConfig = (config: Omit<ITestRequestConfig, "testResult">) => {
+export const setGlobalTestRequestConfig = (config: Omit<ITestRequestConfig, "testResult">) => {
 
     _globalTestRequestConfig = config
 
@@ -38,7 +38,7 @@ const setGlobalTestRequestConfig = (config: Omit<ITestRequestConfig, "testResult
 let _globalRequestId = 0
 
 /** 发送请求选项 */
-interface ISendRequestOptions<T extends Record<string, any>, P extends Record<string, any> = Record<string, any>> {
+export interface ISendRequestOptions<T extends Record<string, any>, P extends Record<string, any> = Record<string, any>> {
     /** 请求地址 */
     url: string
     /** 请求参数 */
@@ -59,7 +59,7 @@ interface ISendRequestOptions<T extends Record<string, any>, P extends Record<st
  * @param {ISendRequestOptions<T, P>} options 选项
  * @returns {*}  {Promise<UnResponse<T>>} 请求结果
  */
-const sendRequest = async <T extends Record<string, any>, P extends Record<string, any> = Record<string, any>>(
+export const sendRequest = async <T extends Record<string, any>, P extends Record<string, any> = Record<string, any>>(
     options: ISendRequestOptions<T, P>
 ): Promise<UnResponse<T>> => {
 
@@ -169,7 +169,3 @@ const sendRequest = async <T extends Record<string, any>, P extends Record<strin
     }
 
 }
-
-export type { ISendRequestOptions }
-
-export { setGlobalTestRequestConfig, sendRequest }

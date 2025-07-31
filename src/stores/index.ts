@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-05 21:26:18
  * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-15 13:51:26
+ * @LastEditTime: 2025-07-31 23:19:50
  * @FilePath: /uniapp-mp-wx-template/src/stores/index.ts
  * @Description: store模块
  */
@@ -15,7 +15,7 @@ import { createPinia } from "pinia"
 import { createPersistedState } from "pinia-plugin-persistedstate"
 
 /** store 实例 */
-const store = createPinia()
+export const store = createPinia()
 
 // 使用全局持久化状态插件
 store.use(
@@ -29,5 +29,3 @@ store.use(
         }
     })
 )
-
-export { store }

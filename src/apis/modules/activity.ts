@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-08 21:22:48
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 22:48:25
+ * @LastEditTime: 2025-07-31 23:10:51
  * @FilePath: /uniapp-mp-wx-template/src/apis/modules/activity.ts
  * @Description: 本次活动接口模块
  */
@@ -14,7 +14,7 @@ import { sendRequest } from "../request"
 import type { UnResponse } from "@uni-helper/uni-network"
 
 /** 获取用户信息的结果数据 */
-interface IGetUserInfoApiResultData {
+export interface IGetUserInfoApiResultData {
     /** 内容 */
     body: string
     /** id */
@@ -33,7 +33,7 @@ interface IGetUserInfoApiResultData {
  * @param {TModifyProperties<ITestRequestConfig<IGetUserInfoApiResultData>, "test">} [testRequestConfig] 测试请求配置
  * @returns {*}  {Promise<UnResponse<IGetUserInfoApiResultData>>} 结果数据
  */
-const getUserInfoApi = async(
+export const getUserInfoApi = async(
     testRequestConfig?: TModifyProperties<ITestRequestConfig<IGetUserInfoApiResultData>, "test">
 ): Promise<UnResponse<IGetUserInfoApiResultData>> => {
 
@@ -46,13 +46,13 @@ const getUserInfoApi = async(
 }
 
 /** 获取id的参数 */
-interface IGetIdApiParams {
+export interface IGetIdApiParams {
     /** 用户唯一标识 */
     userId: number
 }
 
 /** 获取id的结果数据 */
-interface IGetIdApiResultData {
+export interface IGetIdApiResultData {
     /** id */
     id: number
 }
@@ -66,7 +66,7 @@ interface IGetIdApiResultData {
  * @param {TModifyProperties<ITestRequestConfig<IGetIdApiResultData>, "test">} [testRequestConfig] 测试请求配置
  * @returns {*}  {Promise<UnResponse<IGetIdApiResultData>>} 结果数据
  */
-const getIdApi = async(
+export const getIdApi = async(
     params: IGetIdApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig<IGetIdApiResultData>, "test">
 ): Promise<UnResponse<IGetIdApiResultData>> => {
@@ -78,7 +78,3 @@ const getIdApi = async(
     })
 
 }
-
-export type { IGetUserInfoApiResultData, IGetIdApiParams, IGetIdApiResultData }
-
-export { getUserInfoApi, getIdApi }

@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-10-06 14:42:41
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 23:06:25
+ * @LastEditTime: 2025-07-31 23:20:45
  * @FilePath: /uniapp-mp-wx-template/src/stores/userInfo.ts
  * @Description: 用户信息状态管理
  */
@@ -49,7 +49,7 @@ interface IUserInfoStoreState {
 }
 
 /** Store 实例 */
-const useUserInfoStore = defineStore("UserInfoStore", () => {
+export const useUserInfoStore = defineStore("UserInfoStore", () => {
 
     /** Store 状态 */
     const userInfoStoreState = reactive<IUserInfoStoreState>({
@@ -265,10 +265,8 @@ const useUserInfoStore = defineStore("UserInfoStore", () => {
  * @date 15/09/2024/  23:53:35
  * @returns store实例
  */
-const useUserInfoStoreWithOut = () => {
+export const useUserInfoStoreWithOut = () => {
 
     return useUserInfoStore(store)
 
 }
-
-export { useUserInfoStore, useUserInfoStoreWithOut }

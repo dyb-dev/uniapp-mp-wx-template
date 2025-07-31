@@ -2,7 +2,7 @@
  * @Author: dyb-dev
  * @Date: 2024-11-16 02:11:23
  * @LastEditors: dyb-dev
- * @LastEditTime: 2025-06-29 17:30:17
+ * @LastEditTime: 2025-07-31 23:17:20
  * @FilePath: /uniapp-mp-wx-template/src/hooks/pagination/useListPagination.ts
  * @Description: 列表分页器
  */
@@ -12,11 +12,12 @@ import { usePagination } from "./usePagination"
 import type { IUsePaginationOptions, IUsePaginationReturn, TPaginationDataItem } from "./usePagination"
 
 /** 列表分页配置，继承自 IUsePaginationOptions */
-interface IUseListPaginationOptions<T extends TPaginationDataItem>
+export interface IUseListPaginationOptions<T extends TPaginationDataItem>
     extends Omit<IUsePaginationOptions<T>, "usePreviousDataOnFail"> {}
 
 /** 列表分页返回结果，继承自 IUsePaginationReturn */
-interface IUseListPaginationReturn<T extends TPaginationDataItem> extends Omit<IUsePaginationReturn<T>, "refresh" | "prev"> {
+export interface IUseListPaginationReturn<T extends TPaginationDataItem>
+    extends Omit<IUsePaginationReturn<T>, "refresh" | "prev"> {
     /** 清空所有数据并刷新首页 */
     clearRefresh: () => Promise<void>
     /** 清空所有数据并初始化分页器 */
@@ -32,7 +33,9 @@ interface IUseListPaginationReturn<T extends TPaginationDataItem> extends Omit<I
  * @param {IUseListPaginationOptions<T>} options 列表分页配置
  * @returns {*}  {IUseListPaginationReturn<T>} 列表分页返回结果
  */
-const useListPagination = <T extends TPaginationDataItem>(options: IUseListPaginationOptions<T>): IUseListPaginationReturn<T> => {
+export const useListPagination = <T extends TPaginationDataItem>(
+    options: IUseListPaginationOptions<T>
+): IUseListPaginationReturn<T> => {
 
     // 调用 usePagination 并传入参数
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -159,7 +162,3 @@ const useListPagination = <T extends TPaginationDataItem>(options: IUseListPagin
     }
 
 }
-
-export type { IUseListPaginationOptions, IUseListPaginationReturn }
-
-export { useListPagination }
