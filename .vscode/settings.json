@@ -53,6 +53,9 @@
         "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, pnpm-workspace.yaml, LICENSE"
     },
     "terminal.integrated.scrollback": 2000,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "gitlens.views.commitDetails.files.layout": "tree",
 
     // #endregion
 
@@ -227,6 +230,8 @@
     // #region CODE: TODO Highlight 插件配置
 
     "todohighlight.keywords": [
+        // #region CODE: 公用
+
         {
             "text": "CONST:",
             "color": "#ffffff",
@@ -243,24 +248,6 @@
             "text": "REF:",
             "color": "#ffffff",
             "backgroundColor": "#fb06c4",
-            "borderRadius": "3px"
-        },
-        {
-            "text": "REACTIVE:",
-            "color": "#ffffff",
-            "backgroundColor": "#03b224",
-            "borderRadius": "3px"
-        },
-        {
-            "text": "COMPUTED:",
-            "color": "#ffffff",
-            "backgroundColor": "#c703f8",
-            "borderRadius": "3px"
-        },
-        {
-            "text": "WATCH:",
-            "color": "#ffffff",
-            "backgroundColor": "#FF5600",
             "borderRadius": "3px"
         },
         {
@@ -286,7 +273,79 @@
             "color": "#ffffff",
             "backgroundColor": "#065cfb",
             "borderRadius": "3px"
+        },
+
+        // #endregion
+
+        // #region CODE: vue
+
+        {
+            "text": "REACTIVE:",
+            "color": "#ffffff",
+            "backgroundColor": "#03b224",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "COMPUTED:",
+            "color": "#ffffff",
+            "backgroundColor": "#c703f8",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "WATCH:",
+            "color": "#ffffff",
+            "backgroundColor": "#FF5600",
+            "borderRadius": "3px"
+        },
+
+        // #endregion
+
+        // #region CODE: react
+
+        {
+            "text": "STATE:",
+            "color": "#ffffff",
+            "backgroundColor": "#03b224",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "MEMO:",
+            "color": "#ffffff",
+            "backgroundColor": "#c703f8",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "EFFECT:",
+            "color": "#ffffff",
+            "backgroundColor": "#FF5600",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "LAYOUT_EFFECT:",
+            "color": "#ffffff",
+            "backgroundColor": "#f4b102",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "DEFERRED_VALUE:",
+            "color": "#ffffff",
+            "backgroundColor": "#fb0667",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "TRANSITION:",
+            "color": "#ffffff",
+            "backgroundColor": "#8B5CF6",
+            "borderRadius": "3px"
+        },
+        {
+            "text": "FLUSH_SYNC:",
+            "color": "#ffffff",
+            "backgroundColor": "#d7cc02",
+            "borderRadius": "3px"
         }
+
+        // #endregion
     ],
 
     // #endregion
