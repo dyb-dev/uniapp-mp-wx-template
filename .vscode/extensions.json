@@ -1,4 +1,6 @@
-// VS Code 会检查当前项目的根目录下是否存在 extensions.json 文件，并根据其中的推荐插件列表向你展示相应的推荐安装提示
+/*
+ * @FileDesc: 推荐安装插件建议
+ */
 
 {
     "recommendations": [
