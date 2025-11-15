@@ -401,7 +401,8 @@
         "dcloudio",
         "getphonenumber",
         "chooseavatar",
-        "gutterpreview"
+        "gutterpreview",
+        "unocss"
     ],
 
     // #endregion

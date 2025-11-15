@@ -68,6 +68,8 @@
         "uni-helper.uni-app-snippets-vscode",
         // uni-create-view 插件
         "uni-helper.uni-highlight-vscode",
+        // unocss 插件
+        "antfu.unocss",
         // Var Conversion 插件
         "xiaoxintongxue.var-conv",
         // Vue - Official 插件

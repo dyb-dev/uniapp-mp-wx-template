@@ -9,6 +9,7 @@ import UniHelperComponents from "@uni-helper/vite-plugin-uni-components"
 import UniHelperManifest from "@uni-helper/vite-plugin-uni-manifest"
 import UniHelperPages from "@uni-helper/vite-plugin-uni-pages"
 import { NutResolver } from "nutui-uniapp"
+import UnoCSS from "unocss/vite"
 import { defineConfig, loadEnv } from "vite"
 
 import { generateProjectInfo } from "./vite/utils"
@@ -35,7 +36,7 @@ const {
 /** CONST: 分包子目录路径列表 */
 const subPackageChildDirPathList = VITE_SUB_PACKAGE_CHILD_DIRS.split(",").map(item => `src/${VITE_SUB_PACKAGE_DIR}/${item}`)
 
-export default defineConfig(async() => {
+export default defineConfig(async () => {
 
     return {
         plugins: [
@@ -68,7 +69,9 @@ export default defineConfig(async() => {
 
             // 核心插件，能够在 `uni-app` 中使用 `vite` 来构建项目
             // 注意: 部分插件需要在 `Uni()` 的前面，这是因为其他插件代码最终会被 `Uni()` 做处理
-            Uni()
+            Uni(),
+            // 处理原子 css 提取
+            UnoCSS()
         ],
 
         build: {

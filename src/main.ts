@@ -9,6 +9,7 @@ import App from "@/App.vue"
 import { setupRouterInterceptor } from "@/routerInterceptor"
 import { store } from "@/stores"
 
+import "virtual:uno.css"
 
 export function createApp () {
 
