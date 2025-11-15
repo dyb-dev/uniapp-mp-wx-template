@@ -194,18 +194,8 @@
 
     // 头部注释
     "fileheader.customMade": {
-        // 作者:获取git用户名
-        "Author": "git config user.name",
-        // 文件创建时间
-        "Date": "Do not edit",
-        // 最后修改人
-        "LastEditors": "git config user.name",
-        // 最后修改时间
-        "LastEditTime": "Do not edit",
-        // 文件路径
-        "FilePath": "Do not edit",
         // 文件描述
-        "Description": ""
+        "FileDesc": ""
     },
     "fileheader.configObj": {
         // 自动添加头部注释开启才能自动添加
