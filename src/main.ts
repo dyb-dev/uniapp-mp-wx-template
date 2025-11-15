@@ -4,13 +4,13 @@
 
 import { createSSRApp } from "vue"
 
+import { setupApi } from "@/apis"
 import App from "@/App.vue"
 import { setupRouterInterceptor } from "@/routerInterceptor"
 import { store } from "@/stores"
 
-import { setupApi } from "./apis"
 
-export function createApp() {
+export function createApp () {
 
     const app = createSSRApp(App)
     // 使用商店
