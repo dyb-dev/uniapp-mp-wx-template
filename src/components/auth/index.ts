@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-31 01:55:52
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:13:16
- * @FilePath: /uniapp-mp-wx-template/src/components/auth/index.ts
- * @Description: 用户信息组件相关工具函数
+ * @FileDesc: 用户信息组件相关工具函数
  */
 
 /** 导出授权头像按钮组件类型 */

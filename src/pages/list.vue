@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-10-08 16:28:02
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 21:17:39
- * @FilePath: /uniapp-mp-wx-template/src/pages/list.vue
- * @Description: 列表示例页面
--->
+ * @FileDesc: 列表示例页面
+ -->
 <script setup lang="ts">
 import { delay } from "@/utils"
 

@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-05 20:49:07
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:23:32
- * @FilePath: /uniapp-mp-wx-template/src/utils/pages/index.ts
- * @Description: 页面相关工具函数
+ * @FileDesc: 页面相关工具函数
  */
 
 /** 导出页面跳转相关工具函数 */

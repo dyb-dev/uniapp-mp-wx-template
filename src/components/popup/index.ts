@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-30 20:56:29
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:15:56
- * @FilePath: /uniapp-mp-wx-template/src/components/popup/index.ts
- * @Description: 弹窗组件相关工具函数
+ * @FileDesc: 弹窗组件相关工具函数
  */
 
 /** 导出基础弹窗类型 */

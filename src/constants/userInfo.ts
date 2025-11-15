@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2025-02-21 21:01:57
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:16:49
- * @FilePath: /uniapp-mp-wx-template/src/constants/userInfo.ts
- * @Description: 用户信息常量模块
+ * @FileDesc: 用户信息常量模块
  */
 
 import { ECertificatesType, EGenderType } from "@/types"

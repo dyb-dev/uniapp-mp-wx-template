@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-10-30 21:28:42
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 23:25:36
- * @FilePath: /uniapp-mp-wx-template/src/components/auth/AuthPhoneNumberButton.vue
- * @Description: 授权手机号按钮组件
--->
+ * @FileDesc: 授权手机号按钮组件
+ -->
 
 <script setup lang="ts">
 import { useUserInfoStore } from "@/stores"

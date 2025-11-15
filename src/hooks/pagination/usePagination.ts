@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-11-16 02:11:23
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:18:03
- * @FilePath: /uniapp-mp-wx-template/src/hooks/pagination/usePagination.ts
- * @Description: 分页器
+ * @FileDesc: 分页器
  */
 
 import { useOffsetPagination } from "@vueuse/core"

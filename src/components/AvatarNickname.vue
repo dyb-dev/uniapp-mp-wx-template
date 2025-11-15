@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:43:32
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 20:44:48
- * @FilePath: /uniapp-mp-wx-template/src/components/AvatarNickname.vue
- * @Description: 头像昵称组件
--->
+ * @FileDesc: 头像昵称组件
+ -->
 
 <script setup lang="ts">
 /**

@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:34:45
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-17 18:56:08
- * @FilePath: /uniapp-mp-wx-template/src/components/dialog/FormDialog.vue
- * @Description: 表单对话框基础组件
--->
+ * @FileDesc: 表单对话框基础组件
+ -->
 
 <script setup lang="ts">
 import { useVModels } from "@vueuse/core"

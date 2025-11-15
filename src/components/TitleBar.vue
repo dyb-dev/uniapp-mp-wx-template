@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-10-23 20:15:55
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-25 15:30:41
- * @FilePath: /uniapp-mp-wx-template/src/components/TitleBar.vue
- * @Description: 标题栏组件
--->
+ * @FileDesc: 标题栏组件
+ -->
 
 <script setup lang="ts">
 export interface ITitleProps {

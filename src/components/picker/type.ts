@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-11-04 20:02:48
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:15:32
- * @FilePath: /uniapp-mp-wx-template/src/components/picker/type.ts
- * @Description: 选择器组件公共类型
+ * @FileDesc: 选择器组件公共类型
  */
 
 import type { PickerBaseEvent } from "nutui-uniapp"

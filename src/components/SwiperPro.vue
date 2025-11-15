@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-12-07 21:23:45
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-10 20:17:24
- * @FilePath: /uniapp-mp-wx-template/src/components/SwiperPro.vue
- * @Description: 轮播图组件
--->
+ * @FileDesc: 轮播图组件
+ -->
 
 <script setup lang="ts">
 import { useVModels } from "@vueuse/core"

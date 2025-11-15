@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-05 21:14:00
- * @LastEditors: v_zhgtzhong
- * @LastEditTime: 2025-08-01 01:02:36
- * @FilePath: /uniapp-mp-wx-template/src/utils/url/index.ts
- * @Description: url相关工具函数
+ * @FileDesc: url相关工具函数
  */
 
 import queryString from "query-string"

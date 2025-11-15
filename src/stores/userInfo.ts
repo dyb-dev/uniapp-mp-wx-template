@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-06 14:42:41
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:20:45
- * @FilePath: /uniapp-mp-wx-template/src/stores/userInfo.ts
- * @Description: 用户信息状态管理
+ * @FileDesc: 用户信息状态管理
  */
 
 import { defineStore } from "pinia"

@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-11-04 19:51:37
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:15:18
- * @FilePath: /uniapp-mp-wx-template/src/components/picker/index.ts
- * @Description: 选择器组件模块
+ * @FileDesc: 选择器组件模块
  */
 
 /** 导出选择器组件公共类型 */

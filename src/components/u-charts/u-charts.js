@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:43:09
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:12:51
- * @FilePath: /uniapp-mp-wx-template/src/components/u-charts/u-charts.js
- * @Description: `图表` 核心代码文件
+ * @FileDesc: `图表` 核心代码文件
  */
 
 /*

@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:24:05
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 19:26:46
- * @FilePath: /uniapp-mp-wx-template/src/components/Uploader.vue
- * @Description: 上传文件组件
--->
+ * @FileDesc: 上传文件组件
+ -->
 
 <script setup lang="ts">
 import { useVModels } from "@vueuse/core"

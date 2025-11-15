@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-09 22:15:17
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:22:08
- * @FilePath: /uniapp-mp-wx-template/src/utils/env/index.ts
- * @Description: 环境相关工具函数
+ * @FileDesc: 环境相关工具函数
  */
 
 import { getEnvVersion } from "@/utils"

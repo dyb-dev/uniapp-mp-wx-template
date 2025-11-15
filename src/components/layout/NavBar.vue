@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-09-20 21:09:38
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-02 20:24:58
- * @FilePath: /uniapp-mp-wx-template/src/components/layout/NavBar.vue
- * @Description: 顶部导航栏
--->
+ * @FileDesc: 顶部导航栏
+ -->
 
 <script setup lang="ts">
 import { getImageInfo } from "@uni-helper/uni-promises"

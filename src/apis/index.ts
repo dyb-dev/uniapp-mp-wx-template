@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-08 20:34:09
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:12:24
- * @FilePath: /uniapp-mp-wx-template/src/apis/index.ts
- * @Description: 接口模块
+ * @FileDesc: 接口模块
  */
 
 /** 导出接口模块 */

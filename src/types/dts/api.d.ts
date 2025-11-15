@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-17 16:21:11
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 22:09:54
- * @FilePath: /uniapp-mp-wx-template/src/types/dts/api.d.ts
- * @Description: api 类型声明补充文件
+ * @FileDesc: api 类型声明补充文件
  */
 
 import type { UnResponse } from "@uni-helper/uni-network"

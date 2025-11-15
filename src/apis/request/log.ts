@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2025-02-21 21:57:45
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:12:11
- * @FilePath: /uniapp-mp-wx-template/src/apis/request/log.ts
- * @Description: 请求日志模块
+ * @FileDesc: 请求日志模块
  */
 
 import { isAbsoluteUrl, isDevEnv, isEnableDebug, trimUrlSlashes } from "@/utils"

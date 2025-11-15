@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-05 14:01:47
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:18:59
- * @FilePath: /uniapp-mp-wx-template/src/routerInterceptor/index.ts
- * @Description: 路由拦截器模块
+ * @FileDesc: 路由拦截器模块
  */
 
 import queryString from "query-string"

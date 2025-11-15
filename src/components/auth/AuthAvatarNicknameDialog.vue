@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-11-05 16:23:36
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 23:25:57
- * @FilePath: /uniapp-mp-wx-template/src/components/auth/AuthAvatarNicknameDialog.vue
- * @Description: 授权头像昵称对话框
--->
+ * @FileDesc: 授权头像昵称对话框
+ -->
 
 <script setup lang="ts">
 import { useVModels } from "@vueuse/core"

@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:17:45
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 19:21:55
- * @FilePath: /uniapp-mp-wx-template/src/components/TabsPaneList.vue
- * @Description: 选项卡面板列表组件
--->
+ * @FileDesc: 选项卡面板列表组件
+ -->
 
 <script setup lang="ts">
 import { useVModels } from "@vueuse/core"

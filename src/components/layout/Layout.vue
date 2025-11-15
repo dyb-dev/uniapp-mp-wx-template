@@ -1,12 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-09-19 16:27:38
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-10 20:17:46
- * @FilePath: /uniapp-mp-wx-template/src/components/layout/Layout.vue
- * @Description: 页面布局容器
- */
--->
+ * @FileDesc: 页面布局容器
+ -->
 
 <script setup lang="ts">
 import { onShow } from "@dcloudio/uni-app"

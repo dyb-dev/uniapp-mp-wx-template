@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:09:10
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-17 21:39:47
- * @FilePath: /uniapp-mp-wx-template/src/components/FormControl.vue
- * @Description: 表单控件组件
--->
+ * @FileDesc: 表单控件组件
+ -->
 
 <script setup lang="ts">
 import { useVModels } from "@vueuse/core"

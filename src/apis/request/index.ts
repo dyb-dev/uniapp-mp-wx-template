@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2025-02-21 21:58:00
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:11:56
- * @FilePath: /uniapp-mp-wx-template/src/apis/request/index.ts
- * @Description: 封装请求模块
+ * @FileDesc: 封装请求模块
  */
 
 import un from "@uni-helper/uni-network"

@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-05 20:49:51
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:25:20
- * @FilePath: /uniapp-mp-wx-template/src/utils/pages/navigate.ts
- * @Description: 页面跳转相关工具函数
+ * @FileDesc: 页面跳转相关工具函数
  */
 
 import pagesJson from "@/pages.json"

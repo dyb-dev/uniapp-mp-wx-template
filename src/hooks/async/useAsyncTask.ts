@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2025-11-08 12:36:44
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-11-08 12:36:54
- * @FilePath: /uniapp-mp-wx-template/src/hooks/async/useAsyncTask.ts
- * @Description: 使用异步任务执行器
+ * @FileDesc: 使用异步任务执行器
  */
 
 import { ref } from "vue"

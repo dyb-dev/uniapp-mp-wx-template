@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-11-29 19:51:35
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-17 18:56:24
- * @FilePath: /uniapp-mp-wx-template/src/components/picker/DateTimePicker.vue
- * @Description: 日期时间选择器组件
--->
+ * @FileDesc: 日期时间选择器组件
+ -->
 
 <script setup lang="ts">
 import { useVModels } from "@vueuse/core"

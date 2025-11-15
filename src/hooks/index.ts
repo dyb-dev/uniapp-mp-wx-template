@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-08 12:02:08
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-11-08 12:38:53
- * @FilePath: /uniapp-mp-wx-template/src/hooks/index.ts
- * @Description: hook模块
+ * @FileDesc: hook模块
  */
 
 /** 导出异步任务相关hook */

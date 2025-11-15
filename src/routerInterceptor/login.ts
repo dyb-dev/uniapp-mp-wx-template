@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-02 14:51:37
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:19:08
- * @FilePath: /uniapp-mp-wx-template/src/routerInterceptor/login.ts
- * @Description: 登录拦截器模块
+ * @FileDesc: 登录拦截器模块
  */
 
 import { useUserInfoStoreWithOut } from "@/stores"

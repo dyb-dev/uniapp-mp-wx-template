@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-08-02 22:58:16
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-06-29 17:45:27
- * @FilePath: /uniapp-mp-wx-template/types/index.d.ts
- * @Description: app 和 node 共有的环境类型定义模块
+ * @FileDesc: app 和 node 共有的环境类型定义模块
  */
 
 /** 项目信息(全局) */

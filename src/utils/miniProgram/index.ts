@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-09 22:19:06
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:23:06
- * @FilePath: /uniapp-mp-wx-template/src/utils/miniProgram/index.ts
- * @Description: 小程序相关工具函数
+ * @FileDesc: 小程序相关工具函数
  */
 
 import pagesJson from "@/pages.json"

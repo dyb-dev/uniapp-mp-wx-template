@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-05 13:56:46
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-06 13:58:45
- * @FilePath: /uniapp-mp-wx-template/tsconfig.node.json
- * @Description: node环境ts配置
+ * @FileDesc: node环境ts配置
  */
 
 {

@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:43:59
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:37:05
- * @FilePath: /uniapp-mp-wx-template/src/components/Cell.vue
- * @Description: 单元格组件
--->
+ * @FileDesc: 单元格组件
+ -->
 
 <script setup lang="ts">
 export interface ICellProps {

@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-05 13:57:47
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2025-11-15 13:16:50
- * @FilePath: /uniapp-mp-wx-template/pages.config.ts
- * @Description: 页面配置
+ * @FileDesc: 页面配置
  */
 
 import { defineUniPages } from "@uni-helper/vite-plugin-uni-pages"

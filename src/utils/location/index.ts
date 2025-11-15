@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2025-02-21 21:14:28
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:22:37
- * @FilePath: /uniapp-mp-wx-template/src/utils/location/index.ts
- * @Description: 位置相关工具函数
+ * @FileDesc: 位置相关工具函数
  */
 
 /** 位置 */

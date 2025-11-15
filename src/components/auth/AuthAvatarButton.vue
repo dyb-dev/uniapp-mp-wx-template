@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-11-02 01:59:59
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 23:25:47
- * @FilePath: /uniapp-mp-wx-template/src/components/auth/AuthAvatarButton.vue
- * @Description: 授权头像按钮组件
--->
+ * @FileDesc: 授权头像按钮组件
+ -->
 
 <script setup lang="ts">
 import { useVModels } from "@vueuse/core"

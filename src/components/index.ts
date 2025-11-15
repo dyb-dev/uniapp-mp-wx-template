@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-01 22:46:34
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 21:25:21
- * @FilePath: /uniapp-mp-wx-template/src/components/index.ts
- * @Description: 组件模块
+ * @FileDesc: 组件模块
  */
 
 /** 导出选择器组件相关工具函数 */

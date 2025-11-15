@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-11-16 02:10:19
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 20:48:20
- * @FilePath: /uniapp-mp-wx-template/src/components/List.vue
- * @Description: 列表组件
--->
+ * @FileDesc: 列表组件
+ -->
 
 <script setup lang="ts">
 import { onLoad } from "@dcloudio/uni-app"

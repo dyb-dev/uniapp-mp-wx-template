@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-05 20:10:08
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-02-21 21:43:32
- * @FilePath: /uniapp-mp-wx-template/src/main.ts
- * @Description: 程序入口文件
+ * @FileDesc: 程序入口文件
  */
 
 import { createSSRApp } from "vue"

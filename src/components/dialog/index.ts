@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-11-26 15:44:43
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:14:09
- * @FilePath: /uniapp-mp-wx-template/src/components/dialog/index.ts
- * @Description: 对话框组件相关工具函数
+ * @FileDesc: 对话框组件相关工具函数
  */
 
 /** 导出对话框类型 */

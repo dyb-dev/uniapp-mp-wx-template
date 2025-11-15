@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2025-02-21 21:11:50
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:21:49
- * @FilePath: /uniapp-mp-wx-template/src/utils/dateTime/index.ts
- * @Description: 日期时间相关工具函数
+ * @FileDesc: 日期时间相关工具函数
  */
 
 /**

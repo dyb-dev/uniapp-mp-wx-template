@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-10-05 14:02:47
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-10 16:38:17
- * @FilePath: /uniapp-mp-wx-template/src/subPackages/webview/pages/webview.vue
- * @Description: webview 公用页面
--->
+ * @FileDesc: webview 公用页面
+ -->
 
 <script setup lang="ts">
 import { onLoad, onShareAppMessage } from "@dcloudio/uni-app"

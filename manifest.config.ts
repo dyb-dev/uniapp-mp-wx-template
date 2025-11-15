@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-05 13:57:43
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-19 23:24:28
- * @FilePath: /uniapp-mp-wx-template/manifest.config.ts
- * @Description: 应用配置
+ * @FileDesc: 应用配置
  */
 
 import { defineManifestConfig } from "@uni-helper/vite-plugin-uni-manifest"

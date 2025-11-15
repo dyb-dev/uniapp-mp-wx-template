@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-11-05 00:55:26
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-06-29 16:51:20
- * @FilePath: /uniapp-mp-wx-template/src/utils/data/index.ts
- * @Description: 数据处理相关工具函数
+ * @FileDesc: 数据处理相关工具函数
  */
 
 /**

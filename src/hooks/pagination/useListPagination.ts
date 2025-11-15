@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-11-16 02:11:23
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:17:20
- * @FilePath: /uniapp-mp-wx-template/src/hooks/pagination/useListPagination.ts
- * @Description: 列表分页器
+ * @FileDesc: 列表分页器
  */
 
 import { usePagination } from "./usePagination"

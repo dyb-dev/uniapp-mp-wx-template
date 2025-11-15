@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:10:18
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 19:10:52
- * @FilePath: /uniapp-mp-wx-template/src/components/LabelValueBar.vue
- * @Description: 标签&值栏组件
--->
+ * @FileDesc: 标签&值栏组件
+ -->
 
 <script setup lang="ts">
 export interface ILabelValueBarProps {

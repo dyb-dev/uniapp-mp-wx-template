@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:43:09
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:12:34
- * @FilePath: /uniapp-mp-wx-template/src/components/u-charts/config-ucharts.js
- * @Description: uCharts 组件用户配置
+ * @FileDesc: uCharts 组件用户配置
  */
 
 /*

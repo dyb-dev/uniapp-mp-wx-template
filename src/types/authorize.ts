@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-08 12:04:14
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:21:14
- * @FilePath: /uniapp-mp-wx-template/src/types/authorize.ts
- * @Description: 授权类型模块
+ * @FileDesc: 授权类型模块
  */
 
 /** 授权错误码 */

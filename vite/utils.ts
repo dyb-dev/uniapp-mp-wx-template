@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-06 13:52:21
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:27:19
- * @FilePath: /uniapp-mp-wx-template/vite/utils.ts
- * @Description: vite配置工具函数
+ * @FileDesc: vite配置工具函数
  */
 
 import dayjs from "dayjs"

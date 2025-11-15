@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-30 00:22:30
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:16:39
- * @FilePath: /uniapp-mp-wx-template/src/components/provideComponentOptions.ts
- * @Description: 提供组件选项相关工具函数
+ * @FileDesc: 提供组件选项相关工具函数
  */
 
 import { provide, ref } from "vue"

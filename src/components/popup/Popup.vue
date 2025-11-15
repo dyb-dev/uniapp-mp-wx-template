@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-10-30 00:21:51
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-17 19:35:49
- * @FilePath: /uniapp-mp-wx-template/src/components/popup/Popup.vue
- * @Description: 基础弹窗组件
--->
+ * @FileDesc: 基础弹窗组件
+ -->
 
 <script setup lang="ts">
 import { useVModels } from "@vueuse/core"

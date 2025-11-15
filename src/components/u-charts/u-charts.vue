@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-12-07 19:43:09
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-12-07 20:13:10
- * @FilePath: /uniapp-mp-wx-template/src/components/u-charts/u-charts.vue
- * @Description: `图表` 通用组件
--->
+ * @FileDesc: `图表` 通用组件
+ -->
 
 <!--
  * qiun-data-charts 秋云高性能跨全端图表组件

@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2025-02-21 21:15:36
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:26:29
- * @FilePath: /uniapp-mp-wx-template/src/utils/userInfo/index.ts
- * @Description: 用户信息相关工具函数
+ * @FileDesc: 用户信息相关工具函数
  */
 
 import { CERTIFICATE_CONFIG_LIST, GENDER_CONFIG_LIST } from "@/constants"

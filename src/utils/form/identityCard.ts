@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2025-02-21 21:13:29
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:22:15
- * @FilePath: /uniapp-mp-wx-template/src/utils/form/identityCard.ts
- * @Description: 身份证相关工具函数
+ * @FileDesc: 身份证相关工具函数
  */
 
 /**

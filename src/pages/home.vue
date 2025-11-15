@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-09-19 10:38:39
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-30 13:55:59
- * @FilePath: /uniapp-mp-wx-template/src/pages/home.vue
- * @Description: 首页
--->
+ * @FileDesc: 首页
+ -->
 
 <script setup lang="ts">
 import { onLoad, onShareAppMessage } from "@dcloudio/uni-app"

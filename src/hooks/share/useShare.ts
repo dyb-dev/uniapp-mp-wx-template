@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2025-11-08 12:37:16
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-11-08 12:37:28
- * @FilePath: /uniapp-mp-wx-template/src/hooks/share/useShare.ts
- * @Description: 使用分享
+ * @FileDesc: 使用分享
  */
 
 import { useUserInfoStoreWithOut } from "@/stores"

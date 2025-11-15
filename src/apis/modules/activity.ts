@@ -1,10 +1,5 @@
 /*
- * @Author: dyb-dev
- * @Date: 2024-10-08 21:22:48
- * @LastEditors: dyb-dev
- * @LastEditTime: 2025-07-31 23:10:51
- * @FilePath: /uniapp-mp-wx-template/src/apis/modules/activity.ts
- * @Description: 本次活动接口模块
+ * @FileDesc: 本次活动接口模块
  */
 
 import un from "@uni-helper/uni-network"

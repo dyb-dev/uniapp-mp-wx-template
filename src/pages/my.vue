@@ -1,12 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-09-19 10:39:24
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-11-05 00:30:46
- * @FilePath: /uniapp-mp-wx-template/src/pages/my.vue
- * @Description: 我的页面
- */
--->
+ * @FileDesc: 我的页面
+ -->
 
 <script setup lang="ts">
 import { useAuthAvatarNicknameDialog } from "@/components"

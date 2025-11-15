@@ -1,11 +1,6 @@
 <!--
- * @Author: dyb-dev
- * @Date: 2024-10-11 16:41:06
- * @LastEditors: dyb-dev
- * @LastEditTime: 2024-10-31 22:54:19
- * @FilePath: /uniapp-mp-wx-template/src/pages/launch.vue
- * @Description: 小程序启动页
--->
+ * @FileDesc: 小程序启动页
+ -->
 
 <script setup lang="ts">
 import { onLoad } from "@dcloudio/uni-app"
