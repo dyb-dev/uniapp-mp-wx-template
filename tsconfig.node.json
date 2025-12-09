@@ -18,10 +18,6 @@
         // 指定要包含的类型定义文件
         "types": ["vite/client", "@dyb-dev/ts-config/types"],
         // 指定用于存储 TypeScript 编译器在增量编译模式下生成的编译信息的文件路径，以便下次编译时可以使用
-        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-        // 指定生成的模块代码
-        "module": "ESNext",
-        // 指定模块解析策略，支持现代打包工具
-        "moduleResolution": "Bundler"
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo"
     }
 }
