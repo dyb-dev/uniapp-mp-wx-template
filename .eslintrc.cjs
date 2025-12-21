@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-    extends: ["@dyb-dev/eslint-config"],
+    extends: ["@dyb-dev/eslint-config/vue"],
     overrides: [
         // #region CODE: unocss 配置
         {
