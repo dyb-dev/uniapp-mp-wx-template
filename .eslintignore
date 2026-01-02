@@ -19,10 +19,16 @@ dist
 node_modules
 src/components/u-charts
 src/static/
+src/types/dts/components.d.ts
+src/types/dts/pages.d.ts
 src/manifest.json
 src/pages.json
 .*
 *-lock.*
+*.css
+*.less
+*.scss
+*.html
 
 # 不忽略的项目文件
 !.vscode

@@ -26,7 +26,7 @@ onPullDownRefresh(() => {
 const userId = ref(0)
 
 /** EVENT: 点击获取userId按钮 */
-const onClickGetUserInfoButton = async() => {
+const onClickGetUserInfoButton = async () => {
 
     const _result = await getUserInfoApi({
         testResult: {
@@ -59,7 +59,7 @@ const onClickGetUserInfoButton = async() => {
 const id = ref(0)
 
 /** EVENT: 点击获取id按钮 */
-const onClickGetIdButton = async() => {
+const onClickGetIdButton = async () => {
 
     const _result = await getIdApi(
         {

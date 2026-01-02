@@ -40,7 +40,7 @@ const verifyCode = ref("")
 const password = ref("")
 
 // EVENT: 点击登录按钮
-async function onClickLoginButton() {
+async function onClickLoginButton () {
 
     // 校验表单是否通过
     if (!isDevEnv() && !validateForm()) {

@@ -85,7 +85,7 @@ export const useUserInfoStore = defineStore("UserInfoStore", () => {
      * @author dyb-dev
      * @date 09/10/2024/  17:02:57
      */
-    const login = async() => {
+    const login = async () => {
 
         try {
 
@@ -168,7 +168,7 @@ export const useUserInfoStore = defineStore("UserInfoStore", () => {
      * @param {IGetPhoneNumberApiParams} params 参数
      * @returns {*} 获取手机号结果
      */
-    const getPhoneNumber = async(params: IGetPhoneNumberApiParams) => {
+    const getPhoneNumber = async (params: IGetPhoneNumberApiParams) => {
 
         const _result = await getPhoneNumberApi(params, {
             testResult: {
@@ -199,7 +199,7 @@ export const useUserInfoStore = defineStore("UserInfoStore", () => {
      * @param {IUploadAvatarApiParams} params 参数
      * @returns {*} 上传头像结果
      */
-    const uploadAvatar = async(params: IUploadAvatarApiParams) => {
+    const uploadAvatar = async (params: IUploadAvatarApiParams) => {
 
         const _result = await uploadAvatarApi(params, {
             testResult: {
@@ -227,7 +227,7 @@ export const useUserInfoStore = defineStore("UserInfoStore", () => {
      * @param {IUploadUserInfoApiParams} params 参数
      * @returns {*} 上传用户信息结果
      */
-    const uploadUserInfo = async(params: IUploadUserInfoApiParams) => {
+    const uploadUserInfo = async (params: IUploadUserInfoApiParams) => {
 
         const _result = await uploadUserInfoApi(params, {
             testResult: {

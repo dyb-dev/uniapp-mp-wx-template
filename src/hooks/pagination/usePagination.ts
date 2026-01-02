@@ -197,7 +197,7 @@ export const usePagination = <T extends TPaginationDataItem>(options: IUsePagina
      * @date 06/09/2024/  21:42:48
      * @param {TPaginationRefreshParam} [page] 目标页码 默认: 当前页码
      */
-    const load = async(page: TPaginationRefreshParam = currentPage.value) => {
+    const load = async (page: TPaginationRefreshParam = currentPage.value) => {
 
         // 页码无效时
         if (!_isPageValid(page)) {
@@ -300,7 +300,7 @@ export const usePagination = <T extends TPaginationDataItem>(options: IUsePagina
      * @date 06/09/2024/  22:11:55
      * @param {TPaginationRefreshParam} [page=currentPage.value] 目标页码 默认: 当前页码
      */
-    const refresh = async(page: TPaginationRefreshParam = currentPage.value) => {
+    const refresh = async (page: TPaginationRefreshParam = currentPage.value) => {
 
         try {
 
@@ -335,7 +335,7 @@ export const usePagination = <T extends TPaginationDataItem>(options: IUsePagina
      * @date 06/09/2024/  20:46:51
      * @param {()=> void} method 上一页/下一页
      */
-    const _change = async(method: () => void) => {
+    const _change = async (method: () => void) => {
 
         try {
 
@@ -364,7 +364,7 @@ export const usePagination = <T extends TPaginationDataItem>(options: IUsePagina
      * @author dyb
      * @date 05/09/2024/  00:58:19
      */
-    const prev = async() => {
+    const prev = async () => {
 
         try {
 
@@ -385,7 +385,7 @@ export const usePagination = <T extends TPaginationDataItem>(options: IUsePagina
      * @author dyb
      * @date 05/09/2024/  00:58:09
      */
-    const next = async() => {
+    const next = async () => {
 
         try {
 

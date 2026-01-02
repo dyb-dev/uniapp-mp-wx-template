@@ -47,7 +47,7 @@ export const useAsyncTask = (): IUseAsyncTaskReturn => {
      * @param {string} [successMessage=""] 成功提示信息
      * @returns {*} 返回任务结果
      */
-    const run: IUseAsyncTaskReturn["run"] = async(task, failMessage = "加载失败", successMessage = "") => {
+    const run: IUseAsyncTaskReturn["run"] = async (task, failMessage = "加载失败", successMessage = "") => {
 
         try {
 

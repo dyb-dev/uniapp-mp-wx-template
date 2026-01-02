@@ -28,7 +28,7 @@ export interface IGetUserInfoApiResultData {
  * @param {TModifyProperties<ITestRequestConfig<IGetUserInfoApiResultData>, "test">} [testRequestConfig] 测试请求配置
  * @returns {*}  {Promise<UnResponse<IGetUserInfoApiResultData>>} 结果数据
  */
-export const getUserInfoApi = async(
+export const getUserInfoApi = async (
     testRequestConfig?: TModifyProperties<ITestRequestConfig<IGetUserInfoApiResultData>, "test">
 ): Promise<UnResponse<IGetUserInfoApiResultData>> => {
 
@@ -61,7 +61,7 @@ export interface IGetIdApiResultData {
  * @param {TModifyProperties<ITestRequestConfig<IGetIdApiResultData>, "test">} [testRequestConfig] 测试请求配置
  * @returns {*}  {Promise<UnResponse<IGetIdApiResultData>>} 结果数据
  */
-export const getIdApi = async(
+export const getIdApi = async (
     params: IGetIdApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig<IGetIdApiResultData>, "test">
 ): Promise<UnResponse<IGetIdApiResultData>> => {

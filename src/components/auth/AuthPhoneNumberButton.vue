@@ -25,7 +25,7 @@ const emits = defineEmits<{
 const { userInfoStoreState, getPhoneNumber } = useUserInfoStore()
 
 // EVENT: 监听获取手机号回调
-const onGetPhoneNumber = async(event: ButtonOnGetphonenumberEvent) => {
+const onGetPhoneNumber = async (event: ButtonOnGetphonenumberEvent) => {
 
     const { detail: phoneInfo } = event
 

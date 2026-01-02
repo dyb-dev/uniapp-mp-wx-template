@@ -355,7 +355,7 @@ const leftIconClassPrefix = computed(() => {
 let isProcessingClick = false
 
 /** EVENT: 点击左侧icon */
-const onClickLeftIcon = async() => {
+const onClickLeftIcon = async () => {
     // 如果正在处理点击，直接返回
     if (isProcessingClick) {
 
@@ -399,7 +399,7 @@ const onClickLeftIcon = async() => {
 }
 
 /** EVENT: 点击标题 */
-const onClickTitle = async() => {
+const onClickTitle = async () => {
     // 如果正在处理点击，直接返回
     if (isProcessingClick) {
 

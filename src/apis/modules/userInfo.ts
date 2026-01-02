@@ -39,7 +39,7 @@ export interface ILoginApiResultData {
  * @param {TModifyProperties<ITestRequestConfig<ILoginApiResultData>, "test">} [testRequestConfig] 测试请求配置
  * @returns {*}  {Promise<UnResponse<ILoginApiResultData>>} 结果数据
  */
-export const loginApi = async(
+export const loginApi = async (
     params: ILoginApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig<ILoginApiResultData>, "test">
 ): Promise<UnResponse<ILoginApiResultData>> => {
@@ -73,7 +73,7 @@ export interface IGetPhoneNumberApiResultData {
  * @param {TModifyProperties<ITestRequestConfig<IGetPhoneNumberApiResultData>, "test">} [testRequestConfig] 测试请求配置
  * @returns {*}  {Promise<UnResponse<IGetPhoneNumberApiResultData>>} 结果数据
  */
-export const getPhoneNumberApi = async(
+export const getPhoneNumberApi = async (
     params: IGetPhoneNumberApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig<IGetPhoneNumberApiResultData>, "test">
 ): Promise<UnResponse<IGetPhoneNumberApiResultData>> => {
@@ -101,7 +101,7 @@ export interface IUploadAvatarApiParams {
  * @param {TModifyProperties<ITestRequestConfig, "test">} [testRequestConfig] 测试请求配置
  * @returns {*}  {Promise<UnResponse>} 上传头像结果
  */
-export const uploadAvatarApi = async(
+export const uploadAvatarApi = async (
     params: IUploadAvatarApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig, "test">
 ): Promise<UnResponse> => {
@@ -131,7 +131,7 @@ export interface IUploadUserInfoApiParams {
  * @param {TModifyProperties<ITestRequestConfig, "test">} [testRequestConfig] 测试请求配置
  * @returns {*}  {Promise<UnResponse>} 上传用户信息结果
  */
-export const uploadUserInfoApi = async(
+export const uploadUserInfoApi = async (
     params: IUploadUserInfoApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig, "test">
 ): Promise<UnResponse> => {

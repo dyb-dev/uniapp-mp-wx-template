@@ -256,7 +256,7 @@ const dotColor = computed(() => {
 })
 
 // EVENT: 点击 tab-bar 项
-async function onClickTabBarItem(item: TTabBarItem, index: number) {
+async function onClickTabBarItem (item: TTabBarItem, index: number) {
     // 点击当前已选择的 tab-bar 项时
     if (modelValue.value === index) {
 

@@ -1,0 +1,2 @@
+# Git 提交时自动格式化暂存区文件
+npx lint-staged

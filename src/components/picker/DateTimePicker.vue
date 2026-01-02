@@ -274,7 +274,7 @@ const onClickCancelButton = (params: DatePickerBaseEvent) => {
  * @returns {boolean} 是否关闭成功
  */
 
-const close = async(actionType: TPickerBaseActionType, result: DatePickerBaseEvent) => {
+const close = async (actionType: TPickerBaseActionType, result: DatePickerBaseEvent) => {
 
     selectedResult.value = { ...selectedResult.value, ...result }
     selectedResult.value.actionType = actionType

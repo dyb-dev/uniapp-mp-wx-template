@@ -233,7 +233,7 @@ const loadingType = ref<TDialogActionType | "">("")
  * @param _actionType 动作类型
  * @returns {boolean} 是否关闭成功
  */
-const close = async(_actionType: TDialogActionType): Promise<boolean> => {
+const close = async (_actionType: TDialogActionType): Promise<boolean> => {
 
     if (loadingType.value) {
 
@@ -455,7 +455,7 @@ export default {
                 /* 保留所有空格和换行符，同时允许文本换行以适应容器宽度 */
                 white-space: pre-wrap;
                 /* 在单词超出容器宽度时进行换行，即使这个单词没有自然的断点（例如一个很长的单词或 URL）。 */
-                word-wrap: break-word;
+                overflow-wrap: break-word;
 
                 &--title {
                     padding-top: 16rpx;

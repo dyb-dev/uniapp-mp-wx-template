@@ -134,7 +134,7 @@ const actionType = ref<TAuthAvatarNicknameDialogActionType>("click-cancel-button
  * @param _actionType 动作类型
  * @returns {boolean} 是否关闭成功
  */
-const close = async(_actionType: TAuthAvatarNicknameDialogActionType) => {
+const close = async (_actionType: TAuthAvatarNicknameDialogActionType) => {
     // 点击确认按钮
     if (_actionType === "click-confirm-button") {
 

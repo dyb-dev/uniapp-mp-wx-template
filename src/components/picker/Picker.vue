@@ -210,7 +210,7 @@ const searchKeyWords = ref("")
 let originColumns: TPickerData = []
 
 /** FUN: 加载选择器数据 并且 设置当前选中的值 */
-const loadData = async() => {
+const loadData = async () => {
     // 如果请求函数存在时，才会加载数据
     if (typeof options.value.fetchDataFn === "function") {
 
@@ -316,7 +316,7 @@ const onClickCancelButton = (params: PickerBaseEvent) => {
  * @returns {boolean} 是否关闭成功
  */
 
-const close = async(actionType: TPickerBaseActionType, result: PickerBaseEvent) => {
+const close = async (actionType: TPickerBaseActionType, result: PickerBaseEvent) => {
 
     selectedResult.value = { ...selectedResult.value, ...result }
     selectedResult.value.actionType = actionType
@@ -405,7 +405,7 @@ export default {
         <nut-picker
             v-model="options.pickerValue"
             :title="options.title"
-            :columns="<PickerOption[]>options.columns"
+            :columns="options.columns"
             :visible-option-num="options.visibleOptionNum"
             :field-names="options.columnsFieldNames"
             :ok-text="options.confirmButtonText"

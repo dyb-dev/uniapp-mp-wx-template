@@ -41,7 +41,7 @@ export const setupRouterInterceptor = () => {
 
     const _options: UniNamespace.InterceptorOptions = {
         // 前置拦截器
-        invoke({ url = "", delta = 0 }: IRouterInvokeParams) {
+        invoke ({ url = "", delta = 0 }: IRouterInvokeParams) {
 
             /** url解析结果 */
             const _parseResult = queryString.parseUrl(url)

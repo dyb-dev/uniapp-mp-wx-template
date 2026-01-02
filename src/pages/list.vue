@@ -10,7 +10,7 @@ import type { IPaginationFetchDataFnParam, TPaginationDataItem, TPaginationFetch
 const total = 30
 
 // FUN: 请求数据函数
-const fetchData = async({
+const fetchData = async ({
     currentPageSize,
     currentPage
 }: IPaginationFetchDataFnParam): TPaginationFetchDataFnReturn<TPaginationDataItem> => {
@@ -67,7 +67,7 @@ const generateDataList = (pageNo: number, pageSize: number): string[] => {
                     v-for="(item, index) in list"
                     :key="index"
                     style="width: 100%; height: 100rpx"
-                    :style="{ background: index % 2 === 0 ? '#29d446' : '#ffffff' }"
+                    :style="{ background: Number(index) % 2 === 0 ? '#29d446' : '#ffffff' }"
                 >
                     {{ item }}
                 </view>

@@ -18,11 +18,15 @@ dist
 node_modules
 src/static/
 types
+LICENSE
 .*
 *-lock.*
 *.json
 *.yaml
 *.md
+*.tsx
 *.ts
 *.d.ts
 *.*js
+*.html
+*.ico

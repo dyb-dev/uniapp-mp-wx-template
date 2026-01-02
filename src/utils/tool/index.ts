@@ -24,7 +24,7 @@ export const debounce = (fn: TFuncType, wait: number, immediate = false): TFuncT
         const _this = <any>this
 
         // 延迟执行函数
-        const later = function() {
+        const later = function () {
 
             _timeout = undefined
             if (!immediate) {

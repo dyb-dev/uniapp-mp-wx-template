@@ -191,7 +191,7 @@ const actionType = ref<TPopupActionType>("click-close-button")
  * @param _actionType 动作类型
  * @returns {boolean} 是否关闭成功
  */
-const close = async(_actionType: TPopupActionType): Promise<boolean> => {
+const close = async (_actionType: TPopupActionType): Promise<boolean> => {
 
     if (isBeforeClose) {
 

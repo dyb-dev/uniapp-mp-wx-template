@@ -5,7 +5,8 @@
 import { CERTIFICATE_CONFIG_LIST, GENDER_CONFIG_LIST } from "@/constants"
 import { isIdentityCard } from "@/utils"
 
-import { ECertificatesType, EGenderType } from "@/types"
+import type { ECertificatesType } from "@/types"
+import { EGenderType } from "@/types"
 
 /**
  * FUN: 获取性别描述

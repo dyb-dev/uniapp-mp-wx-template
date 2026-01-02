@@ -52,7 +52,7 @@ const { modelValue } = useVModels(props, emits)
 const { userInfoStoreState, uploadAvatar } = useUserInfoStore()
 
 // EVENT: 选择头像回调
-async function onChooseAvatar(event: ButtonOnChooseavatarEvent) {
+async function onChooseAvatar (event: ButtonOnChooseavatarEvent) {
 
     const {
         detail: { avatarUrl }

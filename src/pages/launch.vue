@@ -29,7 +29,7 @@ onLoad(async query => {
     const { VITE_LOGIN_PATH, VITE_HOME_PATH, VITE_LAUNCH_PATH } = import.meta.env
 
     // 获取小程序显示时的查询参数
-    const { targetPath = VITE_HOME_PATH, ...otherQuery } = <ILaunchQuery>query || {}
+    const { targetPath = VITE_HOME_PATH, ...otherQuery } = (query || {}) as ILaunchQuery
 
     // 解码目标路径
     let _targetPath = decodeURIComponent(targetPath)

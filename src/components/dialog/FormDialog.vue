@@ -367,7 +367,7 @@ const validateForm = (): boolean => {
 }
 
 // EVENT: 关闭前回调
-const onBeforeClose = async(actionType: TDialogActionType) => {
+const onBeforeClose = async (actionType: TDialogActionType) => {
     // 更新动作类型
     formDialogResult.actionType = actionType
 

@@ -1,2 +1,2 @@
-# Git提交时自动效验提交信息
+# Git 提交时自动效验提交信息
 project-cli commit-lint $1

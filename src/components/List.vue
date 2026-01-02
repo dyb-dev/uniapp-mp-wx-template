@@ -263,7 +263,7 @@ const getElementHeight = (element: UniApp.NodesRef): Promise<number> => {
 const bottomBoxHeight = "90rpx"
 
 /** FUN: 自动加载数据 */
-const autoLoad = async() => {
+const autoLoad = async () => {
     // 如果不自动加载数据，直接返回
     if (!props.autoLoad) {
 
@@ -272,7 +272,7 @@ const autoLoad = async() => {
     }
 
     // 解决: scroll-view 高度和内容还没有渲染出来，因此需要等待下一帧，暂时使用 setTimeout
-    setTimeout(async() => {
+    setTimeout(async () => {
         // scrollView 高度为空时，获取 scrollView 高度
         if (!scrollViewHeight) {
 

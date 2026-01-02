@@ -16,7 +16,10 @@ logs
 # 忽略项目文件
 dist
 node_modules
+src/components/u-charts
 src/static/
+src/types/dts/components.d.ts
+src/types/dts/pages.d.ts
 src/manifest.json
 src/pages.json
 .*
