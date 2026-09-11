@@ -4,8 +4,6 @@
 
 import { sendRequest } from "../request"
 
-import type { UnResponse } from "@uni-helper/uni-network"
-
 /** 登录的参数 */
 export interface ILoginApiParams {
     /**
@@ -37,12 +35,12 @@ export interface ILoginApiResultData {
  * @date 21/02/2025/  22:49:58
  * @param {ILoginApiParams} params 参数
  * @param {TModifyProperties<ITestRequestConfig<ILoginApiResultData>, "test">} [testRequestConfig] 测试请求配置
- * @returns {*}  {Promise<UnResponse<ILoginApiResultData>>} 结果数据
+ * @returns {*}  {Promise<IApiResult<ILoginApiResultData>>} 结果数据
  */
 export const loginApi = async (
     params: ILoginApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig<ILoginApiResultData>, "test">
-): Promise<UnResponse<ILoginApiResultData>> => {
+): Promise<IApiResult<ILoginApiResultData>> => {
 
     return sendRequest({
         url: "",
@@ -71,12 +69,12 @@ export interface IGetPhoneNumberApiResultData {
  * @date 21/02/2025/  22:54:45
  * @param {IGetPhoneNumberApiParams} params 参数
  * @param {TModifyProperties<ITestRequestConfig<IGetPhoneNumberApiResultData>, "test">} [testRequestConfig] 测试请求配置
- * @returns {*}  {Promise<UnResponse<IGetPhoneNumberApiResultData>>} 结果数据
+ * @returns {*}  {Promise<IApiResult<IGetPhoneNumberApiResultData>>} 结果数据
  */
 export const getPhoneNumberApi = async (
     params: IGetPhoneNumberApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig<IGetPhoneNumberApiResultData>, "test">
-): Promise<UnResponse<IGetPhoneNumberApiResultData>> => {
+): Promise<IApiResult<IGetPhoneNumberApiResultData>> => {
 
     return sendRequest({
         url: "",
@@ -99,12 +97,12 @@ export interface IUploadAvatarApiParams {
  * @date 21/02/2025/  23:03:54
  * @param {IUploadAvatarApiParams} params 参数
  * @param {TModifyProperties<ITestRequestConfig, "test">} [testRequestConfig] 测试请求配置
- * @returns {*}  {Promise<UnResponse>} 上传头像结果
+ * @returns {*}  {Promise<IApiResult>} 上传头像结果
  */
 export const uploadAvatarApi = async (
     params: IUploadAvatarApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig, "test">
-): Promise<UnResponse> => {
+): Promise<IApiResult> => {
 
     return sendRequest({
         url: "",
@@ -129,12 +127,12 @@ export interface IUploadUserInfoApiParams {
  * @date 21/02/2025/  23:05:52
  * @param {IUploadUserInfoApiParams} params 参数
  * @param {TModifyProperties<ITestRequestConfig, "test">} [testRequestConfig] 测试请求配置
- * @returns {*}  {Promise<UnResponse>} 上传用户信息结果
+ * @returns {*}  {Promise<IApiResult>} 上传用户信息结果
  */
 export const uploadUserInfoApi = async (
     params: IUploadUserInfoApiParams,
     testRequestConfig?: TModifyProperties<ITestRequestConfig, "test">
-): Promise<UnResponse> => {
+): Promise<IApiResult> => {
 
     return sendRequest({
         url: "",

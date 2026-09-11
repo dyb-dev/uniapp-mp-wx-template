@@ -8,6 +8,8 @@ import { delay, isDevEnv } from "@/utils"
 
 import { ERequestLogType, requestLog } from "./log"
 
+import { EApiResultCode } from "@/types"
+
 import type { UnResponse } from "@uni-helper/uni-network"
 
 /** LET: 全局测试请求配置 */
@@ -33,13 +35,13 @@ export const setGlobalTestRequestConfig = (config: Omit<ITestRequestConfig, "tes
 let _globalRequestId = 0
 
 /** 发送请求选项 */
-export interface ISendRequestOptions<T extends Record<string, any>, P extends Record<string, any> = Record<string, any>> {
+export interface ISendRequestOptions<T = unknown, P extends Record<string, any> = Record<string, any>> {
     /** 请求地址 */
     url: string
     /** 请求参数 */
     params?: P
-    /** 发送 http 请求函数 默认 axios.post 方法 */
-    requestFn?: (url: string, params?: P) => Promise<UnResponse<T>>
+    /** 发送 http 请求函数 默认 un.post 方法 */
+    requestFn?: (url: string, params?: Record<string, any>) => Promise<UnResponse<IApiResult<T>>>
     /** 测试请求配置 */
     testRequestConfig?: TModifyProperties<ITestRequestConfig<T>, "test">
 }
@@ -52,17 +54,17 @@ export interface ISendRequestOptions<T extends Record<string, any>, P extends Re
  * @template T
  * @template P
  * @param {ISendRequestOptions<T, P>} options 选项
- * @returns {*}  {Promise<UnResponse<T>>} 请求结果
+ * @returns {*}  {Promise<IApiResult<T>>} 请求结果
  */
-export const sendRequest = async <T extends Record<string, any>, P extends Record<string, any> = Record<string, any>>(
+export const sendRequest = async <T = unknown, P extends Record<string, any> = Record<string, any>>(
     options: ISendRequestOptions<T, P>
-): Promise<UnResponse<T>> => {
+): Promise<IApiResult<T>> => {
 
     _globalRequestId++
     // 当前请求id
     const _currentRequestId = _globalRequestId
 
-    const { url, params = {}, requestFn = un.post<T>, testRequestConfig } = options
+    const { url, params = {}, requestFn = un.post, testRequestConfig } = options
 
     // 是否使用测试模式
     if (testRequestConfig?.test ?? _globalTestRequestConfig.test) {
@@ -84,6 +86,7 @@ export const sendRequest = async <T extends Record<string, any>, P extends Recor
 
             testResult = {
                 success: false,
+                code: EApiResultCode.INTERNAL_SERVER_ERROR,
                 message: "测试数据未提供"
             }
 
@@ -95,7 +98,7 @@ export const sendRequest = async <T extends Record<string, any>, P extends Recor
                 data: testResult
             })
 
-            return testResult
+            return testResult as IApiResult<T>
 
         }
 
@@ -115,7 +118,7 @@ export const sendRequest = async <T extends Record<string, any>, P extends Recor
             data: testResult
         })
 
-        return testResult
+        return testResult as IApiResult<T>
 
     }
 
@@ -130,36 +133,33 @@ export const sendRequest = async <T extends Record<string, any>, P extends Recor
         })
 
         // 发送请求
-        const _result = await requestFn(url, params)
+        const { data } = (await requestFn(url, params)) as TModifyProperties<UnResponse<IApiResult<T>>, "data", "required">
 
         // 确定日志类型
-        const _requestLogType = _result.success ? ERequestLogType.REQUEST_RESULT_SUCCESS : ERequestLogType.REQUEST_RESULT_FAIL
+        const _requestLogType = data.success ? ERequestLogType.REQUEST_RESULT_SUCCESS : ERequestLogType.REQUEST_RESULT_FAIL
 
         requestLog({
             type: _requestLogType,
             url,
             requestId: _currentRequestId,
-            data: _result
+            data
         })
 
-        return _result
+        return data
 
     }
     catch (error) {
 
-        const _result = {
-            success: false,
-            message: "请求失败"
-        }
+        const { data } = error as TModifyProperties<UnResponse<IApiResult<T>>, "data", "required">
 
         requestLog({
             type: ERequestLogType.REQUEST_RESULT_FAIL,
             url,
             requestId: _currentRequestId,
-            data: _result
+            data
         })
 
-        return _result
+        return data
 
     }
 

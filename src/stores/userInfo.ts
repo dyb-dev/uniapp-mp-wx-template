@@ -7,6 +7,8 @@ import { reactive } from "vue"
 
 import { getPhoneNumberApi, loginApi, uploadAvatarApi, uploadUserInfoApi } from "@/apis"
 
+import { EApiResultCode } from "@/types"
+
 import type { IGetPhoneNumberApiParams, IUploadAvatarApiParams, IUploadUserInfoApiParams } from "@/apis"
 
 import { store } from "."
@@ -108,6 +110,7 @@ export const useUserInfoStore = defineStore("UserInfoStore", () => {
                 {
                     testResult: {
                         success: true,
+                        code: EApiResultCode.Success,
                         message: "登录成功",
                         data: {
                             userId: "userId",
@@ -173,6 +176,7 @@ export const useUserInfoStore = defineStore("UserInfoStore", () => {
         const _result = await getPhoneNumberApi(params, {
             testResult: {
                 success: true,
+                code: EApiResultCode.Success,
                 message: "获取手机号成功",
                 data: {
                     phoneNumber: "111111111"
@@ -204,6 +208,7 @@ export const useUserInfoStore = defineStore("UserInfoStore", () => {
         const _result = await uploadAvatarApi(params, {
             testResult: {
                 success: true,
+                code: EApiResultCode.Success,
                 message: "上传头像成功"
             }
         })
@@ -232,6 +237,7 @@ export const useUserInfoStore = defineStore("UserInfoStore", () => {
         const _result = await uploadUserInfoApi(params, {
             testResult: {
                 success: true,
+                code: EApiResultCode.Success,
                 message: "上传用户信息成功"
             }
         })

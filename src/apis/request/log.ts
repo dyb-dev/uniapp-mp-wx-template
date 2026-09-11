@@ -99,6 +99,6 @@ export const requestLog = (option: IRequestLogOptions) => {
     // 获取请求日志配置
     const { description, style } = REQUEST_LOG_CONFIG_LIST[type]
 
-    console.log(`\n %c${requestId} ${description} :>>`, style, url, "\n", data)
+    console.info(`\n %c${requestId} ${description} :>>`, style, url, "\n", data)
 
 }

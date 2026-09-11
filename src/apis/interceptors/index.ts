@@ -12,6 +12,7 @@ import { setupResponseInterceptor } from "./response"
  */
 export const setupApiInterceptor = () => {
 
+    // 设置响应拦截器
     setupResponseInterceptor()
 
 }

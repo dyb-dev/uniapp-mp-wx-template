@@ -8,6 +8,8 @@
         "ms-ceintl.vscode-language-pack-zh-hans",
         // Code Spell Checker 插件
         "streetsidesoftware.code-spell-checker",
+        // Better Todo Tree 插件
+        "fanaticpythoner.better-todo-tree",
         // Color Info 插件
         "bierner.color-info",
         // comment tip 插件
@@ -30,10 +32,6 @@
         "maggie.eslint-rules-zh-plugin",
         // git-commit-plugin 插件
         "redjue.git-commit-plugin",
-        // GitHub Copilot 插件
-        "github.copilot",
-        // GitHub Copilot Chat 插件
-        "github.copilot-chat",
         // GitLens 插件
         "eamodio.gitlens",
         // Image Preview 插件
@@ -60,8 +58,6 @@
         "meganrogge.template-string-converter",
         // Todo Highlight 插件
         "wayou.vscode-todo-highlight",
-        // Todo Tree 插件
-        "gruntfuggly.todo-tree",
         // uni-app-schemas 插件
         "uni-helper.uni-app-schemas-vscode",
         // uni-app-snippets 插件

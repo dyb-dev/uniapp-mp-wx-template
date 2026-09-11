@@ -4,6 +4,8 @@ import { ref } from "vue"
 
 import { getIdApi, getUserInfoApi } from "@/apis"
 
+import { EApiResultCode } from "@/types"
+
 onLoad(query => {
 
     console.log("测试页面入参:", query)
@@ -31,6 +33,7 @@ const onClickGetUserInfoButton = async () => {
     const _result = await getUserInfoApi({
         testResult: {
             success: true,
+            code: EApiResultCode.Success,
             message: "获取userId成功",
             data: {
                 body: "1",
@@ -68,6 +71,7 @@ const onClickGetIdButton = async () => {
         {
             testResult: {
                 success: true,
+                code: EApiResultCode.Success,
                 message: "获取id成功",
                 data: {
                     id: 123

@@ -4,6 +4,10 @@
 
 import { un } from "@uni-helper/uni-network"
 
+import { EApiResultCode } from "@/types"
+
+import type { UnResponse } from "@uni-helper/uni-network"
+
 /**
  * FUN: 设置响应拦截器
  *
@@ -14,14 +18,42 @@ export const setupResponseInterceptor = () => {
 
     // 设置响应拦截器
     un.interceptors.response.use(
+        // 2xx 范围内的状态码都会触发该函数
         response => {
 
-            response.success = response.errMsg?.includes("request:fail") ? false : true
-            response.message = response.errMsg || (response.success ? "请求成功" : "请求失败")
+            const isFail = response.errMsg?.includes("request:fail") ?? true
+
+            if (isFail) {
+
+                response.data = {
+                    success: false,
+                    code: EApiResultCode.INTERNAL_SERVER_ERROR,
+                    message: "网络错误或无响应"
+                }
+
+            }
+
             return response
 
         },
-        undefined,
+        // 超出 2xx 范围的状态码都会触发该函数
+        error => {
+
+            const errorResponse: TModifyProperties<UnResponse<IApiResult>, "data", "required"> = error.response ?? { data: {} }
+
+            if (!Number.isSafeInteger(errorResponse.data.code)) {
+
+                errorResponse.data = {
+                    success: false,
+                    code: errorResponse.status || EApiResultCode.INTERNAL_SERVER_ERROR,
+                    message: errorResponse.statusText || "网络错误或无响应"
+                } as IApiResult
+
+            }
+
+            return Promise.reject(errorResponse)
+
+        },
         { synchronous: true }
     )
 
