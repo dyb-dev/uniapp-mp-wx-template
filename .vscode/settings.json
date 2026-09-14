@@ -24,6 +24,9 @@
     "[css]": {
         "editor.defaultFormatter": "stylelint.vscode-stylelint"
     },
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
     "workbench.tree.indent": 10,
     "workbench.colorTheme": "Dark Modern",
     "workbench.colorCustomizations": {
@@ -113,22 +116,14 @@
 
     // #region CODE: markdownlint 插件配置
 
-    "markdownlint.config": {
-        "default": true,
-        "MD007": { "indent": 4 },
-        "no-hard-tabs": true,
-        "no-inline-html": false,
-        "first-line-h1": false,
-        "MD024": false,
-        "MD033": false,
-        "MD036": false,
-        "MD030": false
-    },
-    "markdownlint.run": "onType",
+    "markdownlint.severityForError": "Error",
+    "markdownlint.severityForWarning": "Error",
     "markdownlint.lintWorkspaceGlobs": [
         "**/*.{md,mkd,mdwn,mdown,markdown,markdn,mdtxt,mdtext,workbook}",
         "!**/node_modules",
         "!**/bower_components",
+        "!**/dist",
+        "!**/.history",
         "!**/.git"
     ],
 

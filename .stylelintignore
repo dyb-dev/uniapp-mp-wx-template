@@ -24,6 +24,7 @@ LICENSE
 *.json
 *.yaml
 *.md
+*.markdown
 *.tsx
 *.ts
 *.d.ts

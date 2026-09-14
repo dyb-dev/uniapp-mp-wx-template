@@ -1,6 +1,6 @@
 {
     "name": "uniapp-mp-wx-template",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "description": "基于`uni-app + vue3 + ts`搭建的微信小程序模板",
     "author": "dyb-dev",
     "license": "MIT",
@@ -13,7 +13,7 @@
         "build-only": "uni build -p mp-weixin",
         "ts-check": "vue-tsc --build --force",
         "release": "project-cli release",
-        "format": "prettier --write . && eslint --fix . && stylelint --fix . --allow-empty-input"
+        "format": "prettier --write . && eslint --fix . && stylelint --fix . --allow-empty-input && markdownlint-cli2 --fix ."
     },
     "engines": {
         "node": ">=18.0.0",
@@ -32,6 +32,7 @@
         "@dcloudio/types": "^3.4.14",
         "@dcloudio/vite-plugin-uni": "3.0.0-4040520250104002",
         "@dyb-dev/eslint-config": "^1.1.1",
+        "@dyb-dev/markdownlint-config": "^0.0.1",
         "@dyb-dev/prettier-config": "^0.0.5",
         "@dyb-dev/project-cli": "^0.0.10",
         "@dyb-dev/stylelint-config": "^0.0.8",
@@ -45,6 +46,7 @@
         "eslint": "^8.57.1",
         "husky": "^9.1.6",
         "lint-staged": "^16.2.7",
+        "markdownlint-cli2": "^0.23.2",
         "miniprogram-api-typings": "^4.0.1",
         "prettier": "^3.3.3",
         "prettier-eslint": "^16.3.0",
@@ -74,10 +76,20 @@
         "zod": "^4.1.12"
     },
     "lint-staged": {
-        "*": [
+        "*.{js,cjs,mjs,jsx,ts,tsx,json,jsonc,html}": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "*.{css,sass,scss,less}": [
+            "stylelint --fix --allow-empty-input"
+        ],
+        "*.vue": [
             "prettier --write",
             "eslint --fix",
             "stylelint --fix --allow-empty-input"
+        ],
+        "*.{md,markdown}": [
+            "markdownlint-cli2 --fix"
         ]
     }
 }

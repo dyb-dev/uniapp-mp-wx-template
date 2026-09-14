@@ -24,9 +24,12 @@ src/manifest.json
 src/pages.json
 .*
 *-lock.*
+*.md
+*.markdown
 
 # 不忽略的项目文件
 !.vscode
+!.markdownlint*
 !.prettierrc*
 !.stylelintrc*
 !.eslintrc*
