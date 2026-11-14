@@ -10,13 +10,13 @@ import { deepClone } from "@/utils"
 
 import type { Ref } from "vue"
 
-/** TYPE: 弹窗动作类型 */
+/** 弹窗动作类型 */
 export type TPopupActionType = "click-custom-button" | "click-close-button"
 
-/** TYPE: 卸载组件回调参数 */
+/** 卸载组件回调参数 */
 export type TPopupUnmountParam = [TPopupActionType]
 
-/** TYPE: 函数式调用时的唯一标识key */
+/** 函数式调用时的唯一标识key */
 export type TPopupCustomKey = `__POPUP__${string}`
 
 /** 组件选项 */
@@ -111,7 +111,7 @@ export interface IPopupOptions {
     beforeClose?: (actionType: TPopupActionType) => boolean | Promise<boolean>
 }
 
-/** TYPE: 弹窗Props(全部可选) */
+/** 弹窗Props(全部可选) */
 type TPopupProps = Partial<IPopupOptions>
 
 const props = withDefaults(defineProps<TPopupProps>(), {
@@ -179,7 +179,7 @@ watch(injectOptions, value => {
 
 })
 
-/** CONST: 是否正在执行 beforeClose */
+/** LET: 是否正在执行 beforeClose */
 let isBeforeClose = false
 
 /** REF: 动作类型 */

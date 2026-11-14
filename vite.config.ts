@@ -14,13 +14,13 @@ import { defineConfig, loadEnv } from "vite"
 
 import { generateProjectInfo } from "./vite/utils"
 
-/** CONST: 项目根目录 */
+/** 项目根目录 */
 const projectRootDir = process.cwd()
 
-/** CONST: 获取.env文件的环境变量 */
+/** 获取.env文件的环境变量 */
 export const VITE_ENV = loadEnv(process.env.NODE_ENV as string, projectRootDir) as ImportMetaEnv
 
-/** CONST: 项目信息 */
+/** 项目信息 */
 const __PROJECT_INFO__ = generateProjectInfo(VITE_ENV)
 
 const {
@@ -33,7 +33,7 @@ const {
     VITE_SUB_PACKAGE_CHILD_DIRS
 } = VITE_ENV
 
-/** CONST: 分包子目录路径列表 */
+/** 分包子目录路径列表 */
 const subPackageChildDirPathList = VITE_SUB_PACKAGE_CHILD_DIRS.split(",").map(item => `src/${VITE_SUB_PACKAGE_DIR}/${item}`)
 
 export default defineConfig(async () => {

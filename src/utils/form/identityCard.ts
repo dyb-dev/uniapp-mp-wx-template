@@ -12,7 +12,7 @@
  */
 const _isProvinceCode = (identityCardNumber: string): boolean => {
 
-    /** CONST: 省、直辖市代码表映射 */
+    /** 省、直辖市代码表映射 */
     const provinceCodeMap: Record<number, string> = {
         11: "北京",
         12: "天津",
@@ -106,9 +106,9 @@ const _isBirthday = (identityCardNumber: string): boolean => {
  */
 const _isParityBit = (identityCardNumber: string): boolean => {
 
-    /** CONST: 每位加权因子 */
+    /** 每位加权因子 */
     const powers = ["7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7", "9", "10", "5", "8", "4", "2"]
-    /** CONST: 第18位校检码 */
+    /** 第18位校检码 */
     const parityBit = ["1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"]
 
     // 18位身份证需要验证最后一位校验位

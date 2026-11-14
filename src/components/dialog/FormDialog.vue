@@ -12,7 +12,7 @@ import type { IFormControlProps, TDialogActionType } from "@/components"
 import type { NutAnimationName } from "nutui-uniapp"
 import type { Ref } from "vue"
 
-/** TYPE: 表单对话框动作类型 与 `TFormDialogActionType` 保持一致，这里单独定义主要是解决编辑器上会报错的问题 */
+/** 表单对话框动作类型 与 `TFormDialogActionType` 保持一致，这里单独定义主要是解决编辑器上会报错的问题 */
 export type TFormDialogActionType = "click-cancel-button" | "click-confirm-button"
 
 export interface IFormDialogResult<T extends Record<string, any>> {
@@ -22,13 +22,13 @@ export interface IFormDialogResult<T extends Record<string, any>> {
     formData: T
 }
 
-/** TYPE: 卸载组件回调参数 */
+/** 卸载组件回调参数 */
 export type TFormDialogUnmountParam<T extends Record<string, any>> = [IFormDialogResult<T>]
 
-/** TYPE: 函数式调用时的唯一标识key */
+/** 函数式调用时的唯一标识key */
 export type TFormDialogCustomKey = `__FORM_DIALOG__${string}`
 
-/** TYPE: 表单对话框控件 */
+/** 表单对话框控件 */
 export interface IFormDialogControl<T extends Record<string, any>> extends Omit<IFormControlProps, "modelValue" | "onClick"> {
     /** 控件值的绑定key */
     modelKey: keyof T
@@ -156,7 +156,7 @@ export interface IFormDialogOptions<T extends Record<string, any>> {
     beforeClose?: (actionType: IFormDialogResult<T>) => boolean | Promise<boolean>
 }
 
-/** TYPE: 表单对话框Props(全部可选) */
+/** 表单对话框Props(全部可选) */
 type TFormDialogProps = Partial<IFormDialogOptions<Record<string, any>>>
 
 const props = withDefaults(defineProps<TFormDialogProps>(), {

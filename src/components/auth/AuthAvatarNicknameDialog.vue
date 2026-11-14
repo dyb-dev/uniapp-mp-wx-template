@@ -13,13 +13,13 @@ import type { IAuthErrorOptions } from "@/types"
 
 import type { Ref } from "vue"
 
-/** TYPE: 授权头像昵称对话框动作类型 */
+/** 授权头像昵称对话框动作类型 */
 export type TAuthAvatarNicknameDialogActionType = "click-cancel-button" | "click-confirm-button"
 
-/** TYPE: 卸载组件回调参数 */
+/** 卸载组件回调参数 */
 export type TAuthAvatarNicknameDialogUnmountParam = [TAuthAvatarNicknameDialogActionType]
 
-/** TYPE: 函数式调用时的唯一标识key */
+/** 函数式调用时的唯一标识key */
 export type TAuthAvatarNicknameDialogCustomKey = `__AUTH_AVATAR_NICKNAME_DIALOG__${string}`
 
 /** 组件选项 */
@@ -44,7 +44,7 @@ export interface IAuthAvatarNicknameDialogOptions {
     unmount: (...ares: TAuthAvatarNicknameDialogUnmountParam) => void
 }
 
-/** TYPE: 弹窗Props(全部可选) */
+/** 弹窗Props(全部可选) */
 type TAuthAvatarNicknameDialogProps = Partial<IAuthAvatarNicknameDialogOptions>
 
 const props = withDefaults(defineProps<TAuthAvatarNicknameDialogProps>(), {

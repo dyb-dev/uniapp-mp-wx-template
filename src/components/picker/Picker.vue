@@ -12,7 +12,7 @@ import type { TPickerBaseActionType, TPickerBaseSelectedResult, TPickerBaseUnmou
 import type { PickerBaseEvent, PickerFieldNames, PickerOption } from "nutui-uniapp"
 import type { Ref } from "vue"
 
-/** TYPE: 函数式调用时的唯一标识key */
+/** 函数式调用时的唯一标识key */
 export type TPickerCustomKey = `__PICKER__${string}`
 
 /** 请求 Picker 数据函数的参数 */
@@ -130,7 +130,7 @@ export interface IPickerOptions {
     beforeClose?: (selectedResult: TPickerBaseSelectedResult) => boolean | Promise<boolean>
 }
 
-/** TYPE: 选择器Props(全部可选) */
+/** 选择器Props(全部可选) */
 type TPickerProps = Partial<IPickerOptions>
 
 const props = withDefaults(defineProps<TPickerProps>(), {

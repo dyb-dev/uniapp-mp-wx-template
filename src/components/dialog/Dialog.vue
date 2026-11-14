@@ -14,13 +14,13 @@ import { deepClone } from "@/utils"
 import type { NutAnimationName } from "nutui-uniapp"
 import type { Ref } from "vue"
 
-/** TYPE: 对话框动作类型 */
+/** 对话框动作类型 */
 export type TDialogActionType = "click-cancel-button" | "click-confirm-button"
 
-/** TYPE: 卸载组件回调参数 */
+/** 卸载组件回调参数 */
 export type TDialogUnmountParam = [TDialogActionType]
 
-/** TYPE: 函数式调用时的唯一标识key */
+/** 函数式调用时的唯一标识key */
 export type TDialogCustomKey = `__DIALOG__${string}`
 
 /** 组件选项 */
@@ -141,7 +141,7 @@ export interface IDialogOptions {
     beforeClose?: (actionType: TDialogActionType) => boolean | Promise<boolean>
 }
 
-/** TYPE: 对话框Props(全部可选) */
+/** 对话框Props(全部可选) */
 type TDialogProps = Partial<IDialogOptions>
 
 const props = withDefaults(defineProps<TDialogProps>(), {

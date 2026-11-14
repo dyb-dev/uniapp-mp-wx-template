@@ -4,13 +4,13 @@
 
 import { ECertificatesType, EGenderType } from "@/types"
 
-/** CONST: 性别配置列表 */
+/** 性别配置列表 */
 export const GENDER_CONFIG_LIST = [
     { type: EGenderType.Man, desc: "男" },
     { type: EGenderType.Woman, desc: "女" }
 ]
 
-/** CONST: 证件配置列表 */
+/** 证件配置列表 */
 export const CERTIFICATE_CONFIG_LIST = [
     { type: ECertificatesType.IdCard, desc: "身份证" },
     { type: ECertificatesType.MilitaryCard, desc: "军人证" },

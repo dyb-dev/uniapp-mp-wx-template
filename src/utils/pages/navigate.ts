@@ -277,7 +277,7 @@ export const navigateToPage = (options: INavigateToPageOptions) => {
 
     }
 
-    /** CONST: tabBar列表 */
+    /** tabBar列表 */
     // @ts-ignore
     const _tabBarList = pagesJson?.tabBar?.list || []
 

@@ -4,7 +4,7 @@
 
 import pagesJson from "@/pages.json"
 
-/** CONST: 设备信息 */
+/** LET: 设备信息 */
 let accountInfo: UniApp.AccountInfo
 
 /**

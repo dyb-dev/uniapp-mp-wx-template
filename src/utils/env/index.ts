@@ -4,7 +4,7 @@
 
 import { getEnvVersion } from "@/utils"
 
-/** CONST: 设备信息 */
+/** LET: 设备信息 */
 let systemInfo: UniApp.GetSystemInfoResult
 
 /**

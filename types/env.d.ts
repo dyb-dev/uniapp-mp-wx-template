@@ -1,6 +1,7 @@
 /** vite环境变量 */
 interface ImportMetaEnv {
-    // CONST: 共用
+    // #region CODE: 开发环境 & 生产环境 环境变量
+
     /** 组件目录 默认:components */
     readonly VITE_COMPONENT_DIR: string
     /** 页面目录 默认:pages */
@@ -22,11 +23,13 @@ interface ImportMetaEnv {
     readonly VITE_LOGIN_PATH: string
     /** 首页路径 默认:pages/home */
     readonly VITE_HOME_PATH: string
+    /** wx小程序appid */
+    readonly VITE_MP_WX_APPID: string
     /** 开发环境服务器网址（小程序开发版、体验版用到） 默认:http://xxx.com */
     readonly VITE_DEV_SERVER_URL: string
     /** 生产环境服务器网址（小程序体验版、线上版用到） 默认:http://xxx.com */
     readonly VITE_PROD_SERVER_URL: string
-    /** 接口请求基础路径 默认:/api */
+    /** 接口请求基础路径 默认:/test.aspx */
     readonly VITE_API_BASE_PATH: string
     /**
      * 用户 node 环境
@@ -35,9 +38,7 @@ interface ImportMetaEnv {
      */
     readonly VITE_USER_NODE_ENV: "development" | "production"
 
-    // CONST: wx小程序相关
-    /** wx小程序appid */
-    readonly VITE_MP_WX_APPID: string
+    // #endregion
 }
 
 /** 扩展 ImportMeta 接口 */

@@ -239,7 +239,7 @@ const scrollViewElement = selectorQuery.select(`.${scrollViewClassName}`)
 /** CONST: scroll-view 内容 */
 const scrollViewContentElement = selectorQuery.select(`.${scrollViewContentClassName}`)
 
-/** CONST: scroll-view 高度 */
+/** LET: scroll-view 高度 */
 let scrollViewHeight: number
 
 // FUN: 获取元素高度

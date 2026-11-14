@@ -10,7 +10,7 @@ import pagesJson from "@/pages.json"
 import { useTabBarStore } from "@/stores"
 import { getCurrentPageConfig, navigateBack, navigateToPage, isImagePath, getCapsuleBoundingClientRect } from "@/utils"
 
-/** TYPE: 导航栏左侧默认显示icon的类型 */
+/** 导航栏左侧默认显示icon的类型 */
 export type TNavBarLeftIconType = "back" | "home" | ""
 
 export interface INavBarProps {

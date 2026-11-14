@@ -21,7 +21,7 @@ export type TDateTimePickerUnmountParam = [TDateTimePickerSelectedResult]
 /** 日期选择器组件 函数式调用时基础结果类型 */
 export type TShowDateTimePickerResult = TDateTimePickerUnmountParam
 
-/** TYPE: 函数式调用时的唯一标识key */
+/** 函数式调用时的唯一标识key */
 export type TDateTimePickerCustomKey = `__DATE_TIME_PICKER__${string}`
 
 export interface IDateTimePickerOptions {
@@ -147,7 +147,7 @@ export interface IDateTimePickerOptions {
     beforeClose?: (selectedResult: TDateTimePickerSelectedResult) => boolean | Promise<boolean>
 }
 
-/** TYPE: 选择器Props(全部可选) */
+/** 选择器Props(全部可选) */
 type TDateTimePickerProps = Partial<IDateTimePickerOptions>
 
 const props = withDefaults(defineProps<TDateTimePickerProps>(), {
