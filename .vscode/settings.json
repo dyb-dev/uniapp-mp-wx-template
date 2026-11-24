@@ -56,6 +56,9 @@
     "github.copilot.nextEditSuggestions.enabled": true,
     "diffEditor.hideUnchangedRegions.enabled": true,
     "gitlens.views.commitDetails.files.layout": "tree",
+    "files.associations": {
+        ".prettierignore": "plaintext"
+    },
     "js/ts.tsdk.path": "node_modules/typescript/lib",
     "js/ts.tsdk.promptToUseWorkspaceVersion": true,
 

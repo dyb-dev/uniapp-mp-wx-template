@@ -15,15 +15,7 @@ declare global {
         message: string
         /** 数据 */
         data: T
-        /**
-         * 日期时间
-         * - 格式: YYYY-MM-DD HH:mm:ss
-         */
-        datetime: string
-        /**
-         * 请求 id
-         * - 类型: UUID
-         */
+        /** 请求 ID */
         requestId: string
     }
 
@@ -34,6 +26,6 @@ declare global {
         /** 测试模式下请求延迟时间 单位: 毫秒 */
         testDelay?: number
         /** 测试模式下请求结果 */
-        testResult: TModifyProperties<IApiResult<T>, "data" | "datetime" | "requestId">
+        testResult: TModifyProperties<IApiResult<T>, "data" | "requestId">
     }
 }
